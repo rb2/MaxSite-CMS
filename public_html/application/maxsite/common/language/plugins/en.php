@@ -15,18 +15,18 @@ $lang['Обновлено!'] = 'Update!';
 $lang['Заголовок:'] = 'Header:';
 $lang['Формат:'] = 'Format:';
 $lang['Сортировка:'] = 'Sort:';
-$lang['Обновлено!'] = 'Update!';
-$lang['Админ-доступ к настройкам'] = 'Admin-allow access to options of';
-$lang['Админ-доступ к настройкам '] = 'Admin-allow access to options of ';
+$lang['Обновлено!'] = 'Updated!';
+$lang['Админ-доступ к настройкам'] = 'Admin access to options of';
+$lang['Админ-доступ к настройкам '] = 'Admin access to options of ';
 
 
 # admin_ip
 $lang['Обновлено! Обязательно сохраните секретный адрес сейчас!'] = 'Updated! Save secret URL <strong>now</strong>';
 $lang['Admin IP'] = 'Admin IP';
 $lang['Вы можете указать IP с которых разрешен доступ в админ-панель. Если пользователь попытается войти в панель управления с другого IP, то ему будет отказано в доступе.'] =
-'You can specify IP, via which you allow access to admin-panel. If user try to login from other IP — he get access denied.';
+'You can specify IP which allowed to access the admin-panel. Anyone trying to login from other IP will be rejected.';
 $lang['На тот случай, если у администратора сменится IP, следует указать секретный адрес (URL), по которому можно очистить список разрешенных IP. Сохраняйте этот секретный адрес в надежном месте. В случае, если вы его забудете у вас не будет другой возможности, кроме как отключить плагин (удалить его файлы) или вручную исправить базу данных.'] =
-'Upon that event if beside admin is changed IP, follows to indicate the secret address (URL), over which possible clear the list allowed(permitted) by IP. Save this secret address to reliable place. If and when you will forget beside it you will not be other possibility, except hang up plugin (delete(remove) its files or manually correct the database.';
+'Upon that event if beside admin\'s IP changed, follows to indicate the secret address (URL), over which possible clear the list allowed(permitted) by IP. Save this secret address to reliable place. If and when you will forget beside it you will not be other possibility, except hang up plugin (delete(remove) its files or manually correct the database.';
 $lang['Если секретный адрес не указан, то сбросить список будет невозможно.'] = 'If secret URL not setted, flush list is unpossible';
 $lang['Если список IP пуст, то доступ в админ-панель разрешен с любого IP.'] = 'If list of IP is empty, access to admin-panel allowed via any IP';
 $lang['Следует указывать только цифры и английские буквы. Другие символы не допустимы!'] = 'Only letters and numbers allowed.';
