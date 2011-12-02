@@ -1,0 +1,6 @@
+/*  PRE to OL */
+div.pre {background: #F0F0F0; padding: 5px; overflow: auto; wi1dth: 99%; margin: 0 0 10px 0;}
+ol.pre {line-hei1ght: 1em; font-family: monospace; padding: 0; margin: 0 0 0 30px;  }
+ol.pre li {padding: 0; margin: 0; white-space: pre; line-he1ight: 0.8em;}
+ol.pre li.odd {background: none;}
+ol.pre span.php-comment {color: gray;}

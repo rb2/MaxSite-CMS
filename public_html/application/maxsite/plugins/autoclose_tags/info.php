@@ -1,0 +1,13 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
+
+$info = array(
+	'name' => t('Автозакрытие тегов перед «катом»', __FILE__),
+	'description' => t('Плагин закрывает незакрытые теги.', __FILE__),
+	'version' => '1.1',
+	'author' => 'Wave',
+	'plugin_url' => 'http://wave.fantregata.com/page/work-for-maxsite',
+	'author_url' => 'http://wave.fantregata.com/',
+	'group' => 'template'
+);
+
+# end file

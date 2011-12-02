@@ -1,0 +1,63 @@
+/* main menu */
+
+/*  не трогаем */
+.ddsmoothmenu { float: left; padding: 3px 0; /* отступы */ z-index: 50;}
+.ddsmoothmenu ul { z-index: 100; margin: 0; padding: 0; list-style-type: none; }
+.ddsmoothmenu ul li { position: relative; float: left; display: inline; margin: 0 4px; /* отступ пунктов */ }
+.ddsmoothmenu ul li a { display: block; }
+* html .ddsmoothmenu ul li a { display: inline-block; }
+.ddsmoothmenu ul li ul { position: absolute; left: 0; display: none; visibility: hidden; }
+.rightarrowclass{ position: absolute; top: 6px; right: 5px; }
+.ddshadow { position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 40; background: silver; /* цвет тени */ }
+.toplevelshadow { opacity: 0.5; } /* прозрачность тени */
+
+/* ------------ свои настройки -------------- */
+
+/* верхнее меню */
+.ddsmoothmenu ul li a { color: white; line-height: 29px; height: 29px; padding: 0 10px; text-decoration: none; margin: 0; /* отступ между верхней строчкой и подменю*/ }
+.ddsmoothmenu ul li a span {}
+
+/* граница по верхнему пункту*/
+.ddsmoothmenu ul li {}
+ 
+/* переопределяем границу для подпунктов */
+.ddsmoothmenu ul li ul li {}
+
+/* выделенный пункт */
+.ddsmoothmenu ul li.selected > a { color: white; background: #225DA3; }
+
+/* булечка сбоку верхнего меню если нужно */
+.ddsmoothmenu li.group a span {background: url("../images/menu-down-light.png") no-repeat right; padding: 0 18px 0 0; }
+
+/* убрать булечку для подменю */
+.ddsmoothmenu li.group li span {background: none; }
+
+/* верхнее меню при наведении */
+.ddsmoothmenu ul li a:hover { color: white; background: #9F9F9F; text-decoration: none; }
+
+/* подменю */
+.ddsmoothmenu ul li ul { margin: 0; }
+
+/* для подменю переопределяем стили */
+.ddsmoothmenu ul li ul li a { min-width: 250px; margin: 0; padding: 5px 0 5px 20px; border: none; border-bottom: 1px solid #e6e6e6; border-top: 1px solid #e6e6e6; background: #cfcfcf; color: black; font-weight: normal; line-height: 25px; height: 25px; }
+
+/* подпункт при наведении */
+.ddsmoothmenu ul li ul li a:hover { color: white; background: #9F9F9F; min-width: 250px; }
+
+/* выделенный подпункт */
+.ddsmoothmenu ul li ul li.selected a { border-left: 1px solid #cfcfcf; border-right: 1px solid #cfcfcf; min-width: 248px; }
+
+/* выделенный подпункт при наведении */
+.ddsmoothmenu ul li ul li.selected a:hover {}
+
+
+/* углы */
+
+/* верхние пункты*/
+.ddsmoothmenu>ul>li>a { border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+
+/* первый блок выпадающего */
+.ddsmoothmenu ul li.group ul li:first-child a, .ddshadow { border-radius-topleft: 10px; -moz-border-radius-topleft: 10px; -webkit-border-top-left-radius: 10px; border-radius-topright: 10px; -moz-border-radius-topright: 10px; -webkit-border-top-right-radius: 10px; }
+
+/* последний блок выпадающего */
+.ddsmoothmenu ul li.group ul li:last-child a, .ddshadow { border-radius-bottomleft: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-bottom-left-radius: 10px;  border-radius-bottomright: 10px; -moz-border-radius-bottomright: 10px; -webkit-border-bottom-right-radius: 10px; }

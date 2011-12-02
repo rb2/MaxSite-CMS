@@ -1,0 +1,80 @@
+<?php 
+	/* фон браузера */
+	$bgcolor1 = '#BED7DC';
+	
+	/* фон меню, цвет текста шапки, фон подвала*/
+	$color1 = '#2E4A4B';
+	
+	/* ссылка при наведении */
+	$color8 = '#2E4A4B';
+	
+	/* фон выделенного пункта меню, ссылки */
+	$color2 = '#011D1E';
+	
+	/*  */
+	$color3 = '#E2FEFF';
+	
+	/* фон блока комментариев */
+	$color11 = '#2E4A4B';
+	
+	/* границы */
+	$color4 = '#E2FEFF';
+	
+	/* фон pre */
+	$color5 = '#DCEAEB';
+	
+	/* текст pre */
+	$color10 = '#2E4A4B';
+	
+	/* dd */
+	$color6 = 'red';
+	
+	/* фон основной */
+	$color7 = '#FFFFFF';
+	
+	/* фон виджетов*/
+	$color9 = '#CDD8D8';
+	
+?>
+
+body {color: <?= $color1 ?>; background: <?= $bgcolor1 ?> url("[TEMPLATE_URL]images/patterns/blue_grange.jpg");}
+div.content {background: <?= $color7 ?>;}
+a {color: <?= $color2 ?>;}
+a:hover {color: <?= $color8 ?>;}
+div.all-wrap {background: <?= $color7 ?>; color: <?= $color1 ?>; margin-top: 20px; border-radius: 10px 10px 0 0;}
+div.main {background: <?= $color7 ?>; color: <?= $color1 ?>;}
+h1 {color: <?= $color2 ?>; text-shadow: silver 0 0 4px;}
+h1 a {color: <?= $color2 ?>;}
+h1 a:hover {color: <?= $color8 ?>;}
+h1.category {background: <?= $color2 ?>; color: <?= $color3 ?>;}
+div.type_home_cat_block div.header_home_cat {background: <?= $color2 ?>;}
+div.type_home_cat_block div.header_home_cat a {color: <?= $color3 ?>;}
+div.footer {background: <?= $color1 ?>; color: <?= $color7 ?>;}
+h2.sitemap {background: <?= $color2 ?>; color: <?= $color7 ?>;}
+textarea, select, input[type="text"], input[type="password"] {background: <?= $color3 ?>; border: 1px solid <?= $color4 ?>;}
+div.leave_a_comment {background: <?= $color11 ?>; border-color: <?= $color11 ?>; color: <?= $color3 ?>;}
+div.page_comments_count {background: <?= $color11 ?>; border-color: <?= $color11 ?>; color: <?= $color3 ?>;}
+div.comment-info {background: <?= $color7 ?>; color: <?= $color2 ?>;}
+div.comments div.comments_content {background: <?= $color7 ?>; color: <?= $color1 ?>;}
+div.comments-auth {background: <?= $color11 ?>; color: <?= $color3 ?>;}
+div.comment-form div.comments-textarea {background: <?= $color11 ?>; color: <?= $color3 ?>;}
+div.comment-form div.comments-user {background: <?= $color11 ?>; color: <?= $color3 ?>;}
+div.comment-form p.hint {color: <?= $color3 ?>;}
+div.comment-form p.hint a {color: <?= $color3 ?>;}
+
+div.page_other_pages_header {background: <?= $color11 ?>; border-color: <?= $color11 ?>; color: <?= $color3 ?>;}
+code, pre, blockquote {background: <?= $color5 ?>; color: <?= $color10 ?>; border: 1px solid <?= $color5 ?>;}
+dt {background: <?= $color5 ?>;}
+dd {background: <?= $color6 ?>;}
+table th {background: <?= $color5 ?>;}
+#MainMenu {background: <?= $color1 ?>;}
+ul.menu li.selected a {background: <?= $color2 ?>;}
+ul.menu li a:hover {background: <?= $color2 ?>;}
+div.pagination strong {background: <?= $bgcolor1 ?>;}
+
+div.widget {background: <?= $color9 ?>; border-radius: 10px; box-shadow: silver 0 0 5px;}
+div.widget div.w0 {padding: 10px;}
+
+
+div.component-text-and-image {background: #BEE2E3; background: -webkit-linear-gradient(#618F91, #BEE2E3);background: -moz-linear-gradient(#618F91, #BEE2E3); margin-top: -5px;}
+	

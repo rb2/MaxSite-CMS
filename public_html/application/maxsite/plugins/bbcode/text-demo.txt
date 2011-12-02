@@ -1,0 +1,165 @@
+<h1>Заголовок H1</h1>
+<p>Sed ullamcorper, tortor ac feugiat rhoncus, <u>lectus orci ornare massa</u>, in <s>fringilla lectus</s> odio a eros. Pellentesque volutpat, nunc quis pellentesque vehicula, <strong>turpis elit varius tortor</strong>, vel sollicitudin est orci ac urna? Cras et scelerisque metus. Mauris sit <sub>amet</sub> consequat <sup>nisl</sup>. Duis in arcu nisi, sed rutrum lectus. Duis <em>pulvinar suscipit lacus at scelerisque</em>. Nam vel tellus non dui laoreet fringilla et ac enim. Integer congue semper elementum.</p>
+
+<p>Sed purus dolor, interdum vel fermentum ut, gravida a elit. :-) Praesent sed magna ut lorem dignissim iaculis. In egestas bibendum volutpat? Suspendisse tortor massa, volutpat vel accumsan condimentum, molestie ut ligula. Cras nunc dui, condimentum in vestibulum sit amet, dignissim ac sem. Nulla aliquet :cheese: urna ut magna tempor dapibus.</p>
+
+[h2(first)]Заголовок H2.first[/h2]
+
+<p>Aenean venenatis lobortis convallis. Aliquam in magna tortor, at elementum tellus. Sed rhoncus consequat mauris. In at tortor eros, quis tincidunt risus. Donec dictum, purus in lacinia :smirk: hendrerit; lectus sapien sagittis sem, vitae molestie orci nunc ut lectus? Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+
+<h2>Заголовок H2</h2>
+
+<p>Morbi vel mauris dolor. Pellentesque sollicitudin auctor libero non commodo. Nunc lectus purus, varius vel volutpat non, dapibus a libero. Sed ornare velit luctus enim vestibulum gravida viverra lectus tristique? Suspendisse sollicitudin mauris ac orci sollicitudin sed aliquam odio vehicula. Nam varius vestibulum quam elementum posuere. In ut euismod massa. Ut scelerisque nisi vel nunc consequat luctus. Duis risus sapien, blandit vestibulum accumsan at, sagittis sed orci. Fusce scelerisque, mauris rhoncus fringilla rhoncus, nisl felis semper erat; vitae luctus sem leo non turpis.</p>
+
+<h3>Заголовок H3</h3>
+<p>Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</p>
+
+<h4>Заголовок H4</h4>
+<p>Sed magna elit, laoreet ac ornare sed, tempus a velit. Donec lobortis scelerisque urna, id malesuada sem tristique scelerisque! Etiam feugiat mi a diam mollis et bibendum dui placerat! Duis posuere ultrices euismod. Sed lacinia nulla sed nisl vestibulum in fringilla nulla congue. Suspendisse luctus convallis lacinia. Sed facilisis pharetra magna, a gravida tellus ultrices ut. Mauris eget semper elit. Donec euismod hendrerit lectus vitae sagittis.</p>
+
+<h5>Заголовок H5</h5>
+<p>Ut tempus auctor volutpat? Vestibulum molestie suscipit quam vitae sagittis. Sed vel metus eget ligula dapibus sagittis. Maecenas lacinia faucibus egestas. Curabitur eget mi magna, ac imperdiet dolor. Nulla bibendum nibh id lacus semper placerat. Duis tristique, urna nec interdum commodo, enim lectus posuere neque, eget congue mi nunc in dolor. Sed convallis odio tortor, vel consequat felis. Nulla facilisi. In hac habitasse platea dictumst. Sed fermentum interdum molestie! Curabitur metus mi, fermentum eget accumsan ac, aliquet non urna. Etiam diam odio, pretium vel luctus et, porta a quam.</p>
+
+<h6>Заголовок H6</h6>
+<p>Maecenas id dui lectus. Ut ipsum leo, laoreet sit amet pulvinar quis, mattis eu justo. Donec ac leo a neque porttitor tincidunt ac id elit. Nullam egestas, quam porttitor consequat ornare, lectus ipsum sagittis nisl, vel vestibulum libero felis ullamcorper quam. Nulla et est dui. Praesent vel bibendum ipsum. Proin id lectus mi.</p>
+
+<hr>
+
+<h2>Преформатированный текст (код) PRE</h2>
+
+<pre>
+&lt;html&gt;
+	&lt;head&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+
+<h2>Текст CODE</h2>
+
+<code>
+&lt;html&gt;
+	&lt;head&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;
+</code>
+
+<hr>
+
+
+
+<h2>Изображение в тексте IMG</h2>
+
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra, dui sit amet fringilla venenatis. <a href="#">Vestibulum lobortis</a> semper sem aliquet rhoncus. Donec fermentum, felis quis tincidunt sodales, sem quam adipiscing nibh, nec tincidunt augue sapien.</p>
+
+<img src="data:image/png;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAPAAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDA4PEA8ODBMTFBQTExwbGxscHx8fHx8fHx8fHwEHBwcNDA0YEBAYGhURFRofHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8f/8AAEQgASwBLAwERAAIRAQMRAf/EAGYAAQEBAQEBAAAAAAAAAAAAAAADAgEECAEBAAAAAAAAAAAAAAAAAAAAABAAAgECBAQFBQEAAAAAAAAAAAECERIhMTIDcbHhsmGRwdFjIlLiE3MUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD6cAAAAAAAAAAAADOXADQAAAAAZb8wNAAAACbdmL0cgKAAAGJTpRLGTyQHYqmeLebA0AAAAAEW3sv4u3oBYCe5uW0SV05aY+vABCFuLdZvVICgAAAAAAAHmnP/AD4L6oS0x+38eQFdvbtrJu6ctUvbwAoAAAAAAABPc3LaJK6ctMffwAbe3bVyd05apenADGOy/h7egFwAAAAAAYnKmCVZPJAchC2reM3qkBQABJL9X8+3oBUAAAAZb8wCjTHNvNgaAAAAGErcFp5AbAAAAAAAAAAAAAAAAAAAAAAAAOAf/9k=" width="75" height="75" alt="Картинка классом left" title="Картинка классом left" class="left">
+
+
+<p>Mauris et magna at libero mollis tristique quis non massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec vitae ante dolor. Mauris tincidunt ultricies nunc eu mattis. Integer ornare vulputate semper? Nullam tempor placerat imperdiet. Nullam hendrerit sollicitudin sem, nec luctus lectus blandit sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet hendrerit urna. Sed lobortis lectus condimentum tellus consectetur facilisis. Nullam velit ipsum, pulvinar nec pellentesque sit amet, adipiscing ut eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas convallis, erat pharetra pulvinar bibendum; orci mi consequat quam, ut volutpat lectus ligula ut diam. </p>
+
+<img src="data:image/png;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAPAAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABgQEBAUEBgUFBgkGBQYJCwgGBggLDAoKCwoKDBAMDAwMDAwQDA4PEA8ODBMTFBQTExwbGxscHx8fHx8fHx8fHwEHBwcNDA0YEBAYGhURFRofHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8f/8AAEQgASwBLAwERAAIRAQMRAf/EAGYAAQEBAQEBAAAAAAAAAAAAAAADAgEECAEBAAAAAAAAAAAAAAAAAAAAABAAAgECBAQFBQEAAAAAAAAAAAECERIhMTIDcbHhsmGRwdFjIlLiE3MUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD6cAAAAAAAAAAAADOXADQAAAAAZb8wNAAAACbdmL0cgKAAAGJTpRLGTyQHYqmeLebA0AAAAAEW3sv4u3oBYCe5uW0SV05aY+vABCFuLdZvVICgAAAAAAAHmnP/AD4L6oS0x+38eQFdvbtrJu6ctUvbwAoAAAAAAABPc3LaJK6ctMffwAbe3bVyd05apenADGOy/h7egFwAAAAAAYnKmCVZPJAchC2reM3qkBQABJL9X8+3oBUAAAAZb8wCjTHNvNgaAAAAGErcFp5AbAAAAAAAAAAAAAAAAAAAAAAAAOAf/9k=" width="75" height="75" alt="Картинка классом right" title="Картинка классом right" class="right">
+
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra, dui sit amet fringilla venenatis. <a href="#">Vestibulum lobortis semper</a> sem aliquet rhoncus. Donec fermentum, felis quis tincidunt sodales, sem quam adipiscing nibh, nec tincidunt augue sapien. Etiam congue, magna vitae pellentesque accumsan, mi urna convallis erat; a posuere sapien dolor vel sapien. Vestibulum sed nunc ac nunc rutrum molestie! Sed nec arcu nunc, vitae hendrerit felis! In eleifend suscipit ligula, et ornare tellus varius placerat. Vivamus porta, sem at laoreet tempus, purus justo luctus lacus, non bibendum arcu quam a erat.</p>
+
+
+
+<h2>Цитаты BLOCKQUOTE</h2>
+
+<blockquote>
+<p>Quisque vehicula; neque id condimentum varius, metus nisl vehicula orci, sit amet malesuada massa ipsum ut orci. Ut tincidunt congue eleifend. Proin et eros nisi, eget sollicitudin lacus. Maecenas sit amet nibh et felis volutpat vulputate ut sed nisi. Praesent vestibulum, magna in accumsan lacinia, odio dolor laoreet nibh, non cursus nisl dui non augue?</p>
+<p><cite>- Duis justo quam <strong>CITE</strong></cite></p>
+</blockquote>
+
+
+<h2>Сообщения DIV</h2>
+
+<div class="message">[b]message[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
+
+<div class="alert">[b]alert[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
+
+<div class="error">[b]error[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
+
+<div class="ok">[b]ok[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
+
+<div class="about">[b]about[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
+
+[div(about red)][b]about red[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
+
+[div(about yellow)][b]about yellow[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
+
+[div(about green)][b]about green[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
+
+[div(about blue)][b]about blue[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
+
+[div(message gray no-border-radius)][b]message gray no-border-radius[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
+
+[div(alert silver no-border-radius)][b]alert silver no-border-radius[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
+
+[div(red noicon)][b]red noicon[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
+
+
+
+<h2>Обычный список UL/LI</h2>
+<ul>
+<li>Nulla lobortis semper libero, rutrum volutpat leo faucibus a. Fusce justo eros, porta at cursus eu, tincidunt ut magna. Nulla.</li>
+<li>Vestibulum pretium sapien eget neque bibendum at auctor justo gravida. Nam dapibus, diam eu sodales aliquet, orci lorem auctor felis.</li>
+<li>Proin ut neque ut quam vestibulum blandit. Phasellus tempus semper est, at malesuada leo suscipit.</li>
+<li>Phasellus faucibus fringilla ligula, at ultrices arcu varius quis. Aliquam sollicitudin scelerisque bibendum. Proin sed.</li>
+</ul>
+
+<h2>Нумерованный список OL/LI</h2>
+<ol>
+<li>Curabitur ornare porttitor nunc, nec.</li>
+<li>Vivamus nisi arcu, tempus vel.</li>
+<li>In sit amet justo non.</li>
+<li>Aliquam nec bibendum libero. Phasellus.</li>
+</ol>
+
+<h2>Список определений (DL/DT)</h2>
+
+<dl>
+<dt>title</dt>
+<dd>definition</dd>
+<dd>definition</dd>
+<dt>title</dt>
+<dt>title</dt>
+<dd>definition</dd>
+<dt>title</dt>
+<dd>definition</dd>
+</dl>
+
+
+<h2>Таблица TABLE/TR/TH/TD</h2>
+
+<table>
+<tr>
+<th>Заголовок 1 TH</th>
+<th>Заголовок 2 TH</th>
+<th>Заголовок 3 TH</th>
+<th>Заголовок 4 TH</th>
+</tr>
+<tr>
+<td>Ячейка 1.1</td>
+<td>Ячейка 1.2</td>
+<td>Ячейка 1.3</td>
+<td>Ячейка 1.4</td>
+</tr>
+<tr>
+<td>Ячейка 2.1</td>
+<td>Ячейка 2.2</td>
+<td>Ячейка 2.3</td>
+<td>Ячейка 2.4</td>
+</tr>
+<tr>
+<td>Ячейка 3.1</td>
+<td>Ячейка 3.2</td>
+<td>Ячейка 3.3</td>
+<td>Ячейка 3.4</td>
+</tr>
+</table>

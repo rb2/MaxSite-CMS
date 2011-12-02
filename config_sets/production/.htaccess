@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|(robots|humans)\.txt|favicon\.(png|ico)|captcha/.*\.png|js|img|css)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+
