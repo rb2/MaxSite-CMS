@@ -17,7 +17,11 @@
 	//pr($MSO);
 	
 	$username = '';
-	$userpassword = '';
+	
+	$CI->load->helper('string_helper');
+	
+	$userpassword = random_string('alnum', 12); // генератор пароля
+	
 	$useremail = '';
 	$namesite = '';
 	$demoposts = 0;

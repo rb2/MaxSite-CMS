@@ -2,14 +2,13 @@
 
 	$CI = & get_instance();
 	$plugin_url = getinfo('site_url') . 'admin/samborsky_polls/';
-	require_once (getinfo('plugins_dir') . 'samborsky_polls/functions.php');
 
 ?>
 
 <div class="admin-h-menu">
-	<a href="<?= $plugin_url ?>list" class="select">Управление голосованиями</a>&nbsp;|&nbsp;
-	<a href="<?= $plugin_url ?>manage" class="select">Добавить новое</a>&nbsp;|&nbsp;
-	<a href="<?= $plugin_url ?>settings" class="select">Настройки</a>
+	<a href="<?= $plugin_url ?>list" class="select"><?= t('Управление голосованиями', 'plugins')?></a>&nbsp;|&nbsp;
+	<a href="<?= $plugin_url ?>manage" class="select"><?= t('Добавить новое', 'plugins')?></a>&nbsp;|&nbsp;
+	<a href="<?= $plugin_url ?>settings" class="select"><?= t('Настройки', 'plugins')?></a>
 </div>
 
 
@@ -20,23 +19,24 @@
 		$path = getinfo('plugins_url') .'samborsky_polls/';
 		echo <<<EOFA
 
-			<!-- Стили админки -->
+			<!-- admin styles  -->
 		<link rel="stylesheet" href="${path}css/style_admin.css" type="text/css" media="screen" charset="utf-8">
-		
+
 EOFA;
-	
-		
+
+
 	}
-	
+
 	function polls_admin_head_list(){
 		$path = getinfo('plugins_url') .'samborsky_polls/';
-		$nmb_rec = (int)mso_get_option('polls_admin_number_records', 'plugins', 15);
+		$nmb_rec = mso_get_option('plugin_samborsky_polls', 'plugins', array('admin_number_records'=>10));
+		$nmb_rec = $nmb_rec['admin_number_records'];
 		$list_ajax = getinfo('ajax') .base64_encode('plugins/samborsky_polls/' .'/list-ajax.php');
-		
-		
+
+
 		echo <<<EOFL
 
-			<!-- JS скрипт админки -->
+			<!-- admin JS -->
 		<script type="text/javascript" src="${path}js/admin.js"></script>
 			<!-- jQuery TableSorter + Pagination -->
 		<script type="text/javascript">var nmb_rec = {$nmb_rec};</script>
@@ -44,7 +44,7 @@ EOFA;
 		<script type="text/javascript">
 			var list_ajax = "{$list_ajax}";
 			$(document).ready(function(){
-				$('.samborsky_polls_table').jTPS({perPages:[nmb_rec],perPageText:'Голосований на странице: '});
+				$('.samborsky_polls_table').jTPS({perPages:[nmb_rec]});
 			});
 		</script>
 
@@ -53,14 +53,16 @@ EOFL;
 
 	function polls_admin_head_manage(){
 		$path = getinfo('plugins_url') .'samborsky_polls/';
+		$text = array(t('Ограничено 15 ответами.','plugins'),t('Удаляем ответ. Вы уверены?','plugins'));
 		echo <<<EOFM
 
-			<!-- JS скрипт админки -->
+			<!-- admin JS -->
 		<script src="${path}js/admin.js"></script>
 			<!-- jQuery UI (DatePicker) -->
 		<script type="text/javascript" src="${path}js/jquery-ui-1.8.16.custom.min.js"></script>
 		<link rel="stylesheet" href="${path}css/jquery-ui-1.8.16.custom.css" type="text/css" media="screen">
 		<script type="text/javascript">
+			var text = ["{$text[0]}", "{$text[1]}"];
 			$(function() {
 				$( "#sortable_polls" ).sortable();
 				$( "#sortable123_polls" ).disableSelection();
@@ -77,12 +79,12 @@ EOFM;
 	if( empty($seg) ){
 		require(getinfo('plugins_dir') . 'samborsky_polls/list.php');
 		mso_hook_add('admin_head', 'polls_admin_head_list');
-		mso_hook_add('admin_head', 'polls_admin_head');		
+		mso_hook_add('admin_head', 'polls_admin_head');
 	}
 	else if( $seg == 'manage' ){
 		require(getinfo('plugins_dir') . 'samborsky_polls/manage.php');
 		mso_hook_add('admin_head', 'polls_admin_head_manage');
-		mso_hook_add('admin_head', 'polls_admin_head');	
+		mso_hook_add('admin_head', 'polls_admin_head');
 	}
 	else if( $seg == 'list' ){
 		require(getinfo('plugins_dir') . 'samborsky_polls/list.php');
@@ -91,7 +93,7 @@ EOFM;
 	}
 	else if( $seg == 'logs' ){
 		require(getinfo('plugins_dir') . 'samborsky_polls/logs.php');
-		mso_hook_add('admin_head', 'polls_admin_head');	
+		mso_hook_add('admin_head', 'polls_admin_head');
 	}
 	else if( $seg == 'settings' ){
 		require(getinfo('plugins_dir') . 'samborsky_polls/settings.php');

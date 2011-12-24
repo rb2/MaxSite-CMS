@@ -2,7 +2,7 @@
 
 $return = array(
 	'error_code' => 1,
-	'error_description' => 'Не указан ID голосования',
+	'error_description' => t('Не указан ID голосования','plugins'),
 	'resp' => ''
 );
 
@@ -53,11 +53,11 @@ if( isset($_POST['q_id']) && is_numeric($_POST['q_id']) && $_POST['type'] ){
 						$return['resp'] = $question->results();
 					}
 					else{
-						$return['error_description'] = 'Проблема с загрузкой результатов голосования';
+						$return['error_description'] = t('Проблема с загрузкой результатов голосования','plugins');
 					}
 				}
 				else{
-					$return['error_description'] = 'Не указан вариант ответа';
+					$return['error_description'] = t('Не указан вариант ответа','plugins');
 				}
 			}
 			else{
@@ -65,7 +65,7 @@ if( isset($_POST['q_id']) && is_numeric($_POST['q_id']) && $_POST['type'] ){
 			}
 		}
 		else{
-			$return['error_description'] = 'Голосования не существует';
+			$return['error_description'] = t('Голосования не существует','plugins');
 		}
 	}
 	
@@ -82,11 +82,11 @@ if( isset($_POST['q_id']) && is_numeric($_POST['q_id']) && $_POST['type'] ){
 			$return['resp'] = $question->results();
 		}
 		else{
-			$return['error_description'] = 'Голосования не существует';
+			$return['error_description'] = t('Голосования не существует','plugins');
 		}
 	}
 	else{
-		$return['error_description'] = 'Не известный метод';
+		$return['error_description'] = t('Не известный метод','plugins');
 	}
 }
 

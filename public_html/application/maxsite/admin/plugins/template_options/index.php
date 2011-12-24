@@ -8,17 +8,8 @@
 # функция автоподключения плагина
 function template_options_autoload($args = array())
 {
-	global $MSO;
-	
 	mso_create_allow('template_options_admin', t('Доступ к настройкам шаблона', 'admin'));
-	
-	if (is_type('admin'))
-	{
-		$fn = $MSO->config['templates_dir'] . $MSO->config['template'] . '/options.php';
-		
-		if (file_exists($fn)) 
-			mso_hook_add( 'admin_init', 'template_options_admin_init'); # хук на админку
-	}
+	if (is_type('admin'))mso_hook_add('admin_init', 'template_options_admin_init'); # хук на админку
 }
 
 # функция выполняется при указаном хуке admin_init
@@ -42,13 +33,12 @@ function template_options_admin_page($args = array())
 	
 	# подключаем options.php из шаблона
 	$fn = $MSO->config['templates_dir'] . $MSO->config['template'] . '/options.php';
+	
+	# если файла нет, то подключаем дефолтный из админки
+	if (!file_exists($fn)) $fn =  $MSO->config['admin_plugins_dir'] . 'template_options/options.php';
+	
 	require_once($fn);
 }
 
-function template_options_uninstall() 
-{
-	mso_remove_allow('template_options_admin');
-}
 
-
-?>
+# end file

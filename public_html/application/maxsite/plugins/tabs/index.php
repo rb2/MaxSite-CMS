@@ -189,21 +189,13 @@ function tabs_widget_custom($options = array(), $num = 1)
 					$func = $func($nm);
 				}
 				else $func = 'no-func';
-			
 			}
 			else 
 			{
 				if (function_exists('ushka')) $func = ushka($tab['ushka']);
 				else $func = '';
 			}
-			
-			// при выводе сайдбара будет добавлен в div.widget-content
-			// поэтому нужно добавить закрывающий </div>
-			if (stripos($func, mso_get_val('widget_header_end', '</span></h2>')) !== false)
-			{
-				$func .= '</div>';
-			}
-			
+
 			$out .= NR . '<div class="tabs-box' . $visible  . '">' . $func . '</div>' . NR;
 			$visible = '';
 		}
@@ -211,9 +203,12 @@ function tabs_widget_custom($options = array(), $num = 1)
 		$out .= '</div><!-- div class="tabs -->' . NR;
 	}
 	
-	if ($out and $options['header']) $out = $options['header'] . $out;
-		
-	return $out;	
+	if ($out and $options['header']) 
+		$out = $options['header'] . '<div class="widget-content">' . $out . '</div><!-- div class=widget-content -->';
+	else
+		$out = '<div class="widget-content">' . $out . '</div><!-- div class=widget-content -->';
+	
+	return $out;
 }
 
 # end file

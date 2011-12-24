@@ -5,6 +5,7 @@
     [email=mylo@sait.com]
     [redirect=http://site.com/]
     [subject=Моя форма]
+    [ushka=ушка, которая выведется после формы]
 
     [field]
         require = 1   
@@ -20,6 +21,8 @@
         type = text
         description = Ваш город
         tip = Указывайте вместе со страной
+        value = значение по-умолчанию
+        attr = class="gorod" (атрибуты поля)
     [/field]
 
     [field]

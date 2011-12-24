@@ -2,6 +2,8 @@
 
 /*
  * (c) MaxSite CMS
+ * ver.  7/12/2011
+ * ver.  5/12/2011
  * ver.  1/12/2011
  * ver. 19/11/2011
  * ver.  6/11/2011
@@ -223,10 +225,16 @@ if (!function_exists('out_component_css'))
 		{
 			if ($css_out) 
 			{
+				ob_start();
+				eval( '?>' . stripslashes( $css_out ) . '<?php ');
+				$css_out = ob_get_contents();
+				ob_end_clean();
+				
 				$css_out = str_replace('[TEMPLATE_URL]', getinfo('template_url'), $css_out);
 				$css_out = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css_out);
 				$css_out = str_replace(array('; ', ' {', ': ', ', '), array(';', '{', ':', ','), $css_out);
 				echo NT . '<style>' . NR . $css_out . NT . '</style>' . NR;
+
 			}
 		}
 	}
@@ -256,7 +264,7 @@ if (!function_exists('mso_default_head_section'))
 
 		echo NT . '<!-- CSS -->' . NT . '<link rel="stylesheet" href="'; 
 		
-			if (file_exists(getinfo('template_dir') . 'css/css.php')) echo 'css.php'; 
+			if (file_exists(getinfo('template_dir') . 'css/css.php')) echo getinfo('template_url') . 'css/css.php'; 
 			else 
 			{
 				if (file_exists(getinfo('template_dir') . 'css/my_style.css')) // если есть css/my_style.css
@@ -305,6 +313,87 @@ if (!function_exists('mso_default_head_section'))
 	
 		echo NR . '</head>';
 		if (!$_POST) flush();
+	}
+}
+
+
+/* 
+Вспомогательная функция mso_section_to_array
+преобразование входящего текста опции в массив
+по каждой секции по указанному патерну
+Вход:
+
+[slide]
+link = ссылка изображения
+title = подсказка
+img = адрес картинки
+text = текст с html без переносов. h3 для заголовка
+p_line1 = пагинация 1 линия
+p_line2 = пагинация 2 линия
+[/slide]
+
+Выход:
+
+Array
+(
+	[0] => Array
+		(
+			[link] => ссылка изображения
+			[title] => подсказка
+			[img] => адрес картинки
+			[text] => текст с html без переносов. h3 для заголовка
+			[p_line1] => пагинация 1 линия
+			[p_line2] => пагинация 2 линия
+		)
+ )
+
+$array_default - стартовый массив опций на случай, если в опции нет обязательного ключа
+например 
+array('link'=>'', 'title'=>'', 'img'=>'', 'text'=>'', 'p_line1'=>'', 'p_line2'=>'')
+
+*/
+
+if (!function_exists('mso_section_to_array'))
+{
+	function mso_section_to_array($text, $pattern, $array_default = array())
+	{
+		// $array_result - массив каждой секции (0 - все вхождения)
+		if (preg_match_all($pattern, $text, $array_result))
+		{
+			// массив слайдов в $array_result[1]
+			// преобразуем его в массив полей
+			
+			$f = array(); // массив для всех полей
+			$i = 0; // счетчик 
+			foreach($array_result[1] as $val)
+			{
+				$val = trim($val);
+				
+				if (!$val) continue;
+				
+				$val = str_replace(' = ', '=', $val);
+				$val = str_replace('= ', '=', $val);
+				$val = str_replace(' =', '=', $val);
+				$val = explode("\n", $val); // разделим на строки
+				
+				$ar_val = array();
+				
+				$f[$i] = $array_default;
+				
+				foreach ($val as $pole)
+				{
+					$ar_val = explode('=', $pole); // строки разделены = type = select
+					if ( isset($ar_val[0]) and isset($ar_val[1]))
+						$f[$i][$ar_val[0]] = $ar_val[1];
+				}
+				
+				$i++;
+			}
+			
+			return $f;
+		}
+		
+		return array(); // не найдено
 	}
 }
 

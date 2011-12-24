@@ -36,7 +36,8 @@ function forms_content_callback($matches)
 	$out = ''; // убиваем исходный текст формы
 	
 	// занесем в массив все поля
-	$r = preg_match_all('!\[email=(.*?)\]|\[redirect=(.*?)\]|\[subject=(.*?)\]|\[field\](.*?)\[\/field\]!is', $text, $all);
+	$r = preg_match_all('!\[email=(.*?)\]|\[redirect=(.*?)\]\[subject=(.*?)\]|\[field\](.*?)\[\/field\]|\[ushka=(.*?)\]!is', $text, $all);
+	
 	//pr($all);
 
 	$f = array(); // массив для полей
@@ -46,10 +47,13 @@ function forms_content_callback($matches)
 		$redirect = trim(implode(' ', $all[2]));
 		$subject = trim(implode(' ', $all[3]));
 		
+		$ushka = trim(implode(' ', $all[5]));
+		
 		$fields = $all[4];
 		
-		$i = 0;
 		
+		$i = 0;
+
 		foreach ($fields as $val)
 		{
 			$val = trim($val);
@@ -60,11 +64,12 @@ function forms_content_callback($matches)
 			$val = str_replace('= ', '=', $val);
 			$val = str_replace(' =', '=', $val);
 			$val = explode("\n", $val); // разделим на строки
-			
 			$ar_val = array();
 			foreach ($val as $pole)
 			{
-				$ar_val = explode('=', $pole); // строки разделены = type = select
+				$pole = preg_replace('!=!', '_VAL_', $pole, 1);
+				
+				$ar_val = explode('_VAL_', $pole); // строки разделены = type = select
 				if ( isset($ar_val[0]) and isset($ar_val[1]))
 					$f[$i][$ar_val[0]] = $ar_val[1];
 			}
@@ -169,7 +174,7 @@ function forms_content_callback($matches)
 			}
 			else // какая-то ошибка, опять отображаем форму
 			{
-				$out .= forms_show_form($f);
+				$out .= forms_show_form($f, $ushka);
 			}
 			
 			
@@ -178,21 +183,21 @@ function forms_content_callback($matches)
 		}
 		else // нет post
 		{
-			$out .= forms_show_form($f);
+			$out .= forms_show_form($f, $ushka);
 		}
 	}
 
 	return $out;
 }
 
-function forms_show_form($f = array())
+function forms_show_form($f = array(), $ushka = '')
 {
 	$out = '';
 
 	$antispam1 = rand(1, 10);
 	$antispam2 = rand(1, 10);
 	
-	$out .= NR . '<div class="forms"><form method="post">' . mso_form_session('forms_session');
+	$out .= '<div class="forms"><form method="post">' . mso_form_session('forms_session');
 	
 	$out .= '<input type="hidden" name="forms_antispam1" value="' . $antispam1 * 984 . '">';
 	$out .= '<input type="hidden" name="forms_antispam2" value="' . $antispam2 * 765 . '">';
@@ -216,21 +221,27 @@ function forms_show_form($f = array())
 		if (isset($val['require']) and  trim($val['require']) == 1) $require = '*';
 			else $require = '';
 		
+		if (isset($val['attr']) and  trim($val['attr'])) $attr = ' ' . trim($val['attr']);
+			else $attr = '';
+		
+		if (isset($val['value']) and  trim($val['value'])) $pole_value = htmlspecialchars(trim($val['value']));
+			else $pole_value = '';
+			
 		$description = trim($val['description']);
 		
 		if (isset($val['tip']) and trim($val['tip']) ) $tip = '<div class="tip">'. trim($val['tip']) . '</div>';
 			else $tip = '';
 			
-		if ($val['type'] == 'text')
+		if ($val['type'] == 'text') #####
 		{
-			$out .= '<div><label><span>' . $description . $require . '</span><input name="forms_fields[' . $key . ']" type="text" value=""></label>' . $tip . '</div><div class="break"></div>';
+			$out .= '<div><label><span>' . $description . $require . '</span><input name="forms_fields[' . $key . ']" type="text" value="' . $pole_value . '"' . $attr . '></label>' . $tip . '</div><div class="break"></div>';
 		}
-		elseif ($val['type'] == 'select')
+		elseif ($val['type'] == 'select') #####
 		{
 			if (!isset($val['default'])) continue;
 			if (!isset($val['values'])) continue;
 			
-			$out .= '<div><label><span>' . $description . $require . '</span><select name="forms_fields[' . $key . ']">';
+			$out .= '<div><label><span>' . $description . $require . '</span><select name="forms_fields[' . $key . ']"' . $attr . '>';
 			
 			$default = trim($val['default']);
 			$values = explode('#', $val['values']);
@@ -246,9 +257,9 @@ function forms_show_form($f = array())
 			$out .= '</select></label>' . $tip . '</div><div class="break"></div>';
 	
 		}
-		elseif ($val['type'] == 'textarea')
+		elseif ($val['type'] == 'textarea') #####
 		{
-			$out .= '<div><label><span>' . $description . $require . '</span><textarea name="forms_fields[' . $key . ']"></textarea></label>' . $tip . '</div><div class="break"></div>';
+			$out .= '<div><label><span>' . $description . $require . '</span><textarea name="forms_fields[' . $key . ']"' . $attr . '>' . $pole_value . '</textarea></label>' . $tip . '</div><div class="break"></div>';
 		
 		}
 	}
@@ -262,7 +273,9 @@ function forms_show_form($f = array())
 	$out .= '<div><span>&nbsp;</span><input name="forms_submit" type="submit" class="forms_submit" value="' . t('Отправить', 'plugins') . '">';
 	$out .= '<input name="forms_clear" type="reset" class="forms_reset" value="' . t('Очистить форму', 'plugins') . '"></div>';
 	
-	$out .= '</form></div>' . NR;
+	if (function_exists('ushka')) $out .= ushka($ushka);
+	
+	$out .= '</form></div>';
 	
 	return $out;
 }

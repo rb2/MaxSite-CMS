@@ -192,7 +192,7 @@ function ushki_content($content = '')
 }
 
 # получение ушки
-function ushka($name_ushka = '', $delim_ushka = '<br>', $not_exists_ushka = '')
+function ushka($name_ushka = '', $delim_ushka = '', $not_exists_ushka = '')
 {
 	
 	if (! trim($name_ushka) ) return '';

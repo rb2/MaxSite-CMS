@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
-<h1>Логи</h1>
+<h1><?= t('Логи','plugins')?></h1>
 
 <?php
 
@@ -16,7 +16,7 @@
 			$row = $query->row();
 			$edit_url = getinfo('site_url') . 'admin/samborsky_polls/manage/' . $q_id;
 
-			echo '<h2>Голосование: <a href="',$edit_url,'">',$row->q_question,'</a></h2>';
+			echo '<h2>'.t('Голосование:','plugins').' <a href="',$edit_url,'">',$row->q_question,'</a></h2>';
 			
 			$CI->db->select('sp_logs.*,sp_answers.a_answer');
 			$CI->db->join('sp_answers','sp_answers.a_id = sp_logs.l_aid','left');
@@ -33,7 +33,13 @@
 						'row_alt_start'		  => '<tr class="alt">',
 						'cell_alt_start'	  => '<td class="alt">');
 				$CI->table->set_template($tmpl); 
-				$CI->table->set_heading('ID','IP','Хост','Дата','Логин','Ответ');
+				$CI->table->set_heading(
+						'ID',
+						'IP',
+						t('Хост','plugins'),
+						t('Дата','plugins'),
+						t('Логин','plugins'),
+						t('Ответ','plugins'));
 				
 				foreach( $query->result() as $row ){
 					

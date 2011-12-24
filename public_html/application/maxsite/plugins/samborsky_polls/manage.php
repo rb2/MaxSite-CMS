@@ -31,19 +31,19 @@ function add_empty_answers($data = array(), $nmb = 15)
 ////////////////////////////////////////////
 // 		Длительность по-умолчанию
 //		возвращает время окончания без 1-ой секунды
-function get_option_len_polls($t)
+function get_len_polls($t,$val)
 {
-	$val = mso_get_option('polls_admin_len_polls', 'plugins', '1 неделя');
 	switch($val)
 	{
-		case '1 день': $val = mktime(0,0,0,date("m",$t),date("d",$t)+1,date("Y",$t))-1;break;
-		case '1 неделя': $val = mktime(0,0,0,date("m",$t),date("d",$t)+7,date("Y",$t))-1;break;
-		case '2 недели': $val = mktime(0,0,0,date("m",$t),date("d",$t)+14,date("Y",$t))-1;break;
-		case '1 месяц': $val = mktime(0,0,0,date("m",$t)+1,date("d",$t),date("Y",$t))-1;break;
-		case '3 месяца': $val = mktime(0,0,0,date("m",$t)+3,date("d",$t),date("Y",$t))-1;break;
-		case '6 месяцев': $val = mktime(0,0,0,date("m",$t)+6,date("d",$t),date("Y",$t))-1;break;
-		case 'Год': $val = mktime(0,0,0,date("m",$t),date("d",$t),date("Y",$t)+1)-1;break;
-		default: $val = 0;
+		case t('1 день','plugins'): $val = mktime(0,0,0,date("m",$t),date("d",$t)+1,date("Y",$t))-1;break;
+		case t('1 неделя','plugins'): $val = mktime(0,0,0,date("m",$t),date("d",$t)+7,date("Y",$t))-1;break;
+		case t('2 недели','plugins'): $val = mktime(0,0,0,date("m",$t),date("d",$t)+14,date("Y",$t))-1;break;
+		case t('1 месяц','plugins'): $val = mktime(0,0,0,date("m",$t)+1,date("d",$t),date("Y",$t))-1;break;
+		case t('3 месяца','plugins'): $val = mktime(0,0,0,date("m",$t)+3,date("d",$t),date("Y",$t))-1;break;
+		case t('6 месяцев','plugins'): $val = mktime(0,0,0,date("m",$t)+6,date("d",$t),date("Y",$t))-1;break;
+		case t('Год','plugins'): $val = mktime(0,0,0,date("m",$t),date("d",$t),date("Y",$t)+1)-1;break;
+		case t('Бессрочное','plugins'): $val = 0;break;
+		default: $val = mktime(0,0,0,date("m",$t),date("d",$t),date("Y",$t));
 	}
 	
 	return $val;
@@ -51,13 +51,12 @@ function get_option_len_polls($t)
 
 ////////////////////////////////////////////
 // 		Безопасность по-умолчанию
-function get_option_protect_pools()
+function get_protect_polls($val)
 {
-	$val = mso_get_option('polls_admin_secur_polls', 'plugins', 'Защита по Coookie');
 	switch($val)
 	{
-		case 'Только для зарегистрированых (users)': $val = 2;break;
-		case 'Защита по Coookie': $val = 1;break;
+		case t('Только для зарегистрированых (users)','plugins'): $val = 2;break;
+		case t('Защита по Coookie','plugins'): $val = 1;break;
 		default: $val = 0;
 	}
 	return $val;
@@ -102,7 +101,7 @@ function polls_check_postData()
 	if($_POST['qu'] != '')
 		$data['qu']['q_question'] = add_protect($_POST['qu']);
 	else
-		$data['errors']['qu'] = 'Вопрос не может быть пустым!';
+		$data['errors']['qu'] = t('Вопрос не может быть пустым','plugins');
 
 
 	// ответы
@@ -125,19 +124,19 @@ function polls_check_postData()
 			$ans['a_order'] = $nmb+1;
 	}
 	else
-		$data['errors']['ans'] = 'Должно быть минимум два ответа';
+		$data['errors']['ans'] = t('Должно быть минимум два ответа','plugins');
 		
 		
 	// Дата начала
 	if(!$data['qu']['q_timestamp'] = date_to_unix($_POST['beginDate']))
-		$data['errors']['beginDate'] = 'Неправильно введена начальная дата';
+		$data['errors']['beginDate'] = t('','plugins');
 
 
 	// Дата окончания
 	if(!isset($_POST['noExpiry']))
 	{
 		if(!$data['qu']['q_expiry'] = date_to_unix($_POST['expiryDate'],23,59,59))
-			$data['errors']['expiryDate'] = 'Неправильно введена дата окончания';
+			$data['errors']['expiryDate'] = t('Неправильно введена дата окончания','plugins');
 		
 		// Если дата окончания меньше даты начала
 		if($data['qu']['q_expiry'] < $data['qu']['q_timestamp'])
@@ -157,6 +156,17 @@ function polls_check_postData()
 ////////////////////////////////////////////
 //		ОБРАБОТКА И ПОДГОТОВКА ДАННЫХ
 ////////////////////////////////////////////
+$default = array(
+		'archive_url' => 'polls-archive',
+		'show_archives_link' => 1,
+		'show_results_link' => 1,
+		'close_after_hour' => 0,
+		'admin_number_records' => 10,
+		'len_polls' => t('1 неделя','plugins'),
+		'secur_polls' => t('Защита по Coookie','plugins')
+);
+
+$options = mso_get_option('plugin_samborsky_polls', 'plugins', $default);
 
 // обработка POST
 if($post = mso_check_post(array('f_session_id', 'f_submit')))
@@ -189,12 +199,12 @@ if($post = mso_check_post(array('f_session_id', 'f_submit')))
 		
 		if($_POST['act'] == 'edit')
 		{
-			$CI->db->insert('sp_logs',array('l_qid'=>$id,'l_host'=>'Отредактировано','l_timestamp'=>mktime(),'l_user'=>is_login()?$MSO->data['session']['users_login']:'-'));
+			$CI->db->insert('sp_logs',array('l_qid'=>$id,'l_host'=>t('Отредактировано','plugins'),'l_timestamp'=>mktime(),'l_user'=>is_login()?$MSO->data['session']['users_login']:'-'));
 			header("Location: " .getinfo('site_url') ."admin/samborsky_polls/list/edit_ok");
 		}
 		else
 		{
-			$CI->db->insert('sp_logs',array('l_qid'=>$id,'l_host'=>'Создано','l_timestamp'=>mktime(),'l_user'=>is_login()?$MSO->data['session']['users_login']:'-'));
+			$CI->db->insert('sp_logs',array('l_qid'=>$id,'l_host'=>t('Создано','plugins'),'l_timestamp'=>mktime(),'l_user'=>is_login()?$MSO->data['session']['users_login']:'-'));
 			header("Location: " .getinfo('site_url') ."admin/samborsky_polls/list/add_ok");
 			
 		}
@@ -232,13 +242,13 @@ elseif(!isset($data['errors']))
 	$no_expiry = '';
 	$date = mktime(0,0,0,date("m"),date("d"),date("Y"));
 	
-	if(!$exp = get_option_len_polls($date))
+	if(!$exp = get_len_polls($date, $options['len_polls']))
 	{
 		$exp = $date;
 		$no_expiry = 'checked="checked"';
 	}
 
-	$protect = get_option_protect_pools();
+	$protect = get_protect_polls($options['secur_polls']);
 
 	$qu = new stdClass();
 	$qu->data->q_id = '';
@@ -288,7 +298,7 @@ $plug_path = getinfo('plugins_url') .'samborsky_polls/';
 ////////////////////////////////////////////
 ?>
 
-<h1>Добавление/Изменение голосования</h1>
+<h1><?= t('Добавление/Изменение голосования','plugins')?></h1>
 <div class="polls_addEdit_form">
 	<form action="" method="post">
 		<?= mso_form_session('f_session_id')?>
@@ -296,11 +306,11 @@ $plug_path = getinfo('plugins_url') .'samborsky_polls/';
 		<input type="hidden" name="id" value="<?= $qu->data->q_id ?>" />
 
 
-		<h2>Вопрос:</h2>
+		<h2><?= t('Вопрос:','plugins')?></h2>
 		<textarea name="qu" rows="2"><?= $qu->data->q_question ?></textarea><br /><br />
 
 
-		<h2>Ответы:</h2>
+		<h2><?= t('Ответы:','plugins')?></h2>
 		<div class="polls_manage_ans">
 			<ul id="sortable_polls">
 
@@ -312,33 +322,33 @@ $plug_path = getinfo('plugins_url') .'samborsky_polls/';
 					<input type="text" name="ans[<?= $nmb ?>][ans]" value="<?= $ans->a_answer ?>" class="ans_text" />
 					<input type="text" name="ans[<?= $nmb ?>][votes]" value="<?= $ans->a_votes ?>" class="ans_votes" />
 					<input type="hidden" name="ans[<?= $nmb ?>][id]" value="<?= $ans->a_id ?>" />
-					<a href="" class="del_ans"><img src="<?= $plug_path ?>img/del_ans.png" title="удалить ответ" /></a>
+					<a href="" class="del_ans"><img src="<?= $plug_path ?>img/del_ans.png" title="<?= t('удалить ответ','plugins')?>" /></a>
 				</li>
 
 				<?php endforeach ?>
 
 			</ul>
-			<a href="" class="add_ans"><p>Добавить ответ</p></a>
+			<a href="" class="add_ans"><p><?= t('Добавить ответ','plugins')?></p></a>
 		</div><br /><br />
 
 
-		<h2>Дата начала/окончания голосования:</h2>
+		<h2><?= t('Дата начала/окончания голосования:','plugins')?></h2>
 		<div class="polls_manage_date">
-			Начало (М/Д/Г):
+			<?= t('Начало (М/Д/Г):','plugins')?>
 			<input type="text" id="beginDate" name="beginDate" value="<?= date("m/d/Y",$qu->data->q_timestamp) ?>">
 			&nbsp;&nbsp;&nbsp;
-			Окончание (М/Д/Г):
+			<?= t('Окончание (М/Д/Г) (включительно):','plugins')?>
 			<input type="text" id="expiryDate" name="expiryDate" value="<?= date("m/d/Y",$qu->data->q_expiry) ?>">
-			<p><input type="checkbox" name="noExpiry" id="noExpiry" <?= $no_expiry ?>>&nbsp;Бессрочное голосование</p>
+			<p><input type="checkbox" name="noExpiry" id="noExpiry" <?= $no_expiry ?>>&nbsp;<?= t('Бессрочное голосование','plugins')?></p>
 		</div><br /><br />
 
 
-		<h2>Защита от накрутки:</h2>
+		<h2><?= t('Защита от накрутки:','plugins')?></h2>
 		<div class="polls_manage_protect">
 			<select name="q_protection">
-				<option value="2" <?php if($qu->data->q_protection==2) echo 'selected="selected"'?>>Только для зарегистрированых (users)</option>
-				<option value="1" <?php if($qu->data->q_protection==1) echo 'selected="selected"'?>>Защита по Coookie</option>
-				<option value="0" <?php if($qu->data->q_protection==0) echo 'selected="selected"'?>>Без защиты, один пользователь может голосовать много раз</option>
+				<option value="2" <?php if($qu->data->q_protection==2) echo 'selected="selected"'?>><?= t('Только для зарегистрированых (users)','plugins')?></option>
+				<option value="1" <?php if($qu->data->q_protection==1) echo 'selected="selected"'?>><?= t('Защита по Coookie','plugins')?></option>
+				<option value="0" <?php if($qu->data->q_protection==0) echo 'selected="selected"'?>><?= t('Без защиты, один пользователь может голосовать много раз','plugins')?></option>
 			</select>
 		</div><br /><br />
 		

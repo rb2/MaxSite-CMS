@@ -22,7 +22,7 @@ function samborsky_polls_autoload($args = array())
 	// Хук в <head></head>
 	mso_hook_add('head', 'samborsky_polls_head');
 	mso_hook_add('custom_page_404', 'samborsky_polls_archive_404'); # По какому адресу будем показывать архив
-	mso_register_widget('samborsky_polls_widget', t('Голосования', __FILE__)); # регистрируем виджет
+	mso_register_widget('samborsky_polls_widget', t('Голосования', 'plugins')); # регистрируем виджет
 }
 
 function samborsky_polls_head($args = array()){
@@ -30,13 +30,18 @@ function samborsky_polls_head($args = array()){
 	mso_load_jquery();
 	
 	$path = getinfo('plugins_url') . 'samborsky_polls/';
-	echo '<script type="text/javascript" src="',$path,'js/kernel.min.js"></script>',NR;
-	echo '<link rel="stylesheet" href="',$path,'css/style.css" type="text/css" media="screen">',NR;
+	
+	echo <<<EOFS
+		
+	<script type="text/javascript" src="{$path}js/kernel.js"></script>
+	<link rel="stylesheet" href="{$path}css/style.css" type="text/css" media="screen">
+	
+EOFS;
 }
 
 # функция выполняется при активации (вкл) плагина
 function samborsky_polls_activate($args = array()){
-	mso_create_allow('samborsky_polls_edit','Админ-доступ к samborsky_polls', 'plugins');
+	mso_create_allow('samborsky_polls_edit','Админ-доступ к samborsky_polls','plugins');
 	
 	require(getinfo('plugins_dir') . 'samborsky_polls/install.php');
 	
@@ -75,7 +80,7 @@ function samborsky_polls_init($args = array()){
 	
 	$this_plugin_url = 'samborsky_polls';
 
-	mso_admin_menu_add('plugins',$this_plugin_url,'Голосования');
+	mso_admin_menu_add('plugins',$this_plugin_url,t('Голосования', 'plugins'));
 	mso_admin_url_hook($this_plugin_url, 'samborsky_polls_admin_page');
 	
 	return $args;
@@ -89,8 +94,8 @@ function samborsky_polls_admin_page($args = array()){
 		return $args;
 	}
 	
-	mso_hook_add_dinamic('mso_admin_header',' return $args . "' . t('Голосования', __FILE__) . '"; ' );
-	mso_hook_add_dinamic('admin_title',' return "' . t('Голосования', __FILE__) . ' - " . $args; ' );
+	mso_hook_add_dinamic('mso_admin_header',' return $args . "' . t('Голосования', 'plugins') . '"; ' );
+	mso_hook_add_dinamic('admin_title',' return "' . t('Голосования', 'plugins') . ' - " . $args; ' );
 	
 	require(getinfo('plugins_dir') . 'samborsky_polls/admin.php');
 }
@@ -117,7 +122,8 @@ function samborsky_polls_archive(){
 
 function samborsky_polls_archive_404($args = array())
 {
-	if (mso_segment(1) == mso_get_option('sp_archive_url', 'plugins', 'polls-archive'))
+	$archive_url = mso_get_option('plugin_samborsky_polls', 'plugins', array('archive_url'=>'polls-archive'));
+	if (mso_segment(1) == $archive_url['archive_url'])
 	{
 		require_once(getinfo('template_dir') . 'main-start.php');
 		echo samborsky_polls_archive();
@@ -129,7 +135,6 @@ function samborsky_polls_archive_404($args = array())
 	
 	return $args; 
 }
-
 
 
 /*  добавил виджет MAX   */

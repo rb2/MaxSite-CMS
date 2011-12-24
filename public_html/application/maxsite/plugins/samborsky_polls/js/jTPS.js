@@ -26,8 +26,9 @@
 
 		// append jTPS class "stamp"
 		$(this).addClass('jTPS');
-		
-		// setup the fixed table-layout so that the animation doesn't bounce around - faux grid for table
+	
+		// кусок кода нужен, что б не прыгала ширина столбцов, приводит к проблемам в хроме  
+/*		// setup the fixed table-layout so that the animation doesn't bounce around - faux grid for table
 		if ( $(this).data('tableSettings').fixedLayout ) {
 			// "fix" the table layout and individual cell width & height settings
 			if ( $(this).css('table-layout') != 'fixed' ) {
@@ -55,18 +56,19 @@
 				// now set the table layout to fixed
 				$(this).css('table-layout','fixed');
 			}
-		}
+		}*/
 
 		// remove all stub rows
 		$('.stubCell', this).remove();
 
 		// add the stub rows
 		var stubCount=0, cols = Math.max( $('>thead:first tr:last th,>thead:first tr:last td', this).length, parseInt( $('>thead:first tr:last th,>thead:first tr:last td').attr('colspan') || 0 ) ), 
-			stubs = ( perPage - ( $('>tbody>tr', this).length % perPage ) ),
-			stubHeight = ($('.jTPS>tbody>tr:first>td:first').outerHeight()) + 'px';
-		for ( ; stubCount < stubs && stubs != perPage; stubCount++ )
-			$('>tbody>tr:last', this).after( '<tr class="stubCell"><td colspan="' + cols + '" style="height: ' + stubHeight + ';">&nbsp;</td></tr>' );
-
+				stubs = ( perPage - ( $('>tbody>tr', this).length % perPage ) ),
+				stubHeight = ($('.jTPS>tbody>tr:first>td:first').outerHeight()) + 'px';
+			if(perPage < $('.jTPS tbody tr').length){
+				for ( ; stubCount < stubs && stubs != perPage; stubCount++ )
+					$('>tbody>tr:last', this).after( '<tr class="stubCell"><td colspan="' + cols + '" style="height: ' + stubHeight + ';">&nbsp;</td></tr>' );
+				}
 		// paginate the result
 		if ( rowCount > perPage && perPage != 0 )
 			$('>tbody>tr:gt(' + (perPage - 1) + ')', this).addClass('hideTR');
@@ -159,7 +161,7 @@
 		// show the correct paging status
 		var cPos = $('>tbody>tr:not(.hideTR):first', this).prevAll().length, 
 			ePos = $('>tbody>tr:not(.hideTR):not(.stubCell)', this).length;
-		$('>.nav .status', this).html( 'Показано: ' + ( cPos + 1 ) + ' - ' + ( cPos + ePos ) + ' из ' + rowCount );
+		$('>.nav .status', this).html( ( cPos + 1 ) + ' - ' + ( cPos + ePos ) + ' / ' + rowCount );
 
 		// clear selected text function
 		function clearSelection () {
@@ -213,7 +215,7 @@
 									// update status bar
 									var cPos = $('>tbody>tr:not(.hideTR):first', pT).prevAll().length,
 										ePos = $('>tbody>tr:not(.hideTR):not(.stubCell)', pT).length;
-									$('>.nav .status', pT).html( 'Показано: ' + ( cPos + 1 ) + ' - ' + ( cPos + ePos ) + ' из ' + rowCount + '' );
+									$('>.nav .status', pT).html( ( cPos + 1 ) + ' - ' + ( cPos + ePos ) + ' / ' + rowCount + '' );
 								}
 								clearSelection();
 								return false;
@@ -260,7 +262,7 @@
 										// update status bar
 										var cPos = $('>tbody>tr:not(.hideTR):first', pT).prevAll().length,
 											ePos = $('>tbody>tr:not(.hideTR):not(.stubCell)', pT).length;
-										$('>.nav .status', pT).html( 'Показано: ' + ( cPos + 1 ) + ' - ' + ( cPos + ePos ) + ' из ' + rowCount + '' );
+										$('>.nav .status', pT).html( ( cPos + 1 ) + ' - ' + ( cPos + ePos ) + ' / ' + rowCount + '' );
 									}
 								);
 							}
@@ -334,8 +336,10 @@
 			// redraw stub rows
 			var stubCount=0, cols = $('>thead>tr:last th', target).length, 
 				stubs = ( perPage - ( $('>tbody>tr', target).length % perPage ) );
-			for ( ; stubCount < stubs && stubs != perPage; stubCount++ )
-				$('>tbody>tr:last', target).after( '<tr class="stubCell"><td colspan="' + cols + '" style="height: ' + stubHeight + ';">&nbsp;</td></tr>' );
+			if(perPage < $('.jTPS tbody tr').length){
+				for ( ; stubCount < stubs && stubs != perPage; stubCount++ )
+					$('>tbody>tr:last', target).after( '<tr class="stubCell"><td colspan="' + cols + '" style="height: ' + stubHeight + ';">&nbsp;</td></tr>' );
+			}
 		}
 		// chainable
 		return this;

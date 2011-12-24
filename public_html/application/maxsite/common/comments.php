@@ -1796,7 +1796,10 @@ function mso_avatar($comment, $img_add = 'style="float: left; margin: 5px 10px 1
 		// аватарки нет, попробуем получить из gravatara
 		if ($users_email) $grav_email = $users_email;
 		elseif ($comusers_email) $grav_email = $comusers_email;
-		else $grav_email = '';
+		else 
+		{
+			$grav_email = $comments_author_name; // имя комментатора
+		}
 		
 		if ($gravatar_type = mso_get_option('gravatar_type', 'templates', ''))
 			$d = '&amp;d=' . urlencode($gravatar_type);

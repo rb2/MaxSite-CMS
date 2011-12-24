@@ -87,7 +87,7 @@
 		
 		echo '<form action="" method="post">' . mso_form_session('f_session_id') . '
 		<p><strong>' . t('Новая ушка:', 'plugins') . '</strong> ' . ' <input name="f_ushka_new" type="text" value="">
-		<input type="submit" name="f_submit_new" value="' . t('Добавить новую ушку', 'plugins') . '" style="margin: 25px 0 5px 0;"></p>
+		<input type="submit" name="f_submit_new" value="' . t('Добавить новую ушку', 'plugins') . '"></p>
 		</form>';
 		
 		$form = '';

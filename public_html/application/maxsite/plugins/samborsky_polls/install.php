@@ -192,10 +192,19 @@ function sp_install(){
 	
 }
 
-function sp_add_options(){
+function sp_add_options()
+{
+	$options = array(
+		'archive_url' => 'polls-archive',
+		'show_archives_link' => 1,
+		'show_results_link' => 1,
+		'close_after_hour' => 0,
+		'admin_number_records' => 10,
+		'len_polls' => t('1 неделя','plugins'),
+		'secur_polls' => t('Защита по Coookie','plugins')
+	);
 	
-	mso_add_option('sp_archive_url', 'polls-archive', 'plugins');
-	mso_add_option('show_archives_link', TRUE, 'plugins');
+	mso_add_option('plugin_samborsky_polls',  $options, 'plugins');
 }
 
 ?>

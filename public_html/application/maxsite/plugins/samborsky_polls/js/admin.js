@@ -40,7 +40,7 @@ $(document).ready(function(){
 	// Управление. Добавить ответ
 	$("a.add_ans").click(function(){
 		if($('#sortable_polls li:hidden:first').index() == -1){
-			alert('Ограничено 15 ответами!');
+			alert(text[0]);
 		}
 		else{
 			$('#sortable_polls li:hidden:first').slideDown(100);
@@ -51,7 +51,7 @@ $(document).ready(function(){
 	
 	// Управление. Удалить ответ
 	$("a.del_ans").click(function(){
-		if (confirm('Удаляем ответ\r\n\r\n Вы уверены?')) {
+		if (confirm(text[1])) {
 			$(this).parent('li').slideUp(100);
 			$(this).parent('li').children('input').attr('value','');
 			$(this).parent('li').children('input:hidden').val('')
@@ -61,7 +61,4 @@ $(document).ready(function(){
 		return false;
 	});
 	
-//onclick=\"return confirm('Удалить? Уверены?');\
-
-
 });

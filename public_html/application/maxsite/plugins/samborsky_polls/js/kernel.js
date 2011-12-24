@@ -36,7 +36,7 @@
 				function(){
 					loader.hide();
 					polls.show();
-					alert('Ошибка браузера.');
+					alert('Error browser.');
 				}
 		});
 	}
@@ -69,8 +69,8 @@
 	function sp_polls_vote(q_id){
 		
 		var data = 'type=vote&q_id=' + q_id; 
-		var polls = $('#sp_polls_' + q_id);
-		var loader = $('#sp_polls_loader_' + q_id);
+		var polls = $('.sp_polls').filter('#sp_polls_' + q_id);
+		var loader = $('.sp_polls_loader').filter('#sp_polls_loader_' + q_id);
 		
 		// Получаем результаты голосования
 		$('.sp_question_' + q_id).each(function(i){

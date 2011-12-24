@@ -99,11 +99,12 @@ function mso_view_ini($all = false)
               );
               
 	$CI->table->clear(); // очистим, если были старые данные
-	
 	$CI->table->set_template($tmpl); // шаблон таблицы
 	
 	// заголовки
-	$CI->table->set_heading(t('Настройка'), t('Значение'));
+	//$CI->table->set_heading(t('Настройка'), t('Значение'));
+	
+	$table = '';
 	
 	$out = '';
 	
@@ -297,24 +298,77 @@ function mso_view_ini($all = false)
 		// если есть новая секция, то выводим пустую инфо-строчку
 		if (isset($row['section']))
 		{
-			if (isset($row['section_description']))
-				$CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section">' . t($row['section_description']) . '<div style="width: 30px; float: right;"><a href="#atop">&#x25B2;</a> <a href="#abottom">&#x25BC;</a></div></div>');
-			else
-				$CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section"><div style="text-align: right;"><a href="#atop">&#x25B2;</a> <a href="#abottom">&#x25BC;</a></div></div>');
+		
+			if ($CI->table->rows) $table .= $CI->table->generate();
 			
-			$nav .= '<a href="#a-' . mso_slug($row['section']) . '">' . t($row['section']) . '</a>    ';
-				
+			$CI->table->clear(); // очистим, если были старые данные
+			
+			$tmpl['table_open'] = NR . '<table class="page section_' . mso_slug($row['section']) . '" border="0" width="99%"><colgroup style="width: 25%;">';
+                    
+			$CI->table->set_template($tmpl); // шаблон таблицы
+		
+		
+			if (isset($row['section_description']))
+			{
+			//	$CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section">' . t($row['section_description']) . '<div style="width: 30px; float: right;"><a href="#atop">&#x25B2;</a> <a href="#abottom">&#x25BC;</a></div></div>');
+				$CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section">' . t($row['section_description']) . '</div>');
+			}
+			else
+			{
+				// $CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section"><div style="text-align: right;"><a href="#atop">&#x25B2;</a> <a href="#abottom">&#x25BC;</a></div></div>');
+				$CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section"> </div>');
+			}
+			
+			$nav .= '<a href="#a-' . mso_slug($row['section']) . '" id="' . mso_slug($row['section']) . '">' . t($row['section']) . '</a>    ';
 		}
 		
 		$CI->table->add_row($key, $f);
 	}
 	
+	
+	if ($CI->table->rows) $table .= $CI->table->generate(); // последняя генерация
+	
 	$out .= '<form action="' . mso_current_url(true) . '" method="post">' . mso_form_session('f_session_id');
 	$out .= '<a id="atop"></a><input type="hidden" value="1" name="f_ini">'; // доп. поле - индикатор, что это ini-форма
-	if ($nav) $out .= '<p>' . str_replace('    ', ' | ', trim($nav)) . '</p>';
-	$out .= $CI->table->generate(); // вывод подготовленной таблицы
+	if ($nav) $out .= '<p class="nav">' . str_replace('    ', ' | ', trim($nav)) . '</p>';
+	
+	//$out .= $CI->table->generate(); // вывод подготовленной таблицы
+	$out .= $table; // вывод подготовленной таблицы
+	
 	$out .= NR . '<p class="br"><a id="abottom"></a><input type="submit" name="f_submit" value="' . t('Сохранить') . '"></p>';
 	$out .= '</form>';
+	
+	$out .= mso_load_jquery('jquery.cookie.js') . "
+<script>
+	$(function()
+	{
+		$('table.page').hide();
+
+		var NameCookie = 'curSection_" . mso_segment(2) . "',
+		cookieIndex = $.cookie(NameCookie);
+
+		if (cookieIndex != null && $('table').is('.section_'+cookieIndex)) // есть кука и есть соответсвующая ей таблица
+		{
+			$('table.section_'+cookieIndex).show();
+			$('#'+cookieIndex).css({'color': 'red', 'font-weight': 'bold'});
+		}
+		else // если нет куки или соответвующей таблицы
+		{
+			$('table.page:first').show(); // показывем только первую таблицу
+			$('p.nav a:first').css({'color': 'red', 'font-weight': 'bold'}); // и подсвечиваем только первый пункт навигации
+		}
+
+		$('p.nav a').click(function(){
+			var id = $(this).attr('id');
+			$('table.page').hide();
+
+			$(this).css({'color': 'red', 'font-weight': 'bold'}).siblings().css({'color': '', 'font-weight': ''}); // подсвечиваем кликнутый пункт, а у всех соседних сбрасывем оформление
+			$('table.section_'+id).show();
+			$.cookie(NameCookie, id, {expires: 30, path: '/'});
+			return false;
+		});
+	});
+</script>";
 	
 	return $out;
 }

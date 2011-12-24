@@ -49,6 +49,16 @@ function getinfo($info = '')
 		case 'template_dir' :
 				$out = $MSO->config['templates_dir'] . $MSO->config['template'] . '/';
 				break;
+		
+		case 'template_name' :
+				$fn_info = $MSO->config['templates_dir'] . $MSO->config['template'] . '/info.php';
+				if (file_exists($fn_info))
+				{
+					require($fn_info);
+					return $info['name'];
+				}
+				else $out = '';
+				break;
 
 		case 'templates_dir' :
 				$out = $MSO->config['templates_dir'];
@@ -556,6 +566,9 @@ function is_type_slug($type = '', $slug = '')
 	global $MSO;
 
 	$rt = $rs = '';
+	
+	$type = urlencode($type);
+	$slug = urlencode($slug);
 
 	// тип
 	if ($type and isset($MSO->data['uri_segment'][1]) ) $rt = $MSO->data['uri_segment'][1];
@@ -2449,7 +2462,9 @@ function mso_show_sidebar($sidebar = '1', $block_start = '<div class="widget wid
 					$en = str_replace('[NUMW]', $numw, $en);
 					$en = str_replace('[SB]', $sidebar, $en);
 					
+					
 					// обрамим содержимое виджета в div.widget-content
+					/*
 					if (stripos($temp, mso_get_val('widget_header_end', '</span></h2>')) !== false)
 					{
 						// есть вхождение заголовка виджета <h2>
@@ -2460,6 +2475,7 @@ function mso_show_sidebar($sidebar = '1', $block_start = '<div class="widget wid
 					{
 						$temp = '<div class="widget-content">' . $temp . '</div>';
 					}
+					*/
 					
 					$out .= $st . $temp . $en;
 				}
@@ -2616,7 +2632,7 @@ function mso_load_jquery($plugin = '')
 		{
 			$jquery_type = mso_get_option('jquery_type', 'general', 'self');
 			
-			$version = '1.7';
+			$version = '1.7.1';
 			
 			if ($jquery_type == 'google') $url = 'http://ajax.googleapis.com/ajax/libs/jquery/' . $version . '/jquery.min.js'; // Google Ajax API CDN 
 			elseif ($jquery_type == 'microsoft') $url = 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-' . $version . '.min.js'; // Microsoft CDN
@@ -2632,7 +2648,7 @@ function mso_load_jquery($plugin = '')
 
 # формируем li-элементы для меню
 # элементы представляют собой текст, где каждая строчка один пункт
-# каждый пункт делается так:  http://ссылка|название
+# каждый пункт делается так:  http://ссылка | название | подсказка | class
 # на выходе так:
 # <li class="selected"><a href="url"><span>ссылка</span></a></li>
 # если первый символ [ то это открывает группу ul 
@@ -2688,7 +2704,7 @@ function mso_menu_build($menu = '', $select_css = 'selected', $add_link_admin = 
 			if (isset($elem[2])) $title = ' title="' . htmlspecialchars(trim($elem[2])) . '"';
 			else $title = '';
 			
-			// if (($url != '#') and strpos($url, $http) === false) // нет в адресе http:// - значит это текущий сайт
+			
 			
 			// нет в адресе http:// - значит это текущий сайт
 			if (($url != '#') and strpos($url, 'http://') === false and strpos($url, 'https://') === false) 
@@ -2704,6 +2720,9 @@ function mso_menu_build($menu = '', $select_css = 'selected', $add_link_admin = 
 				$selected_present = true;
 			}
 			else $class = '';
+			
+			// возможно указан css-класс
+			if (isset($elem[3])) $class .= ' ' . trim($elem[3]);
 
 			# для первого элемента добавляем класс first
 			if ($i == 1) $class .= ' first';
@@ -2891,7 +2910,10 @@ function mso_create_list($a = array(), $options = array(), $child = false)
 		else $out = NR . '<ul' . $class_ul . $class_ul_style . '>';
 
 	$current_url = getinfo('siteurl') . mso_current_url(); // текущий урл
-
+	
+	// из текущего адресу нужно убрать пагинацию
+	$current_url = str_replace('/next/' . mso_current_paged(), '', $current_url);
+	 
 	foreach ($a as $elem)
 	{
 		$title = $elem[$options['title']];

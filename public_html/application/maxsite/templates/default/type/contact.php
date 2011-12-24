@@ -11,7 +11,7 @@
 	mso_head_meta('title', t('Обратная связь') . '. ' . getinfo('title') ); //  meta title страницы
 
 	require(getinfo('template_dir') . 'main-start.php');
-	echo NR . '<div class="type type_contact">' . NR;
+	echo NR . '<div class="type type_contact"><div class="page_only">' . NR;
 ?>
 
 <h1><?=t('Обратная связь')?></h1>
@@ -216,7 +216,7 @@ else
 	
 	if ($f = mso_page_foreach('contact-posle')) require($f); // подключаем кастомный вывод
 
-echo NR . '</div><!-- class="type type_contact" -->' . NR;
+echo NR . '</div><!-- class="page_only" --></div><!-- class="type type_contact" -->' . NR;
 
 require(getinfo('template_dir') . 'main-end.php');
 

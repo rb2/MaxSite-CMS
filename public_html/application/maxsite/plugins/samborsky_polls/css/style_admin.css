@@ -9,7 +9,7 @@
 .samborsky_polls_table th.polls_list_cell_votes {width:90px;}
 .samborsky_polls_table th.polls_list_cell_date {width:90px;}
 .samborsky_polls_table th.polls_list_cell_status {width:90px;}
-.samborsky_polls_table th.polls_list_cell_act {width:140px;}
+.samborsky_polls_table th.polls_list_cell_act {width:110px;}
 
 .samborsky_polls_table tr > td + td + td {text-align:right;}
 .samborsky_polls_table tr:hover {background-color:#ddd;}

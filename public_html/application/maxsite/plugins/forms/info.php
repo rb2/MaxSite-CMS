@@ -2,8 +2,8 @@
 
 $info = array(
 	'name' => 'Forms',
-	'description' => 'Формы для отправки на указанный email',
-	'version' => '1.4',
+	'description' => t('Формы для отправки на указанный email', 'plugins'),
+	'version' => '1.5',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',
 	'author_url' => 'http://maxsite.org/',

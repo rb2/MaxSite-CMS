@@ -42,7 +42,7 @@ img {vertical-align: middle;}
 
 /* поля форм */
 input, select {vertical-align: middle;}
-select, input, textarea, button {font-family: sans-serif;}
+select, input, textarea, button {}
 textarea {overflow: auto;}
 input[type="submit"], input[type="reset"], input[type="button"] {}
 input[type="radio"], input[type="checkbox"] {margin: 0; padding: 0; position: relative; top: 1px; cursor: pointer; vertical-align: text-top;} 
@@ -87,7 +87,7 @@ h6.first {margin: 5px 0 5px 0;}
 
 /* ----------------- struct ---------------------- */
 
-div.all {width: 100%;}
+div.all {}
 	div.all-wrap {width: 960px; margin: 0 auto; background: white;  -webkit-box-shadow: #606060 0px 0px 7px; -moz-box-shadow: #606060 0px 0px 7px; box-shadow: #606060 0px 0px 7px; behavior: url(/PIE.php); }
 	
 	div.header-main {} 
@@ -103,8 +103,9 @@ div.all {width: 100%;}
 
 	div.footer {width: 100%; clear: both; background: #192849; font-size: 0.9em; color: white;}
 		div.footer a {color: white;}
-		div.footer-wrap {width: 960px; margin: 0 auto; padding: 10px;}
-
+		div.footer-wrap {padding: 10px; margin: 0 auto;}	
+	
+	
 /* прижать футер в низу - нужно явно задать высоты! */
 /*
 html, body {height: 100%;}
@@ -206,13 +207,9 @@ ul.menu li.group ul li.selected a span {}
 h2.box {font-size: 1.5em; line-height: 1.1em; margin-bottom: 5px;} /* заголовок виджета */
 div.widget_header {font-size: 1.5em; line-height: 1.1em; margin-bottom: 5px;} /* заголовок виджета */
 
-div.widget {margin-bottom: 25px;}
+div.widget {margin-bottom: 25px; font-size: 0.9em;}
 div.widget a {}
 div.widget a:hover {text-decoration: none;}
-div.widget div.w0 {}
-div.widget div.w1 {}
-div.widget div.w2 {}
-div.widget-content {font-size: 0.9em;}
 div.widget table th, div.widget table td {border: none; vertical-align: bottom;} 
 
 /* списки в виджетах */
@@ -305,7 +302,7 @@ div.comment-form p.you-comment {font-weight: bold;}
 
 div.comment-form img {position: relative; top: 7px; }
 
-div.comment-form .comment_button input {margin: 0px; padding: 0 5px; fon1t-size: 8pt;}
+div.comment-form .comment_button input {margin: 0; padding: 0 5px;}
 
 div.comment-form div.comments-user {font-size: 0.8em; margin: 10px 0; padding: 10px; border: 1px solid #C0C0C0; background: #F0F0F0;  -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php); }
 
@@ -354,7 +351,6 @@ form.comusers-form p select {width: 260px; }
 form.comusers-form p textarea {width: 260px; height: 300px;}
 form.comusers-form p {}
 form.comusers-form p.info  {background: none; color: #B00000; margin: 0 0 15px 0; border: 1px solid #B00000; padding: 3px; text-align: center;}
-
 
 
 /* --- plugins MaxSite CMS --- */
@@ -420,7 +416,7 @@ ol.pre li.odd {background: none;}
 ol.pre span.php-comment {color: gray;}
 
 /* plugin FORMS */
-div.forms {background: #eeeeee; padding: 10px 5px 0 5px; border: #E0E0E0 1px solid;}
+div.forms {background: #eeeeee; padding: 10px 5px 0 5px; border: #E0E0E0 1px solid; font-size: .9em;}
 div.forms div {margin: 5px 0 15px 0; }
 div.forms div.break {height: 0; padding: 0; margin: 0; clear: both; }
 div.forms span {display: block; float: left; text-align: right; width: 200px; padding: 0 10px 0 0;}
