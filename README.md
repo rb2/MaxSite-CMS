@@ -7,3 +7,10 @@
 # Другие переводы
 
 [MaxSite CMS Translation Center](https://github.com/g3d/MaxSite-TC) для тех, кому нужен только языковый пакет.
+
+# Ссылки
+
+* http://max-3000.com/
+
+* http://templates.max-3000.com/
+* http://max-3000.com/wiki/

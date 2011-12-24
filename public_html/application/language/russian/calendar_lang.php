@@ -1,5 +1,4 @@
 <?php
-
 $lang['cal_su']			= "Su";
 $lang['cal_mo'] 		= "Mo";
 $lang['cal_tu'] 		= "Tu";
@@ -45,5 +44,4 @@ $lang['cal_september']	= "September";
 $lang['cal_october'] 	= "October";
 $lang['cal_november']	= "November";
 $lang['cal_december'] 	= "December";
-
 ?>
