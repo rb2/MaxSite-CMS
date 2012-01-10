@@ -1417,7 +1417,6 @@ function  mso_page_cat_link($cat = array(), $sep = ', ', $do = '', $posle = '', 
 	{
 		if ($link)
 		{
-			
 			$out .=  '<a href="'
 					. $MSO->config['site_url']
 					. $type

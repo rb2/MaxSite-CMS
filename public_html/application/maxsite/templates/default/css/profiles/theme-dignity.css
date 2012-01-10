@@ -16,15 +16,13 @@ div.leave_a_comment {background: #BDF3A5; color: #69be43; border:none;}
 div.page_comments_count {background: #fff; color: #69be43; border:none;}
 div.comment-info {background: #fff; color: #76A639;}
 div.comments div.comments_content {background: #fff; color: #1A4613;}
-div.comments-auth {background: #BDF3A5; color: #69be43; border:none;}
-div.comment-form div.comments-textarea {background: #BDF3A5; color: #69be43; border:none;}
-div.comment-form div.comments-user {background: #BDF3A5; color: #69be43;}
+div.comment-form {background: #BDF3A5; color: #69be43; border:none;}
 div.page_other_pages_header {background: #fff; border-color: #fff; color: #69be43; font-weight:bold;}
 code, pre, blockquote {background: #E7F6D7; border: 1px solid #98C66F;}
 dt {background: #404040;}
 dd {background: #505050;}
 table th {background: #404040;}
-#MainMenu {background: #69be43;}
+div.MainMenu {background: #69be43;}
 ul.menu li.selected a {background: #add877;}
 ul.menu li a:hover {background: #add877;}
 div.pagination strong {background: #69be43; color: white; padding: 3px 6px;}

@@ -5,7 +5,9 @@
 	*/
 	
 		
-	$subdir = mso_get_option('default_header_image', 'templates', '-template-');
+	$subdir = mso_get_option('default_header_image', 'templates', false);
+	
+	if ($subdir === false) return; // не определены опции
 
 	if ($subdir == '-template-')  // каталог шаблона
 		$imgs = get_path_files(getinfo('template_dir') . 'images/headers/', getinfo('template_url') . 'images/headers/');

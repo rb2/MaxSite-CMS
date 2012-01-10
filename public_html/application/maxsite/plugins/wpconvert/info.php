@@ -2,8 +2,8 @@
 
 $info = array(
 	'name' => 'WordPress convert',
-	'description' => 'Конвертирование записей, страниц, рубрик и комментариев из WordPress в MaxSite CMS. Внимание, плагин экспериментальный!',
-	'version' => '1.1',
+	'description' => t('Конвертирование записей, страниц, рубрик и комментариев из WordPress в MaxSite CMS', 'plugins'),
+	'version' => '1.2',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',
 	'author_url' => 'http://maxsite.org/',

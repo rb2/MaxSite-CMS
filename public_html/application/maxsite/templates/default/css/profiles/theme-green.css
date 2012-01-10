@@ -15,16 +15,14 @@ textarea, select, input[type="text"], input[type="password"] {background: #E7F6D
 div.leave_a_comment {background: #466938; border-color: #466938; color: #E7F6D7;}
 div.page_comments_count {background: #466938; border-color: #466938; color: #E7F6D7;}
 div.comment-info {background: white; color: #76A639;}
-div.comments div.comments_content {background: white; color: #1A4613;}
-div.comments-auth {background: #466938; color: #E7F6D7;}
-div.comment-form div.comments-textarea {background: #466938; color: #E7F6D7;}
-div.comment-form div.comments-user {background: #466938; color: #E7F6D7;}
+div.comment-form {background: #466938; color: #E7F6D7;}
+div.comment-form a {color: #E7F6D7;}
 div.page_other_pages_header {background: #466938; border-color: #466938; color: #E7F6D7;}
 code, pre, blockquote {background: #404040; color: white; border: 1px solid silver;}
 dt {background: #404040;}
 dd {background: #505050;}
 table th {background: #404040;}
-#MainMenu {background: #1A4613;}
+div.MainMenu {background: #1A4613;}
 ul.menu li.selected a {background: #466938;}
 ul.menu li a:hover {background: #466938;}
 div.pagination strong {background: #76A639;}

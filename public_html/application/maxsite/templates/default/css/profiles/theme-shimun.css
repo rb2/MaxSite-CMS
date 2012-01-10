@@ -23,8 +23,6 @@ textarea, select, input[type="text"], input[type="password"] {background: #EEEEE
 div.page_comments_count {background: #DDDDDD; border-color: #DDDDDD; color: #404040;}
 div.comment-info {background: white; color: #808080;}
 div.comments div.comments_content {background: white; color: #404040;}
-div.comment-form div.comments-textarea {background: #DDDDDD; color: #404040;}
-div.comment-form div.comments-user {background: #DDDDDD; color: #404040;}
 div.page_other_pages_header {background: #DDDDDD; border-color: #DDDDDD; color: #404040;}
 code, pre, blockquote {background: #F0F0F0; color: #404040; border: 1px solid silver;}
 dt {background: #404040;}
@@ -33,7 +31,7 @@ table th {background: #404040;}
 
 div.widget a {text-decoration: none;}
 
-#MainMenu {background: none; padding:0;}
+div.MainMenu {background: none; padding:0;}
 
 ul.menu li a {
 height: 30px; line-height: 30px;
@@ -142,19 +140,8 @@ text-shadow:0 1px 1px #FFF;
 padding: 5px;
 }
 
-div.comments-auth {
-background: #f3f3f3; /* Old browsers */
-background: -moz-linear-gradient(top,  #f3f3f3 0%, #dfdfdf 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(100%,#dfdfdf)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #f3f3f3 0%,#dfdfdf 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #f3f3f3 0%,#dfdfdf 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #f3f3f3 0%,#dfdfdf 100%); /* IE10+ */
-background: linear-gradient(top,  #f3f3f3 0%,#dfdfdf 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#dfdfdf',GradientType=0 ); /* IE6-9 */
-border:1px solid #bbb;
-color: #404040;
-}
-div.comment-form div.comments-textarea{
+
+div.comment-form {
 background: #f3f3f3; /* Old browsers */
 background: -moz-linear-gradient(top,  #f3f3f3 0%, #dfdfdf 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(100%,#dfdfdf)); /* Chrome,Safari4+ */

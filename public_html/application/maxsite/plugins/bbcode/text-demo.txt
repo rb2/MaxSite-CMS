@@ -79,30 +79,23 @@
 
 <h2>Сообщения DIV</h2>
 
-<div class="message">[b]message[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
+[div(message note)]message note[/div] 
+[div(message alert)]message alert[/div] 
+[div(message error)]message error[/div] 
+[div(message ok)]message ok[/div] 
+[div(message about)]message about[/div] 
 
-<div class="alert">[b]alert[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
+[div(message idea)]message idea[/div]
+[div(message mail)]message mail[/div] 
+[div(message home)]message home[/div] 
+[div(message question)]message question[/div] 
 
-<div class="error">[b]error[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
+[div(message about box-shadow margin20)]message about box-shadow margin20[/div] 
+[div(message error noicon)]message error noicon[/div] 
+[div(message ok yellow no-border)]message ok yellow no-border[/div] 
+[div(message alert noicon no-border-radius no-border)]message alert noicon no-border-radius no-border[/div] 
 
-<div class="ok">[b]ok[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
-
-<div class="about">[b]about[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.</div>
-
-[div(about red)][b]about red[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
-
-[div(about yellow)][b]about yellow[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
-
-[div(about green)][b]about green[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
-
-[div(about blue)][b]about blue[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
-
-[div(message gray no-border-radius)][b]message gray no-border-radius[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
-
-[div(alert silver no-border-radius)][b]alert silver no-border-radius[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
-
-[div(red noicon)][b]red noicon[/b] Sed volutpat gravida consectetur. Quisque accumsan, nisi non cursus mollis, tortor nunc commodo tellus, non pretium est sapien sodales purus. Proin diam justo; luctus et hendrerit vitae, laoreet ut arcu. Nullam eu scelerisque lacus. Vestibulum ornare nibh et magna venenatis eget blandit velit iaculis. Morbi at euismod mauris.[/div]
-
+[div(radius8 white bg-red box-shadow margin20 margin-lr0 padding10)]radius8 white bg-red box-shadow margin20 margin-lr0 padding10[/div] 
 
 
 <h2>Обычный список UL/LI</h2>

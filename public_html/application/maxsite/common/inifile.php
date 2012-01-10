@@ -6,11 +6,36 @@
  * Функции для ini-файлов
  */
 
+# если PHP < 5.3
+# (c) http://www.php.net/manual/ru/function.parse-ini-string.php
+if( !function_exists('parse_ini_string') )
+{
+	function parse_ini_string($ini, $process_sections = false, $scanner_mode = null)
+	{
+		$tempname = getinfo('cache_dir') . mso_md5($ini);
+		$fp = fopen($tempname, 'w');
+		fwrite($fp, $ini);
+		$ini = parse_ini_file($tempname, !empty($process_sections));
+		fclose($fp);
+		@unlink($tempname);
+		return $ini;
+	}
+}
+
+
 # загружаем ini-файл
 function mso_get_ini_file($file = '') 
 {
-	if ( !file_exists( $file ) ) return false;
-	return parse_ini_file($file, true);
+	if (!file_exists($file)) return false;
+	
+	$out = file_get_contents($file);
+	
+	ob_start();
+	eval( '?>' . stripslashes($out) . '<?php ');
+	$out = ob_get_contents();
+	ob_end_clean();
+	
+	return parse_ini_string($out, true);
 }
 
 

@@ -57,8 +57,10 @@ if ($comuser_info)
 		echo '<p><a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '">' . t('Персональная страница') . '</a>';
 		
 		if (!$login_form)
+		{
+			echo ' | <a href="' . getinfo('siteurl') . 'password-recovery">' . t('Сменить пароль') . '</a>';
 			echo ' | <a href="' . getinfo('siteurl') . 'logout">' . t('Выход') . '</a>';
-		
+		}
 		echo '</p>';
 		
 		// если активация не завершена, то вначале требуем её завершить
@@ -101,7 +103,7 @@ if ($comuser_info)
 				
 				echo '<p><strong>'. t('Отображаемый ник'). ':</strong> <input type="text" name="f_comusers_nik" value="' . $comusers_nik . '"></p>';
 				echo '<p><strong>'. t('Сайт (с http://)'). ':</strong> <input type="text" name="f_comusers_url" value="' . $comusers_url . '"></p>';
-				echo '<p><strong>'. t('Аватарка (с http://, размер 80x80px)'). ':</strong> <input type="text" name="f_comusers_avatar_url" value="' . $comusers_avatar_url . '"></p><br>';
+				echo '<p><strong>'. t('Аватарка (с http://, 80x80px)'). ':</strong> <input type="text" name="f_comusers_avatar_url" value="' . $comusers_avatar_url . '"></p><br>';
 				
 				echo '<p><strong>'. t('ICQ'). ':</strong> <input type="text" name="f_comusers_icq" value="' . $comusers_icq . '"></p>';
 				echo '<p><strong>'. t('Twitter'). ':</strong> <input type="text" name="f_comusers_msn" value="' . $comusers_msn . '"></p>';
@@ -117,28 +119,28 @@ if ($comuser_info)
 				echo '<input type="hidden" value="0" name="f_comusers_meta[subscribe_my_comments]">';
 				
 				$check = (isset($comusers_meta['subscribe_my_comments']) and $comusers_meta['subscribe_my_comments']=='1');
-				echo '<br><strong>&nbsp;</strong><label>' 
+				echo '<br><strong class="subscribe_my_comments">&nbsp;</strong><label>' 
 					. form_checkbox('f_comusers_meta[subscribe_my_comments]', '1', $check) 
 					. ' '. t('новые комментарии, где я участвую') . '</label>';
 				
 				
 				echo '<input type="hidden" value="0" name="f_comusers_meta[subscribe_other_comments]">';
 				$check = (isset($comusers_meta['subscribe_other_comments']) and $comusers_meta['subscribe_other_comments']=='1');
-				echo '<br><strong>&nbsp;</strong><label>' 
+				echo '<br><strong class="subscribe_my_comments">&nbsp;</strong><label>' 
 					. form_checkbox('f_comusers_meta[subscribe_other_comments]', '1', $check) 
 					. ' '. t('новые комментарии, где я не участвую') . '</label>';
 				
 				
 				echo '<input type="hidden" value="0" name="f_comusers_meta[subscribe_new_pages]">';
 				$check = (isset($comusers_meta['subscribe_new_pages']) and $comusers_meta['subscribe_new_pages']=='1');
-				echo '<br><strong>&nbsp;</strong><label>' 
+				echo '<br><strong class="subscribe_my_comments">&nbsp;</strong><label>' 
 					. form_checkbox('f_comusers_meta[subscribe_new_pages]', '1', $check) 
 					. ' '. t('новые записи сайта') . '</label>';
 					
 					
 				echo '<input type="hidden" value="0" name="f_comusers_meta[subscribe_admin]">';
 				$check = (isset($comusers_meta['subscribe_admin']) and $comusers_meta['subscribe_admin']=='1');
-				echo '<br><strong>&nbsp;</strong><label>' 
+				echo '<br><strong class="subscribe_my_comments">&nbsp;</strong><label>' 
 					. form_checkbox('f_comusers_meta[subscribe_admin]', '1', $check) 
 					. ' '. t('рассылка администратора') . '</label>';
 					
@@ -146,7 +148,7 @@ if ($comuser_info)
 				
 
 
-				echo '<p><strong>'. t('О себе'). ' <br>('. t('HTML удаляется'). '):</strong> <textarea name="f_comusers_description">'. NR 
+				echo '<p><strong>'. t('О себе'). ' ('. t('HTML удаляется'). '):</strong> <textarea name="f_comusers_description">'. NR 
 					. htmlspecialchars(strip_tags($comusers_description)) . '</textarea></p>';
 			
 			}

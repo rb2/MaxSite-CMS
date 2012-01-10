@@ -17,7 +17,8 @@ elseif (function_exists('mso_default_head_section')) mso_default_head_section();
 <!-- end header -->
 <?php mso_hook('body_start') ?>
 <?php if (function_exists('ushka')) echo ushka('body_start'); ?>
-	
+<?php if (file_exists(getinfo('template_dir') . 'custom/body-start.php')) 
+			require(getinfo('template_dir') . 'custom/body-start.php'); ?>
 
 <div class="all">
 	<div class="all-wrap">
@@ -140,6 +141,9 @@ elseif (function_exists('mso_default_head_section')) mso_default_head_section();
 	</div><!-- div class="all-wrap" -->
 </div><!-- div class="all" -->
 
+<?php if (file_exists(getinfo('template_dir') . 'custom/body-end.php')) 
+			require(getinfo('template_dir') . 'custom/body-end.php'); ?>
+			
 <?php 
 	if (function_exists('ushka')) 
 	{

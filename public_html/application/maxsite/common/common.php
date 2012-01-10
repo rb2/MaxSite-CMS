@@ -77,15 +77,12 @@ function getinfo($info = '')
 				break;
 
 		case 'rss_url' :
+		case 'feed' :
 				$out = $MSO->config['site_url'] . 'feed';
 				break;
 		
 		case 'rss_comments_url' :
 				$out = $MSO->config['site_url'] . 'comments/feed';
-				break;
-				
-		case 'feed' :
-				$out = $MSO->config['site_url'] . 'feed';
 				break;
 
 		case 'atom_url' :
@@ -2618,7 +2615,8 @@ function mso_wordwrap($str, $wid = 80, $tag = ' ')
 
 
 # возвращает script с jquery или +url
-function mso_load_jquery($plugin = '')
+# в $path можно указать http-путь к файлу
+function mso_load_jquery($plugin = '', $path = '')
 {
 	global $MSO;
 
@@ -2627,7 +2625,16 @@ function mso_load_jquery($plugin = '')
 		$MSO->js['jquery'][$plugin] = '1';
 	
 		if ($plugin)
-			return '<script type="text/javascript" src="'. getinfo('common_url') . 'jquery/' . $plugin . '"></script>' . NR;
+		{
+			if ($path)
+			{
+				return '<script type="text/javascript" src="' . $path . $plugin . '"></script>' . NR;
+			}
+			else
+			{
+				return '<script type="text/javascript" src="'. getinfo('common_url') . 'jquery/' . $plugin . '"></script>' . NR;
+			}
+		}
 		else
 		{
 			$jquery_type = mso_get_option('jquery_type', 'general', 'self');

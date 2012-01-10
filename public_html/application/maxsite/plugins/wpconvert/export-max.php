@@ -38,7 +38,7 @@ foreach ( $authors as $id ) {
 </table>
 
 <?php
-$all_count = $wpdb->get_col("SELECT ID FROM $wpdb->posts $where");
+$all_count = $wpdb->get_col("SELECT ID FROM $wpdb->posts WHERE post_status != 'inherit'");
 ?>
 
 <p>Начиная с записи <input type="text" name="limit_start" value="1"> (всего <?= count($all_count) ?> записей)
@@ -83,12 +83,14 @@ header('Content-Type: text/xml; charset=' . get_option('blog_charset'), true);
 $where = '';
 if ( isset( $_GET['author'] ) && $_GET['author'] != 'all' ) {
 	$author_id = (int) $_GET['author'];
-	$where = " WHERE post_author = '$author_id' ";
+	$where = " WHERE post_author = '$author_id' and post_status != 'inherit'";
 }
-
+else $where = " WHERE post_status != 'inherit'";
 
 
 // grab a snapshot of post IDs, just in case it changes during the export
+
+
 $post_ids = $wpdb->get_col("SELECT ID FROM $wpdb->posts $where ORDER BY post_date_gmt ASC{$limit}");
 
 $categories = (array) get_categories('get=all');
@@ -209,7 +211,7 @@ echo '<?xml version="1.0" encoding="' . get_bloginfo('charset') . '"?' . ">\n";
 		$wp_query->in_the_loop = true;  // Fake being in the loop.
 		// fetch 20 posts at a time rather than loading the entire table into memory
 		while ( $next_posts = array_splice($post_ids, 0, 20) ) {
-			$where = "WHERE ID IN (".join(',', $next_posts).")";
+			$where = "WHERE ID IN (".join(',', $next_posts).") and post_status != 'inherit'";
 			$posts = $wpdb->get_results("SELECT * FROM $wpdb->posts $where ORDER BY post_date_gmt ASC");
 				foreach ($posts as $post) {
 			setup_postdata($post); ?>

@@ -14,8 +14,6 @@ body {font-family: Verdana, Arial, sans-serif; font-size: 11pt; background: #E0E
 body, div, ul, ol, li, td, p, blockquote, code, pre, h1, h2, h3, h4, h5, h6 {line-height: 1.4em;}
 p, code, pre, blockquote, ul, ol, table, dl {margin: 4px 0 7px 0;}
 ol, ul {margin-left: 15px;}
-ul {/*list-style-type:  circle | disc | square */}
-ol {/* list-style-type: armenian | decimal | decimal-leading-zero | georgian | lower-alpha | lower-greek | lower-latin | lower-roman | upper-alpha | upper-latin | upper-roman */}
 sup, sub {vertical-align: baseline; position: relative; font-size: .8em}
 sup {top: -0.4em;}
 sub {bottom: -0.3em;}
@@ -42,16 +40,15 @@ img {vertical-align: middle;}
 
 /* поля форм */
 input, select {vertical-align: middle;}
-select, input, textarea, button {}
 textarea {overflow: auto;}
 input[type="submit"], input[type="reset"], input[type="button"] {}
 input[type="radio"], input[type="checkbox"] {margin: 0; padding: 0; position: relative; top: 1px; cursor: pointer; vertical-align: text-top;} 
 input[type="text"], input[type="password"], textarea, select {} 
 *+html input[type="submit"], *+html input[type="reset"], *+html input[type="button"]  {overflow: visible;} /*IE7*/
+fieldset {padding: 5px 10px; margin: 5px 0; border: 1px solid #ccc;}
 
 div.break {clear: both;}
 .clearfix:after {content: '.'; display: block; clear: both; visibility: hidden; height: 0; line-height: 0;}
-
 
 /* ссылки */
 a {color: #0E5FBF; text-decoration: underline;}
@@ -86,7 +83,6 @@ h6.first {margin: 5px 0 5px 0;}
 
 
 /* ----------------- struct ---------------------- */
-
 div.all {}
 	div.all-wrap {width: 960px; margin: 0 auto; background: white;  -webkit-box-shadow: #606060 0px 0px 7px; -moz-box-shadow: #606060 0px 0px 7px; box-shadow: #606060 0px 0px 7px; behavior: url(/PIE.php); }
 	
@@ -104,37 +100,15 @@ div.all {}
 	div.footer {width: 100%; clear: both; background: #192849; font-size: 0.9em; color: white;}
 		div.footer a {color: white;}
 		div.footer-wrap {padding: 10px; margin: 0 auto;}	
-	
-	
-/* прижать футер в низу - нужно явно задать высоты! */
-/*
-html, body {height: 100%;}
-div.all {position: relative; min-height: 100%; height: auto !important; height: 100%;} 
-div.footer {position: absolute; bottom: 0; height: 80px;}
-div.footer-do-separation {height: 80px;}
-*/
+
 
 /* компоненты шапки */
-
 div.logo-links {margin: 0 10px 10px 10px;}
 div.name_site {margin: 15px 0 0 0; font-size: 1.7em;}
 div.description_site {font-style: italic;}
 div.social {margin: 15px 0 0 0;}
 div.social img {margin: 0 0 0 5px;}
-#MainMenu {margin: 5px 0; clear: both;}
 
-/* слайдер */
-#slider-header {width: 100%!important; height: 250px!important; overflow: hidden;}
-
-.nivoSlider {position: relative;} 
-.nivoSlider img {position: absolute; top: 0; left: 0; display: none;} 
-.nivo-slice {display: block; position: absolute; z-index: 5; height: 100%;}
-.nivo-box {display: block; position: absolute; z-index: 5;}
-.nivo-directionNav a {position: absolute; top: 45%; z-index: 9; cursor: pointer;} 
-.nivo-prevNav, .nivo-nextNav {padding: 5px; background: #192849; color: white; text-decoration: none; opacity: 0.8;}
-.nivo-prevNav {left: 0;}
-.nivo-nextNav {right: 0;}
-		
 
 /* отступ Подписаться на эту рубрику по RSS*/
 p.show_rss_text {} 
@@ -159,10 +133,9 @@ div.page_other_pages_header {margin: 0 0 5px 0; padding: 3px; background: #E8E8E
 /* описание рубрики на странице рубрики */
 div.category_desc {margin: 0 0 20px 0; font-weight: bold;}
 
-/* menu */
 
 /* меню выпадающее */
-#MainMenu {font-size: 10pt; margin: 0 0 0 0; padding-left: 10px; background: #192849;height: 35px; line-height: 35px;}
+div.MainMenu {font-size: 10pt; padding-left: 10px; background: #192849;height: 35px; line-height: 35px;}
 ul.menu, ul.menu li, ul.menu ul {list-style: none; margin: 0; padding: 0;}
 ul.menu {position: relative; z-index: 7; float: left; width: 100%;}
 
@@ -193,14 +166,13 @@ ul.menu li.first a {}
 
 /* подпункты */
 ul.menu li.group ul {width: 200px; }
-ul.menu li.group ul li a {margin: 0; background: #C0C0C0; color: #404040; border-top: 1px solid #A0A0A0; font-weight: normal;}
+ul.menu li.group ul li a {margin: 0; background: #E0E0E0; color: #404040; border-top: 1px solid #A0A0A0; font-weight: normal;}
 ul.menu li.group ul li a:hover {color: white; background: #A0A0A0;}
 ul.menu li.group ul li a span {background: none;}
 ul.menu li.group ul li a:hover span {}
 
 ul.menu li.group ul li.selected a {}
 ul.menu li.group ul li.selected a span {}
-
 
 
 /* виджеты */
@@ -255,15 +227,9 @@ input[name="contact_antispam"] {width: 30px; margin-right: 5px;}
 /* форма логина */
 div.type_loginform div.loginform {margin: 10px auto 10px auto; background: #fcfcff; padding: 10px 15px; border: #dce0e7 solid 1px; line-height: 1.2em;  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; behavior: url(/PIE.php); }
 div.type_loginform form.flogin {color: #808080; font-weight: bold;}
-div.type_loginform form.flogin span {}
 div.type_loginform input.flogin_user, div.type_loginform input.flogin_password {width:100%;}
-div.type_loginform form.flogin input.flogin_user:focus, div.type_loginform form.flogin input.flogin_password:focus {}
-div.type_loginform form.flogin input.flogin_user {}
-div.type_loginform form.flogin input.flogin_submit {}
-div.type_loginform form.flogin input.flogin_submit:hover {}
 
 div.type_loginform div.login-form-auth {clear: both; margin: -26px 0 15px 0; font-size: .8em; text-align: right;}
-div.type_loginform p.flogin_submit {}
 div.type_loginform p.header {text-align: center; font-size: 1.2em; background: #959595; padding: 3px; color: white;}
 div.type_loginform div.form-end {text-align: right; font-size: .9em;}
 
@@ -277,34 +243,19 @@ input.submit {cursor: pointer; }
 
 
 /* COMMENT FORM */
-div.comment-form {}
-
-div.comments-auth {font-size: 0.8em; margin: 10px 0; padding: 10px; border: 1px solid #C0C0C0; background: #F0F0F0;  -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php); }
-
-div.comment-form div.comments-noreg {}
-div.comment-form div.comments-reg {margin: 0;}
-div.comment-form div.sep {margin-top: 10px; padding-top: 5px; border-top: 1px solid #AAAAAA;}
-
-div.comment-form div.comments-textarea {font-size: 0.8em; margin: 10px 0; padding: 10px; border: 1px solid #C0C0C0; background: #F0F0F0;  -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php); }
-
-table.no-border, table.no-border td {border: none; padding: 0; vertical-align: top; border-collapse: collapse; border-spacing: 0;}
-div.comment-form table {width: 100%;}
-div.comment-form td {padding: 2px;}
-div.comment-form td.t1 {width: 85px; text-align: right;}
-div.comment-form td.t2 input {width: 100%;}
-div.comment-form p.hint {margin: 0 0 5px 90px; line-height: 1.2em; color: #404040; font-size: .9em; font-style: italic;}
+div.comment-form {font-size: 0.9em; margin: 10px 0; padding: 10px; border: 1px solid #C0C0C0; background: #F0F0F0;  -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php); }
+div.comment-form textarea {width: 100%; margin: 5px 0;}
+div.comments-auth {font-size: 0.9em; margin: 10px 0; padding: 10px; border: 1px solid #C0C0C0; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php);}
 div.comment-form p.radio {font-weight: bold;}
-
-div.comment-form textarea {width: 99%; margin: 3px;}
-*html div.comment-form textarea {width: 95%; margin: 3px;}
-
-div.comment-form p.you-comment {font-weight: bold;}
-
-div.comment-form img {position: relative; top: 7px; }
-
-div.comment-form .comment_button input {margin: 0; padding: 0 5px;}
-
-div.comment-form div.comments-user {font-size: 0.8em; margin: 10px 0; padding: 10px; border: 1px solid #C0C0C0; background: #F0F0F0;  -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php); }
+div.comment-form input.comments_author {width: 200px;}
+div.comment-form input.comments_email {width: 200px;}
+div.comment-form input.comments_password {width: 200px;}
+div.comment-form input.comments_comusers_nik {width: 150px;}
+div.comment-form input.comments_comusers_url {width: 300px;}
+div.comment-form input.comments_copy {width: 30px;}
+div.comment-form p span.indent {display: inline-block; width: 70px; text-align: right; vertical-align: middle; margin-right: 5px;}
+div.comment-form p.hint {font-size: 0.9em; margin: 5px 0 0 75px;}
+div.comment-form div.comments-user {font-weight: bold;}
 
 div.comment-ok {background: #40A040; color: white; padding: 10px; text-align: center; font-weight: bold;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
 div.comment-error {background: #FF4040; color: white; padding: 10px; text-align: center; font-weight: bold;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
@@ -317,25 +268,8 @@ div.comments ul, div.comments ol {margin: 10px 0 20px 0;}
 div.comments li { margin: 0 0 20px 30px;}
 div.comments li span {font-style: italic;}
 
-div.comments li.users {}
-div.comments li.users a {}
-div.comments li.users span.date a {}
-div.comments li.users span.url a {}
-
-div.comments li.comusers {}
-div.comments li.comusers a {}
-div.comments li.comusers span.date a {}
-div.comments li.comusers span.url a {}
-
-div.comments li.anonim {}
-div.comments li.anonim a {}
-div.comments li.anonim span.date a {}
-div.comments li.anonim span.url {}
-div.comments li.anonim span.url a {}
-
 
 div.comment-info {background: #F0F0F0; padding: 3px 8px;  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; behavior: url(/PIE.php); }
-div.comments div.comments_content {}
 
 div.leave_a_comment {font-size: 12pt; font-weight: bold; color: white; text-align: center; margin: 10px 0; padding: 8px; background: #192849; border: 1px solid #192849; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php); } /* Оставьте комментарий! */
 div.page_comments_count {font-weight: bold; margin: 10px 0; padding: 8px; background: #F0F0F0; border: 1px solid #C0C0C0; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php); } /* комментариев - 10 */
@@ -343,13 +277,14 @@ div.comments blockquote {margin-left: 0; padding: 10px; border-left: 2px gray so
 
 
 /* comusers*/
-form.comusers-form p strong {width: 180px; display: block; float: left;}
-form.comusers-form p input[type="text"] {width: 260px;}
-form.comusers-form p input[type="password"] {width: 260px;}
-form.comusers-form p input[type="submit"] {width: 120px; }
-form.comusers-form p select {width: 260px; }
-form.comusers-form p textarea {width: 260px; height: 300px;}
-form.comusers-form p {}
+form.comusers-form {font-size: 0.9em;}
+form.comusers-form p strong {display: inline-block; width: 250px; height: 30px; vertical-align: top; text-align: right; margin-right: 5px;}
+form.comusers-form p strong.subscribe_my_comments {height: 20px;}
+form.comusers-form p input[type="text"] {width: 300px;}
+form.comusers-form p input[type="password"] {width: 300px;}
+form.comusers-form p input[type="submit"] {width: 120px; margin-left: 260px;}
+form.comusers-form p select {width: 310px; }
+form.comusers-form p textarea {width: 300px; height: 300px;}
 form.comusers-form p.info  {background: none; color: #B00000; margin: 0 0 15px 0; border: 1px solid #B00000; padding: 3px; text-align: center;}
 
 
@@ -364,8 +299,6 @@ div.pagination a:hover {}
 /* plugin TagClouds */
 div.tagclouds {text-align: center; line-height: 1.6em; font-size: 8pt;}
 div.tagclouds span {line-height: 1.6em; }
-div.tagclouds sub {}
-div.tagclouds a {}
 
 /* plugin CatClouds */
 div.catclouds {text-align: center;}
@@ -376,12 +309,10 @@ div.catclouds span {line-height: 1.4em;}
 
 /* plugin LastComment */
 div.comments ul.last_comment li {margin: 5px 0;}
-ul.last_comment {}
 ul.last_comment em {display: block; color: gray; text-align: right;}
 ul.last_comment li {margin-bottom: 7px;}
 
 /* plugin Twitter */
-div.twitter {}
 div.twitter p {border-bottom: 1px solid gray; padding: 0 0 10px 0;}
 div.twitter a {font-weight: bold;}
 
@@ -390,7 +321,6 @@ div.addzakl {margin: 15px 0 0 0;}
 div.addzakl img {vertical-align: top;}
 
 /* plugin LAST-PAGES */
-div.last-pages ul.is_link li {}
 div.last-pages ul.is_link li.current_url_allcat {display: block;}
 div.last-pages ul.is_link li.current_url_cat {display: block;}
 div.last-pages ul.is_link li.current_url_page {display: block;}
@@ -404,7 +334,6 @@ div.calendar div.today-content {background: #8591B7;}
 div.calendar td a {text-decoration: underline;}
 
 /* plugin SITEMAP */
-div.sitemap ul {}
 div.sitemap h3 {margin: 15px 0 5px 0;}
 h2.sitemap {margin: 25px 0 0 0; background: #DDDDDD; padding: 3px;}
 
@@ -442,7 +371,6 @@ div.gallery img:hover {background: silver;}
 /* plugin theme_switch */
 div.theme_switch div.widget-content {margin-left: 5px;}
 
-
 /* plugin tabs */
 div.tabs {width: 100%;}
 div.tabs-box.tabs-visible {display: block; }
@@ -455,6 +383,19 @@ div.tabs-box {display: none; border: 1px solid #DDD; background: #EFEFEF; paddin
 	
 /* HELPERS */
 
+/* messages */
+.message {border: 1px solid #DBDBDB; margin: 4px 0 7px 0; padding: 10px 10px 10px 70px; min-height: 48px;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
+.message.note {background: #DAE8EE url("../images/icons/note.png") no-repeat 10px 10px; border-color: #91A0A6; color: black;}
+.message.alert {background: #FFE8BF url("../images/icons/alert.png") no-repeat 10px 10px; border-color: #DECAA5; color: maroon;}
+.message.idea {background: #FAF6AC url("../images/icons/idea.png") no-repeat 10px 10px; border-color: #D5D18C; color: maroon;}
+.message.error {background: #FB6C6C url("../images/icons/error.png") no-repeat 10px 10px; border-color: #CA5A5A; color: white;}
+.message.ok {background: #7FFF91 url("../images/icons/ok.png") no-repeat 10px 10px; border-color: #68CD76; color: #006600;}
+.message.about {background: #A6D2FF url("../images/icons/about.png") no-repeat 10px 10px; border-color: #8FB3D8; color: navy;}
+.message.mail {background: #EAEAEA url("../images/icons/mail.png") no-repeat 10px 10px; color: #404040;}
+.message.home {background: #EAEAEA url("../images/icons/home.png") no-repeat 10px 10px; color: #404040;}
+.message.question {background: #EAEAEA url("../images/icons/question.png") no-repeat 10px 10px; color: #404040;}
+.message.noicon {background-image: none; padding: 10px;}
+
 /* text colors */
 .red {color: red;}
 .blue {color: blue;}
@@ -462,6 +403,7 @@ div.tabs-box {display: none; border: 1px solid #DDD; background: #EFEFEF; paddin
 .gray {color: gray;}
 .black {color: black;}
 .white {color: white;}
+.yellow {color: yellow;}
 
 /* text-style */
 .normal {font-weight: normal; font-style: normal; text-decoration: none;}
@@ -471,7 +413,6 @@ div.tabs-box {display: none; border: 1px solid #DDD; background: #EFEFEF; paddin
 .overline {text-decoration: overline;}
 .strike {text-decoration: line-through;}
 
-
 /* background colors */
 .bg-red {background-color: red;}
 .bg-blue {background-color: blue;}
@@ -479,6 +420,7 @@ div.tabs-box {display: none; border: 1px solid #DDD; background: #EFEFEF; paddin
 .bg-gray {background-color: gray;}
 .bg-black {background-color: black;}
 .bg-white {background-color: white;}
+.bg-yellow {background-color: yellow;}
 
 /* align */
 .left {float: left;}
@@ -492,13 +434,15 @@ div.tabs-box {display: none; border: 1px solid #DDD; background: #EFEFEF; paddin
 .w100 {width: 100%;}
 .w75 {width: 75%;}
 .w70 {width: 70%;}
+.w60 {width: 60%;}
 .w50 {width: 50%;}
+.w40 {width: 40%;}
 .w33 {width: 33.33%;}
 .w30 {width: 30%;}
 .w25 {width: 25%;}
 
 /* margins */
-.margin0 {margin: 0px;}
+.margin0 {margin: 0;}
 .margin5 {margin: 5px;}
 .margin10 {margin: 10px;}
 .margin15 {margin: 15px;}
@@ -509,12 +453,35 @@ div.tabs-box {display: none; border: 1px solid #DDD; background: #EFEFEF; paddin
 .margin-right10 {margin-right: 10px;}
 .margin-bottom10 {margin-bottom: 10px;}
 .margin-left10 {margin-left: 10px;}
+.margin-tb0 {margin-top: 0; margin-bottom: 0;}
+.margin-lr0 {margin-left: 0; margin-right: 0;}
 
+/* paddings */
+.padding0 {padding: 0;}
+.padding5 {padding: 5px;}
+.padding10 {padding: 10px;}
+.padding15 {padding: 15px;}
+.padding20 {padding: 20px;}
+.padding30 {padding: 30px;}
+.padding-tb0 {padding-top: 0; padding-bottom: 0;}
+.padding-lr0 {padding-left: 0; padding-right: 0;}
+
+/* display */
+.d-none {display: none;}
+.d-block {display: block;}
+.d-inline {display: inline;}
+.d-inline-block {display: inline-block;}
 
 /* border-radius */
 .radius5 {-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; behavior: url(/PIE.php);}
 .radius8 {-webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php);}
 .radius10 {-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php);}
+div.no-border-radius, .radius0 {-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;}
+.no-border {border: none!important;}
+
+/* box-shadow */
+.box-shadow {-webkit-box-shadow: #606060 0 0 7px; -moz-box-shadow: #606060 0 0 7px; box-shadow: #606060 0 0 7px; behavior: url(/PIE.php);}
+.box-shadow-none {-webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;}
 
 /* fonts */
 .arial {font-family: Arial, Verdana, sans-serif;}
@@ -524,35 +491,10 @@ div.tabs-box {display: none; border: 1px solid #DDD; background: #EFEFEF; paddin
 .times {font-family: "Times New Roman", Georgia, serif;}
 .courier {font-family: "Courier New", monospace;}
 
-
 /* img */
 img.smiley {vertical-align: middle;}
-img.left {float: left; margin: 5px 10px 5px 0px;}
+img.left {float: left; margin: 5px 10px 5px 0;}
 img.right {float: right; margin: 5px 0 5px 10px;}
 img.center {margin: 0 auto; display: block;}
 img.border {border: 1px solid #3D61B6; }
-
-
-/* infoblocks */
-div.message {background: #FFFF60 url("../images/icons/lightbulb_on.png") no-repeat 10px 10px; border: 1px solid orange; color: black; margin: 4px 0 7px 0; padding: 10px 10px 10px 70px; min-height: 48px;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
-
-div.alert {background: #FFE8BF url("../images/icons/warning.png") no-repeat 10px 10px; border: 1px solid #CD8500; color: maroon; margin: 4px 0 7px 0; padding: 10px 10px 10px 70px; min-height: 48px;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
-
-div.error {background: #FF1919 url("../images/icons/delete.png") no-repeat 10px 10px; border: 1px solid #8B0000; color: white; margin: 4px 0 7px 0; padding: 10px 10px 10px 70px; min-height: 48px;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
-
-div.ok {background: #7FFF91 url("../images/icons/check.png") no-repeat 10px 10px; border: 1px solid #008B13; color: #006600; margin: 4px 0 7px 0; padding: 10px 10px 10px 70px; min-height: 48px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
-
-div.about {background: #A6D2FF url("../images/icons/about.png") no-repeat 10px 10px; border: 1px solid #2A5A8B; color: navy; margin: 4px 0 7px 0; padding: 10px 10px 10px 70px; min-height: 48px;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
-
-div.noicon {background-image: none; padding: 10px;}
-
-div.red {background-color: red; color: white; border: 1px solid #8B0000;}
-div.yellow {background-color: yellow; color: black; border: 1px solid orange;}
-div.green {background-color: green; color: white; border: 1px solid #008B00;}
-div.blue {background-color: blue; color: white; border: 1px solid #00008B;}
-div.gray {background-color: gray; color: white; border: 1px solid black;}
-div.silver {background-color: silver; color: black; border: 1px solid gray;}
-
-.no-border-radius { -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px; behavior: url(/PIE.php); }
-
-.no-border {border: none!important;}
+img.gravatar {padding: 0 10px 10px 0; background: white;}

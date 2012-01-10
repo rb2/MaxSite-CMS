@@ -15,14 +15,12 @@ div.leave_a_comment {background: #404040; border-color: #A0A0A0;}
 div.page_comments_count {background: #404040; border-color: #A0A0A0;}
 div.comment-info {background: #404040; color: white;}
 div.comments div.comments_content {color: white;}
-div.comments-auth {background: #404040;}
-div.comment-form div.comments-textarea {background: #404040;}
-div.comment-form div.comments-user {background: #404040;}
+div.comment-form {background: #404040;}
 div.page_other_pages_header {background: #404040;}
 code, pre, blockquote {background: #404040; color: white; border: 1px solid silver;}
 dt {background: #404040;}
 dd {background: #505050;}
 table th {background: #404040;}
-#MainMenu {background: #202020;}
+div.MainMenu {background: #202020;}
 ul.menu li.selected a {background: #404040;}
 ul.menu li a:hover {background: #404040;}

@@ -18,15 +18,13 @@ div.leave_a_comment {background: #DDDDDD; border-color: #DDDDDD; color: #404040;
 div.page_comments_count {background: #DDDDDD; border-color: #DDDDDD; color: #404040;}
 div.comment-info {background: white; color: #808080;}
 div.comments div.comments_content {background: white; color: #404040;}
-div.comments-auth {background: #DDDDDD; color: #404040;}
-div.comment-form div.comments-textarea {background: #DDDDDD; color: #404040;}
-div.comment-form div.comments-user {background: #DDDDDD; color: #404040;}
+div.comment-form {background: #DDDDDD; color: #404040;}
 div.page_other_pages_header {background: #DDDDDD; border-color: #DDDDDD; color: #404040;}
 code, pre, blockquote {background: #F0F0F0; color: #404040; border: 1px solid silver;}
 dt {background: #404040;}
 dd {background: #505050;}
 table th {background: #404040;}
-#MainMenu {background: #F0F0F0; color: #808080;}
+div.MainMenu {background: #F0F0F0; color: #808080;}
 ul.menu li a {color: #808080;}
 ul.menu li.selected a {background: white;}
 ul.menu li a:hover {background: white; color: #AAAAAA;}

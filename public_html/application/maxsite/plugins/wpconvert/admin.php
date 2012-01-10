@@ -218,6 +218,7 @@
 				if ($all)
 				{
 					
+					$all_link_redirect = ''; // список всех адресов   старый | новый | 301
 					$out = '<h2>' . t('Файл:', 'plugins') . ' ' . $f_xml_file . '</h2>';
 					
 					/*
@@ -327,6 +328,9 @@
 							
 							if (!isset($item['title'])) $item['title'] = 'no-title';
 							
+							if (isset($item['link'])) $old_link = $item['link'];
+								else $old_link = '';
+							
 							if (!isset($item['wp']['post_name'])) $slug = mso_slug($item['title']);
 								else $slug = urldecode($item['wp']['post_name']);
 
@@ -369,6 +373,10 @@
 								$page_id = $result['result'][0];
 								$out .= '<span style="color:green">+ ' . $item['title'] . ' : ' . $result['description'] 
 										. ' (' . $page_id . ')</span><br>';
+										
+										
+								$all_link_redirect .=  $old_link . ' | [URL-NEW]' . $result['result'][1] . ' | 301' . NR;
+								
 							}
 							else // какая-то ошибка
 							{
@@ -414,6 +422,8 @@
 					}
 
 					echo $out . '<br><div class="update">' . t('Готово! Конвертирование выполнено!', 'plugins') . '</div>';
+					
+					echo '<p><b>Готовые редиректы</b></p><br><textarea rows="10">' . $all_link_redirect . '</textarea><br><br>';
 					
 				}
 				else

@@ -444,18 +444,20 @@ function mso_get_new_comment($args = array())
 		
 		// провека на спам - проверим через хук new_comments_check_spam
 		$comments_check_spam = mso_hook('new_comments_check_spam',
-										array(
-											'comments_content' => $comments_content,
-											'comments_date' => $comments_date,
-											'comments_author_ip' => $comments_author_ip,
-											'comments_page_id' => $comments_page_id,
-											'comments_server' => $_SERVER,
-											'comments_parent_id' => $comments_parent_id,
-											'comments_author' => (isset($post['comments_author'])) ? $post['comments_author'] : false,
-											'comments_email' => (isset($post['comments_email'])) ? $post['comments_email'] : false,
-											'comusers_email' => (isset($post['comusers_email'])) ? $post['comusers_email'] : false,
-											'comments_user_id' => (isset($post['comments_user_id'])) ? $post['comments_user_id'] : false,
-										), false);
+						array(
+							'comments_content' => $comments_content,
+							'comments_date' => $comments_date,
+							'comments_author_ip' => $comments_author_ip,
+							'comments_page_id' => $comments_page_id,
+							'comments_server' => $_SERVER,
+							'comments_parent_id' => $comments_parent_id,
+							'comments_author' => (isset($post['comments_author'])) ? $post['comments_author'] : false,
+							'comments_email' => (isset($post['comments_email'])) ? $post['comments_email'] : false,
+							'comusers_email' => (isset($post['comusers_email'])) ? $post['comusers_email'] : false,
+							'comments_user_id' => (isset($post['comments_user_id'])) ? $post['comments_user_id'] : false,
+							'comments_comusers_nik' => (isset($post['comments_comusers_nik'])) ? $post['comments_comusers_nik'] : false,
+							'comments_comusers_url' => (isset($post['comments_comusers_url'])) ? $post['comments_comusers_url'] : false,
+						), false);
 
 		// если есть спам, то возвращается что-то отличное от comments_content
 		// если спама нет, то должно вернуться false
@@ -601,6 +603,20 @@ function mso_get_new_comment($args = array())
 						$ins_data['comusers_last_visit'] = date('Y-m-d H:i:s');
 						$ins_data['comusers_ip_register'] = $_SERVER['REMOTE_ADDR'];
 						$ins_data['comusers_notify'] = '1'; // сразу включаем подписку на уведомления
+						
+						// если сразу отправлен адрес ссайта
+						if (isset($post['comments_comusers_url']) and $post['comments_comusers_url'])
+						{
+							$comusers_url = mso_xss_clean(strip_tags($post['comments_comusers_url']));
+							if (strpos($comusers_url, 'http://') === false) $comusers_url = 'http://' . $comusers_url;
+							$ins_data['comusers_url'] = $comusers_url;
+						}
+						
+						// если сразу отправлен ник
+						if (isset($post['comments_comusers_nik']) and $post['comments_comusers_nik'])
+						{
+							$ins_data['comusers_nik'] = mso_xss_clean(strip_tags($post['comments_comusers_nik']));
+						}
 						
 						// Автоматическая активация новых комюзеров
 						// если активация стоит автоматом, то сразу её и прописываем

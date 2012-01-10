@@ -7,5 +7,9 @@ Disallow: /search
 Disallow: /users/*/edit
 Disallow: /users/*/lost
 Disallow: /password-recovery
+Disallow: /ajax
+Disallow: /ajax/*
+Disallow: /require-maxsite
+Disallow: /require-maxsite/*
 
 Host: 

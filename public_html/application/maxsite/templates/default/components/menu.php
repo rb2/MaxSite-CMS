@@ -2,7 +2,7 @@
 
 	if (!mso_hook_present('main_menu')) // для отладки убрать ! в условии
 	{ ?>
-		<div id="MainMenu">
+		<div id="MainMenu" class="MainMenu">
 			<ul class="menu">
 				<?php
 

@@ -2,6 +2,20 @@
 
 /*
  * (c) MaxSite CMS
+ * http://max-3000.com/
+*/
+
+
+# файл functions-template.php
+# функции для работы с шаблоном
+# не копируйте этот файл в свой шаблон
+
+
+/*
+ * ver.  3/01/2012
+ * ver. 27/12/2011
+ * ver. 26/12/2011
+ * ver. 22/12/2011
  * ver.  7/12/2011
  * ver.  5/12/2011
  * ver.  1/12/2011
@@ -12,9 +26,6 @@
  * ver. 21/08/2011
 */
 
-# файл functions-template.php
-# объявлены функции для работы с шаблоном
-# подключать обычным require в functions.php своего шаблона как default/functions-template.php
 
 
 # функция возвращает массив $path_url-файлов по указанному $path - каталог на сервере
@@ -144,25 +155,12 @@ if (!function_exists('default_out_profiles'))
 			$css_out = '';
 			foreach($default_profiles as $css_file)
 			{
-				$fn = getinfo('template_dir') . 'css/profiles/' . $css_file;
-				
-				if (file_exists($fn)) 
-					$css_out .= file_get_contents($fn) . NR;
+				$fn = 'css/profiles/' . $css_file;
+				$css_out .= mso_out_css_file($fn, false, false); // получение и обработка CSS из файла
 			}
 			
 			if ($css_out) 
-			{
-				
-				ob_start();
-				eval( '?>' . stripslashes( $css_out ) . '<?php ');
-				$css_out = ob_get_contents();
-				ob_end_clean();
-				
-				$css_out = str_replace('[TEMPLATE_URL]', getinfo('template_url'), $css_out);
-				$css_out = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css_out);
-				$css_out = str_replace(array('; ', ' {', ': ', ', '), array(';', '{', ':', ','), $css_out);
-				echo NT . '<style>' . NR . $css_out . NT . '</style>' . NR;
-			}
+				echo NR . '<style>' . $css_out . '</style>' . NR;
 		}
 	}
 }
@@ -208,35 +206,14 @@ if (!function_exists('out_component_css'))
 			// и если они определены
 			if ($fn = mso_get_option($option, 'templates', false))
 			{
-				$fn = str_replace('.php', '.css', $fn); // в имени файла следует заменить расширение php на css
-				
-				if (file_exists(getinfo('template_dir') . 'components/css/' . $fn)) // проверяем если ли файл в наличии
-				{
-					// $css_files[] = $fn; // запомнили имя
-					
-					// получаем содержимое
-					if ($r = @file_get_contents(getinfo('template_dir') . 'components/css/' . $fn))
-						$css_out .= $r . NR;
-				}
+				// в имени файла следует заменить расширение php на css
+				$fn = 'components/css/' . str_replace('.php', '.css', $fn);
+				$css_out .= mso_out_css_file($fn, false, false); // получение и обработка CSS из файла
 			}
 		}
 		
 		if ($css_out) // если есть что выводить
-		{
-			if ($css_out) 
-			{
-				ob_start();
-				eval( '?>' . stripslashes( $css_out ) . '<?php ');
-				$css_out = ob_get_contents();
-				ob_end_clean();
-				
-				$css_out = str_replace('[TEMPLATE_URL]', getinfo('template_url'), $css_out);
-				$css_out = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css_out);
-				$css_out = str_replace(array('; ', ' {', ': ', ', '), array(';', '{', ':', ','), $css_out);
-				echo NT . '<style>' . NR . $css_out . NT . '</style>' . NR;
-
-			}
-		}
+			echo NR . '<style>' . $css_out . '</style>' . NR;
 	}
 }
 
@@ -247,6 +224,9 @@ if (!function_exists('mso_default_head_section'))
 {
 	function mso_default_head_section($options = array())
 	{
+	
+		// ob_start(); # задел на будущее - буферизация
+	
 		echo '<!DOCTYPE HTML>
 <html><head>
 	<meta charset="UTF-8">
@@ -292,10 +272,7 @@ if (!function_exists('mso_default_head_section'))
 		
 		out_component_css();
 			
-		echo NT . '<!-- js -->' .  mso_load_jquery();
-		
-		if (file_exists(getinfo('template_dir') . 'js/my.js')) 
-			echo '	<script type="text/javascript" src="' . getinfo('template_url') . 'js/my.js"></script>';
+		echo NT . mso_load_jquery();
 
 		echo NT . '<!-- plugins -->' . NR;
 		mso_hook('head');
@@ -309,8 +286,18 @@ if (!function_exists('mso_default_head_section'))
 		if ($f = mso_page_foreach('head')) require($f);
 		if (function_exists('ushka')) echo ushka('head');
 		
-		if ($my_style = mso_get_option('my_style', 'templates', '')) echo NR . '<!-- custom css-my_style -->' . NR . '	<style type="text/css">' . NR . $my_style . '	</style>';
+		if (file_exists(getinfo('template_dir') . 'js/my.js')) 
+			echo '	<script type="text/javascript" src="' . getinfo('template_url') . 'js/my.js"></script>';
+		
+		if ($my_style = mso_get_option('my_style', 'templates', '')) echo NR . '<!-- custom css-my_style -->' . NR . '<style>' . NR . $my_style . '</style>';
 	
+		/*
+		# буферизация на будущее
+		$header = ob_get_contents();
+		ob_end_clean();
+		echo $header;
+		*/
+		
 		echo NR . '</head>';
 		if (!$_POST) flush();
 	}
@@ -332,6 +319,9 @@ p_line1 = пагинация 1 линия
 p_line2 = пагинация 2 линия
 [/slide]
 
+Паттерн (по правилам php):
+	'!\[slide\](.*?)\[\/slide\]!is'
+
 Выход:
 
 Array
@@ -351,12 +341,18 @@ $array_default - стартовый массив опций на случай, �
 например 
 array('link'=>'', 'title'=>'', 'img'=>'', 'text'=>'', 'p_line1'=>'', 'p_line2'=>'')
 
+Если $simple = true, то вхродящий паттерн используется как слово из которого
+будет автоматом сформирован корректный паттерн по шаблону [слово]...[/слово]
+
 */
 
 if (!function_exists('mso_section_to_array'))
 {
-	function mso_section_to_array($text, $pattern, $array_default = array())
+	function mso_section_to_array($text, $pattern, $array_default = array(), $simple = false)
 	{
+	
+		if ($simple) $pattern = '!\[' . $pattern . '\](.*?)\[\/' . $pattern . '\]!is';
+		
 		// $array_result - массив каждой секции (0 - все вхождения)
 		if (preg_match_all($pattern, $text, $array_result))
 		{
@@ -396,5 +392,64 @@ if (!function_exists('mso_section_to_array'))
 		return array(); // не найдено
 	}
 }
+
+
+# получает css из указанного файла
+# в css-файле можно использовать php
+# осуществляется сжатие css
+# автозамена [TEMPLATE_URL] на url-шаблона
+# функция возвращает только стили, без обрамляющего <style>
+# Если <style> нужны, то $tag_style = true
+# Если нужен сразу вывод в браузер, то $echo = true
+if (!function_exists('mso_out_css_file'))
+{
+	function mso_out_css_file($fn, $tag_style = true, $echo = true)
+	{
+		
+		$fn = getinfo('template_dir') . $fn;
+		
+		$out = '';
+		if (file_exists($fn)) // проверяем если ли файл в наличии
+		{
+			if ($r = @file_get_contents($fn)) $out .= $r . NR; // получаем содержимое
+		
+			if ($out) 
+			{
+				ob_start();
+				eval( '?>' . stripslashes($out) . '<?php ');
+				$out = ob_get_contents();
+				ob_end_clean();
+				
+				$out = str_replace('[TEMPLATE_URL]', getinfo('template_url'), $out);
+				$out = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $out);
+				$out = str_replace(array('; ', ' {', ': ', ', '), array(';', '{', ':', ','), $out);
+			}
+		
+			if ($tag_style) $out = NR . '<style>' . $out . '</style>' . NR;
+			if ($echo) echo $out;
+		}
+		
+		return $out;
+	}
+}
+
+
+# формирование <script> с внешним js-файлом или
+# формирование <link rel="stylesheet> с внешним css-файлом
+# имя файла указывается относительно каталога шаблона
+# если файла нет, то ничего не происходит
+if (!function_exists('mso_add_file'))
+{
+	function mso_add_file($fn)
+	{
+		if (file_exists(getinfo('template_dir') . $fn)) 
+		{
+			$ext = substr(strrchr($fn, '.'), 1);// расширение файла
+			if ($ext == 'js') echo NR . '<script src="' . getinfo('template_url') . $fn . '"></script>';
+			elseif ($ext == 'css') echo NR . '<link rel="stylesheet" href="' . getinfo('template_url') . $fn . '" type="text/css">';
+		}
+	}
+}
+
 
 # end file

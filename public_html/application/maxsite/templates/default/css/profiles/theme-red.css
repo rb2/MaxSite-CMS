@@ -17,10 +17,9 @@ h2.sitemap {background: #466938; color: white;}
 div.leave_a_comment {background: #F4EED4; border-color: #C0C0C0; color: #404040;}
 div.page_comments_count {background: #F4EED4; border-color: #C0C0C0; color: #404040;}
 div.comment-info {background: white; color: #76A639;}
-div.comments div.comments_content {background: white; color: #1A4613;}
-div.comments-auth {background: #F4EED4; color: #404040;}
-div.comment-form div.comments-textarea {background: #F4EED4; color: #404040;}
-div.comment-form div.comments-user {background: #F4EED4; color: #404040;}
+
+div.comment-form {background: #F4EED4; color: #404040;}
+
 div.page_other_pages_header {background: #F4EED4; border-color: #F4EED4; color: #404040;}
 
 code, pre, blockquote {background: #F4EED4; color: #404040; border: 1px solid #C0C0C0;}
@@ -28,7 +27,7 @@ dt {background: #F4EED4;}
 dd {background: #F4EED4;}
 table th {background: #F4EED4;}
 
-#MainMenu {background: #B74D24;}
+div.MainMenu {background: #B74D24;}
 ul.menu li.selected a, ul.menu li a:hover{background: none; color: #E6F225; text-decoration: underline;}
 
 div.pagination strong {background: #D28376;}

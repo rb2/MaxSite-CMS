@@ -9,7 +9,7 @@ echo '<div class="logo-links">';
 		
 		if (!is_type('home')) echo '<a href="' . getinfo('siteurl') . '">';
 			
-		echo '<img class="left" src="' . $logo . '" alt="' . getinfo('name_site') . '" title="' . getinfo('name_site') . '" height="64" width="64">';
+		echo '<img class="left" src="' . $logo . '" alt="' . getinfo('name_site') . '" title="' . getinfo('name_site') . '">';
 		
 		if (!is_type('home')) echo '</a>';
 
