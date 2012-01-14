@@ -51,8 +51,8 @@ div.break {clear: both;}
 .clearfix:after {content: '.'; display: block; clear: both; visibility: hidden; height: 0; line-height: 0;}
 
 /* ссылки */
-a {color: #0E5FBF; text-decoration: underline;}
-a:hover {color: red;}
+a {}
+a:hover {}
 a.current_url {font-weight: bold;}
 li.current_url a {font-weight: bold;}
 li.current_url li a {font-weight: bold;}
@@ -60,13 +60,13 @@ li.current-page {font-weight: bold;}
 
 
 /* база заголовков */
-h1 {font-size: 2.1em; margin: 0 0 5px 0; font-weight: normal; color: #101010; line-height: 1.2em;}
+h1 {font-size: 2.1em; margin: 0 0 5px 0; font-weight: normal; line-height: 1.2em;}
 h1.first {margin: 10px 0 5px 0;}
-h1 a {color: #101010; text-decoration: none}
-h1 a:hover {color: red; text-decoration: underline;}
-h1.category {font-size: 2.0em; text-transform: uppercase; margin: 0; padding: 5px 10px; background: #192849; color: white;} /* название рубрики, метки */
+h1 a {text-decoration: none}
+h1 a:hover {text-decoration: underline;}
+h1.category {} /* название рубрики, метки */
 
-h2 {font-size: 1.4em; margin: 15px 0 5px 0; font-weight: normal;}
+h2 {font-size: 1.4em; margin: 15px 0 5px 0; font-weight: normal; line-height: 1.1em;}
 h2.first {margin: 5px 0 5px 0;}
 
 h3 {font-size: 1.2em; margin: 15px 0 5px 0; font-weight: bold;}
@@ -81,27 +81,6 @@ h5.first {margin: 5px 0 5px 0;}
 h6 {font-size: .9em; margin: 15px 0 5px 0; font-weight: bold;}
 h6.first {margin: 5px 0 5px 0;}
 
-
-/* ----------------- struct ---------------------- */
-div.all {}
-	div.all-wrap {width: 960px; margin: 0 auto; background: white;  -webkit-box-shadow: #606060 0px 0px 7px; -moz-box-shadow: #606060 0px 0px 7px; box-shadow: #606060 0px 0px 7px; behavior: url(/PIE.php); }
-	
-	div.header-main {} 
-
-		div.header {width: 960px; margin: 0 auto;}
-
-		div.main {width: 960px; margin: 0 auto; background: white;}
-			div.content {width: 710px; margin: 0 250px 0 0; float: left;}
-				div.content-wrap {margin: 20px 30px 10px 20px;}
-
-			div.sidebar {width: 250px; float: right; margin: 20px 0 0 -250px;}
-			div.sidebar1-wrap {margin-right: 10px;}
-
-	div.footer {width: 100%; clear: both; background: #192849; font-size: 0.9em; color: white;}
-		div.footer a {color: white;}
-		div.footer-wrap {padding: 10px; margin: 0 auto;}	
-
-
 /* компоненты шапки */
 div.logo-links {margin: 0 10px 10px 10px;}
 div.name_site {margin: 15px 0 0 0; font-size: 1.7em;}
@@ -109,13 +88,12 @@ div.description_site {font-style: italic;}
 div.social {margin: 15px 0 0 0;}
 div.social img {margin: 0 0 0 5px;}
 
-
 /* отступ Подписаться на эту рубрику по RSS*/
 p.show_rss_text {} 
 
 /* рубрика если для главной вывод блоками рубрик */
 div.type_home_cat_block {margin-top: 15px;}
-div.type_home_cat_block div.header_home_cat {font-size: 1.5em; margin: 0; padding: 3px; background: #D7DBE9; width: 100%;} 
+div.type_home_cat_block div.header_home_cat {font-size: 1.5em; margin: 0; padding: 3px; background: #DDD; width: 100%;} 
 div.type_home_cat_block div.header_home_cat a {text-decoration: none;} 
 ul.home-cat-block {margin: 5px 0 20px 30px;}
 div.description {font-size: 0.9em; font-style: italic; margin-bottom: 5px;}
@@ -128,14 +106,13 @@ div.home_top h1 {margin-top: 0;}
 div.home_page_last h1 {margin-top: 0;}
 
 /* записи по теме заголовок */
-div.page_other_pages_header {margin: 0 0 5px 0; padding: 3px; background: #E8E8E8;}
+div.page_other_pages_header {}
 
 /* описание рубрики на странице рубрики */
 div.category_desc {margin: 0 0 20px 0; font-weight: bold;}
 
-
 /* меню выпадающее */
-div.MainMenu {font-size: 10pt; padding-left: 10px; background: #192849;height: 35px; line-height: 35px;}
+div.MainMenu {height: 35px; line-height: 35px;}
 ul.menu, ul.menu li, ul.menu ul {list-style: none; margin: 0; padding: 0;}
 ul.menu {position: relative; z-index: 7; float: left; width: 100%;}
 
@@ -149,14 +126,14 @@ ul.menu li a {display: block;}
 ul.menu li a span {display: block;}
 
 /* верхние пункты */
-ul.menu li a {margin-right: 8px; color: white; text-decoration: none; padding: 0 5px; font-weight: bold;}
+ul.menu li a {text-decoration: none; padding: 0 5px; font-weight: bold;}
 ul.menu li a span {}
-ul.menu li a:hover {background: #3A4356; color: white;}
+ul.menu li a:hover {}
 ul.menu li a:hover span {}
 ul.menu li.group-selected a {}
 ul.menu li.group-selected a span {}
 
-ul.menu li.selected a {background: #374973;}
+ul.menu li.selected a {}
 ul.menu li.selected a span {}
 
 ul.menu li.group a {} 
@@ -173,8 +150,6 @@ ul.menu li.group ul li a:hover span {}
 
 ul.menu li.group ul li.selected a {}
 ul.menu li.group ul li.selected a span {}
-
-
 /* виджеты */
 h2.box {font-size: 1.5em; line-height: 1.1em; margin-bottom: 5px;} /* заголовок виджета */
 div.widget_header {font-size: 1.5em; line-height: 1.1em; margin-bottom: 5px;} /* заголовок виджета */
@@ -196,7 +171,6 @@ ul.links div {margin: 0px 0 5px 0; font-style: italic; color: gray; line-height:
 /* --- только для pages --- */
 div.page_only {margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px silver dotted;} /* отступы между записями на главной */
 div.type_page div.page_only {margin-bottom: 0; padding-bottom: 0; border-bottom: none;} /* отступ на одиночной не нужен */
-
 
 
 /* инфо блок*/
@@ -247,19 +221,13 @@ div.comment-form {font-size: 0.9em; margin: 10px 0; padding: 10px; border: 1px s
 div.comment-form textarea {width: 100%; margin: 5px 0;}
 div.comments-auth {font-size: 0.9em; margin: 10px 0; padding: 10px; border: 1px solid #C0C0C0; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php);}
 div.comment-form p.radio {font-weight: bold;}
-div.comment-form input.comments_author {width: 200px;}
-div.comment-form input.comments_email {width: 200px;}
-div.comment-form input.comments_password {width: 200px;}
-div.comment-form input.comments_comusers_nik {width: 150px;}
-div.comment-form input.comments_comusers_url {width: 300px;}
-div.comment-form input.comments_copy {width: 30px;}
 div.comment-form p span.indent {display: inline-block; width: 70px; text-align: right; vertical-align: middle; margin-right: 5px;}
-div.comment-form p.hint {font-size: 0.9em; margin: 5px 0 0 75px;}
+div.comment-form p.hint {margin: 5px 0 0 75px;}
 div.comment-form div.comments-user {font-weight: bold;}
 
-div.comment-ok {background: #40A040; color: white; padding: 10px; text-align: center; font-weight: bold;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
-div.comment-error {background: #FF4040; color: white; padding: 10px; text-align: center; font-weight: bold;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
-
+/* СООБЩЕНИЯ О КОММЕНТАРИИ */
+div.comment-ok {background: #40A040; margin: 10px 0; color: white; padding: 10px; text-align: center; font-weight: bold;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
+div.comment-error {background: #FF4040; margin: 10px 0;  color: white; padding: 10px; text-align: center; font-weight: bold;  -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(/PIE.php); }
 
 
 /* комментарии */
@@ -268,11 +236,10 @@ div.comments ul, div.comments ol {margin: 10px 0 20px 0;}
 div.comments li { margin: 0 0 20px 30px;}
 div.comments li span {font-style: italic;}
 
-
 div.comment-info {background: #F0F0F0; padding: 3px 8px;  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; behavior: url(/PIE.php); }
 
-div.leave_a_comment {font-size: 12pt; font-weight: bold; color: white; text-align: center; margin: 10px 0; padding: 8px; background: #192849; border: 1px solid #192849; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php); } /* Оставьте комментарий! */
-div.page_comments_count {font-weight: bold; margin: 10px 0; padding: 8px; background: #F0F0F0; border: 1px solid #C0C0C0; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php); } /* комментариев - 10 */
+div.leave_a_comment {} /* Оставьте комментарий! */
+div.page_comments_count {} /* комментариев - 10 */
 div.comments blockquote {margin-left: 0; padding: 10px; border-left: 2px gray solid;}
 
 
@@ -292,7 +259,7 @@ form.comusers-form p.info  {background: none; color: #B00000; margin: 0 0 15px 0
 
 /* plugin Pagination */
 div.pagination {margin: 25px 0 10px 0; font-size: .9em;}
-div.pagination strong {background: #225DA3; color: white; padding: 3px 6px;}
+div.pagination strong {padding: 3px 6px;}
 div.pagination a {padding: 3px; line-height: 1.8em;}
 div.pagination a:hover {}
 
@@ -374,12 +341,10 @@ div.theme_switch div.widget-content {margin-left: 5px;}
 /* plugin tabs */
 div.tabs {width: 100%;}
 div.tabs-box.tabs-visible {display: block; }
-ul.tabs-nav {margin: 0; padding: 0; height: 30px; width: 100%; list-style: none;}
-ul.tabs-nav li.elem {float: left; display: inline; position: relative; line-height: 30px; height: 30px; margin: 0 1px 0 0; padding: 0 10px; cursor: pointer; background: #DDD; color: #808080; border-radius: 8px 8px 0 0; font-size: .9em;}
-ul.tabs-nav li.elem:hover {color: white; background: #96AABE;}
-ul.tabs-nav li.tabs-current {color: Lemonchiffon; background: Lightslategray;}
-div.tabs-box {display: none; border: 1px solid #DDD; background: #EFEFEF; padding: 10px; border-radius: 0 8px 0 0;}
-	
+ul.tabs-nav {margin: 0; padding: 0; height: 30px; width: 100%; list-style: none; }
+ul.tabs-nav li.elem {float: left; display: inline; position: relative; line-height: 30px; height: 30px; margin: 0 2px 0 0; padding: 0 5px; cursor: pointer; font-size: .9em; border-radius: 5px 5px 0 0; background: #EEE; color: #888;}
+ul.tabs-nav li.elem:hover, ul.tabs-nav li.tabs-current {background: #DDD; color: black;}
+div.tabs-box {display: none; background: #DDD; padding: 10px; border-radius: 0 5px 0 0;}
 	
 /* HELPERS */
 

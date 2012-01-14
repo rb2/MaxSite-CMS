@@ -12,6 +12,8 @@
 
 
 /*
+ * ver. 10/01/2012
+ * ver.  6/01/2012
  * ver.  3/01/2012
  * ver. 27/12/2011
  * ver. 26/12/2011
@@ -241,6 +243,8 @@ if (!function_exists('mso_default_head_section'))
 		if (mso_get_option('default_canonical', 'templates', 0)) echo mso_link_rel('canonical');
 	
 		echo NT . '<!-- RSS -->' . NT . mso_rss();
+		
+		if (file_exists(getinfo('template_dir') . 'custom/head-start.php')) require(getinfo('template_dir') . 'custom/head-start.php');
 
 		echo NT . '<!-- CSS -->' . NT . '<link rel="stylesheet" href="'; 
 		
@@ -267,8 +271,15 @@ if (!function_exists('mso_default_head_section'))
 			
 		echo '" type="text/css" media="screen">';
 		
+		if (file_exists(getinfo('template_dir') . 'css/var_style-mini.css')) 
+			echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . 'css/var_style-mini.css" type="text/css" media="screen">';
+		elseif (file_exists(getinfo('template_dir') . 'css/var_style.css')) 
+			echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . 'css/var_style.css" type="text/css" media="screen">';	
+		elseif (file_exists(getinfo('templates_dir') . 'default/css/var_style.css')) 
+			echo NT . '<link rel="stylesheet" href="' . getinfo('templates_url') . 'default/css/var_style.css" type="text/css" media="screen">';
+
 		
-		echo '<link rel="stylesheet" href="' . getinfo('template_url') . 'css/print.css" type="text/css" media="print">';
+		echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . 'css/print.css" type="text/css" media="print">';
 		
 		out_component_css();
 			
@@ -277,8 +288,8 @@ if (!function_exists('mso_default_head_section'))
 		echo NT . '<!-- plugins -->' . NR;
 		mso_hook('head');
 		echo NT . '<!-- /plugins -->' . NR;
-		
-		if (function_exists('default_out_profiles')) default_out_profiles();
+
+		default_out_profiles();
 		
 		if (file_exists(getinfo('template_dir') . 'css/add_style.css')) echo '<link rel="stylesheet" href="' . getinfo('template_url') .'css/add_style.css" type="text/css" media="screen">';
 		
