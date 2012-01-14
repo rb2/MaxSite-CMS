@@ -1,0 +1,57 @@
+/* дополнительные стили к style-all */
+
+/* ССЫЛКИ */
+a {color: #0E5FBF; text-decoration: underline;}
+a:hover {color: red;}
+
+/* ЗАГОЛОВКИ H1 */
+h1 {color: #101010;}
+h1 a {color: #101010;}
+h1 a:hover {color: red;}
+h1.category {font-size: 2.0em; text-transform: uppercase; margin: 0; padding: 5px 10px; background: #192849; color: white;}
+
+/* СТРУКТУРА САЙТА */
+div.all-wrap {width: 960px; margin: 0 auto; background: white; -webkit-box-shadow: #606060 0px 0px 7px; -moz-box-shadow: #606060 0px 0px 7px; box-shadow: #606060 0px 0px 7px; behavior: url(/PIE.php);}
+
+div.header {width: 960px; margin: 0 auto;}
+
+div.main {width: 960px; margin: 0 auto; background: white;}
+div.content {width: 710px; margin: 0 250px 0 0; float: left;}
+div.content-wrap {margin: 20px 30px 10px 20px;}
+
+div.sidebar {width: 250px; float: right; margin: 20px 0 0 -250px;}
+div.sidebar1-wrap {margin-right: 10px;}
+
+div.footer {width: 100%; clear: both; background: #192849; font-size: 0.9em; color: white;}
+div.footer a {color: white;}
+div.footer-wrap {padding: 10px; margin: 0 auto;}
+
+
+/* МЕНЮ ВЫПАДАЮЩЕЕ */
+div.MainMenu {font-size: 10pt; padding-left: 10px; background: #192849;}
+
+/* верхние пункты меню */
+ul.menu li a {margin-right: 8px; color: white;}
+ul.menu li a:hover {background: #3A4356; color: white;}
+ul.menu li.selected a {background: #374973;}
+
+/* ЗАПИСИ ПО ТЕМЕ И КОЛ-ВО КОММЕНТАРИЕВ */
+div.page_other_pages_header, div.page_comments_count {font-weight: bold; margin: 10px 0; padding: 8px; background: #F0F0F0; border: 1px solid #C0C0C0; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php);}
+
+/* ОСТАВЬТЕ КОММЕНТАРИЙ! */
+div.leave_a_comment {font-size: 12pt; font-weight: bold; color: white; text-align: center; margin: 10px 0; padding: 8px; background: #192849; border: 1px solid #192849; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; behavior: url(/PIE.php);} 
+
+/* ФОРМА КОММЕНТАРИЕВ */
+div.comment-form input.comments_author {width: 200px;}
+div.comment-form input.comments_email {width: 200px;}
+div.comment-form input.comments_password {width: 200px;}
+div.comment-form input.comments_comusers_nik {width: 150px;}
+div.comment-form input.comments_comusers_url {width: 300px;}
+div.comment-form input.comments_copy {width: 30px;}
+
+/* ПАГИНАЦИЯ ТЕКУЩАЯ СТРАНИЦА */
+div.pagination strong {background: #225DA3; color: white;}
+
+/* ПЛАГИН ТАБЫ */
+ul.tabs-nav li.elem {background: #EEE; color: #888;}
+ul.tabs-nav li.elem:hover, ul.tabs-nav li.tabs-current {color: #3F454B; background: #BFC0CD;}

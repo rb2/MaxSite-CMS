@@ -14,7 +14,13 @@ echo '<span><a id="comments"></a></span>';
 require_once( getinfo('common_dir') . 'comments.php' ); // функции комментариев
 
 // если был отправлен новый коммент, то обрабатываем его и выводим сообщение в случае ошибки
-echo mso_get_new_comment( array('page_title'=>$page_title) ); 
+if ($out = mso_get_new_comment( array('page_title'=>$page_title) ))
+{
+	$out .= mso_load_jquery('jquery.scrollto.js');
+	$out .= '<script>$(document).ready(function(){$.scrollTo("#comments", 500);})</script>';
+	echo $out;
+}
+ 
 
 
 // получаем все разрешенные комментарии
