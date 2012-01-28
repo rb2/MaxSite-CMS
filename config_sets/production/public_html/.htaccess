@@ -1,0 +1,66 @@
+order allow,deny
+# blog comment spammers
+## at least twice:
+deny from 31.214.169. 31.214.170. 46.251.227.3 46.17.97.
+deny from 89.252.58.37 94.100.31.130
+deny from 95.27.225. 95.143.21.181 95.143.21.161
+deny from 109.124.196.60 109.124.204.84 159.224.130.182 178.137.160.135 178.150.227.126 188.163. 194.146.197.3 195.62.25.247 195.62.25.249
+### 188.163.107.147 188.163.104.76 188.163.64.34 188.163.106.232 188.163.107.206 
+## once per IP, but similar by style and in one time
+deny from 46.109.195.216 50.19.224.68 64.25.48.21 80.243.191.178 95.27.198.68 95.143.21.168 96.8.122.177 97.107.129.222
+deny from 109.230.216.225 110.171.40.67 175.142.86.247 188.143.232.38 188.143.232.174 188.163.71.191 190.101.113.137 193.4.57.122 195.37.234.30
+deny from 204.110.115.51 213.193.98.104 216.149.195.4 223.202.20.2
+
+allow from all
+
+Options +FollowSymLinks
+Options -Indexes
+php_flag register_globals off
+php_flag allow_call_time_pass_reference on
+php_flag safe_mode off
+
+DirectoryIndex index.php index.html
+
+#php_value memory_limit 16M
+
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /
+
+RewriteCond $1 !^(index\.php|uploads|img|(robots|humans)\.txt|favicon\.ico)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php/$1 [L,QSA] 
+</IfModule>
+
+FileETag None
+
+<IfModule mod_deflate.c>
+  <FilesMatch "\.(css|js)$">
+    SetOutputFilter DEFLATE
+  </FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresByType image/gif "access plus 1 month"
+	ExpiresByType image/jpeg "access plus 1 month"
+	ExpiresByType image/png "access plus 1 month"
+	ExpiresByType text/css "access plus 1 week"
+	ExpiresByType text/javascript "access plus 1 week"
+	ExpiresByType application/javascript "access plus 1 week"
+	ExpiresByType application/x-javascript "access plus 1 week"
+	ExpiresByType image/x-icon "access plus 1 year"
+	<FilesMatch "\.(swf|js|png)$">
+		ExpiresDefault "access plus 1 week"
+	</FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/html
+	AddOutputFilterByType DEFLATE text/css
+	AddOutputFilterByType DEFLATE text/javascript
+	AddOutputFilterByType DEFLATE application/javascript
+	AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>

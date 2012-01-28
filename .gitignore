@@ -1,0 +1,8 @@
+!.gitignore
+!index.html
+public_html/.htaccess
+public_html/sitemap.xml
+public_html/application/config/database.php
+public_html/application/config/mso_config.php
+public_html/application/maxsite/mso_config.php
+public_html/uploads/_mso_float/*

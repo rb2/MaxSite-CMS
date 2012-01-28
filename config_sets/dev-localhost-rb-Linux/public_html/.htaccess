@@ -1,8 +1,27 @@
+Options +FollowSymLinks
+Options -Indexes
+php_flag register_globals off
+php_flag allow_call_time_pass_reference on
+php_flag safe_mode off
+
+DirectoryIndex index.php index.html
+
+#php_value memory_limit 16M
+
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
 RewriteEngine on
-RewriteCond $1 !^(index\.php|robots\.txt|favicon\.(png|ico)|captcha/.*\.png|js|img|css)
-RewriteRule ^(.*)$ /maxsite-cms/index.php/$1 [L]
-php_flag register_globals Off
-FileETag INode MTime Size
+RewriteBase /maxsite-cms/
+
+RewriteCond $1 !^(index\.php|uploads|img|(robots|humans)\.txt|favicon\.ico)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /maxsite-cms/index.php/$1 [L,QSA] 
+</IfModule>
+
+FileETag None
+
 <IfModule mod_deflate.c>
   <FilesMatch "\.(css|js)$">
     SetOutputFilter DEFLATE
@@ -18,6 +37,9 @@ FileETag INode MTime Size
 	ExpiresByType application/javascript "access plus 1 week"
 	ExpiresByType application/x-javascript "access plus 1 week"
 	ExpiresByType image/x-icon "access plus 1 year"
+	<FilesMatch "\.(swf|js|png)$">
+		ExpiresDefault "access plus 1 week"
+	</FilesMatch>
 </IfModule>
 
 <IfModule mod_deflate.c>
@@ -27,4 +49,3 @@ FileETag INode MTime Size
 	AddOutputFilterByType DEFLATE application/javascript
 	AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
-
