@@ -105,6 +105,8 @@ mso_cur_dir_lang('admin');
 				
 				echo '<div style="margin-top: 20px;">';
 				
+				if (!isset($item['category'])) $item['category'] = '-';
+				
 				echo '<h3 style="background: #CCC; padding: 3px;"><a href="' . $item['link'] . '">' . $item['title'] 
 						. '</a> | ' . $item['category'] . ' | ' . date('Y-m-d , H:i:s', $item['date_timestamp']) . '</h2>';
 				

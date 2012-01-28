@@ -445,7 +445,7 @@ div.no-border-radius, .radius0 {-webkit-border-radius: 0; -moz-border-radius: 0;
 .no-border {border: none!important;}
 
 /* box-shadow */
-.box-shadow {-webkit-box-shadow: #606060 0 0 7px; -moz-box-shadow: #606060 0 0 7px; box-shadow: #606060 0 0 7px; behavior: url(/PIE.php);}
+.box-shadow {-webkit-box-shadow: #AAA 0 0 7px; -moz-box-shadow: #AAA 0 0 7px; box-shadow: #AAA 0 0 7px; behavior: url(/PIE.php);}
 .box-shadow-none {-webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;}
 
 /* fonts */

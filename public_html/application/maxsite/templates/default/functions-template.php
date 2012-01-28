@@ -12,6 +12,7 @@
 
 
 /*
+ * ver. 17/01/2012
  * ver. 10/01/2012
  * ver.  6/01/2012
  * ver.  3/01/2012
@@ -193,7 +194,7 @@ if (!function_exists('get_component_fn'))
 # функция подключает файлы css-style установленных компонентов и выводит их содержимое в едином блоке <style>
 # использовать в head 
 # $component_options - названия опций, которыми определяются компоненты в шаблоне
-# css-файл компонента находится в общем css-каталоге шаблона с именем помпонетна, наример menu.php и menu.css
+# css-файл компонента находится в общем css-каталоге шаблона с именем компонетна, наример menu.php и menu.css
 if (!function_exists('out_component_css'))
 {
 	function out_component_css($component_options = array('default_header_component1', 'default_header_component2', 'default_header_component3', 'default_header_component4', 'default_header_component5', 'default_footer_component1', 'default_footer_component2', 'default_footer_component3', 'default_footer_component4', 'default_footer_component5'))
@@ -459,6 +460,72 @@ if (!function_exists('mso_add_file'))
 			if ($ext == 'js') echo NR . '<script src="' . getinfo('template_url') . $fn . '"></script>';
 			elseif ($ext == 'css') echo NR . '<link rel="stylesheet" href="' . getinfo('template_url') . $fn . '" type="text/css">';
 		}
+	}
+}
+
+
+# получение адреса первой картинки IMG в тексте
+# адрес обрабатывается, чтобы сформировать адрес полный (full), миниатюра (mini) и превью (prev)
+# результат записит от значения $res
+# если $res = true => найденный адрес или $default
+# если $res = 'mini' => адрес mini
+# если $res = 'prev' => адрес prev
+# если $res = 'full' => адрес full
+# если $res = 'all' => массив из всех сразу:
+#  		[full] => http://сайт/uploads/image.jpg
+#  		[mini] => http://сайт/uploads/mini/image.jpg
+#  		[prev] => http://сайт/uploads/_mso_i/image.jpg
+if (!function_exists('mso_get_first_image_url'))
+{
+	function mso_get_first_image_url($text = '', $res = true, $default = '')
+	{
+		preg_match_all('!<img.+src=[\'"]([^\'"]+)[\'"].*>!i', $text, $matches);
+		
+		if (isset($matches[1][0])) 
+		{
+			$url = $matches[1][0];
+			if(empty($url)) $url = $default;
+		}
+		else
+			$url = $default;
+		
+		if (strpos($url, '/uploads/smiles/') !== false) return ''; // смайлики исключаем
+		
+		if ($res === true) return $url;
+		
+		$out = array();
+
+		// если адрес не из нашего uploads, то отдаем для всех картинок исходный адрес
+		if (strpos($url, getinfo('uploads_url')) === false) 
+		{
+			$out['mini'] = $out['full'] = $out['prev'] = $url;
+			return $out;
+		}
+		
+		if (strpos($url, '/mini/') !== false) // если в адресе /mini/ - это миниатюра
+		{
+			$out['mini'] = $url;
+			$out['full'] = str_replace('/mini/', '/', $url);
+			$out['prev'] = str_replace('/mini/', '/_mso_i/', $url);
+		}
+		elseif(strpos($url, '/_mso_i/') !== false) // если в адресе /_mso_i/ - это превью 100х100
+		{
+			$out['prev'] = $url;
+			$out['full'] = str_replace('/_mso_i/', '/', $url);
+			$out['mini'] = str_replace('/_mso_i/', '/mini/', $url);
+		}
+		else // обычная картинка
+		{
+			$fn = end(explode("/", $url)); // извлекаем имя файла
+			$out['full'] = $url;
+			$out['mini'] = str_replace($fn, 'mini/' . $fn, $url);
+			$out['prev'] = str_replace($fn, '_mso_i/' . $fn, $url);
+		}
+		
+		if ($res == 'mini') return $out['mini'];
+		elseif ($res == 'prev') return $out['prev'];
+		elseif ($res == 'full') return $out['full'];
+		else return $out;
 	}
 }
 

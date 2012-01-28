@@ -279,11 +279,22 @@ function mso_view_ini($all = false)
 			{
 				foreach( $values as $val ) 
 				{
-					if ($value == trim($val)) $checked = 'checked="checked"';
+					$ar = explode('||', $val);
+					
+					if (isset($ar[0])) $mr1 = trim($ar[0]); // ключ
+					if (isset($ar[1])) $mr2 = trim($ar[1]); // если есть название
+						else $mr2 = $mr1;
+						
+					if ($value == trim($mr1)) $checked = 'checked="checked"';
 						else $checked = '';
 						
-					$f .= '<label><input type="radio" name="' . $name_f . '" value="' . trim($val) . '" ' 
-							. $checked . '> ' . trim($val) . '</label>' . $delimer . NR;
+					// преобразование в html
+					$mr2 = str_replace('_QUOT_', '"', $mr2);
+					$mr2 = str_replace('&lt;', '<', $mr2);
+					$mr2 = str_replace('&gt;', '>', $mr2);
+
+					$f .= '<label><input type="radio" name="' . $name_f . '" value="' . $mr1 . '" ' 
+							. $checked . '> ' . $mr2 . '</label>' . $delimer . NR;
 				}
 			}
 		}

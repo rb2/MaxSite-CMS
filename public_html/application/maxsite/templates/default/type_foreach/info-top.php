@@ -14,7 +14,7 @@ echo '<div class="info info-top">';
 			
 			mso_page_author_link($users_nik, $page_id_autor, '<span style="margin-left: 15px;" title="' . t('Автор') . '"><img src="' . getinfo('template_url') . 'images/user.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
-			mso_page_view_count($page_view_count, '<span style="margin-left: 15px;" title="' . t('Просмотры записи') . '"><img src="' . getinfo('template_url') . 'images/post-view.gif" width="16" height="16" alt="" style="vertical-align: text-top;"> ' . t('Просмотров') . ':</span> ', '');
+			mso_page_view_count($page_view_count, '<span style="margin-left: 15px;" title="' . t('Просмотры записи') . '"><img src="' . getinfo('template_url') . 'images/post-view.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ' . t('Просмотров') . ':</span> ', '');
 			
 			if ($page_comment_allow) mso_page_feed($page_slug, t('RSS'), '<span style="margin-left: 15px;" title="' . t('Подписка на RSS') . '"><img src="' . getinfo('template_url') . 'images/rss.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>', true);
 			

@@ -203,7 +203,10 @@ function range_url_init($arg = array())
 			'(dc)(*)',
 			
 			'(guestbook)',
-			'(guestbook)(next)(*)'
+			'(guestbook)(next)(*)',
+			
+			'(gallery)',
+			'(gallery)(*)'
 			
 		);
 	}
