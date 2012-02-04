@@ -31,6 +31,22 @@
 	$err_subject = false;
 	$errors_msg = '';
 
+	
+	// обрабатываем POST если есть 
+	if ($_POST) $_POST = mso_clean_post(array(
+			'submit' => 'base',
+			'contact_name' => 'base',
+			'contact_mail' => 'email',
+			'contact_subject' => 'base',
+			'contact_phone' => 'base',
+			'contact_url' => 'base',
+			'contact_antispam' => 'base|int',
+			'antispam1' => 'base|int',
+			'antispam2' => 'base|int',
+			'contact_message' => 'xss|htmlspecialchars',
+			));
+
+	
 	if ($_POST and
 		isset($_POST['submit'])
 		and
@@ -56,7 +72,7 @@
 		}
 
 		// проверяем мыло
-		$_POST['contact_mail'] = trim($_POST['contact_mail']);
+		$_POST['contact_mail'] = trim(mso_xss_clean($_POST['contact_mail']));
 		if (!mso_valid_email($_POST['contact_mail'])) {
 			$err_email = true;
 			$ok = false;
@@ -79,9 +95,9 @@
 		}
 
 		// антиспам
-		$antispam1s = (int) $_POST['antispam1'];
-		$antispam2s = (int) $_POST['antispam2'];
-		$antispam3s = (int) $_POST['contact_antispam'];
+		$antispam1s = intval($_POST['antispam1']);
+		$antispam2s = intval($_POST['antispam2']);
+		$antispam3s = intval($_POST['contact_antispam']);
 
 		if ( ($antispam1s/711 + $antispam2s/931) != $antispam3s )
 		{ // неверный код
@@ -124,6 +140,9 @@
 		else {
 			echo '<p class="comment-error">'. t('Письмо не отправлено'). '</p>';
 			echo '<p>'. t('Обнаружены следующие ошибки'). ':</p><ul>'.$errors_msg.'</ul>';
+			
+			echo mso_load_jquery('jquery.scrollto.js');
+			echo '<script>$(document).ready(function(){$.scrollTo("p.comment-error", 500);})</script>';
 		}
 	}
 

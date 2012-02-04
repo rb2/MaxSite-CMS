@@ -128,7 +128,20 @@ function getinfo($info = '')
 					$out = $MSO->data['session']['users_id'];
 				else $out = '';
 				break;
-
+				
+		case 'comusers_id' :
+				if (isset($MSO->data['session']['comuser']['comusers_id']))
+					$out = $MSO->data['session']['comuser']['comusers_id'];
+				else $out = '';
+				break;
+		
+		case 'comusers_nik' :
+				if (isset($MSO->data['session']['comuser']['comusers_nik']))
+					$out = $MSO->data['session']['comuser']['comusers_nik'];
+				else $out = '';
+				break;
+				
+				
 		case 'name_site' :
 				$out = htmlspecialchars(mso_get_option('name_site', 'general'));
 				break;
@@ -1463,8 +1476,12 @@ function mso_clean_block2($matches)
 # к обычному html
 function mso_clean_html($matches)
 {
-	$arr1 = array('<p>', '</p>', '<br />',  '<br>',     '&amp;', '&lt;', '&gt;', "\n");
-	$arr2 = array('',    '',     'MSO_N',   'MSO_N',   '&',     '<',    '>',    'MSO_N');
+	//$arr1 = array('<p>', '</p>', '<br />',  '<br>',    '&amp;', '&lt;', '&gt;', "\n");
+	//$arr2 = array('',    '',     'MSO_N',   'MSO_N',   '&',     '<',    '>',    'MSO_N');
+	
+	
+	$arr1 = array('<br />',  '<br>',    '&amp;', '&lt;', '&gt;', "\n");
+	$arr2 = array('MSO_N',   'MSO_N',   '&',     '<',    '>',    'MSO_N');
 
 	$matches[1] = trim( str_replace($arr1, $arr2, $matches[1]) );
 
@@ -3308,6 +3325,15 @@ function _mso_login()
 {
 	global $MSO;
 	
+	// обрабатываем POST если есть 
+	if ($_POST) $_POST = mso_clean_post(array(
+			'flogin_submit' => 'base',
+			'flogin_redirect' => 'base',
+			'flogin_user' => 'base',
+			'flogin_password' => 'base',
+			'flogin_session_id' => 'base',
+			));
+	
 	if ($_POST 	and isset($_POST['flogin_submit']) 
 				and isset($_POST['flogin_redirect'])
 				and isset($_POST['flogin_user'])
@@ -3557,6 +3583,56 @@ function mso_xss_clean_data($data = array(), $keys = array(), $strip_tags = fals
 	}
 	
 	return $data;
+}
+
+
+# функция возвращает массив $post обработанный по указанным правилам 
+# входящий массив состоит из пары 'поле'=>'правила'
+# гле поле - ключ массива $post, а правила - правила валидации
+# mso_clean_post(array('my_name'=>'trim|xss'))
+# если массив $post не указан, то используется $_POST
+# правила
+# 	xss - xss-обработка
+# 	trim - удаление ведущих и конечных пустых символов
+# 	integer или int - преобразовать в число
+# 	strip_tags - удалить все тэги
+# 	htmlspecialchars - преобразовать в html-спецсимволы
+# 	valid_email или email - если это неверный адрес, вернет пустую строчку
+# если правило равно base, то это cработают правила: trim|xss|strip_tags|htmlspecialchars
+function mso_clean_post($keys = array(), $post = false)
+{
+	if (!$post)
+	{
+		if ($_POST) $post = $_POST;
+		else return $post;
+	}
+	
+	$CI = & get_instance();
+	
+	foreach ($keys as $key => $rules)
+	{
+		if (isset($post[$key])) // есть данные
+		{
+			// смотрим какие указаны правила. Они указываются через |
+			// разделитель из-за совместимости с form_validation
+			$rules = explode('|', $rules);
+			$rules = array_map('trim', $rules); // обработка элементов массива
+			$rules = array_unique($rules); // удалим повторы
+			
+			foreach ($rules as $rule)
+			{
+				if ($rule == 'trim' or $rule == 'base') $post[$key] = trim($post[$key]);
+				if ($rule == 'xss' or $rule == 'base') $post[$key] = $CI->security->xss_clean($post[$key], false);
+				if ($rule == 'strip_tags' or $rule == 'base') $post[$key] = strip_tags($post[$key]);
+				if ($rule == 'htmlspecialchars' or $rule == 'base') $post[$key] = htmlspecialchars($post[$key]);
+				
+				if ($rule == 'int' or $rule == 'integer') $post[$key] = intval($post[$key]);
+				if ($rule == 'valid_email' or $rule == 'email') $post[$key] = (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $post[$key])) ? '' : $post[$key];
+			}
+		}
+	}
+	
+	return $post;
 }
 
 # Функция возвращает массив для пагинации при выполнении предыдущего sql-запроса с SELECT SQL_CALC_FOUND_ROWS

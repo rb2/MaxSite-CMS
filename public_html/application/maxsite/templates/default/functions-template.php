@@ -12,6 +12,9 @@
 
 
 /*
+ * ver.  1/02/2012
+ * ver. 25/01/2012
+ * ver. 23/01/2012
  * ver. 17/01/2012
  * ver. 10/01/2012
  * ver.  6/01/2012
@@ -184,7 +187,10 @@ if (!function_exists('get_component_fn'))
 			else
 			{
 				if (file_exists(getinfo('template_dir') . 'components/' . $def_file))
-					return getinfo('template_dir') . 'components/' . $def_file;
+				{
+					if ($def_file) return getinfo('template_dir') . 'components/' . $def_file;
+					else return false;
+				}
 			}
 		}
 		return false; // ничего нет
@@ -272,13 +278,27 @@ if (!function_exists('mso_default_head_section'))
 			
 		echo '" type="text/css" media="screen">';
 		
-		if (file_exists(getinfo('template_dir') . 'css/var_style-mini.css')) 
-			echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . 'css/var_style-mini.css" type="text/css" media="screen">';
-		elseif (file_exists(getinfo('template_dir') . 'css/var_style.css')) 
-			echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . 'css/var_style.css" type="text/css" media="screen">';	
-		elseif (file_exists(getinfo('templates_dir') . 'default/css/var_style.css')) 
-			echo NT . '<link rel="stylesheet" href="' . getinfo('templates_url') . 'default/css/var_style.css" type="text/css" media="screen">';
-
+		
+		// подключение var_style.css
+		
+		// если есть var_style.php, то используем только его
+		if (file_exists(getinfo('template_dir') . 'css/var_style.php')) 
+		{
+			require(getinfo('template_dir') . 'css/var_style.php');
+		}
+		else
+		{
+			$var_file = '';
+			
+			if (file_exists(getinfo('template_dir') . 'css/var_style.css')) 
+				$var_file = getinfo('template') . '/css/var_style.css';	
+			elseif (file_exists(getinfo('templates_dir') . 'default/css/var_style.css')) 
+				$var_file = 'default/css/var_style.css';
+			
+			// если var_style.css нулевой длины, то не подключаем его
+			if (filesize(getinfo('templates_dir') . $var_file))
+				echo NT . '<link rel="stylesheet" href="' . getinfo('templates_url') . $var_file . '" type="text/css" media="screen">';	
+		}
 		
 		echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . 'css/print.css" type="text/css" media="print">';
 		
@@ -292,8 +312,8 @@ if (!function_exists('mso_default_head_section'))
 
 		default_out_profiles();
 		
-		if (file_exists(getinfo('template_dir') . 'css/add_style.css')) echo '<link rel="stylesheet" href="' . getinfo('template_url') .'css/add_style.css" type="text/css" media="screen">';
-		
+		mso_add_file('css/add_style.css');
+
 		if (file_exists(getinfo('template_dir') . 'custom/head.php')) require(getinfo('template_dir') . 'custom/head.php');
 		if ($f = mso_page_foreach('head')) require($f);
 		if (function_exists('ushka')) echo ushka('head');
@@ -457,8 +477,8 @@ if (!function_exists('mso_add_file'))
 		if (file_exists(getinfo('template_dir') . $fn)) 
 		{
 			$ext = substr(strrchr($fn, '.'), 1);// расширение файла
-			if ($ext == 'js') echo NR . '<script src="' . getinfo('template_url') . $fn . '"></script>';
-			elseif ($ext == 'css') echo NR . '<link rel="stylesheet" href="' . getinfo('template_url') . $fn . '" type="text/css">';
+			if ($ext == 'js') echo NT . '<script src="' . getinfo('template_url') . $fn . '"></script>';
+			elseif ($ext == 'css') echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . $fn . '" type="text/css">';
 		}
 	}
 }
@@ -479,8 +499,13 @@ if (!function_exists('mso_get_first_image_url'))
 {
 	function mso_get_first_image_url($text = '', $res = true, $default = '')
 	{
-		preg_match_all('!<img.+src=[\'"]([^\'"]+)[\'"].*>!i', $text, $matches);
+		$pattern = '!<img.*?src="(.*?)"!i';
 		
+		//$pattern = '!<img.+src=[\'"]([^\'"]+)[\'"].*>!i';
+		
+		preg_match_all($pattern, $text, $matches);
+		
+		//pr($matches);
 		if (isset($matches[1][0])) 
 		{
 			$url = $matches[1][0];
@@ -489,6 +514,7 @@ if (!function_exists('mso_get_first_image_url'))
 		else
 			$url = $default;
 		
+		//_pr($url,1);
 		if (strpos($url, '/uploads/smiles/') !== false) return ''; // смайлики исключаем
 		
 		if ($res === true) return $url;
@@ -499,7 +525,10 @@ if (!function_exists('mso_get_first_image_url'))
 		if (strpos($url, getinfo('uploads_url')) === false) 
 		{
 			$out['mini'] = $out['full'] = $out['prev'] = $url;
-			return $out;
+			
+			if ($res == 'mini' or $res == 'prev' or $res == 'full') return $out['mini'];
+				else return $out;
+		
 		}
 		
 		if (strpos($url, '/mini/') !== false) // если в адресе /mini/ - это миниатюра

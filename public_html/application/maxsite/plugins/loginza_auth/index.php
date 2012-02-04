@@ -11,16 +11,19 @@
 # функция автоподключения плагина
 function loginza_auth_autoload()
 {
-	$options = mso_get_option('plugin_loginza_auth', 'plugins', array());
-	$widget_fcomments_priority = (isset($options['widget_fcomments_priority'])) ? $options['widget_fcomments_priority'] : 10; 
-	$widget_flogin_priority = (isset($options['widget_flogin_priority'])) ? $options['widget_flogin_priority'] : 10; 
-	
-	mso_hook_add('init', 'loginza_auth_init');
-	mso_hook_add('page-comment-form', 'loginza_auth_page_comment_form', $widget_fcomments_priority); # хук на форму комментов
-	mso_hook_add('login_form_auth', 'loginza_auth_login_form_auth', $widget_flogin_priority); # хук на форму логина
-	mso_hook_add('admin_init', 'loginza_auth_admin_init'); # хук на админку
-	mso_hook_add( 'head', 'loginza_auth_head');
-	
+	// должна быьб CURL
+	if (function_exists('curl_init'))
+	{
+		$options = mso_get_option('plugin_loginza_auth', 'plugins', array());
+		$widget_fcomments_priority = (isset($options['widget_fcomments_priority'])) ? $options['widget_fcomments_priority'] : 10; 
+		$widget_flogin_priority = (isset($options['widget_flogin_priority'])) ? $options['widget_flogin_priority'] : 10; 
+		
+		mso_hook_add('init', 'loginza_auth_init');
+		mso_hook_add('page-comment-form', 'loginza_auth_page_comment_form', $widget_fcomments_priority); # хук на форму комментов
+		mso_hook_add('login_form_auth', 'loginza_auth_login_form_auth', $widget_flogin_priority); # хук на форму логина
+		mso_hook_add('admin_init', 'loginza_auth_admin_init'); # хук на админку
+		mso_hook_add( 'head', 'loginza_auth_head');
+	}
 	//mso_register_widget('loginza_auth_widget', t('Форма Loginza Auth', 'plugins')); 	
 }
 
@@ -64,6 +67,8 @@ function loginza_auth_mso_options()
 		echo t('Доступ запрещен', 'plugins');
 		return;
 	}
+	
+	$curl = (!function_exists('curl_init')) ? '<span style="color:red">Для работы плагина требуется наличие включенной PHP-библиотеки CURL!</span><br><br>' : '';
 	
 	mso_admin_plugin_options('plugin_loginza_auth', 'plugins', 
 		array(
@@ -122,8 +127,9 @@ function loginza_auth_mso_options()
 					
 			),
 		'Настройки плагина Loginza Auth', // титул
-		'Авторизация на сайте через сервис <a href="http://loginza.ru">Loginza</a><br><br>
-		<b>Авторизация будет работать только в том случае, если выбранный провайдер будет возвращать e-mail адрес!!!</b>'   // инфо
+		'Авторизация на сайте через сервис <a href="http://loginza.ru">Loginza</a><br><br>'
+		. $curl
+		.'<b>Авторизация будет работать только в том случае, если выбранный провайдер будет возвращать e-mail адрес!!!</b>'   // инфо
 	);	
 	
 }

@@ -34,8 +34,12 @@ if ($comuser_info)
 	if ($f = mso_page_foreach('users')) require($f); // подключаем кастомный вывод
 	else
 	{
-		if ($comusers_nik) echo '<h1>' . $comusers_nik . '</h1>';
-			else echo '<h1>'. t('Комментатор'). ' ' . $comusers_id . '</h1>';
+		$avatar_info = $comuser_info[0];
+		$avatar_info['users_avatar_url'] = $avatar_info['users_email'] = '';
+		$avatar = mso_avatar($avatar_info, 'style="float: right; margin: 5px 0 0 0;" class="gravatar"', false, 150); 
+		
+		if ($comusers_nik) echo '<h1>' . $avatar . $comusers_nik . '</h1>';
+			else echo '<h1>' . $avatar . t('Комментатор'). ' ' . $comusers_id . '</h1>';
 		
 		if ($comusers_activate_string != $comusers_activate_key) // нет активации
 			echo '<p><span style="color: red;" class="comusers-no-activate">'. t('Активация не завершена.'). '</span> <a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit">'. t('Завершить'). '</a></p>';
@@ -62,7 +66,9 @@ if ($comuser_info)
 		
 		if ($comusers_admin_note) echo '<p><strong>'. t('Примечание админа'). ':</strong> ' . $comusers_admin_note . '</p>';
 		
-		echo '<p><a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit">'. t('Редактировать персональные данные'). '</a></p>';
+		
+		if (getinfo('comusers_id') == $comusers_id )
+			echo '<p><a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit">'. t('Редактировать персональные данные'). '</a></p>';
 		
 		if ($comments) // есть комментарии
 		{

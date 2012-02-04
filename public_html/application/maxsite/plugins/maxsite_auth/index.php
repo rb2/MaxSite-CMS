@@ -18,7 +18,7 @@ function maxsite_auth_autoload()
 # функция выполняется при активации (вкл) плагина
 function maxsite_auth_activate($args = array())
 {	
-	mso_create_allow('maxsite_auth_edit', t('Админ-доступ к настройкам Maxsite Auth', 'plugins') . ' ' . t('maxsite_auth', __FILE__));
+	mso_create_allow('maxsite_auth_edit', t('Админ-доступ к настройкам Maxsite Auth', 'plugins') . ' ' . t('maxsite_auth', 'plugins'));
 	return $args;
 }
 
@@ -75,14 +75,14 @@ function maxsite_auth_mso_options()
 		array(
 			'email' => array(
 							'type' => 'text', 
-							'name' => t('Email', __FILE__), 
-							'description' => t('Укажите рабочий email, который будет использоваться для регистрации и входа на других сайтах.', __FILE__), 
+							'name' => t('Email', 'plugins'), 
+							'description' => t('Укажите рабочий email, который будет использоваться для регистрации и входа на других сайтах.', 'plugins'), 
 							'default' => ''
 						),
 			'password' => array(
 							'type' => 'text', 
-							'name' => t('Пароль', __FILE__), 
-							'description' => t('Укажите пароль, который будет использоваться для регистрации и входа на других сайтах. Не указывайте здесь пароль от своего сайта!', __FILE__), 
+							'name' => t('Пароль', 'plugins'), 
+							'description' => t('Укажите пароль, который будет использоваться для регистрации и входа на других сайтах. Не указывайте здесь пароль от своего сайта!', 'plugins'), 
 							'default' => ''
 						),			
 			),

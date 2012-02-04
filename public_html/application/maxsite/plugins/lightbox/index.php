@@ -20,9 +20,13 @@ function lightbox_head($args = array())
 	
 	$url = getinfo('plugins_url') . 'lightbox/';
 	
+	$t_izob = t('Изображение', 'plugins');
+	$t_iz = t('из', 'plugins');
+	
+	// http://leandrovieira.com/projects/jquery/lightbox/
 	echo <<<EOF
 	
-	<script type="text/javascript" src="{$url}js/jquery.lightbox-0.5.pack.js"></script>
+	<script type="text/javascript" src="{$url}js/jquery.lightbox.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			lburl = '{$url}images/';
@@ -30,14 +34,20 @@ function lightbox_head($args = array())
 				imageLoading: lburl+'lightbox-ico-loading.gif',
 				imageBtnClose: lburl+'lightbox-btn-close.gif',
 				imageBtnPrev: lburl+'lightbox-btn-prev.gif',
-				imageBtnNext: lburl+'lightbox-btn-next.gif'
+				imageBtnNext: lburl+'lightbox-btn-next.gif',
+				imageBlank: lburl+'lightbox-blank.gif',
+				txtImage: '{$t_izob}',
+				txtOf: '{$t_iz}',
 			});
 			
 			$('a.lightbox').lightBox({
 				imageLoading: lburl+'lightbox-ico-loading.gif',
 				imageBtnClose: lburl+'lightbox-btn-close.gif',
 				imageBtnPrev: lburl+'lightbox-btn-prev.gif',
-				imageBtnNext: lburl+'lightbox-btn-next.gif'
+				imageBtnNext: lburl+'lightbox-btn-next.gif',
+				imageBlank: lburl+'lightbox-blank.gif',
+				txtImage: '{$t_izob}',
+				txtOf: '{$t_iz}',
 			});
 		});
 	</script>
@@ -94,4 +104,4 @@ function lightbox_content($text = '')
 	return preg_replace(array_keys($preg), array_values($preg), $text);
 }
 
-?>
+# end file

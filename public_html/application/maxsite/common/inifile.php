@@ -287,7 +287,7 @@ function mso_view_ini($all = false)
 						
 					if ($value == trim($mr1)) $checked = 'checked="checked"';
 						else $checked = '';
-						
+					
 					// преобразование в html
 					$mr2 = str_replace('_QUOT_', '"', $mr2);
 					$mr2 = str_replace('&lt;', '<', $mr2);

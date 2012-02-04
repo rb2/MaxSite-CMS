@@ -24,12 +24,18 @@ function editor_markitup($args = array())
 	
 	if (!isset($options['preview'])) $options['preview'] = 'aftertext';
 	if (!isset($options['previewautorefresh'])) $options['previewautorefresh'] = 'no';
+	if (!isset($options['previewPosition'])) $options['previewPosition'] = 'after';
 	
 	if ($options['preview'] == 'aftertext') $editor_config['preview'] = 'previewInWindow: "",';
 		else $editor_config['preview'] = 'previewInWindow: "width=960, height=800, resizable=yes, scrollbars=yes",';
 	
 	if ($options['previewautorefresh'] == 'no') $editor_config['previewautorefresh'] = 'previewAutoRefresh: false,';
 	else $editor_config['previewautorefresh'] = 'previewAutoRefresh: true,';
+	
+	if ($options['previewPosition'] == 'before') 
+		$editor_config['previewPosition'] = 'previewPosition: "before",';
+	else 
+		$editor_config['previewPosition'] = 'previewPosition: "after",';
 	
 	
 	$editor_config['url'] = getinfo('plugins_url') . 'editor_markitup/';
@@ -110,11 +116,20 @@ function editor_markitup_mso_options()
 							'type' => 'radio', 
 							'name' => 'Режим предпросмотра текста', 
 							'description' => '',
-							'values' => 'aftertext||Под набираемым текстом # win||В отдельном окне', 
+							'values' => 'aftertext||На странице редактора # win||В отдельном окне', 
 							'default' => 'aftertext',
 							'delimer' => '&nbsp;&nbsp;&nbsp;&nbsp;',
-						),	
-			
+						),
+						
+			'previewPosition' => array(
+							'type' => 'radio', 
+							'name' => 'Окно предпросмотра до или после текста', 
+							'description' => 'Будет работать только если используется предпросмотр в окне редактора',
+							'values' => 'after||Под текстовым редактором # before||Перед текстовым редактором', 
+							'default' => 'after',
+							'delimer' => '&nbsp;&nbsp;&nbsp;&nbsp;',
+						),
+						
 			'previewautorefresh' => array(
 							'type' => 'radio', 
 							'name' => 'Обновление предпросмотра', 

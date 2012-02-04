@@ -12,12 +12,14 @@
 	else
 		$imgs = get_path_files(getinfo('uploads_dir') . $subdir . '/', getinfo('uploads_url') . $subdir . '/'); // каталог в uploads
 
-	$img = $imgs[array_rand($imgs, 1)]; // случайный выбор
-	
-	// вывод блока слайдера
-	echo '<div class="component_header_image">';
-	echo NR . '<img src="' . $img . '" alt="" title="">';
-	echo '</div>';
-
+	if ($imgs)
+	{
+		$img = $imgs[array_rand($imgs, 1)]; // случайный выбор
+		
+		// вывод блока слайдера
+		echo '<div class="component_header_image">';
+		echo NR . '<img src="' . $img . '" alt="" title="">';
+		echo '</div>';
+	}
 
 # end file

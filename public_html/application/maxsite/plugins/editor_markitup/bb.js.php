@@ -15,6 +15,7 @@ myBbcodeSettings = {
 	
 	<?= $editor_config['preview'] ?>
 	<?= $editor_config['previewautorefresh'] ?>
+	<?= $editor_config['previewPosition'] ?>
 	
 	markupSet:	[
 

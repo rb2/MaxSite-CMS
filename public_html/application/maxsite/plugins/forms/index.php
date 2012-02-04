@@ -179,6 +179,9 @@ function forms_content_callback($matches)
 			
 			
 			$out .= '</div>';
+			
+			$out .= mso_load_jquery('jquery.scrollto.js');
+			$out .= '<script>$(document).ready(function(){$.scrollTo("div.forms-post", 500);})</script>';
 
 		}
 		else // нет post

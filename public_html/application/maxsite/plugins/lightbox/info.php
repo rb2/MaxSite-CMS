@@ -3,8 +3,8 @@
 
 $info = array(
 	'name' => 'Lightbox',
-	'description' => 'Подключение LightBox к вашему сайту. Делает красивый вывод картинок, а также небольших галерей',
-	'version' => '1.0',
+	'description' => t('Подключение LightBox к вашему сайту. Делает красивый вывод картинок, а также небольших галерей', 'plugins'),
+	'version' => '1.1',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',
 	'author_url' => 'http://maxsite.org/',
@@ -13,3 +13,4 @@ $info = array(
 	
 );
 
+# end file

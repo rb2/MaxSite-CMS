@@ -607,15 +607,16 @@ function mso_get_new_comment($args = array())
 						// если сразу отправлен адрес ссайта
 						if (isset($post['comments_comusers_url']) and $post['comments_comusers_url'])
 						{
-							$comusers_url = mso_xss_clean(strip_tags($post['comments_comusers_url']));
+							$comusers_url = htmlspecialchars(mso_xss_clean(strip_tags($post['comments_comusers_url'])));
 							if (strpos($comusers_url, 'http://') === false) $comusers_url = 'http://' . $comusers_url;
-							$ins_data['comusers_url'] = $comusers_url;
+							
+							if ($comusers_url) $ins_data['comusers_url'] = $comusers_url;
 						}
 						
 						// если сразу отправлен ник
 						if (isset($post['comments_comusers_nik']) and $post['comments_comusers_nik'])
 						{
-							$ins_data['comusers_nik'] = mso_xss_clean(strip_tags($post['comments_comusers_nik']));
+							$ins_data['comusers_nik'] = htmlspecialchars(mso_xss_clean(strip_tags($post['comments_comusers_nik'])));
 						}
 						
 						// Автоматическая активация новых комюзеров
@@ -785,7 +786,7 @@ function mso_get_new_comment($args = array())
 					{
 						$comments_author_name = mso_strip($post['comments_author']);
 						$comments_author_name = str_replace($args['noword'], '', $comments_author_name);
-						$comments_author_name = trim($comments_author_name);
+						$comments_author_name = htmlspecialchars(trim($comments_author_name));
 						if (!$comments_author_name) $comments_author_name = t('Аноним');
 					}
 					else $comments_author_name = 'Аноним';
@@ -994,21 +995,27 @@ function mso_get_comuser($id = 0, $args = array())
 			$comuser[0]['comusers_meta'] = array();
 		}
 		
+		
 		// от вских гадостей
-		$comuser[0]['comusers_nik'] =  mso_xss_clean($comuser[0]['comusers_nik']);
-		$comuser[0]['comusers_icq'] =  mso_xss_clean($comuser[0]['comusers_icq']);
 		$comuser[0]['comusers_url'] =  mso_xss_clean($comuser[0]['comusers_url']);
 		
 		if ($comuser[0]['comusers_url'] and strpos($comuser[0]['comusers_url'], 'http://') === false) 
-			$comuser[0]['comusers_url'] = 'http://' . $comuser[0]['comusers_url'];
-		
+			$comuser[0]['comusers_url'] = 'http://' . $comuser[0]['comusers_url'];	
+				
 		$comuser[0]['comusers_msn'] =  mso_xss_clean($comuser[0]['comusers_msn']); // twitter
-		$comuser[0]['comusers_msn'] = mso_slug(str_replace('@', '', $comuser[0]['comusers_msn']));
+		$comuser[0]['comusers_msn'] = mso_slug(str_replace('@', '', $comuser[0]['comusers_msn']));		
 		
-		$comuser[0]['comusers_jaber'] =  mso_xss_clean($comuser[0]['comusers_jaber']);
-		$comuser[0]['comusers_skype'] =  mso_xss_clean($comuser[0]['comusers_skype']);
-		$comuser[0]['comusers_description'] =  mso_xss_clean($comuser[0]['comusers_description']);
-		
+		// подчистка 
+		$comuser[0] = mso_clean_post(array(
+				'comusers_nik' => 'base',
+				'comusers_icq' => 'base',
+				'comusers_jaber' => 'base',
+				'comusers_skype' => 'base',
+				'comusers_description' => 'base',
+				'comusers_msn' => 'base',
+				'comusers_url' => 'base',
+				), $comuser[0]);
+				
 		// pr($comuser);
 
 		return $comuser;
@@ -1234,6 +1241,18 @@ function mso_comuser_edit($args = array())
 			if ( !in_array($ext, $allowed_ext) ) $f_comusers_avatar_url = ''; // запрещенный тип файла
 			
 			if (!isset($post['f_comusers_notify'])) $post['f_comusers_notify'] = '0';
+			
+			
+			$post = mso_clean_post(array(
+				'f_comusers_nik' => 'base',
+				'f_comusers_url' => 'base',
+				'f_comusers_icq' => 'base',
+				'f_comusers_msn' => 'base',
+				'f_comusers_jaber' => 'base',
+				'f_comusers_date_birth' => 'base',
+				'f_comusers_description' => 'base',
+				'f_comusers_notify' => 'int',
+				), $post);
 			
 
 			$upd_date = array (
@@ -1796,7 +1815,7 @@ function mso_last_activity_comment()
 
 # вывод аватарки комментатора
 # на входе массив комментария из page-comments.php
-function mso_avatar($comment, $img_add = 'style="float: left; margin: 5px 10px 10px 0;" class="gravatar"', $echo = false)
+function mso_avatar($comment, $img_add = 'style="float: left; margin: 5px 10px 10px 0;" class="gravatar"', $echo = false, $size = false)
 {
 	extract($comment);
 
@@ -1804,7 +1823,11 @@ function mso_avatar($comment, $img_add = 'style="float: left; margin: 5px 10px 1
 	if ($comusers_avatar_url) $avatar_url = $comusers_avatar_url;
 	elseif ($users_avatar_url) $avatar_url = $users_avatar_url;
 	
-	$avatar_size = (int) mso_get_option('gravatar_size', 'templates', 80);
+	if ($size === false)
+		$avatar_size = (int) mso_get_option('gravatar_size', 'templates', 80);
+	else
+		$avatar_size = $size;
+		
 	if ($avatar_size < 1 or $avatar_size > 512) $avatar_size = 80;
 	
 	if (!$avatar_url) 
