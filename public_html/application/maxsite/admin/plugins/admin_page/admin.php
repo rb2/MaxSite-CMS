@@ -18,7 +18,7 @@
 
 		if (!$page_id) // ошибка! 
 		{
-			echo '<div class="error">' . t('Ошибка удаления', 'admin') . '</div>';
+			echo '<div class="error">' . t('Ошибка удаления') . '</div>';
 		}
 		else 
 		{
@@ -37,16 +37,16 @@
 				if ( $result['result'] ) 
 				{
 					# mso_flush_cache(); // сбросим кэш перенес в mso_delete_page
-					echo '<div class="update">' . t('Страница удалена', 'admin') . '</div>';
+					echo '<div class="update">' . t('Страница удалена') . '</div>';
 				}
 				else
 				{
-					echo '<div class="error">' . t('Ошибка при удалении', 'admin') . ' ('. $result['description'] . ')</div>';
+					echo '<div class="error">' . t('Ошибка при удалении') . ' ('. $result['description'] . ')</div>';
 				}
 			}
 			else
 			{
-				echo '<div class="error">' . t('Ошибка при удалении', 'admin') . ' ('. $result['description'] . ')</div>';
+				echo '<div class="error">' . t('Ошибка при удалении') . ' ('. $result['description'] . ')</div>';
 			}
 			
 			/*
@@ -99,7 +99,7 @@
 		  
 	$CI->table->set_template($tmpl); // шаблон таблицы
 
-	$CI->table->set_heading('ID', t('Заголовок', 'admin'), t('Дата', 'admin'), t('Тип', 'admin'), t('Статус', 'admin'), t('Автор', 'admin'));
+	$CI->table->set_heading('ID', t('Заголовок'), t('Дата'), t('Тип'), t('Статус'), t('Автор'));
 	
 	
 	if ( !mso_check_allow('admin_page_edit_other') )
@@ -137,9 +137,9 @@
 		if (mso_segment(3) == 'category') $cat_segment_id = (int) mso_segment(4);
 		
 		echo '<p><strong>'
-				. t('Фильтр по рубрикам', 'admin') 
+				. t('Фильтр по рубрикам') 
 				. ':</strong> <a href="' . getinfo('site_admin_url') . 'page">'
-				. t('Без фильтра', 'admin') . '</a> ';
+				. t('Без фильтра') . '</a> ';
 		
 		require_once( getinfo('common_dir') . 'category.php' ); // функции рубрик
 		$all_cats = mso_cat_array_single('page', 'category_id', 'ASC', ''); // все рубрики для вывода кол-ва записей
@@ -176,9 +176,9 @@
 			$type_segment_name = '';
 		}
 		echo '<p><strong>'
-				. t('Фильтр по типам', 'admin')
+				. t('Фильтр по типам')
 				. ':</strong> <a href="' . getinfo('site_admin_url') . 'page">'
-				. t('Без фильтра', 'admin') . '</a> ';
+				. t('Без фильтра') . '</a> ';
 		
 		foreach ($query->result_array() as $nav) 
 		{
@@ -196,17 +196,17 @@
 	}
 	
 	echo '<p><strong>'
-				. t('Фильтр по статусу', 'admin')
+				. t('Фильтр по статусу')
 				. ':</strong> <a href="' . getinfo('site_admin_url') . 'page">'
-				. t('Без фильтра', 'admin') . '</a> ';
+				. t('Без фильтра') . '</a> ';
 	
 	$all_status = array('publish', 'draft', 'private');
 	foreach($all_status as $status)
 	{
 		if (mso_segment(4) == $status)
-			echo '| <a href="' . getinfo('site_admin_url') . 'page/status/' . $status . '"><strong>' . $status . '</strong></a> ';
+			echo '| <a href="' . getinfo('site_admin_url') . 'page/status/' . $status . '"><strong>' . t($status) . '</strong></a> ';
 		else
-			echo '| <a href="' . getinfo('site_admin_url') . 'page/status/' . $status . '">' . $status . '</a> ';
+			echo '| <a href="' . getinfo('site_admin_url') . 'page/status/' . $status . '">' . t($status) . '</a> ';
 	}
 	echo '</p>';	
 				
@@ -275,16 +275,16 @@
 			$tags = str_replace('  ', ', ', trim($tags));
 			
 			$title = '<a class="title" href="' . $this_url . $page['page_id'] . '">' . $page['page_title'] . '</a>'
-					. ' [<a href="' . $view_url . $page['page_slug'] . '" target="_blank">' . t('Просмотр', 'admin') . '</a>]';
+					. ' [<a href="' . $view_url . $page['page_slug'] . '" target="_blank">' . t('Просмотр') . '</a>]';
 			
 			
 			
-			if ($cats) $title .= '<br>' . t('Рубрика:', 'admin') . ' ' . $cats;
-			if ($tags) $title .= '<br>' . t('Метки:', 'admin') . ' ' . $tags;
+			if ($cats) $title .= '<br>' . t('Рубрика:') . ' ' . $cats;
+			if ($tags) $title .= '<br>' . t('Метки:') . ' ' . $tags;
 			
 			// $date_p = '<span title="Дата и время сохранения записи">' . $page['page_date_publish'] . '</span>'; // это время публикации как установлено на сервере
 			
-			$date_p = '<span title="' . t('Дата отображения на блоге с учетом временной поправки', 'admin') . '">' . mso_date_convert('Y-m-d H:i:s', $page['page_date_publish']) . '</span>';
+			$date_p = '<span title="' . t('Дата отображения на блоге с учетом временной поправки') . '">' . mso_date_convert('Y-m-d H:i:s', $page['page_date_publish']) . '</span>';
 			
 			$CI->table->add_row($page['page_id'], $title, $date_p, 
 					$page['page_type_name'], $page['page_status'], $page['users_nik']);
@@ -323,9 +323,9 @@
 
 	
 	echo '<form action="" method="post">' . mso_form_session('f_session_id');
-	echo '<h2 class="br">' . t('Удалить страницу', 'admin') . '</h2><p>';
+	echo '<h2 class="br">' . t('Удалить страницу') . '</h2><p>';
 	echo $all_pages;
-	echo ' <input type="submit" name="f_submit" value="' . t('Удалить', 'admin') . '" onClick="if(confirm(\'' . t('Удалить страницу?', 'admin') . '\')) {return true;} else {return false;}" ></p>';
+	echo ' <input type="submit" name="f_submit" value="' . t('Удалить') . '" onClick="if(confirm(\'' . t('Удалить страницу?') . '\')) {return true;} else {return false;}" ></p>';
 	echo '</form>';
 	
 	

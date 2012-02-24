@@ -9,7 +9,7 @@
 # функция автоподключения плагина
 function bbcode_autoload($args = array())
 {
-	//mso_create_allow('bbcode_edit', t('Админ-доступ к настройкам', 'plugins') . ' ' . t('bbcode', 'plugins'));
+	//mso_create_allow('bbcode_edit', t('Админ-доступ к настройкам') . ' ' . t('bbcode'));
 	$options = mso_get_option('plugin_bbcode', 'plugins', array());
 	if (!array_key_exists('bbcode_level', $options)) $options['bbcode_level'] = 1;
 	if ( ($options['bbcode_level'] == 1) or ($options['bbcode_level'] == 3) ) mso_hook_add( 'content', 'bbcode_custom', 20); # хук на вывод контента
@@ -19,7 +19,7 @@ function bbcode_autoload($args = array())
 # функция выполняется при деинсталяции плагина
 function bbcode_uninstall($args = array())
 {
-	 mso_delete_option('plugin_bbcode', 'plugins'); // удалим созданные опции
+	 mso_delete_option('plugin_bbcode', 'plugins' ); // удалим созданные опции
 	// mso_remove_allow('bbcode_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -41,7 +41,7 @@ function bbcode_mso_options()
 	/*
 	if ( !mso_check_allow('bbcode_edit') )
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return;
 	}
 	*/
@@ -51,14 +51,14 @@ function bbcode_mso_options()
 		array(
 			'bbcode_level' => array(
 							'type' => 'select',
-							'name' => t('Где использовать', 'plugins'),
-							'description' => t('Укажите, где должен работать плагин', 'plugins'),
-							'values' => t('1||На страницах #2||В комментариях #3||На страницах и в комментариях', 'plugins'),
+							'name' => t('Где использовать'),
+							'description' => t('Укажите, где должен работать плагин'),
+							'values' => t('1||На страницах #2||В комментариях #3||На страницах и в комментариях'),
 							'default' => '1'
 						),
 			),
-		t('Настройки плагина bbcode', 'plugins'),
-		t('Укажите необходимые опции.', 'plugins')
+		t('Настройки плагина bbcode'),
+		t('Укажите необходимые опции.')
 	);
 }
 

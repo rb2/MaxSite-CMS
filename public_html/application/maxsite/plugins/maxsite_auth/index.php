@@ -18,14 +18,14 @@ function maxsite_auth_autoload()
 # функция выполняется при активации (вкл) плагина
 function maxsite_auth_activate($args = array())
 {	
-	mso_create_allow('maxsite_auth_edit', t('Админ-доступ к настройкам Maxsite Auth', 'plugins') . ' ' . t('maxsite_auth', 'plugins'));
+	mso_create_allow('maxsite_auth_edit', t('Админ-доступ к настройкам Maxsite Auth') . ' ' . t('maxsite_auth'));
 	return $args;
 }
 
 # функция выполняется при деинсталяции плагина
 function maxsite_auth_uninstall($args = array())
 {	
-	mso_delete_option('plugin_maxsite_auth', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_maxsite_auth', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('maxsite_auth_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -36,7 +36,7 @@ function maxsite_auth_admin_init($args = array())
 	if ( mso_check_allow('maxsite_auth_edit') ) 
 	{
 		$this_plugin_url = 'plugin_options/maxsite_auth'; // url и hook
-		mso_admin_menu_add('plugins', $this_plugin_url, t('Maxsite Auth', 'plugins'));
+		mso_admin_menu_add('plugins', $this_plugin_url, t('Maxsite Auth'));
 		mso_admin_url_hook ($this_plugin_url, 'plugin_maxsite_auth');
 	}
 	
@@ -54,7 +54,7 @@ function maxsite_auth_page_comment_form($args = array())
 # хук на форму логина
 function maxsite_auth_login_form_auth($text = '') 
 {
-	$text .= '<a class="login-form-auth maxsite_auth" title="' . t('Если у вас сайт на MaxSite CMS, то вы можете войти с его помощью', 'plugins') . '" href="' . getinfo('siteurl') . 'maxsite-auth-form">MaxSiteAuth</a>[end]';
+	$text .= '<a class="login-form-auth maxsite_auth" title="' . t('Если у вас сайт на MaxSite CMS, то вы можете войти с его помощью') . '" href="' . getinfo('siteurl') . 'maxsite-auth-form">MaxSiteAuth</a>[end]';
 	return $text;
 }
 
@@ -65,7 +65,7 @@ function maxsite_auth_mso_options()
 	
 	if ( !mso_check_allow('maxsite_auth_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return;
 	}
 	
@@ -75,14 +75,14 @@ function maxsite_auth_mso_options()
 		array(
 			'email' => array(
 							'type' => 'text', 
-							'name' => t('Email', 'plugins'), 
-							'description' => t('Укажите рабочий email, который будет использоваться для регистрации и входа на других сайтах.', 'plugins'), 
+							'name' => t('Email'), 
+							'description' => t('Укажите рабочий email, который будет использоваться для регистрации и входа на других сайтах.'), 
 							'default' => ''
 						),
 			'password' => array(
 							'type' => 'text', 
-							'name' => t('Пароль', 'plugins'), 
-							'description' => t('Укажите пароль, который будет использоваться для регистрации и входа на других сайтах. Не указывайте здесь пароль от своего сайта!', 'plugins'), 
+							'name' => t('Пароль'), 
+							'description' => t('Укажите пароль, который будет использоваться для регистрации и входа на других сайтах. Не указывайте здесь пароль от своего сайта!'), 
 							'default' => ''
 						),			
 			),
@@ -154,7 +154,7 @@ function maxsite_auth_custom($args = array())
 		</head><body>
 			<div class="loginform">Для авторизации необходимо войти на сайт<br>';
 			
-			mso_login_form(array( 'login'=>t('Логин:', 'plugins') . ' ', 'password'=>t('Пароль:', 'plugins') . ' ', 'submit'=>''), getinfo('siteurl') . mso_current_url());
+			mso_login_form(array( 'login'=>t('Логин:') . ' ', 'password'=>t('Пароль:') . ' ', 'submit'=>''), getinfo('siteurl') . mso_current_url());
 			
 			echo '</div></body></html>';
 			
@@ -163,15 +163,15 @@ function maxsite_auth_custom($args = array())
 		else // вход есть
 		{
 			//проверяем разрешения группы
-			if ( !mso_check_allow('maxsite_auth_edit') ) die(t('Доступ к авторизации запрещен', 'plugins'));
+			if ( !mso_check_allow('maxsite_auth_edit') ) die(t('Доступ к авторизации запрещен'));
 			
 			$options = mso_get_option('plugin_maxsite_auth', 'plugins', array());
-			if (!isset($options['email']) or !$options['email']) die(t('Не задан ответный email', 'plugins')); 
-			if (!isset($options['password']) or !$options['password']) die(t('Не задан ответный пароль', 'plugins'));
+			if (!isset($options['email']) or !$options['email']) die(t('Не задан ответный email')); 
+			if (!isset($options['password']) or !$options['password']) die(t('Не задан ответный пароль'));
 			
 			// смотрятся входные get-данные (расшифровка из base64) адрес-сайт1
 			$data64 = mso_segment(2);
-			if (!$data64) die(t('Нет данных', 'plugins'));
+			if (!$data64) die(t('Нет данных'));
 			
 			// отладка
 			//	echo (getinfo('siteurl') . '##'. 'page/about' . '##' . substr(mso_md5(getinfo('siteurl')), 1, 5));
@@ -180,7 +180,7 @@ function maxsite_auth_custom($args = array())
 			
 			// распаковываем данные
 			$data = @base64_decode($data64);
-			if (!$data) die(t('Ошибочные данные', 'plugins'));
+			if (!$data) die(t('Ошибочные данные'));
 			
 			
 			//	адрес-сайт1##адрес текущей страницы1##открытый ключ
@@ -194,7 +194,7 @@ function maxsite_auth_custom($args = array())
 			}
 			
 			// должно быть 3 элемента
-			if (count($data_1) != 3) die(t('Неверное количество данных', 'plugins'));
+			if (count($data_1) != 3) die(t('Неверное количество данных'));
 			
 			// pr($data_1);
 			
@@ -258,7 +258,7 @@ function maxsite_auth_custom($args = array())
 		if ( $post = mso_check_post(array('data')) )
 		{
 			// проверим referer
-			if (!isset($_SERVER['HTTP_REFERER'])) die(t('Ошибочный referer-сайт', 'plugins'));
+			if (!isset($_SERVER['HTTP_REFERER'])) die(t('Ошибочный referer-сайт'));
 			
 			$data = @base64_decode($post['data']);
 			if (!$data) die('Ошибочные данные'); // ошибка распаковки
@@ -275,7 +275,7 @@ function maxsite_auth_custom($args = array())
 			}
 			
 			// должно быть 5 элементов
-			if (count($data_1) != 5) die(t('Неверное количество данных', 'plugins'));
+			if (count($data_1) != 5) die(t('Неверное количество данных'));
 			
 			/*
 			$data = getinfo('siteurl') . '##'
@@ -296,9 +296,9 @@ function maxsite_auth_custom($args = array())
 			$data_email_pass = $data_1[4]; // email и пароль
 			
 			
-			if (strpos($_SERVER['HTTP_REFERER'], $data_siteurl) === false) die(t('Ошибочный referer-сайт', 'plugins'));
+			if (strpos($_SERVER['HTTP_REFERER'], $data_siteurl) === false) die(t('Ошибочный referer-сайт'));
 			
-			if ($my_siteurl != getinfo('siteurl')) die(t('Ошибочный исходный сайт', 'plugins'));
+			if ($my_siteurl != getinfo('siteurl')) die(t('Ошибочный исходный сайт'));
 			
 			$CI = & get_instance();
 			$CI->load->library('encrypt'); // подключим библиотеку для шифрования
@@ -315,13 +315,13 @@ function maxsite_auth_custom($args = array())
 			$email_pass = explode('##', $my_email_pass);
 			
 			
-			if (count($email_pass) != 2) die(t('Неверные данные email-пароль', 'plugins'));
+			if (count($email_pass) != 2) die(t('Неверные данные email-пароль'));
 			
 			$email = $email_pass[0]; // email
 			$pass = $email_pass[1]; // пароль
 			
-			if (!mso_valid_email($email)) die(t('Неверный email', 'plugins'));
-			if (strlen($pass) < 6) die(t('Короткий пароль', 'plugins')); 
+			if (!mso_valid_email($email)) die(t('Неверный email'));
+			if (strlen($pass) < 6) die(t('Короткий пароль')); 
 			
 			// pr($email . ' ' . $pass);
 			

@@ -16,8 +16,8 @@ function %%%_announce_autoload()
 function %%%_announce_custom($tabs = array())
 {
 	$tabs[] = array(
-					t('Новая вкладка', __FILE__),
-					'<div class="info">' . t('Содержимое вкладки, выводите, что хотите', __FILE__) . '</div>'
+					t('Новая вкладка'),
+					'<div class="info">' . t('Содержимое вкладки, выводите, что хотите') . '</div>'
 					);
 	return $tabs;
 }

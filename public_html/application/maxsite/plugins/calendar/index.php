@@ -10,7 +10,7 @@
 function calendar_autoload($args = array())
 {
 	# регистрируем виджет
-	mso_register_widget('calendar_widget', t('Календарь', 'plugins')); 
+	mso_register_widget('calendar_widget', t('Календарь', 'plugins' )); 
 }
 
 
@@ -44,7 +44,7 @@ function calendar_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . '_header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . '_header', 'value'=>$options['header'] ) ) ;
 	
 	return $form;
 }
@@ -64,7 +64,7 @@ function calendar_widget_update($num = 1)
 	$newoptions['header'] = mso_widget_get_post($widget . '_header');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 
@@ -72,18 +72,18 @@ function calendar_widget_update($num = 1)
 function calendar_widget_custom($arg = array(), $num = 1) 
 {
 	# массив названий месяцев
-	if ( !isset($arg['months']) ) $arg['months'] = array(t('Январь', 'plugins'), t('Февраль', 'plugins'), 
-													t('Март', 'plugins'), t('Апрель', 'plugins'), t('Май', 'plugins'), 
-													t('Июнь', 'plugins'), t('Июль', 'plugins'), t('Август', 'plugins'), 
-													t('Сентябрь', 'plugins'), t('Октябрь', 'plugins'), t('Ноябрь', 'plugins'), 
-													t('Декабрь', 'plugins'));
+	if ( !isset($arg['months']) ) $arg['months'] = array(t('Январь'), t('Февраль'), 
+													t('Март'), t('Апрель'), t('Май'), 
+													t('Июнь'), t('Июль'), t('Август'), 
+													t('Сентябрь'), t('Октябрь'), t('Ноябрь'), 
+													t('Декабрь'));
 	# массив названий дней недели
-	if ( !isset($arg['days']) ) $arg['days'] = array(t('Пн', 'plugins'), t('Вт', 'plugins'), t('Ср', 'plugins'), 
-													t('Чт', 'plugins'), 
-													t('Пт', 'plugins'), t('Сб', 'plugins'), t('Вс', 'plugins'));
+	if ( !isset($arg['days']) ) $arg['days'] = array(t('Пн'), t('Вт'), t('Ср'), 
+													t('Чт'), 
+													t('Пт'), t('Сб'), t('Вс'));
 	
 	# оформление виджета
-	if ( !isset($arg['header']) ) $arg['header'] = '<h2 class="box"><span>' . t('Календарь', 'plugins') . '</span></h2>';
+	if ( !isset($arg['header']) ) $arg['header'] = '<h2 class="box"><span>' . t('Календарь') . '</span></h2>';
 	if ( !isset($arg['block_start']) ) $arg['block_start'] = '<div class="calendar">';
 	if ( !isset($arg['block_end']) ) $arg['block_end'] = '</div>';
 	

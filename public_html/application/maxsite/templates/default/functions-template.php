@@ -12,6 +12,7 @@
 
 
 /*
+ * ver.  5/02/2012
  * ver.  1/02/2012
  * ver. 25/01/2012
  * ver. 23/01/2012
@@ -479,10 +480,11 @@ if (!function_exists('mso_add_file'))
 			$ext = substr(strrchr($fn, '.'), 1);// расширение файла
 			if ($ext == 'js') echo NT . '<script src="' . getinfo('template_url') . $fn . '"></script>';
 			elseif ($ext == 'css') echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . $fn . '" type="text/css">';
+			elseif ($ext == 'less') echo NT . '<link rel="stylesheet/less" href="' . getinfo('template_url') . $fn . '" type="text/css">';
+			
 		}
 	}
 }
-
 
 # получение адреса первой картинки IMG в тексте
 # адрес обрабатывается, чтобы сформировать адрес полный (full), миниатюра (mini) и превью (prev)

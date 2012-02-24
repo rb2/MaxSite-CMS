@@ -20,9 +20,9 @@
 		$options['allowlate'] = isset( $post['f_allowlate']) ? 1 : 0;
 		$options['stopwords'] = isset( $post['f_stopwords']) ? $post['f_stopwords'] : 'будет нужно';
 
-		mso_add_option($options_key, $options, 'plugins');
+		mso_add_option($options_key, $options, 'plugins' );
 
-		echo '<div class="update">' . t('Обновлено!', 'plugins') . '</div>';
+		echo '<div class="update">' . t('Обновлено!') . '</div>';
 	}
 
 
@@ -36,7 +36,7 @@
 
 	$form = '';
 
-	$form .= '<h2>' . t('Настройки', 'plugins') . '</h2>';
+	$form .= '<h2>' . t('Настройки') . '</h2>';
 
 	$chk = $options['allowlate'] ? ' checked="checked"  ' : '';
 	$form .= '<p><label><input name="f_allowlate" type="checkbox" ' . $chk . '> <strong>' . t('Ссылаться ли на более поздние записи') . '</strong></label><br>';
@@ -56,7 +56,7 @@
 
 	echo '<form action="" method="post">' . mso_form_session('f_session_id');
 	echo $form;
-	echo '<br><input type="submit" name="f_submit" value="' . t('Сохранить изменения', 'plugins') . '" style="margin: 25px 0 5px 0;">';
+	echo '<br><input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 	echo '</form>';
 
 ?>

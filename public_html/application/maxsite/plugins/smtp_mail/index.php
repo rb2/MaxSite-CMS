@@ -9,7 +9,7 @@
 # функция автоподключения плагина
 function smtp_mail_autoload()
 {
-	mso_create_allow('smtp_mail_edit', t('Админ-доступ к настройкам', 'plugins') . ' smtp_mail');
+	mso_create_allow('smtp_mail_edit', t('Админ-доступ к настройкам') . ' smtp_mail');
 	mso_hook_add( 'mail', 'smtp_mail_custom');
 }
 
@@ -22,14 +22,14 @@ function smtp_mail_activate($args = array())
 # функция выполняется при деактивации (выкл) плагина
 function smtp_mail_deactivate($args = array())
 {
-	// mso_delete_option('plugin_smtp_mail', 'plugins'); // удалим созданные опции
+	// mso_delete_option('plugin_smtp_mail', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
 # функция выполняется при деинсталяции плагина
 function smtp_mail_uninstall($args = array())
 {
-	 mso_delete_option('plugin_smtp_mail', 'plugins'); // удалим созданные опции
+	 mso_delete_option('plugin_smtp_mail', 'plugins' ); // удалим созданные опции
 	// mso_remove_allow('smtp_mail_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -40,7 +40,7 @@ function smtp_mail_mso_options()
 {
 	if ( !mso_check_allow('smtp_mail_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 
@@ -49,68 +49,68 @@ function smtp_mail_mso_options()
 		array(
 			'admin_email' => array(
 							'type' => 'text',
-							'name' => t('E-mail, с которого отправляем почту', __FILE__),
-							'description' => t('Зачастую, со стороннего SMTP сервера можно отправить почту только если адрес принадлежит именно этому серверу.<br>Если пусто — используется тот, что указан в настройках сайта.', __FILE__),
+							'name' => t('E-mail, с которого отправляем почту'),
+							'description' => t('Зачастую, со стороннего SMTP сервера можно отправить почту только если адрес принадлежит именно этому серверу.<br>Если пусто — используется тот, что указан в настройках сайта.'),
 							'default' => ''
 						),
 			'protocol' => array(
 							'type' => 'select',
-							'name' => t('Протокол отправки', __FILE__),
-							'description' => t('Для «smtp» укажите ниже SMTP хост, пользователя и пароль. Для «sendmail» укажите серверный путь к Sendmail.<br>Для «mail» планируются расширенные функции по сравнению со штатной возможностью системы.', __FILE__),
+							'name' => t('Протокол отправки'),
+							'description' => t('Для «smtp» укажите ниже SMTP хост, пользователя и пароль. Для «sendmail» укажите серверный путь к Sendmail.<br>Для «mail» планируются расширенные функции по сравнению со штатной возможностью системы.'),
 							'values' => 'smtp # sendmail # mail',
 							'default' => 'smtp'
 						),
 			'mailpath' => array(
 							'type' => 'text',
-							'name' => t('Серверный путь к Sendmail.', __FILE__),
-							'description' => t('Обычно это «/usr/sbin/sendmail»', __FILE__),
+							'name' => t('Серверный путь к Sendmail.'),
+							'description' => t('Обычно это «/usr/sbin/sendmail»'),
 							'default' => '/usr/sbin/sendmail'
 						),
 			'smtp_host' => array(
 							'type' => 'text',
-							'name' => t('SMTP host', __FILE__),
-							'description' => '<b>Gmail:</b><br>ssl://smtp.googlemail.com',//t('', __FILE__),
+							'name' => t('SMTP host'),
+							'description' => '<b>Gmail:</b><br>ssl://smtp.googlemail.com',//t(''),
 							'default' => 'ssl://smtp.googlemail.com'
 						),
 			'smtp_user' => array(
 							'type' => 'text',
-							'name' => t('SMTP user', __FILE__),
-							'description' => '<b>Gmail:</b><br>gmail.login@googlemail.com',//t('', __FILE__),
+							'name' => t('SMTP user'),
+							'description' => '<b>Gmail:</b><br>gmail.login@googlemail.com',//t(''),
 							'default' => ''
 						),
 			'smtp_pass' => array(
 							'type' => 'text',
-							'name' => t('SMTP pass', __FILE__),
-							'description' => t('<b style="color: red;">Примечание:</b> пароль в базе данных хранится в открытом виде.', __FILE__),
+							'name' => t('SMTP pass'),
+							'description' => t('<b style="color: red;">Примечание:</b> пароль в базе данных хранится в открытом виде.'),
 							'default' => ''
 						),
 			'smtp_port' => array(
 							'type' => 'text',
-							'name' => t('SMTP port', __FILE__),
-							'description' => t('Может быть, например, 25, 2525 или 587.', __FILE__) . '<br><b>Gmail:</b><br>465',
+							'name' => t('SMTP port'),
+							'description' => t('Может быть, например, 25, 2525 или 587.') . '<br><b>Gmail:</b><br>465',
 							'default' => '25'
 						),
 			'to_uploads' => array(
 							'type' => 'checkbox',
-							'name' => t('Складывать ли письма в <b>uploads</b>', __FILE__),
-							'description' => t('Письма можно не только отправлять на почту, но и сохранять в каталог <b>uploads</b>, где их можно посмотреть даже если они не дошли на e-mail.', __FILE__),
+							'name' => t('Складывать ли письма в <b>uploads</b>'),
+							'description' => t('Письма можно не только отправлять на почту, но и сохранять в каталог <b>uploads</b>, где их можно посмотреть даже если они не дошли на e-mail.'),
 							'default' => '0'
 						),
 			'to_email' => array(
 							'type' => 'checkbox',
-							'name' => t('Отправлять письма на e-mail', __FILE__),
-							'description' => t('Если письма сохраняются в каталог <b>uploads</b> или просто нужно отключить отправку на e-mail, снимите галочку здесь.', __FILE__),
+							'name' => t('Отправлять письма на e-mail'),
+							'description' => t('Если письма сохраняются в каталог <b>uploads</b> или просто нужно отключить отправку на e-mail, снимите галочку здесь.'),
 							'default' => '1'
 						),
 			'uploads_subfolder' => array(
 							'type' => 'text',
-							'name' => t('Каталог в <b>uploads</b>, куда складывать почту', __FILE__),
-							'description' => t('Каталог вы можете создать в разделе «Загрузки». Это может быть, например, <b>mail</b>.<br>Оставьте пустым, если хотите складывать письма в <b>uploads</b>.', __FILE__),
+							'name' => t('Каталог в <b>uploads</b>, куда складывать почту'),
+							'description' => t('Каталог вы можете создать в разделе «Загрузки». Это может быть, например, <b>mail</b>.<br>Оставьте пустым, если хотите складывать письма в <b>uploads</b>.'),
 							'default' => ''
 						),
 			),
-		t('Настройки плагина «SMTP mail»', __FILE__),
-		t('Укажите необходимые опции.', __FILE__)
+		t('Настройки плагина «SMTP mail»'),
+		t('Укажите необходимые опции.')
 	);
 }
 

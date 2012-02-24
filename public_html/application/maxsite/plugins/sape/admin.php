@@ -44,7 +44,7 @@
 		$options['articles_url'] = $post['f_articles_url'];
 		$options['articles_template'] = $post['f_articles_template'];
 
-		mso_add_option($options_key, $options, 'plugins');
+		mso_add_option($options_key, $options, 'plugins' );
 		echo '<div class="update">Настройки обновлены!</div>';
 	}
 	

@@ -19,7 +19,7 @@ function sape_autoload($args = array())
 # функция выполняется при деинсталяции плагина
 function sape_uninstall($args = array())
 {	
-	mso_delete_option_mask('sape_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('sape_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -90,6 +90,9 @@ function sape_init($args = array())
 		}
 		
 		if ( !defined('_SAPE_USER') ) define('_SAPE_USER', $options['kod']);
+		
+		// если файла сапы нет, то выходим
+		if (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . _SAPE_USER . '/sape.php')) return $args;
 		
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/' . _SAPE_USER . '/sape.php');
 		
@@ -209,7 +212,7 @@ function sape_widget_update($num = 1)
 	$newoptions['links_or_articles'] = mso_widget_get_post($widget . 'links_or_articles');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функция вывода виджета

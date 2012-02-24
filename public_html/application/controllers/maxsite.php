@@ -120,11 +120,13 @@ if (!class_exists('Maxsite'))
 				
 				$this->session->unset_userdata('_add_to_cookie'); // удаляем добавленное
 				
+				mso_flush_cache();
+				
 				// редирект на главную страницу
 				if (isset($this->session->userdata['_add_to_cookie_redirect']))
 				{
 					$r = $this->session->userdata['_add_to_cookie_redirect'];
-
+					
 					if (is_bool($r) or is_numeric($r)) // === true or $r === false) // логическая переменная
 						mso_redirect(getinfo('siteurl'), true); // редирект на главную
 					else 

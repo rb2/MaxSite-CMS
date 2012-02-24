@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => t('Гостевая книга', __FILE__),
-	'description' => t('Гостевая книга на вашем сайте', __FILE__),
+	'name' => t('Гостевая книга'),
+	'description' => t('Гостевая книга на вашем сайте'),
 	'version' => '1.2',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',

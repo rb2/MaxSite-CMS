@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $info = array(
-	'name' => t('Редирект', 'plugins'),
+	'name' => t('Редирект'),
 	'description' => 'Редирект любого адреса сайта',
 	'version' => '1.3',
 	'author' => 'Максим, Андрей Бусел',

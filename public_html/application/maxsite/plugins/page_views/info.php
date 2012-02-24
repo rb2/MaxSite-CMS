@@ -2,7 +2,7 @@
 
 $info = array(
 	'name' => 'Page views',
-	'description' => t('Виджет «Самое читаемое»', 'plugins'),
+	'description' => t('Виджет «Самое читаемое»'),
 	'version' => '1.2',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',

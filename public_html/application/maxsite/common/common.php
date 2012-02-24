@@ -553,7 +553,10 @@ function mso_autoload_plugins()
 		$d = $MSO->active_plugins;
 	}
 
-	foreach ($d as $load) mso_plugin_load($load);
+	foreach ($d as $load) 
+	{
+		mso_plugin_load($load);
+	}
 }
 
 
@@ -985,7 +988,7 @@ function mso_delete_option_mask($mask, $type = 'general')
 function mso_get_option($key, $type = 'general', $return_value = false)
 {
 	global $cache_options;
-
+	
 	if ( isset($cache_options[$type][$key]) )
 		$result = $cache_options[$type][$key];
 	else
@@ -3051,108 +3054,129 @@ function mso_cur_dir_lang($dir = false)
 
 # функция трансляции (языковой перевод)
 # первый параметр - переводимое слово - учитывается регистр полностью
-# второй параметр - переводимый файл либо __FILE__
+# второй параметр - __FILE__ (по нему вычисляется каталог перевода), либо спец-каталог 
 # либо путь к каталогу относительно application/maxsite/
 # например:
 #	для плагина ушки это plugins/ushki
 # 	для админ - admin
 #	для общего - common (используется по-умолчанию)
 # файл перевода должен находится в каталоге $file/language/язык.php
-# если второй параметр равен plugins, то язык берется из application/maxsite/common/language/plugins/
-# если второй параметр равен templates, то язык берется из application/maxsite/common/language/templates/
+# всегда подключается перевод из 
+#	+ common/language/
+#	+ common/language/plugins
+#	+ common/language/templates
+#	+ templates/ТЕКУЩИЙ-ШАБЛОН/
+#   + подключение согласно __FILE__
+#	если это админка, то подключается common/admin/language/
+#   если это инсталяция $file = 'install', то подключается common/language/install
 function t($w = '', $file = false)
 {
 	global $MSO;
-
-	if (!isset($MSO->language)) return $w;
-
-	$current_language = $MSO->language; // тест на английский
-
-	if (!$current_language) return $w; // не указан язык, выходим
-
+	
 	static $langs = array(); // общий массив перевода
+	static $file_langs = array(); // список уже подключенных файлов
+	
+	if (!isset($MSO->language)) return $w; // язык вообще не существует, выходим
+	if (!($current_language = $MSO->language)) return $w; // есть, но не указан язык, выходим
 
-	if (!$file) // не указан каталог
+	// проверим перевод, возможно он уже есть
+	if (isset($langs[$w]) and $langs[$w]) return $langs[$w]; // проверка перевода
+	
+
+	if (!isset($file_langs['common'])) // common был не подключен
 	{
-		if ($MSO->current_lang_dir) // есть в $MSO_CURRENT_LANG_DIR
-			$file = $MSO->current_lang_dir;
-		else
-			$file = 'common'; // берем дефолтный - common
+		$langs = _t_add_file_to_lang($langs, 'common/language/', $current_language);
+		$file_langs['common'] = true;
 	}
-
-	// путь относительно application/maxsite/
-	if ($file != 'common' and $file != 'plugins' and $file != 'templates' )
+	
+	if (!isset($file_langs['plugins'])) // plugins был не подключен
 	{
-		// заменим windows \ на /
-		$file = str_replace('\\', '/', $file);
-		$bd = str_replace('\\', '/', $MSO->config['base_dir']);
-
-		// если в $file входит base_dir, значит это использован __FILE__
-		// нужно вычленить base_dir
-		$pos = strpos($file, $bd);
-		if ($pos !== false) // есть вхождение
+		$langs = _t_add_file_to_lang($langs, 'common/language/plugins/', $current_language);
+		$file_langs['plugins'] = true;
+	}
+	
+	if (!isset($file_langs['templates'])) // templates был не подключен
+	{
+		$langs = _t_add_file_to_lang($langs, 'common/language/templates/', $current_language);
+		$file_langs['templates'] = true;
+	}
+	
+	// в админке подключаем свой перевод
+	if (mso_segment(1) == 'admin')
+	{
+		if (!isset($file_langs['admin'])) // admin был не подключен
 		{
-			$file = str_replace($bd, '', $file);
-			$file = dirname($file);
+			$langs = _t_add_file_to_lang($langs, 'admin/language/', $current_language);
+			$file_langs['admin'] = true;
+		}
+	}
+	
+	// для инсталяции свой перевод
+	if ($file == 'install')
+	{
+		if (!isset($file_langs['install'])) // install был не подключен
+		{
+			$langs = _t_add_file_to_lang($langs, 'common/language/install/', $current_language);
+			$file_langs['install'] = true;
 		}
 	}
 
-	// спецкаталог плагины и шаблоны, физически в common/language/plugins
-	$spec_dir = '';
-	if ($file == 'plugins') // плагины
+	if (!isset($file_langs['mytemplate'])) // mytemplate был не подключен
 	{
-		$file = 'common';
-		$spec_dir = 'plugins';
+		$langs = _t_add_file_to_lang($langs, 'templates/' . $MSO->config['template'] . '/language/', $current_language);
+		$file_langs['mytemplate'] = true;
 	}
-	elseif ($file == 'templates') // шаблоны
+	
+	
+	// возможно указан свой каталог в __FILE__
+	if ($file and $file != 'admin' and $file != 'plugins' and $file != 'templates' and $file != 'install' and $file != 'mytemplate')
 	{
-		$file = 'common';
-		$spec_dir = 'templates';
-	}
-	elseif ($file == 'install') // инсталяция
-	{
-		$file = 'common';
-		$spec_dir = 'install';
-	}
-
-	// pr($langs);
-	// $file у нас каталог plugins/ushki
-	// если в $langs нет такого ключа, значит нужно проверить есть ли файл
-	// plugins/ushki/language/en.php
-
-	// если это спецкаталог, то ключ по нему - иначе по файлу
-	if ($spec_dir) $key = $spec_dir;
-		else $key = $file;
-
-	if (!isset($langs[$key])) // нет такого ключа
-	{
-		$langs[$key] = array();
-
-		// слэш в конец добавим
-		if ($spec_dir) $current_language = '/' . $current_language;
-
-		// грузим файл, если есть
-		$fn = $MSO->config['base_dir'] . $file . '/language/' . $spec_dir . $current_language . '.php';
-
-		if (file_exists($fn))
+		// ключ = $file так меньше вычислений
+		if (!isset($file_langs[$file]))
 		{
-			// есть такой файл
-			require_once ($fn);
+			// заменим windows \ на /
+			$fn = str_replace('\\', '/', $file);
+			$bd = str_replace('\\', '/', $MSO->config['base_dir']);
 
-			if (isset($lang)) // есть ли в нем $lang ?
+			// если в $file входит base_dir, значит это использован __FILE__
+			// нужно вычленить base_dir
+			$pos = strpos($fn, $bd);
+			if ($pos !== false) // есть вхождение
 			{
-				$langs[$key] = $lang;
+				$fn = str_replace($bd, '', $fn);
+				$fn = dirname($file) . '/language/';
+				
+				$langs = _t_add_file_to_lang($langs, $fn, $current_language);
 			}
+			
+			$file_langs[$file] = true;
 		}
 	}
+	
+	if (isset($langs[$w]) and $langs[$w]) return $langs[$w]; // проверка перевода	
 
-	// pr($langs);
-
-	// если есть такой перевод, заменяем его
-	// если перевод пустое слово, то не меняем
-	if (isset($langs[$key][$w]) and $langs[$key][$w]) $w = $langs[$key][$w];
+	
+	// перевода нет :-(
 
 	return $w;
+
+}
+
+# служебная функция для t()
+# нигде не использовать!
+function _t_add_file_to_lang($langs, $path, $current_language)
+{
+	global $MSO;
+	
+	$fn = $MSO->config['base_dir'] . $path . $current_language . '.php';
+	
+	if (file_exists($fn))
+	{
+		require_once($fn); // есть такой файл
+		if (isset($lang)) $langs = array_merge($langs, $lang); // есть ли в нем $lang ?
+	}
+	
+	return $langs;
 }
 
 

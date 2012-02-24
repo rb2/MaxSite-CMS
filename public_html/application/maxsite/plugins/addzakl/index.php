@@ -26,7 +26,7 @@ function addzakl_autoload($args = array())
 # функция выполняется при деинсталяции плагина
 function addzakl_uninstall($args = array())
 {	
-	mso_delete_option('plugin_addzakl', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_addzakl', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -68,8 +68,8 @@ function addzakl_mso_options()
 						),
 			'temp' => array(
 							'type' => 'info',
-							'title' => t('Выберите какие кнопки следует отображать', 'plugins'),
-							'text' => t('', 'plugins'), 
+							'title' => t('Выберите какие кнопки следует отображать'),
+							'text' => '', 
 						),
 							
 						

@@ -6,9 +6,9 @@
 ?>
 
 <div class="admin-h-menu">
-	<a href="<?= $plugin_url ?>list" class="select"><?= t('Управление голосованиями', 'plugins')?></a>&nbsp;|&nbsp;
-	<a href="<?= $plugin_url ?>manage" class="select"><?= t('Добавить новое', 'plugins')?></a>&nbsp;|&nbsp;
-	<a href="<?= $plugin_url ?>settings" class="select"><?= t('Настройки', 'plugins')?></a>
+	<a href="<?= $plugin_url ?>list" class="select"><?= t('Управление голосованиями')?></a>&nbsp;|&nbsp;
+	<a href="<?= $plugin_url ?>manage" class="select"><?= t('Добавить новое')?></a>&nbsp;|&nbsp;
+	<a href="<?= $plugin_url ?>settings" class="select"><?= t('Настройки')?></a>
 </div>
 
 

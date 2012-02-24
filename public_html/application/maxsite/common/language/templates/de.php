@@ -4,10 +4,11 @@
  * MaxSite CMS
  * Language file
  * (c) http://max-3000.com/
- * Author: (c) Александр Шиллинг
- * Author URL: http://dignityinside.org
- * Update URL: http://forum.alexanderschilling.net
- * Перевод дефолтного шаблона и его type-файлов
+ * Author: (c) Alexander Schilling
+ * Author URL: http://alexanderschilling.net
+ * Update URL: http://alexanderschilling.net
+ * Default Template und seine type-Datein, sowie ini's
+ * /maxsite/common/language/templates/de.php
  */
 
 $lang['Еще записи по теме'] = 'Andere Beiträge';
@@ -66,19 +67,18 @@ $lang['Результаты поиска по запросу'] = 'Suchergebnisse
 $lang['Записи:'] = 'Einträge';
 $lang['Поисковая фраза должна быть не менее 2 символов.'] = 'Suchanfrage ist kleiner als 2 Zeichen.';
 
-
 $lang['Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье'] = 'Montag Dienstag Mittwoch Donnerstag Freitag Samstag Sonntag';
-$lang['января февраля марта апреля мая июня июля августа сентября октября ноября декабря'] = 'januar februar märz april mai juni juli august september oktober november dezember';
-
+$lang['j F Y г.'] = 'd.m.Y';
+$lang['января февраля марта апреля мая июня июля августа сентября октября ноября декабря'] = 'Januar Februar März April Mai Juni July August September Oktober November Dezember';
 
 // type/contact.php
 $lang['Обратная связь'] = 'Kontakt';
-$lang['Не введено имя'] = 'Name eingeben';
-$lang['Некорректный e-mail'] = 'E-Mail eingeben';
-$lang['Не введена тема письма'] = 'Betreff  eingeben';
-$lang['Не введен текст письма'] = 'Text eingeben';
+$lang['Не введено имя'] = 'Bitte geben Sie Ihr Vorname ein';
+$lang['Некорректный e-mail'] = 'Bitte geben Sie Ihr E-Mail ein';
+$lang['Не введена тема письма'] = 'Bitte geben Sie ein Betreff ein';
+$lang['Не введен текст письма'] = 'Bitte fühlen Sie den Feld Nachricht aus';
 $lang['Привет роботам!'] = 'Sicherheitscode ist Falsch!';
-$lang['Поле «Антиспам» заполнено ошибочно'] = 'Feld «Antispam» enthält Fehler';
+$lang['Поле «Антиспам» заполнено ошибочно'] = 'Feld «Antispam» enthält Fehler!';
 $lang['Ваше имя'] = 'Vorname';
 $lang['Имя'] = 'Vorname';
 $lang['Email'] = 'E-Mail';
@@ -90,9 +90,9 @@ $lang['Вами отправлено сообщение'] = 'Nachricht wurde ges
 $lang['Копия Вашего письма с темой'] = 'Eine Kopie des Schreibens mit der Thema';
 $lang['Копия Вашего письма'] = 'Eine Kopie Ihres Schreibens';
 $lang['Ваше сообщение отправлено!'] = 'Nachricht wurde gesendet!';
-$lang['Письмо не отправлено'] = 'Nachricht wurde nicht gesendet';
-$lang['Обнаружены следующие ошибки'] = 'Fehler';
-$lang['Нужно указать корректные данные'] = 'Sie müssen echten Daten eingeben';
+$lang['Письмо не отправлено'] = 'Fehler! Ihr Nachricht wurde nicht gesendet';
+$lang['Обнаружены следующие ошибки'] = 'Folgende Fehler wurden gefunden';
+$lang['Нужно указать корректные данные'] = 'Sie müssen richtige Daten eingeben';
 $lang['Выберите тему письма'] = 'Wählen Sie einen Betreff aus';
 $lang['Тема'] = 'Betreff';
 $lang['Пожелания по сайту'] = 'Vorschläge für die Website';
@@ -106,10 +106,35 @@ $lang['Защита от спама'] = 'Spam Schutz';
 $lang['Антиспам'] = 'Antispam';
 $lang['Укажите свой ответ'] = 'Geben Sie Ihre Antwort';
 $lang['Отправить копию письма на ваш e-mail?'] = 'Eine Kopie an Ihre E-Mail senden?';
-$lang['Поля, помеченные символом <span class="reqtxt">*</span> обязательны для заполнения.'] = 'Sie müssen alle Felder ausfüllen die mit einen Stern markiert sind <span class="reqtxt">*</span>.';
+$lang['Поля, помеченные символом <span class="reqtxt">*</span> обязательны для заполнения.'] = '<span class="reqtxt">*</span> sind Pflichtfelder!';
 $lang['Да'] = 'Ja';
 $lang['Отправить'] = 'Senden';
 $lang['Очистить форму'] = 'Formular leeren';
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+//templates/default/options.ini
+$lang['Текст перед формой обратной связи']='Text vor dem Kontakt Formular';
+$lang['Текст, выводимый перед формой обратной связи. Можно использовать html.']='Text der vor dem Kontakt Formular angezeigt wird. HTML darf verwendet werden.';
+$lang['Форма обратной связи']='Kontakt Formular';
+
+$lang['Текст после формы обратной связи']='Text nach dem Kontakt Formular';
+$lang['Текст, выводимый после формы обратной связи.'] = 'Text, der nach dem Formular angezeigt wird.';
+
+$lang['Показывать в форме пункт «Телефон»']='In dem Formular den Feld «Telefon» anzeigen';
+$lang['Отметьте, если нужно выводить поле для телефона.'] = 'Wählen Sie aus, wenn Sie den Feld für Telefonnummer anzeigen möchten.';
+
+$lang['Показывать в форме пункт «Сайт»']='In dem Formular den Feld «Webseite» anzeigen';
+$lang['Отметьте, если нужно выводить поле для сайта.'] = 'Wählen Sie aus, wenn Sie den Feld für Webseite anzeigen möchten.';
+
+$lang['Показывать в форме пункт «Копию на ваш email»'] = 'In dem Formular den Feld «Kopie an die E-mail senden» anzeigen';
+$lang['Отметьте, чтобы разрешить посетителям слать копии на свой email.']='Wählen Sie aus, wenn Sie den Besucher eine möglichkeit geben möchten, eine Kopie des E-Mail an Besucher zu senden.';
+
+$lang['Темы писем'] = 'Themen von Nachrichten';
+$lang['Список возможных тем писем. По одной теме на строку. Если пусто, пользователь может ввести свою тему.'] = 'Liste der erlaube Themen. Jede Thema aus extra Zeile. Wenn leer, kann der Besucher eigene Thema reinschreiben';
+$lang['Пожелания по сайту_NR_Нашел ошибку на сайте_NR_Подскажите, пожалуйста_NR_Я вас люблю!_NR_Я вас ненавижу..._NR_Я вам пишу, чего же боле...']='Verbesserungsvorschläge_NR_Ein fehler gefunden_NR_Sagen Sie bitte..._NR_Ich liebe Sie!_NR_Ich hasse Sie..._NR_Ich Schreibe Ihnen, was möchten Sie nocht...';
+
+$lang['Отправить копию письма на мой email'] = 'Kopie an meine E-Mail senden';
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // type/loginform.php
 $lang['Неверный логин/пароль'] = 'Falscher Benutzername / Passwort';
@@ -165,5 +190,24 @@ $lang['Извините, на сайте пока нет зарегистрир�
 
 $lang['Настройка шаблона'] = 'Themes verwalten';
 $lang['Выберите необходимые опции'] = 'Wählen Sie die passende Theme-Optionen.';
+
+// admin/page_new - meta
+$lang['Титул страницы (title)']='Titel der Webseite (title)';
+$lang['Это описание будет использовано в <strong>title</strong> для этой страницы.'] = 'Wird in Meta-Tags <strong>title</strong> verwendet.';
+
+$lang['Описание страницы (description)']='Webseite Beschreibung (description)';
+$lang['Это описание будет использовано в <strong>meta description</strong> для этой страницы.']='Wird in Meta-Tags <strong>meta description</strong> verwendet';
+
+$lang['Ключевые слова страницы (keywords)'] = 'Schlüsselwörter (keywords)';
+$lang['Эти слова будут использованы в <strong>meta keywords</strong> этой страницы.'] = 'Schlüsselwörter werden bei <strong>meta keywords</strong> verwendet.';
+
+$lang['Превью записи'] = 'Seitenvorschau';
+$lang['Укажите адрес превью изображения. Может использоваться в виджете последних записей.'] = 'Geben Sie hier die Adresse des Vorschau-Bildes ein. Es kann bei den Widget Letzte Beiträge verwendet werden.';
+
+// max должен исправить
+
+$lang['Обсудить'] = 'Kommentieren';
+$lang['Группировка по рубрикам'] = 'Nach Kategorien gruppiert';
+$lang['Группировка по датам'] = 'Nach Datum gruppiert';
 
 # End of file

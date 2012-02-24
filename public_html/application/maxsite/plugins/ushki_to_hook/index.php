@@ -15,21 +15,21 @@ function ushki_to_hook_autoload()
 # функция выполняется при активации (вкл) плагина
 function ushki_to_hook_activate($args = array())
 {	
-	mso_create_allow('ushki_to_hook_edit', t('Админ-доступ к настройкам', 'plugins') . ' ' . t('ushki to hook', __FILE__));
+	mso_create_allow('ushki_to_hook_edit', t('Админ-доступ к настройкам') . ' ' . t('ushki to hook'));
 	return $args;
 }
 
 # функция выполняется при деактивации (выкл) плагина
 function ushki_to_hook_deactivate($args = array())
 {	
-	mso_delete_option('plugin_ushki_to_hook', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_ushki_to_hook', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
 # функция выполняется при деинсталяции плагина
 function ushki_to_hook_uninstall($args = array())
 {	
-	// mso_delete_option('plugin_to_hook', 'plugins'); // удалим созданные опции
+	// mso_delete_option('plugin_to_hook', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('ushki_to_hook_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -40,7 +40,7 @@ function ushki_to_hook_mso_options()
 {
 	if ( !mso_check_allow('ushki_to_hook_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return;
 	}
 	
@@ -52,7 +52,7 @@ function ushki_to_hook_mso_options()
 		array(
 			'option1' => array(
 							'type' => 'textarea', 
-							'name' => t('Задайте хуки и ушки', __FILE__), 
+							'name' => t('Задайте хуки и ушки'), 
 							'description' => t('
 							Например: 
 							<pre>	content_end | page_bottom</pre>
@@ -85,7 +85,7 @@ function ushki_to_hook_mso_options()
 	mso_hook_add(ХУК, _ushki_to_hook_ХУК_УШКА, ПРИОРИТЕТ);
 </pre>
 							<br>после чего этот код выполняется через <strong>eval()</strong>.
-							', __FILE__), 
+							'), 
 							'default' => ''
 						),
 			),

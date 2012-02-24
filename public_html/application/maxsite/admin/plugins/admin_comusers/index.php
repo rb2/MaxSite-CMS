@@ -19,7 +19,7 @@ function admin_comusers_admin_init($args = array())
 	$this_plugin_url = 'comusers'; // url и hook
 	
 	if ( mso_check_allow('admin_comusers') ) 
-		mso_admin_menu_add('users', $this_plugin_url, t('Комментаторы', 'admin'), 10);
+		mso_admin_menu_add('users', $this_plugin_url, t('Комментаторы'), 10);
 
 	mso_admin_url_hook ($this_plugin_url, 'admin_comusers_admin');
 
@@ -34,7 +34,7 @@ function admin_comusers_admin($args = array())
 	
 	if ( !mso_check_allow('admin_comusers') ) 
 	{
-		echo t('Доступ запрещен', 'admin');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	
@@ -44,8 +44,8 @@ function admin_comusers_admin($args = array())
 	// http://localhost/codeigniter/admin/users/edit/1
 	$seg = mso_segment(3); // третий - edit
 
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Комментаторы', 'admin') . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Комментаторы', 'admin') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Комментаторы') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Комментаторы') . ' - " . $args; ' );
 
 	// подключаем соответственно нужный файл
 	if ($seg == 'edit') require($MSO->config['admin_plugins_dir'] . 'admin_comusers/edit.php');

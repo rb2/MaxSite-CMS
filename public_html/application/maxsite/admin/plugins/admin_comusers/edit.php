@@ -60,11 +60,11 @@ mso_cur_dir_lang('admin');
 		
 		if (isset($result['result']) and $result['result']) 
 		{
-			echo '<div class="update">' . t('Обновлено!', 'admin') . '</div>'; // . $result['description'];
+			echo '<div class="update">' . t('Обновлено!') . '</div>'; // . $result['description'];
 			mso_flush_cache(); // сбросим кэш
 		}
 		else
-			echo '<div class="error">' . t('Ошибка обновления', 'admin') . ' (' . $result['description'] . ')</div>';
+			echo '<div class="error">' . t('Ошибка обновления') . ' (' . $result['description'] . ')</div>';
 		
 	}
 
@@ -107,7 +107,7 @@ mso_cur_dir_lang('admin');
 			$CI->table->set_template($tmpl); // шаблон таблицы
 			
 			// заголовки
-			$CI->table->set_heading( t('Название', 'admin'), t('Значение', 'admin'));
+			$CI->table->set_heading( t('Название'), t('Значение'));
 			
 			foreach ($query->result_array() as $row)
 			{
@@ -115,19 +115,19 @@ mso_cur_dir_lang('admin');
 		
 				$CI->table->add_row('ID', $id );
 									
-				_mso_add_row(t('Ник', 'admin'), 'f_nik', $row['comusers_nik'] );
-				_mso_add_row(t('E-mail', 'admin'), 'f_email', $row['comusers_email'] );
-				_mso_add_row(t('ICQ', 'admin'), 'f_icq', $row['comusers_icq']);
-				_mso_add_row(t('Сайт', 'admin'), 'f_url', $row['comusers_url']);
-				_mso_add_row(t('Twitter', 'admin'), 'f_msn', $row['comusers_msn']);
-				_mso_add_row(t('Jabber', 'admin'), 'f_jaber', $row['comusers_jaber']);
-				_mso_add_row(t('Skype', 'admin'), 'f_skype', $row['comusers_skype']);
-				_mso_add_row(t('URL аватара', 'admin'), 'f_avatar_url', $row['comusers_avatar_url']);
+				_mso_add_row(t('Ник'), 'f_nik', $row['comusers_nik'] );
+				_mso_add_row(t('E-mail'), 'f_email', $row['comusers_email'] );
+				_mso_add_row(t('ICQ'), 'f_icq', $row['comusers_icq']);
+				_mso_add_row(t('Сайт'), 'f_url', $row['comusers_url']);
+				_mso_add_row(t('Twitter'), 'f_msn', $row['comusers_msn']);
+				_mso_add_row(t('Jabber'), 'f_jaber', $row['comusers_jaber']);
+				_mso_add_row(t('Skype'), 'f_skype', $row['comusers_skype']);
+				_mso_add_row(t('URL аватара'), 'f_avatar_url', $row['comusers_avatar_url']);
 				
 				
-				$CI->table->add_row(t('Описание', 'admin'), '<textarea name="f_description" cols="90" rows="3">' . htmlspecialchars($row['comusers_description']) . '</textarea>');
+				$CI->table->add_row(t('Описание'), '<textarea name="f_description" cols="90" rows="3">' . htmlspecialchars($row['comusers_description']) . '</textarea>');
 				
-				$CI->table->add_row(t('Примечание админа', 'admin'), '<textarea name="f_admin_note" cols="90" rows="3">' . htmlspecialchars($row['comusers_admin_note']) . '</textarea>');
+				$CI->table->add_row(t('Примечание админа'), '<textarea name="f_admin_note" cols="90" rows="3">' . htmlspecialchars($row['comusers_admin_note']) . '</textarea>');
 			
 				// ДР это три поля
 				$y = mso_date_convert('Y', $row['comusers_date_birth']);
@@ -143,29 +143,29 @@ mso_cur_dir_lang('admin');
 				$d_r = array_flip(range(1, 31));
 				foreach ($d_r as $key=>$val) $d_r[$key] = $key;			
 				
-				$CI->table->add_row(t('Дата рождения', 'admin'), 
-				t('Год:', 'admin') . ' ' . form_dropdown('f_date_birth_y', $y_r, $y, ' style="width: 100px;" ') . 
-				' ' . t('Месяц:', 'admin') . ' ' . form_dropdown('f_date_birth_m', $m_r, $m, ' style="width: 100px;" ' ) . 
-				' ' . t('День:', 'admin') . ' ' . form_dropdown('f_date_birth_d', $d_r, $d, ' style="width: 100px;" ' ) 
+				$CI->table->add_row(t('Дата рождения'), 
+				t('Год:') . ' ' . form_dropdown('f_date_birth_y', $y_r, $y, ' style="width: 100px;" ') . 
+				' ' . t('Месяц:') . ' ' . form_dropdown('f_date_birth_m', $m_r, $m, ' style="width: 100px;" ' ) . 
+				' ' . t('День:') . ' ' . form_dropdown('f_date_birth_d', $d_r, $d, ' style="width: 100px;" ' ) 
 				);
 
 		
 	
 				###!!! что за уведомления? для чего???
-				$CI->table->add_row(t('Уведомления', 'admin'), 
-					form_dropdown('f_notify', array('0'=>t('Без уведомлений', 'admin'), '1'=>t('Подписаться', 'admin')), $row['comusers_notify'], ' style="width: 300px;" '));
+				$CI->table->add_row(t('Уведомления'), 
+					form_dropdown('f_notify', array('0'=>t('Без уведомлений'), '1'=>t('Подписаться')), $row['comusers_notify'], ' style="width: 300px;" '));
 				
 				###!!! языки взять из CodeIgniter !!!
-				$CI->table->add_row(t('Язык', 'admin'), 
-					form_dropdown('f_language', array('ru'=>t('Русский', 'admin'), 'en'=> t('Английский', 'admin'), 'ua'=>'' . t('Украинский', 'admin')), $row['comusers_language'], ' style="width: 300px;" '));	
+				$CI->table->add_row(t('Язык'), 
+					form_dropdown('f_language', array('ru'=>t('Русский'), 'en'=> t('Английский'), 'ua'=>'' . t('Украинский')), $row['comusers_language'], ' style="width: 300px;" '));	
 				
 				
 				
-				_mso_add_row(t('Новый пароль (только английские символы, длина > 6 символов)', 'admin'), 'f_new_password', '');
-				_mso_add_row(t('Подтвердите пароль', 'admin'), 'f_new_confirm_password', '');
+				_mso_add_row(t('Новый пароль (только английские символы, длина > 6 символов)'), 'f_new_password', '');
+				_mso_add_row(t('Подтвердите пароль'), 'f_new_confirm_password', '');
 				
-				_mso_add_row(t('Ключ активации', 'admin'), 'f_activate_key', $row['comusers_activate_key']);
-				_mso_add_row(t('Подтверждение активации', 'admin'), 'f_activate_string', $row['comusers_activate_string']);
+				_mso_add_row(t('Ключ активации'), 'f_activate_key', $row['comusers_activate_key']);
+				_mso_add_row(t('Подтверждение активации'), 'f_activate_string', $row['comusers_activate_string']);
 
 
 				###!!! здесь же по-идее нужно смотреть и мета для данного юзера
@@ -176,14 +176,14 @@ mso_cur_dir_lang('admin');
 			
 			echo '<form action="" method="post">' . mso_form_session('f_session_id');
 			echo $CI->table->generate();
-			echo '<p class="br"><input type="submit" name="f_submit[' . $id . ']" value="' . t('Изменить', 'admin') . '"></p>';
+			echo '<p class="br"><input type="submit" name="f_submit[' . $id . ']" value="' . t('Изменить') . '"></p>';
 			echo '</form>';
 		}
-		else echo '<div class="error">' . t('Ошибочный запрос', 'admin') . '</div>';
+		else echo '<div class="error">' . t('Ошибочный запрос') . '</div>';
 	}
 	else
 	{
-		echo '<div class="error">' . t('Ошибочный запрос', 'admin') . '</div>';
+		echo '<div class="error">' . t('Ошибочный запрос') . '</div>';
 	}
 
 # End of file

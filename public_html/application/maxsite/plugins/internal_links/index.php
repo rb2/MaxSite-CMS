@@ -15,14 +15,14 @@ function internal_links_autoload()
 # функция выполняется при активации (вкл) плагина
 function internal_links_activate($args = array())
 {	
-	mso_create_allow('internal_links_edit', t('Админ-доступ к настройкам', 'plugins') . ' ' . t('Internal links', 'plugins'));
+	mso_create_allow('internal_links_edit', t('Админ-доступ к настройкам') . ' ' . t('Internal links'));
 	return $args;
 }
 
 # функция выполняется при деинсталяции плагина
 function internal_links_uninstall($args = array())
 {	
-	mso_delete_option('plugin_internal_links', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_internal_links', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('internal_links_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -33,7 +33,7 @@ function internal_links_mso_options()
 {
 	if ( !mso_check_allow('internal_links_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return;
 	}
 	
@@ -43,31 +43,31 @@ function internal_links_mso_options()
 			'links' => array(
 							'type' => 'textarea', 
 							'rows' => 20,
-							'name' => t('Ключевые фразы и их ссылки', 'plugins'), 
-							'description' => t('Укажите в формате: <strong>фраза | ссылка | css-класс ссылки</strong><br>Располагайте большие фразы выше мелких, чтобы не было пересечений.', 'plugins'), 
+							'name' => t('Ключевые фразы и их ссылки'), 
+							'description' => t('Укажите в формате: <strong>фраза | ссылка | css-класс ссылки</strong><br>Располагайте большие фразы выше мелких, чтобы не было пересечений.'), 
 							'default' => ''
 						),
 			'default_class' => array(
 							'type' => 'text', 
-							'name' => t('CSS-класс по-умолчанию', 'plugins'), 
-							'description' => t('Этот класс будет подставляться для всех ссылок по-умолчанию.', 'plugins'), 
+							'name' => t('CSS-класс по-умолчанию'), 
+							'description' => t('Этот класс будет подставляться для всех ссылок по-умолчанию.'), 
 							'default' => ''
 						),
 			'only_page_type' => array(
 							'type' => 'checkbox', 
-							'name' => t('Выполнять замены только на одиночных страницах', 'plugins'), 
-							'description' => t('На всех остальных страницах сайта замены выполняться не будут', 'plugins'), 
+							'name' => t('Выполнять замены только на одиночных страницах'), 
+							'description' => t('На всех остальных страницах сайта замены выполняться не будут'), 
 							'default' => '1'
 						),
 			'max_count' => array(
 							'type' => 'text', 
-							'name' => t('Максимальное количество ссылок одной фразы в тексте', 'plugins'), 
-							'description' => t('Если указать «0», то будут выделены все вхождения.', 'plugins'), 
+							'name' => t('Максимальное количество ссылок одной фразы в тексте'), 
+							'description' => t('Если указать «0», то будут выделены все вхождения.'), 
 							'default' => '1'
 						),			
 			),
-		t('Настройки плагина «Внутренние ссылки»', 'plugins'), 
-		t('Плагин позволяет выполнить автоматическую замену указанных слов на ссылки.', 'plugins')
+		t('Настройки плагина «Внутренние ссылки»'), 
+		t('Плагин позволяет выполнить автоматическую замену указанных слов на ссылки.')
 	);
 	
 }

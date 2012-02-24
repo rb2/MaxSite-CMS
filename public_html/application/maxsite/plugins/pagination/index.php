@@ -42,10 +42,10 @@ function pagination_go($r = array())
 	if ( !isset($r['format']) )
 	{	
 		// $r['format'] = 
-		$r['format'][] = isset($options['format_first']) ? $options['format_first'] : '« ' . t('Первая', 'plugins');
-		$r['format'][] = isset($options['format_prev']) ? $options['format_prev'] : '‹ ' . t('предыдущая', 'plugins');
-		$r['format'][] = isset($options['format_next']) ? $options['format_next'] : t('следующая', 'plugins') . ' ›';
-		$r['format'][] = isset($options['format_last']) ? $options['format_last'] : t('последняя', 'plugins') . ' »';
+		$r['format'][] = isset($options['format_first']) ? $options['format_first'] : '« ' . t('Первая');
+		$r['format'][] = isset($options['format_prev']) ? $options['format_prev'] : '‹ ' . t('предыдущая');
+		$r['format'][] = isset($options['format_next']) ? $options['format_next'] : t('следующая') . ' ›';
+		$r['format'][] = isset($options['format_last']) ? $options['format_last'] : t('последняя') . ' »';
 	}	
 	
 	# текущая пагинация вычисляется по адресу url

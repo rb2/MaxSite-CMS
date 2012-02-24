@@ -48,7 +48,7 @@ img {vertical-align:middle}
 /* поля форм */
 input, select {vertical-align:middle}
 textarea {overflow:auto}
-input[type="radio"], input[type="checkbox"] {margin:0; padding:0; position:relative; top:1px; cursor:pointer; vertical-align:text-top}
+input[type="radio"], input[type="checkbox"] {margin:0; padding:0; position:relative; top:1px; cursor:pointer; vertical-align:baseline}
 
 *+html input[type="submit"], *+html input[type="reset"], *+html input[type="button"] {overflow:visible}
 fieldset {padding:5px 10px; margin:5px 0; border:1px solid #cccccc}
@@ -72,6 +72,7 @@ h1 a:hover {text-decoration:underline}
 h2 {font-size:1.4em; margin:15px 0 5px 0; font-weight:normal; line-height:1.1em}
 
 h2.first {margin:5px 0}
+div.page_only h2 {margin-top:30px}
 h3 {font-size:1.2em; margin:15px 0 5px 0; font-weight:bold}
 
 h3.first {margin:5px 0}
@@ -175,6 +176,9 @@ div.page_other_pages ul {list-style-type:square}
 /* контактная форма */
 div.type_contact table th, div.type_contact table td {border:none}
 input[name="contact_antispam"] {width:30px; margin-right:5px}
+
+div.type_contact table td.t1 {width:35%}
+div.type_contact p.hint {font-style:italic; font-size:.9em}
 
 
 /* --- дефолтные pages MaxSite CMS --- */

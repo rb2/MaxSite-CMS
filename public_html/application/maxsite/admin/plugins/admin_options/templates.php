@@ -83,7 +83,7 @@ mso_cur_dir_lang('admin');
 			}
 			else
 			{
-				$out .= '<div class="template_noimage">' . t('Нет изображения', 'admin') . '</div>';
+				$out .= '<div class="template_noimage">' . t('Нет изображения') . '</div>';
 			}
 			
 			$info_f = $templates_dir . $dir . '/info.php';

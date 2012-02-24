@@ -26,7 +26,7 @@ function admin_options_admin_init($args = array())
 		#			можно использовать добавочный, например demo/edit = http://сайт/admin/demo/edit
 		# Третий - название ссылки
 		
-		mso_admin_menu_add('options', $this_plugin_url, t('Основные', 'admin'), 1);
+		mso_admin_menu_add('options', $this_plugin_url, t('Основные'), 1);
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 

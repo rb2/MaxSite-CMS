@@ -5,8 +5,8 @@
  * Language file
  * (c) http://max-3000.com/
  * Author: (c) Alexander Schilling
- * Author URL: http://dignityinside.org
- * Update URL: http://forum.alexanderschilling.net
+ * Author URL: http://alexanderschilling.net
+ * Update URL: http://alexanderschilling.net
  * Installation
  */
  
@@ -14,7 +14,7 @@
 
 $lang['Ошибочные или неполные данные!'] = 'Ungenaue oder unvollständige Daten!';
 $lang['Добро пожаловать в программу установки <a href="http://max-3000.com/">MaxSite CMS</a>'] = 'Willkommen bei Installation von <a href="http://max-3000.com/">MaxSite CMS</a>';
-$lang['На первом шаге программа проверит верно ли у вас настроены ЧПУ («человекопонятный урл» - веб-адреса, удобные для восприятия человеком).'] = 'Im ersten Schritt wird das Programm überprüfen, ob Sie die nutzerfreundliche URLs richtig eingestellt haben ("nutzerfreundliche URLs" - verständliche Web-Adressen für Menschen).';
+$lang['На первом шаге программа проверит верно ли у вас настроены ЧПУ («человекопонятный урл» - веб-адреса, удобные для восприятия человеком).'] = 'Im ersten Schritt wird das Programm überprüfen, ob mod_rewrite (bzw. SEO Urls) richtig eingestellt sind.';
 $lang['При отстутствии ошибок вам будет предложено указать начальные данные.'] = 'Wenn alles ok, werden Sie aufgefordert, die Daten anzugeben.';
 $lang['Перейти к установке'] = 'Installation Starten';
 $lang['install-ru.txt'] = 'install-de.txt';
@@ -67,7 +67,7 @@ $lang['Вернитесь в начало'] = 'Gehen Sie zur Anfang';
 
 # install-common.php
 
-$lang['Очередной сайт на Maxsite CMS'] = 'Noch eine Website auf MaxSite CMS';
+$lang['Очередной сайт на Maxsite CMS'] = 'Neue Webseite auf MaxSite CMS';
 $lang['Логин:'] = 'Login:';
 $lang['Пароль:'] = 'Passwort:';
 $lang['Email:'] = 'E-Mail';

@@ -8,13 +8,13 @@
 # функция автоподключения плагина
 function page_parent_autoload($args = array())
 {
-	mso_register_widget('page_parent_widget', t('Родительские/дочерние страницы', 'plugins')); # регистрируем виджет
+	mso_register_widget('page_parent_widget', t('Родительские/дочерние страницы')); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function page_parent_uninstall($args = array())
 {	
-	mso_delete_option_mask('page_parent_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('page_parent_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -49,9 +49,9 @@ function page_parent_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Номер страницы:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'page_id', 'value'=>$options['page_id'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Номер страницы:') . '</div> '. form_input( array( 'name'=>$widget . 'page_id', 'value'=>$options['page_id'] ) ) ;
 	
 	return $form;
 }
@@ -71,7 +71,7 @@ function page_parent_widget_update($num = 1)
 	$newoptions['page_id'] = mso_widget_get_post($widget . 'page_id');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

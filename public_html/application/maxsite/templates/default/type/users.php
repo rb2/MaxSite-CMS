@@ -72,7 +72,7 @@ if ($comuser_info)
 		
 		if ($comments) // есть комментарии
 		{
-			echo '<br><h2>'. t('Его последние комментарии'). ':</h2><ul>';
+			echo '<br><h2>'. t('Комментарии'). '</h2><ul>';
 			
 			foreach ($comments as $comment)
 			{

@@ -31,7 +31,7 @@
 			$CI->db->update('comments', array('comments_comusers_id' => 0) );		
 			
 			$CI->db->where_in('comments_comusers_id', $arr_ids);
-			$CI->db->update('comments', array('comments_author_name' => t('Аноним', 'admin')) );		
+			$CI->db->update('comments', array('comments_author_name' => t('Аноним')) );		
 						
 			// удалим всю инфу о комюзере из мета
 			$CI->db->where('meta_table', 'comusers');
@@ -58,7 +58,7 @@
 		  );
 
 	$CI->table->set_template($tmpl); // шаблон таблицы
-	$CI->table->set_heading('ID', '&bull;', t('Ник', 'admin'), t('Актив.', 'admin'), t('Кол.', 'admin'), t('Последний вход', 'admin'),  t('E-mail', 'admin'), t('Сайт', 'admin'));
+	$CI->table->set_heading('ID', '&bull;', t('Ник'), t('Актив.'), t('Кол.'), t('Последний вход'),  t('E-mail'), t('Сайт'));
 
 
 	// для пагинации нам нужно знать общее количество записей

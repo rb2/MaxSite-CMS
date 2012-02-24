@@ -9,13 +9,13 @@
 # функция автоподключения плагина
 function search_form_autoload($args = array())
 {
-	mso_register_widget('search_form_widget', t('Форма поиска', 'plugins')); # регистрируем виджет
+	mso_register_widget('search_form_widget', t('Форма поиска')); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function search_form_uninstall($args = array())
 {	
-	mso_delete_option_mask('search_form_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('search_form_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -44,8 +44,8 @@ function search_form_widget_form($num = 1)
 	$options = mso_get_option($widget, 'plugins', array());
 	
 	if ( !isset($options['header']) ) $options['header'] = '';
-	if ( !isset($options['text']) ) $options['text'] = t('Что искать?', 'plugins');
-	if ( !isset($options['submit']) ) $options['submit'] = t('Поиск', 'plugins');
+	if ( !isset($options['text']) ) $options['text'] = t('Что искать?');
+	if ( !isset($options['submit']) ) $options['submit'] = t('Поиск');
 	if ( !isset($options['style_text']) ) $options['style_text'] = '';
 	if ( !isset($options['style_submit']) ) $options['style_submit'] = 'margin-left: 5px; font-size: 8pt;';
 	if ( !isset($options['text_posle']) ) $options['text_posle'] = '';
@@ -54,17 +54,17 @@ function search_form_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Текст подсказки:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'text', 'value'=>$options['text'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст подсказки:') . '</div> '. form_input( array( 'name'=>$widget . 'text', 'value'=>$options['text'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Текст на кнопке:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'submit', 'value'=>$options['submit'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст на кнопке:') . '</div> '. form_input( array( 'name'=>$widget . 'submit', 'value'=>$options['submit'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('CSS-стиль текста:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'style_text', 'value'=>$options['style_text'] ) ) ;
+	$form .= '<p><div class="t150">' . t('CSS-стиль текста:') . '</div> '. form_input( array( 'name'=>$widget . 'style_text', 'value'=>$options['style_text'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('CSS-стиль кнопки:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'style_submit', 'value'=>$options['style_submit'] ) ) ;
+	$form .= '<p><div class="t150">' . t('CSS-стиль кнопки:') . '</div> '. form_input( array( 'name'=>$widget . 'style_submit', 'value'=>$options['style_submit'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Текст внизу:', 'plugins') . '</div> '. form_textarea( array( 'name'=>$widget . 'text_posle', 'value'=>$options['text_posle'], 'rows' => '3' ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст внизу:') . '</div> '. form_textarea( array( 'name'=>$widget . 'text_posle', 'value'=>$options['text_posle'], 'rows' => '3' ) ) ;
 	
 	
 	
@@ -91,7 +91,7 @@ function search_form_widget_update($num = 1)
 
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина
@@ -99,8 +99,8 @@ function search_form_widget_custom($options = array(), $num = 1)
 {
 	$out = '';
 	if ( !isset($options['header']) ) $options['header'] = '';
-	if ( !isset($options['text']) ) $options['text'] = t('Что искать?', 'plugins');
-	if ( !isset($options['submit']) ) $options['submit'] = t('Поиск', 'plugins');
+	if ( !isset($options['text']) ) $options['text'] = t('Что искать?');
+	if ( !isset($options['submit']) ) $options['submit'] = t('Поиск');
 	if ( !isset($options['style_text']) ) $options['style_text'] = '';
 	if ( !isset($options['style_submit']) ) $options['style_submit'] = 'margin-left: 5px; font-size: 8pt;';
 	if ( !isset($options['text_posle']) ) $options['text_posle'] = '';

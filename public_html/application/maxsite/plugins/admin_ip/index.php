@@ -9,7 +9,7 @@
 # функция автоподключения плагина
 function admin_ip_autoload($args = array())
 {
-	mso_create_allow('admin_ip_edit', t('Админ-доступ к редактированию разрешенных IP', 'plugins'));
+	mso_create_allow('admin_ip_edit', t('Админ-доступ к редактированию разрешенных IP'));
 	mso_hook_add( 'admin_init', 'admin_ip_admin_init'); # хук на админку
 }
 
@@ -18,7 +18,7 @@ function admin_ip_autoload($args = array())
 # функция выполняется при деинстяляции плагина
 function admin_ip_uninstall($args = array())
 {	
-	mso_delete_option('plugin_admin_ip', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_admin_ip', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -47,7 +47,7 @@ function admin_ip_admin_init($args = array())
 		// http://localhost/codeigniter/admin/plugin_admin_ip/secret_to_reset - secret_to_reset
 		
 		$options['ip'] = '';
-		mso_add_option($options_key, $options, 'plugins');
+		mso_add_option($options_key, $options, 'plugins' );
 		mso_redirect('admin/plugin_admin_ip'); // редирект на страницу плагина
 	}
 	
@@ -99,7 +99,7 @@ function admin_ip_admin_page($args = array())
 {
 	if ( !mso_check_allow('admin_ip_admin_page') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	

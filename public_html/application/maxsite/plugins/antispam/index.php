@@ -9,7 +9,7 @@
 # функция автоподключения плагина
 function antispam_autoload($args = array())
 {
-	mso_create_allow('antispam_edit', t('Админ-доступ к antispam', 'plugins'));
+	mso_create_allow('antispam_edit', t('Админ-доступ к antispam'));
 	mso_hook_add( 'admin_init', 'antispam_admin_init'); # хук на админку
 	mso_hook_add( 'new_comments_check_spam', 'antispam_check_spam'); # хук новый комментарий
 	mso_hook_add( 'new_comments_check_spam_comusers', 'antispam_check_spam_comusers'); # хук новый комментарий для комюзера
@@ -19,7 +19,7 @@ function antispam_autoload($args = array())
 # функция выполняется при деактивации (выкл) плагина
 function antispam_deactivate($args = array())
 {	
-	mso_delete_option('plugin_antispam', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_antispam', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -40,7 +40,7 @@ function antispam_admin_init($args = array())
 	#			можно использовать добавочный, например demo/edit = http://сайт/admin/demo/edit
 	# Третий - название ссылки	
 	
-	mso_admin_menu_add('plugins', $this_plugin_url, t('Антиспам', 'plugins'));
+	mso_admin_menu_add('plugins', $this_plugin_url, t('Антиспам'));
 
 	# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 	# связанную функцию именно она будет вызываться, когда 
@@ -56,12 +56,12 @@ function antispam_admin_page($args = array())
 	# выносим админские функции отдельно в файл
 	if ( !mso_check_allow('antispam_admin_page') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Антиспам', 'plugins') . ' "; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Антиспам', 'plugins') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Антиспам') . ' "; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Антиспам') . ' - " . $args; ' );
 
 	require(getinfo('plugins_dir') . 'antispam/admin.php');
 }
@@ -106,7 +106,7 @@ function antispam_check_spam($arg = array())
 												. 'DATE: ' . $arg['comments_date'] . NR
 												. 'CONTENT: ' . NR . $arg['comments_content']
 												);
-		return array('check_spam'=>true, 'message'=>t('Для вашего IP комментирование запрещено!', 'plugins'));
+		return array('check_spam'=>true, 'message'=>t('Для вашего IP комментирование запрещено!'));
 	}
 	
 	$black_words = explode("\n", trim($options['black_words']));
@@ -126,7 +126,7 @@ function antispam_check_spam($arg = array())
 												. 'DATE: ' . $arg['comments_date'] . NR
 												. 'CONTENT: ' . NR . $arg['comments_content']
 												);
-			return array('check_spam'=>true, 'message'=>t('Вы используете запрещенные слова!', 'plugins'));
+			return array('check_spam'=>true, 'message'=>t('Вы используете запрещенные слова!'));
 		} 
 	}
 	

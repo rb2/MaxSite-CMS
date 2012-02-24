@@ -35,8 +35,8 @@
 			}
 		}
 		// pr($options['templates']);
-		mso_add_option($options_key, $options, 'plugins');
-		echo '<div class="update">' . t('Обновлено!', 'plugins') . '</div>';
+		mso_add_option($options_key, $options, 'plugins' );
+		echo '<div class="update">' . t('Обновлено!') . '</div>';
 	}
 	
 ?>
@@ -90,8 +90,8 @@ $(this).bind('mousemove', function(e){
 }
 </style>
 
-<h1><?= t('Theme switch', 'plugins') ?></h1>
-<p class="info"><?= t('Плагин позволяет переключать шаблоны сайта вашим посетителям. Отметьте те шаблоны, которые могут переключаться. Форма переключения настраивается в виджетах.', 'plugins') ?></p>
+<h1><?= t('Theme switch') ?></h1>
+<p class="info"><?= t('Плагин позволяет переключать шаблоны сайта вашим посетителям. Отметьте те шаблоны, которые могут переключаться. Форма переключения настраивается в виджетах.') ?></p>
 
 <?php
 		$options = mso_get_option($options_key, 'plugins', array());
@@ -105,10 +105,10 @@ $(this).bind('mousemove', function(e){
 		
 		if ($options['show_panel']) $checked = ' checked="checked"';
 			else $checked = '';
-		$form .= '<p><label><input type="checkbox" name="f_show_panel"' . $checked . '> ' . t('Отображать верхнюю панель', 'plugins') . '</label></p>';
+		$form .= '<p><label><input type="checkbox" name="f_show_panel"' . $checked . '> ' . t('Отображать верхнюю панель') . '</label></p>';
 		
 		$form .= '<p><label>' 
-				. t('Высота изображений в верхней панели', 'plugins')
+				. t('Высота изображений в верхней панели')
 				. ' <input type="text" name="f_height_img" size="4" value="' . $options['height_img'] . '"> ' 
 				. ' px</label></p><hr>';
 		
@@ -148,7 +148,7 @@ $(this).bind('mousemove', function(e){
 
 		echo '<form action="" method="post">' . mso_form_session('f_session_id');
 		echo $form;
-		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения', 'plugins') . '" style="margin: 25px 0 5px 0;">';
+		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 		echo '</form>';
 
 ?>

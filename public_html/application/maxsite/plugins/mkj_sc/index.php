@@ -31,7 +31,7 @@ function mkj_sc_autoload()
 // Удаление плагина.
 function mkj_sc_uninstall($args = array())
 {	
-	mso_delete_option('plugin_mkj_sc', 'plugins');
+	mso_delete_option('plugin_mkj_sc', 'plugins' );
 	return $args;
 }
 

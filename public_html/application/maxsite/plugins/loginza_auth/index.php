@@ -11,7 +11,7 @@
 # функция автоподключения плагина
 function loginza_auth_autoload()
 {
-	// должна быьб CURL
+	// должна быть CURL
 	if (function_exists('curl_init'))
 	{
 		$options = mso_get_option('plugin_loginza_auth', 'plugins', array());
@@ -24,22 +24,22 @@ function loginza_auth_autoload()
 		mso_hook_add('admin_init', 'loginza_auth_admin_init'); # хук на админку
 		mso_hook_add( 'head', 'loginza_auth_head');
 	}
-	//mso_register_widget('loginza_auth_widget', t('Форма Loginza Auth', 'plugins')); 	
+	//mso_register_widget('loginza_auth_widget', t('Форма Loginza Auth')); 	
 }
 
 # функция выполняется при активации (вкл) плагина
 function loginza_auth_activate($args = array())
 {	
-	mso_create_allow('loginza_auth_edit', t('Админ-доступ к настройкам Loginza', 'plugins') . ' ' . t('loginza_auth', __FILE__));
+	mso_create_allow('loginza_auth_edit', t('Админ-доступ к настройкам Loginza') . ' ' . t('loginza_auth'));
 	return $args;
 }
 
 # функция выполняется при деинсталяции плагина
 function loginza_auth_uninstall($args = array())
 {	
-	mso_delete_option('plugin_loginza_auth', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_loginza_auth', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('loginza_auth_edit'); // удалим созданные разрешения
-	mso_delete_option_mask('loginza_auth_widget', 'plugins'); // 
+	mso_delete_option_mask('loginza_auth_widget', 'plugins' ); // 
 	return $args;
 }
 
@@ -50,7 +50,7 @@ function loginza_auth_admin_init($args = array())
 	if ( mso_check_allow('loginza_auth_edit') ) 
 	{
 		$this_plugin_url = 'plugin_options/loginza_auth'; // url и hook
-		mso_admin_menu_add('plugins', $this_plugin_url, t('Loginza Auth', 'plugins'));
+		mso_admin_menu_add('plugins', $this_plugin_url, t('Loginza Auth'));
 		mso_admin_url_hook ($this_plugin_url, 'plugin_loginza_auth');
 	}
 	
@@ -64,7 +64,7 @@ function loginza_auth_mso_options()
 	
 	if ( !mso_check_allow('loginza_auth_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return;
 	}
 	
@@ -409,17 +409,17 @@ function loginza_auth_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Текст после формы:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'after_form', 'value'=>$options['after_form'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст после формы:') . '</div> '. form_input( array( 'name'=>$widget . 'after_form', 'value'=>$options['after_form'] ) ) ;
 	
-	$form .= '<p><div class="t150">&nbsp;</div> '. t('Например, ссылка на регистрацию', 'plugins') ;
+	$form .= '<p><div class="t150">&nbsp;</div> '. t('Например, ссылка на регистрацию') ;
 	
 	$dropdown_items = array( 0 => 'виджет', 1 => 'текстовая строка');
 	
-	$form .= '<p><div class="t150">' . t('Ссылка авторизации в виде:', 'plugins') . '</div> '. form_dropdown(  $widget . 'widget_type', $dropdown_items, $options['widget_type'] ) ;
+	$form .= '<p><div class="t150">' . t('Ссылка авторизации в виде:') . '</div> '. form_dropdown(  $widget . 'widget_type', $dropdown_items, $options['widget_type'] ) ;
 	
-	$form .= '<p><div class="t150">&nbsp;</div> '. t('<b>Доступные провайдеры:</b>', 'plugins') ;
+	$form .= '<p><div class="t150">&nbsp;</div> '. t('<b>Доступные провайдеры:</b>') ;
 		
     $form .= '<p><div class="t150">&nbsp;Google</div> '. form_checkbox(array( 'name'=>$widget . 'provider_google', 'value'=>'provider_google', 'checked'=>$options['provider_google'])) ;	
 	
@@ -477,7 +477,7 @@ function loginza_auth_widget_update($num = 1)
 	$newoptions['provider_openid'] = mso_widget_get_post($widget . 'provider_openid');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 */
 

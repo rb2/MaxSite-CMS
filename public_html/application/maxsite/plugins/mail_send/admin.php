@@ -20,7 +20,7 @@
 		$options['message'] = $post['f_message'];
 		$options['from'] = $post['f_from'];
 		
-		mso_add_option($options_key, $options, 'plugins'); // сохраним в опциях введенные данные
+		mso_add_option($options_key, $options, 'plugins' ); // сохраним в опциях введенные данные
 	
 		if (isset($post['f_submit_send'])) // разослать
 		{
@@ -36,7 +36,7 @@
 			
 			if ($error)
 			{
-				echo '<div class="error">' . t('Ошибки: ', 'plugins') . $error . '</div>';
+				echo '<div class="error">' . t('Ошибки: ') . $error . '</div>';
 			}
 			else
 			{
@@ -66,15 +66,15 @@
 						$res = mso_mail($email, $post['f_subject'], $post['f_message'], $post['f_from'], $preferences);
 						
 						if ($res)
-							echo '<div class="update">' . t('Отправлено: ', 'plugins') . $email . '</div>';
+							echo '<div class="update">' . t('Отправлено: ') . $email . '</div>';
 						else
 						{
-							echo '<div class="error">' . t('Ошибка отправки почты на сервере.', 'plugins') . '</div>';
+							echo '<div class="error">' . t('Ошибка отправки почты на сервере.') . '</div>';
 							break;
 						}
 					}
 					else 
-						echo '<div class="error">' . t('Неверный адрес: ', 'plugins') . $email . '</div>';
+						echo '<div class="error">' . t('Неверный адрес: ') . $email . '</div>';
 					
 				}
 			}
@@ -82,8 +82,8 @@
 	}
 	
 ?>
-<h1><?= t('Mail Send', __FILE__) ?></h1>
-<p class="info"><?= t('C помощью этого плагина вы можете организовать рассылку email-сообщений по списку.', __FILE__) ?></p>
+<h1><?= t('Mail Send') ?></h1>
+<p class="info"><?= t('C помощью этого плагина вы можете организовать рассылку email-сообщений по списку.') ?></p>
 
 <?php
 		$options = mso_get_option($options_key, 'plugins', array());
@@ -95,22 +95,22 @@
 
 		echo '<form action="" method="post">' . mso_form_session('f_session_id');
 
-		echo '<p><strong>' . t('Тема письма:', 'plugins') . '</strong></p><input name="f_subject" type="text" style="width: 100%" value="' 
+		echo '<p><strong>' . t('Тема письма:') . '</strong></p><input name="f_subject" type="text" style="width: 100%" value="' 
 			. $options['subject'] . '">';
 
-		echo '<p><strong>' . t('От кого (email):', 'plugins') . '</strong></p><input name="f_from" type="text" style="width: 100%" value="' 
+		echo '<p><strong>' . t('От кого (email):') . '</strong></p><input name="f_from" type="text" style="width: 100%" value="' 
 			. $options['from'] . '">';
 
-		echo '<p><strong>' . t('Файл вложения (путь к файлу в «uploads»):', 'plugins') . '</strong></p><input name="f_files" type="text" style="width: 100%" value="' . $options['files'] . '">';
+		echo '<p><strong>' . t('Файл вложения (путь к файлу в «uploads»):') . '</strong></p><input name="f_files" type="text" style="width: 100%" value="' . $options['files'] . '">';
 		
-		echo '<p><strong>' . t('Текст письма:', 'plugins') . '</strong></p><textarea name="f_message" style="width: 100%; height: 200px;">' 
+		echo '<p><strong>' . t('Текст письма:') . '</strong></p><textarea name="f_message" style="width: 100%; height: 200px;">' 
 			. htmlspecialchars($options['message']) . '</textarea>';
 
-		echo '<p><strong>' . t('Список рассылки (один email в строке):', 'plugins') . '</strong></p><textarea name="f_list" style="width: 100%; height: 200px;">' . htmlspecialchars($options['maillist']). '</textarea>';
+		echo '<p><strong>' . t('Список рассылки (один email в строке):') . '</strong></p><textarea name="f_list" style="width: 100%; height: 200px;">' . htmlspecialchars($options['maillist']). '</textarea>';
 		
 		
-		echo '<br><input type="submit" name="f_submit_send" value="' . t('Разослать', 'plugins') . '" style="margin: 25px 0 5px 0;">';
-		echo '<input type="submit" name="f_save_list" value="' . t('Только сохранить список', 'plugins') . '" style="margin: 25px 0 5px 0;">';
+		echo '<br><input type="submit" name="f_submit_send" value="' . t('Разослать') . '" style="margin: 25px 0 5px 0;">';
+		echo '<input type="submit" name="f_save_list" value="' . t('Только сохранить список') . '" style="margin: 25px 0 5px 0;">';
 		echo '</form>';
 		
 ?>

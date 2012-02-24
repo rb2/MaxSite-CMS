@@ -30,7 +30,7 @@ function admin_comments_admin_init($args = array())
 		# Третий - название ссылки	
 		# четвертый номер по порядку
 		
-		mso_admin_menu_add('page', $this_plugin_url, t('Комментарии', 'admin'), 3);
+		mso_admin_menu_add('page', $this_plugin_url, t('Комментарии'), 3);
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 

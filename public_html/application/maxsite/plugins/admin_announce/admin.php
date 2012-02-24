@@ -21,9 +21,9 @@
 		$options['show_future']     = isset( $post['f_show_future'])     ? 1 : 0;
 		$options['use_visual']      = isset( $post['f_use_visual'])      ? 1 : 0;
 
-		mso_add_float_option($options_key, $options, 'plugins');
+		mso_add_float_option($options_key, $options, 'plugins' );
 
-		echo '<div class="update">' . t('Обновлено!', 'plugins') . '</div>';
+		echo '<div class="update">' . t('Обновлено!') . '</div>';
 	}
 
 ?>
@@ -41,7 +41,7 @@
 		if ( !isset($options['use_visual']) )      $options['use_visual']      = false;
 
 
-		$form  = '<h2>' . t('Настройки', 'plugins') . '</h2>';
+		$form  = '<h2>' . t('Настройки') . '</h2>';
 
 		$chk   = $options['admin_statistic'] ? ' checked="checked"  ' : '';
 		$form .= '<p><label><input name="f_admin_statistic" type="checkbox" ' . $chk . '> <strong>' . t('Показывать на стартовой странице админки статистику') . '</strong></label></p>';
@@ -70,7 +70,7 @@
 						'action'  => '',
 						'content' => htmlspecialchars($options['admin_announce']),
 						'do'      => mso_form_session('f_session_id'). $form,
-						'posle'   => '<br><input type="submit" name="f_submit" value="' . t('Сохранить изменения', 'plugins') . '" style="margin: 25px 0 5px 0;">',
+						'posle'   => '<br><input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">',
 						);
 						
 			if (mso_hook_present('editor_custom')) mso_hook('editor_custom', $ad_config);
@@ -84,7 +84,7 @@
 
 			echo '<form action="" method="post">' . mso_form_session('f_session_id');
 			echo $form;
-			echo '<br><input type="submit" name="f_submit" value="' . t('Сохранить изменения', 'plugins') . '" style="margin: 25px 0 5px 0;">';
+			echo '<br><input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 			echo '</form>';
 		}
 

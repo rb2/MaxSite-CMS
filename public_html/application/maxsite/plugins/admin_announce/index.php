@@ -9,7 +9,7 @@
 # функция автоподключения плагина
 function admin_announce_autoload($args = array())
 {
-	mso_create_allow('admin_announce_edit', t('Админ-доступ к административному анонсу', __FILE__));
+	mso_create_allow('admin_announce_edit', t('Админ-доступ к административному анонсу'));
 	mso_hook_add( 'admin_init', 'admin_announce_admin_init'); # хук на админку
 	mso_hook_add( 'admin_home', 'admin_announce'); # хук на админ-анонс
 	mso_hook_add( 'admin_head', 'admin_announce_head');
@@ -19,7 +19,7 @@ function admin_announce_autoload($args = array())
 # функция выполняется при деактивации (выкл) плагина
 function admin_announce_uninstall($args = array())
 {
-	mso_delete_float_option('plugin_admin_announce', 'plugins'); // удалим созданные опции
+	mso_delete_float_option('plugin_admin_announce', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('admin_announce_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -60,7 +60,7 @@ function admin_announce_admin_init($args = array())
 	}
 
 	$this_plugin_url = 'plugin_admin_announce'; // url и hook
-	mso_admin_menu_add('plugins', $this_plugin_url, t('Админ-анонс', __FILE__));
+	mso_admin_menu_add('plugins', $this_plugin_url, t('Админ-анонс'));
 	mso_admin_url_hook ($this_plugin_url, 'admin_announce_admin_page');
 
 	return $args;
@@ -73,12 +73,12 @@ function admin_announce_admin_page($args = array())
 	# выносим админские функции отдельно в файл
 	if ( !mso_check_allow('admin_announce_admin_page') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Админ-анонс', __FILE__) . ' "; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Админ-анонс', __FILE__) . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Админ-анонс') . ' "; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Админ-анонс') . ' - " . $args; ' );
 
 	require(getinfo('plugins_dir') . 'admin_announce/admin.php');
 }
@@ -151,7 +151,7 @@ $CI = & get_instance();
 			'heading_cell_end'		=> '</th>',
 				);
 	$CI->table->set_template($tmpl);
-	$CI->table->set_heading(t('Аватар', __FILE__), t('ID', 'admin'), t('Логин', 'admin'), t('Ник', 'admin'), t('Время последнего визита', __FILE__));
+	$CI->table->set_heading(t('Аватар'), t('ID', 'admin'), t('Логин', 'admin'), t('Ник', 'admin'), t('Время последнего визита'));
 	//$out = NR;
 	foreach ( $all_users as $user ) :
 		$CI->table->add_row(
@@ -161,16 +161,16 @@ $CI = & get_instance();
 							$user['users_nik'],
 							$user['users_last_visit']
 							);
-		if ($user['users_id'] == $users_id) $out = NR . '<div class="info">' . t('Ваш последний визит: ', __FILE__) . $user['users_last_visit'] . '</div>' . NR;
+		if ($user['users_id'] == $users_id) $out = NR . '<div class="info">' . t('Ваш последний визит: ') . $user['users_last_visit'] . '</div>' . NR;
 	endforeach;
 
 //***********************************************************************
 	$tabs[] = array(
-					t('Статистика', __FILE__),
-					'<div class="info"><ul><li>' . t('Всего опубликованных страниц: ', __FILE__) . $count . '</li><li>' . t('Всего просмотров: ', __FILE__) . $summ .
-					'</li><li>' . t('Дельта подсчёта: ', __FILE__) . $options['delta'] .
-					'</li><li>' . t('Максимум просмотров страницы: ', __FILE__) . $maxcount. '</li><li>' . t('Минимум просмотров страницы: ', __FILE__). $mincount.
-					'</li><li>' . t('В среднем: ', __FILE__). round($avgcount) . '</li></ul></div>' . NR . $out .
+					t('Статистика'),
+					'<div class="info"><ul><li>' . t('Всего опубликованных страниц: ') . $count . '</li><li>' . t('Всего просмотров: ') . $summ .
+					'</li><li>' . t('Дельта подсчёта: ') . $options['delta'] .
+					'</li><li>' . t('Максимум просмотров страницы: ') . $maxcount. '</li><li>' . t('Минимум просмотров страницы: '). $mincount.
+					'</li><li>' . t('В среднем: '). round($avgcount) . '</li></ul></div>' . NR . $out .
 					$CI->table->generate()
 					);
 //-----------------------------------------------------------------------
@@ -178,12 +178,12 @@ $CI = & get_instance();
 	$CI->table->clear();
 	$tmpl['table_open'] = '<table class="page tablesorter" id="table-1">';
 	$CI->table->set_template($tmpl);
-	$CI->table->set_heading(t('Заголовок', __FILE__), t('Просмотров', __FILE__), t('Дата публикации', 'admin'));
+	$CI->table->set_heading(t('Заголовок'), t('Просмотров'), t('Дата публикации', 'admin'));
 
 	foreach ( $all_title as $page ) :
 		if ( $page['page_view_count'] > ($maxcount - $options['delta']) )
 		$CI->table->add_row(
-							'<a href="' . getinfo('site_url') . 'page/' . $page['page_slug'] . '" target="_blank">' . $page['page_title'] . '</a><br>' . '(<a href="' . getinfo('site_admin_url'). 'page_edit/' . $page['page_id']. '">' . t('редактировать', __FILE__). '</a>)',
+							'<a href="' . getinfo('site_url') . 'page/' . $page['page_slug'] . '" target="_blank">' . $page['page_title'] . '</a><br>' . '(<a href="' . getinfo('site_admin_url'). 'page_edit/' . $page['page_id']. '">' . t('редактировать'). '</a>)',
 							$page['page_view_count'],
 							$page['page_date_publish']
 							);
@@ -191,7 +191,7 @@ $CI = & get_instance();
 
 //***********************************************************************
 	$tabs[] = array(
-					t('Популярные страницы', __FILE__),
+					t('Популярные страницы'),
 					$CI->table->generate()
 					);
 //-----------------------------------------------------------------------
@@ -199,12 +199,12 @@ $CI = & get_instance();
 	$CI->table->clear();
 	$tmpl['table_open'] = '<table class="page tablesorter" id="table-2">';
 	$CI->table->set_template($tmpl);
-	$CI->table->set_heading(t('Заголовок', __FILE__), t('Просмотров', __FILE__), t('Дата публикации', 'admin'));
+	$CI->table->set_heading(t('Заголовок'), t('Просмотров'), t('Дата публикации', 'admin'));
 
 	foreach ( $all_title as $page ) :
 		if ( ($page['page_view_count'] < ($avgcount + $options['delta'])) and ($page['page_view_count'] > ($avgcount - $options['delta'])) )
 		$CI->table->add_row(
-							'<a href="' . getinfo('site_url') . 'page/' . $page['page_slug'] . '" target="_blank">' . $page['page_title'] . '</a><br>' . '(<a href="' . getinfo('site_admin_url'). 'page_edit/' . $page['page_id']. '">' . t('редактировать', __FILE__). '</a>)',
+							'<a href="' . getinfo('site_url') . 'page/' . $page['page_slug'] . '" target="_blank">' . $page['page_title'] . '</a><br>' . '(<a href="' . getinfo('site_admin_url'). 'page_edit/' . $page['page_id']. '">' . t('редактировать'). '</a>)',
 							$page['page_view_count'],
 							$page['page_date_publish']
 							);
@@ -212,7 +212,7 @@ $CI = & get_instance();
 
 //***********************************************************************
 	$tabs[] = array(
-					t('Средние', __FILE__),
+					t('Средние'),
 					$CI->table->generate()
 					);
 //-----------------------------------------------------------------------
@@ -220,12 +220,12 @@ $CI = & get_instance();
 	$CI->table->clear();
 	$tmpl['table_open'] = '<table class="page tablesorter" id="table-3">';
 	$CI->table->set_template($tmpl);
-	$CI->table->set_heading(t('Заголовок', __FILE__), t('Просмотров', __FILE__), t('Дата публикации', 'admin'));
+	$CI->table->set_heading(t('Заголовок'), t('Просмотров'), t('Дата публикации', 'admin'));
 
 	foreach ( $all_title as $page ) :
 		if ( $page['page_view_count'] < ($mincount + $options['delta']) )
 		$CI->table->add_row(
-							'<a href="' . getinfo('site_url') . 'page/' . $page['page_slug'] . '" target="_blank">' . $page['page_title'] . '</a><br>' . '(<a href="' . getinfo('site_admin_url'). 'page_edit/' . $page['page_id']. '">' . t('редактировать', __FILE__). '</a>)',
+							'<a href="' . getinfo('site_url') . 'page/' . $page['page_slug'] . '" target="_blank">' . $page['page_title'] . '</a><br>' . '(<a href="' . getinfo('site_admin_url'). 'page_edit/' . $page['page_id']. '">' . t('редактировать'). '</a>)',
 							$page['page_view_count'],
 							$page['page_date_publish']
 							);
@@ -233,7 +233,7 @@ $CI = & get_instance();
 
 //***********************************************************************
 	$tabs[] = array(
-					t('Непопулярные страницы', __FILE__),
+					t('Непопулярные страницы'),
 					$CI->table->generate()
 					);
 //-----------------------------------------------------------------------
@@ -264,8 +264,8 @@ function admin_announce($args = array())
 	$tabs = array();
 	if (trim($options['admin_announce']) <> '')
 	{
-		if ($options['use_visual'] == 1) $tabs[] = array( t('Админ-анонс', __FILE__), NR. '<div class="info">'. mso_hook('content', $options['admin_announce']). '</div>'. NR );
-			else $tabs[] = array( t('Админ-анонс', __FILE__),  NR. '<div class="info">'. $options['admin_announce']. '</div>'. NR );
+		if ($options['use_visual'] == 1) $tabs[] = array( t('Админ-анонс'), NR. '<div class="info">'. mso_hook('content', $options['admin_announce']). '</div>'. NR );
+			else $tabs[] = array( t('Админ-анонс'),  NR. '<div class="info">'. $options['admin_announce']. '</div>'. NR );
 	}
 //-----------------------------------------------------------------------
 	if ( $options['admin_statistic'] and ($options['admin_showall'] or mso_check_allow('admin_announce_admin_page')) )

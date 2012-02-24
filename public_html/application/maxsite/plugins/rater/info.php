@@ -2,7 +2,7 @@
 
 $info = array(
 	'name' => 'Rater',
-	'description' => t('Оценка статей посетителями', 'plugins'),
+	'description' => t('Оценка статей посетителями'),
 	'version' => '1.1',
 	'author' => 'MAX',
 	'plugin_url' => 'http://max-3000.com/',

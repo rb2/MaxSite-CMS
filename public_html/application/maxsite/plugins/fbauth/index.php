@@ -23,14 +23,14 @@ function fbauth_autoload()
 # функция выполняется при активации (вкл) плагина
 function fbauth_activate($args = array())
 {	
-	mso_create_allow('fbauth_edit', t('Админ-доступ к настройкам Facebook Auth', 'plugins') . ' ' . t('fbauth', __FILE__));
+	mso_create_allow('fbauth_edit', t('Админ-доступ к настройкам Facebook Auth') . ' ' . t('fbauth'));
 	return $args;
 }
 
 # функция выполняется при деинсталяции плагина
 function fbauth_uninstall($args = array())
 {	
-	mso_delete_option('plugin_fbauth', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_fbauth', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('fbauth_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -41,7 +41,7 @@ function fbauth_admin_init($args = array())
 	if ( mso_check_allow('fbauth_edit') ) 
 	{
 		$this_plugin_url = 'plugin_options/fbauth'; // url и hook
-		mso_admin_menu_add('plugins', $this_plugin_url, t('Facebook Auth', 'plugins'));
+		mso_admin_menu_add('plugins', $this_plugin_url, t('Facebook Auth'));
 		mso_admin_url_hook ($this_plugin_url, 'plugin_fbauth');
 	}
 	
@@ -55,7 +55,7 @@ function fbauth_mso_options()
 	
 	if ( !mso_check_allow('fbauth_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return;
 	}
 	
@@ -65,14 +65,14 @@ function fbauth_mso_options()
 		array(
 			'app_id' => array(
 							'type' => 'text', 
-							'name' => t('ID приложения', __FILE__), 
+							'name' => t('ID приложения'), 
 							'description' => '', 
 							'default' => ''
 						),
 						
 			'app_secret' => array(
 							'type' => 'text', 
-							'name' => t('Секрет приложения', __FILE__), 
+							'name' => t('Секрет приложения'), 
 							'description' => '', 
 							'default' => ''
 						),
@@ -104,7 +104,7 @@ function fbauth_page_comment_form($args = array())
 # хук на форму логина
 function fbauth_login_form_auth($text = '') 
 {
-	$text .= '<a class="login-form-auth fbauth" title="' . t('Вход с помощью Facebook.com', 'plugins') . '" href="' . getinfo('siteurl') . 'maxsite-fbauth">Facebook</a>[end]';
+	$text .= '<a class="login-form-auth fbauth" title="' . t('Вход с помощью Facebook.com') . '" href="' . getinfo('siteurl') . 'maxsite-fbauth">Facebook</a>[end]';
 	return $text;
 }
 
@@ -142,8 +142,8 @@ function fbauth_init($arg = array())
 		if (!function_exists('json_decode')) die('Не найдено PHP-расширение JSON');
 		
 		$options = mso_get_option('plugin_fbauth', 'plugins', array());
-		if (!isset($options['app_id']) or !$options['app_id']) die(t('Не задан app_id', 'plugins')); 
-		if (!isset($options['app_secret']) or !$options['app_secret']) die(t('Не задан app_secret', 'plugins'));
+		if (!isset($options['app_id']) or !$options['app_id']) die(t('Не задан app_id')); 
+		if (!isset($options['app_secret']) or !$options['app_secret']) die(t('Не задан app_secret'));
 			
 		$app_id = $options['app_id'];
 		$app_secret = $options['app_secret'];
@@ -177,7 +177,7 @@ function fbauth_init($arg = array())
 
 		if (strpos($user0, '400 Bad Request') !== false)
 		{
-			die(t('Ошибка авторизации (400 Bad Request)', 'plugins'));
+			die(t('Ошибка авторизации (400 Bad Request)'));
 		}
 		else
 		{
@@ -193,7 +193,7 @@ function fbauth_init($arg = array())
 			else
 			{
 				// ошибочный или отстутсвующий email
-				die(t('Не удалось авторизоваться с помощью Facebook. Возможно это связано с тем, что в ответ на запрос сервис не возвратил ваш e-mail', 'plugins'));
+				die(t('Не удалось авторизоваться с помощью Facebook. Возможно это связано с тем, что в ответ на запрос сервис не возвратил ваш e-mail'));
 			}
 			
 			die;

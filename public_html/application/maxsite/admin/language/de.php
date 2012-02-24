@@ -4,10 +4,10 @@
  * MaxSite CMS
  * Language file
  * (c) http://max-3000.com/
- * Author: (c) Александр Шиллинг
- * Author URL: http://dignityinside.org
- * Update URL: http://forum.alexanderschilling.net
- * Перевод панели администратора
+ * Author: (c) Alexander Schilling
+ * Author URL: http://alexanderschilling.net
+ * Update URL: http://alexanderschilling.net
+ * Admin-Panel
  */
 
 # admin/home
@@ -15,11 +15,11 @@ $lang['Начало'] = 'Home';
 $lang['Информация'] = 'Dashboard';
 $lang['Переход к сайту'] = 'Website Anzeigen';
 $lang['Выход'] = 'Abmelden';
-
 $lang['Админ-доступ к «Плагинам»'] = 'Admin Zugriff auf die «Plugins»';
 $lang['Админ-панель'] = 'Admin Panel';
 $lang['Версия'] = 'Version';
 $lang['выйти'] = 'Abmelden';
+
 $lang['Добро пожаловать в MaxSite CMS!'] = 'Willkommen bei MaxSite CMS!';
 $lang['Доступ запрещен'] = 'Zugriff verweigert';
 $lang['Настройки'] = 'Einstellungen';
@@ -29,26 +29,25 @@ $lang['Плагины'] = 'Plugins';
 $lang['Пользователи'] = 'Benutzer';
 $lang['Пользователь:'] = 'Benutzer:';
 $lang['Работает на <a href="http://max-3000.com/" style="color: white;">MaxSite CMS</a>.'] = 'Danke, dass du <a href="http://max-3000.com/" style="color: white;">MaxSite CMS</a> benutzt.';
-$lang['Сохранить изменения'] = 'Übernehmen';
+$lang['Сохранить изменения'] = 'Änderungen übernehmen';
 $lang['Сохранить'] = 'Übernehmen';
 $lang['Страница создавалась {elapsed_time} секунд. Потребление памяти: {memory_usage}. Запросов MySQL:'] = 'Diese Seite wurde in {elapsed_time} sek. generiert. Speichernutzung: {memory_usage}. MySQL Abfragen:';
 
-$lang['Google Code (для тестеров)'] = 'Google Code (nur für Test-Team)';
-$lang['Latest-версия'] = 'Latest-Version';
 $lang['Ваша версия <strong>MaxSite CMS</strong>'] = 'Ihre Version von <strong>MaxSite CMS</strong>';
 $lang['Вы можете %sвыполнить обновление'] = 'Sie können einen %sUpgrade durchführen';
 $lang['Кэш удален'] = 'Cache wurde gelöscht';
-$lang['Обновление не требуется.'] = 'Ein Upgrade ist nicht erforderlich.';
-$lang['Официальный сайт'] = 'Offizielle Website (nur auf Russisch)';
+$lang['Обновление не требуется.'] = 'Upgrade ist nicht erforderlich.';
 $lang['Ошибка соединения с max-3000.com!'] = 'Problem beim Verbinden mit max-3000.com!';
 $lang['Полученная информация является ошибочной'] = 'Die erhaltenen Informationen ist nicht korrekt';
 $lang['Проверить последнюю версию MaxSite CMS'] = 'Nach neuste MaxSite CMS Version suchen';
 $lang['Сбросить кэш системы'] = 'System-Cache zurücksetzen';
 $lang['Текущая официальная версия'] = 'Die aktuelle offizielle Version';
-$lang['Форум поддержки'] = 'Support-Forum (nur auf Russisch)';
-$lang['Центр помощи'] = 'Hilfe (nur auf Russisch)';
-$lang['ЧАВО по MaxSite CMS для новичков'] = 'MaxSite CMS FAQ für Anfänger (nur auf Russisch)';
-$lang['Последняя опубликованная версия'] = 'Die aktuelle offizielle Version';
+
+$lang['Официальный сайт'] = 'Offizielle Website (auf Russisch)';
+$lang['Форум поддержки'] = 'Support-Forum (auf Russisch)';
+$lang['Центр помощи'] = 'Hilfe (auf Russisch)';
+$lang['ЧАВО по MaxSite CMS для новичков'] = 'MaxSite CMS FAQ für Anfänger (auf Russisch)';
+$lang['Последняя опубликованная версия'] = 'Aktuelle offizielle Version';
 
 # admin_cat
 $lang['Рубрики'] = 'Kategorien';
@@ -66,6 +65,8 @@ $lang['Номер родителя'] = 'Nummer der übergeordnete Kategorie';
 $lang['Номер рубрики. В этой рубрике [COUNT] страниц'] = 'Nummer der Kategorie. In diese Kategorie sind [COUNT] Seiten';
 $lang['Номер рубрики. Записей в этой рубрике: [COUNT]'] = 'Nummer der Kategorie. Einträge in dieser Kategorie: [COUNT]';
 $lang['Удалить рубрику?'] = 'Kategorie entfernen?';
+$lang['Добавлено!'] = 'Hinzugefügt!';
+$lang['Ошибка добавления!'] = 'Fehler bei Hinzufügung!';
 
 # admin_comments
 $lang['Фильтр:'] = 'Filter:';
@@ -77,7 +78,7 @@ $lang['Вернуться к комментарию на сайте'] = 'Zurück
 $lang['Все'] = 'Alle';
 $lang['Готово'] = 'Fertig';
 $lang['Дата'] = 'Datum';
-$lang['Запретить'] = 'Verweigern';
+$lang['Запретить'] = 'Blockieren';
 $lang['К списку комментариев'] = 'Zur Liste der Kommentare';
 $lang['Комментарии'] = 'Kommentare';
 $lang['комюзер'] = 'komuser';
@@ -197,7 +198,14 @@ $lang['Служебные настройки зависят от сервера'
 $lang['Смещение времени'] = 'Zeitzone';
 $lang['Время сервера:'] = 'Server Zeit';
 $lang['С учётом поправки:'] = 'Mit Korrektur';
+$lang['Выберите часовое смещение времени вашего сервера. Оно будет учитываться при выводе дат на сайте. PHP_START _time_zone_current_time PHP_END'] = 'Wählen Sie Ihre Zeitzone aus. Sie wird bei veröffentlichung beachtet. PHP_START _time_zone_current_time PHP_END';
+
 $lang['Вариант загрузки jQuery'] = 'Alternative Download von jQuery';
+$lang['Со своего сайта']='Eigene Webseite';
+$lang['C сайта Google']='Von Google Webseite';
+$lang['C сайта Microsoft']='Von Microsoft Webseite';
+$lang['C сайта jQuery']='Von jQuery Webseite';
+$lang['C сайта Яндекса'] = 'Von Yandex Webseite';
 
 $lang['Выберите вариант подключения библиотеки jQuery.'] = 'Wählen Sie eine Verbindungsoption von der Bibliothek jQuery.';
 $lang['Укажите необходимые email-адреса'] = 'Geben Sie die E-Mail-Adressen ein';
@@ -217,38 +225,70 @@ $lang['Если отметить эту опцию, то для комюзера
 $lang['Разрешить комментарии от анонимов'] = 'Kommentare von anonyme erlauben';
 $lang['Отметьте эту опцию, если вы разрешаете комментарии от анонимов.'] = 'Wählen Sie die Option aus, wenn Sie Kommentare von Anonyme erlauben möchten.';
 $lang['Разрешить комментарии от комюзеров'] = 'Kommentare von Komuser erlauben';
+
+$lang['Разрешить отображать ссылку комюзера'] = 'Komuser Link anzeigen erlauben';
+$lang['Отметьте эту опцию, если нужно выводить ссылку на сайт комментатора. Ссылка будет оформлена как nofollow.'] = 'Wählen Sie diese Option aus, wenn Sie einen Link auf Kommentator Webseite anzeigen möchten. Dieser link wird mit dem Eingenschaft nofollow makiert.';
+
 $lang['Отметьте эту опцию, если вы разрешаете комментарии от комюзеров.'] = 'Wählen Sie die Option aus, wenn Sie Kommentare von Komuser erlauben möchten.';
 $lang['Автоматическая активация новых комюзеров'] = 'Automatische Aktivierung von neue Komusers';
 $lang['При включении этой опции новым комюзерам не потребуется выполнять активацию указанного при регистрации адреса email.'] = 'Wenn Sie diese Option auswählen, wird die E-Mail bei Registrierung nicht überprüft.';
 $lang['Уведомления о комментариях'] = 'Benachrichtigung über neue Kommentare';
-$lang['Если не хотите получать уведомления о комментариях на почту, выберите пункт «Ни от кого».'] = 'Wenn Sie keine Benachrichtigung auf E-Mail erhalten möchten, wählen Sie die Option «Von niemand';
+
+$lang['Если не хотите получать уведомления о комментариях на почту, выберите пункт «Ни от кого».'] = 'Wenn Sie keine Benachrichtigung auf E-Mail erhalten möchten, wählen Sie die Option «Keine Benachtichigung»';
+$lang['От всех'] = 'Von allen';
+$lang['От анонимов и комментаторов'] = 'Von anonym und Kommentatoren';
+$lang['От комментаторов'] = 'Von Kommentatoren';
+$lang['От анонимов'] = 'Von Anonymen';
+$lang['Требующие модерации'] = 'Die überprüft werden sollen';
+$lang['Ни от кого'] = 'Keine Benachrichtigun';
+
 $lang['Разрешить рассылку подписчикам'] = 'Newsletter senden an Abonnenten erlauben';
 $lang['Если хотите выключить рассылку подписчикам, уберите эту галочку.'] = 'Wenn Sie keine Newsletter an Abonnenten erlauben möchten, dann entfernen Sie den Kreuz.';
+
 $lang['Подсказка для анонимов (модерация)'] = 'Tipp für den anonymen (Moderation)';
+$lang['Используйте нормальные имена. Ваш комментарий будет опубликован после проверки.'] = 'Verwenden Sie echte Namen. Ihr Kommentar wird nach überprüfung veröffentlicht.';
+
 $lang['Укажите подсказку для анонимов (с модерацией), которая выводится в форме комментариев.'] = 'Geben Sie hier den Tipp für anonyme ein (mit Moderation).';
 $lang['Подсказка для анонимов'] = 'Tipp für anonyme';
+$lang['Используйте нормальные имена.'] = 'Verwenden Sie echte Namen.';
+
 $lang['Укажите подсказку для анонимов (без модерации), которая выводится в форме комментариев.'] = 'Geben Sie hier den Tipp für anonyme ein (ohne Moderation).';
 $lang['Подсказка для комюзеров'] = 'Tipp für Komuser';
+// сюда вписать перевод ещё нужно
+$lang['Если вы уже зарегистрированы как комментатор или хотите зарегистрироваться, укажите пароль и свой действующий email. При регистрации на указанный адрес придет письмо с кодом активации и ссылкой на ваш персональный аккаунт, где вы сможете изменить свои данные, включая адрес сайта, ник, описание, контакты и т.д., а также подписку на новые комментарии.'] = '';
+
 $lang['Укажите подсказку для комюзеров, которая выводится в форме комментариев.'] = 'Geben Sie hier den Tipp für Komuser ein';
 $lang['Настройки админ-панели'] = 'Admin-Panel Einstellen';
 $lang['Шаблон админ-панели'] = 'Admin-Panel Themes';
-$lang['Получать анонсы MaxSite CMS'] = 'MaxSite CMS News bekommen';
+$lang['Получать анонсы MaxSite CMS'] = 'MaxSite CMS Nachrichten bekommen';
 $lang['Отметьте, если хотите получать последние анонсы с официального сайта MaxSite CMS. Они будут отображаться на странице «Информация»'] = 'Wählen aus, wenn Sie die letzte News von MaxSite CMS bekommen möchten. Sie werden auf der Seite Dashboard angezeigt (nur auf Russisch).';
 $lang['Работа с загружаемыми файлами'] = 'Hochgeladene Dateien';
 $lang['Размер для изображений'] = 'Größe für Bilder';
 $lang['Укажите дефолтный максимальный размер изображений при загрузке. Это значение будет использовано на странице «Загрузки»'] = 'Geben Sie eine max. Größe für das Bild bei Hochladen ein. Diese Wert wird auf der Seite «Upload» verwendet.';
 $lang['Размер миниатюры'] = 'Größe der Thumbnails';
 $lang['Укажите размер миниатюры по-умолчанию. Этот размер будет использоваться на странице «Загрузки».'] = 'Geben Sie eine Größe für Thumbnails ein. Diese Wert wird auf der Seite «Upload» verwendet.';
+
 $lang['Способ миниатюры'] = 'Methode der Thumbnails';
 $lang['Способ создания миниатюры по умолчанию'] = 'Methode für Erstellung der Thumbnails festlegen.';
+$lang['Пропорциональное уменьшение'] = 'Proportionale Verkleinerung';
+
 $lang['Ставить ватермарку'] = 'Wasserzeichen setzten';
 $lang['Примечание: водяной знак должен быть файлом <strong>watermark.png</strong> и находиться в каталоге <strong>uploads</strong>'] = 'Hinweis: Wasserzeichen muss ein Datei sein, mit dem Name <strong>watermark.png</strong> und sich in den Ordner <strong>uploads</strong> befinden.';
 $lang['Способ ватермарки'] = 'Methode der Wasserzeichen';
 $lang['Способ размещения водяного знака'] = 'Methode zur Setzung des Wasserzeichens.';
+
 $lang['Отображание файлов в загрузках'] = 'Dateien in Upload Anzeigen';
 $lang['Укажите способ отображения файлов в Загрузках'] = 'Wie sollen die Dateien angezeigt werden?';
+$lang['Миниатюрами'] = 'Miniatüren';
+$lang['Таблицей'] = 'Tabelle';
+
 $lang['Сортировка файлов в загрузках'] = 'Sortieren von Dateien bei Uploads';
 $lang['Укажите способ сортировки файлов в Загрузках'] = 'Wie sollen die Datei in Uploads sortiert werden?';
+$lang['По имени (прямой порядок)'] = 'Nach Name (direkte reihnfolge)';
+$lang['По имени (обратный порядок)'] = 'Nach Name (rückwärts)';
+$lang['По времени создания (по возрастанию)'] = 'Nach erstellungsdatum (aufsteigend)';
+$lang['По времени создания (по убыванию)'] = 'Nach erstellungsdatum (absteigend)';
+
 $lang['Количество полей для файлов'] = 'Anzahl der Felder für Dateien';
 $lang['Укажите количество полей для одновременной загрузки файлов'] = 'Geben Sie die Anzahl der Felder ein, wie-viel Dateien gleichzeitig Hochgeladen werden dürfen.';
 $lang['Разрешенные типы файлов для загрузок'] = 'Erlaube Typen für Upload';
@@ -288,13 +328,12 @@ $lang['Email-адреса'] = 'Email-Adressen';
 $lang['Комментирование'] = 'Kommentar';
 
 # admin/options/editor
-
 $lang['Высота визуального редактора'] = 'Größe des Editors';
 $lang['Укажите высоту визуального редактора в пикселах. Значение по-умолчанияю 400'] = 'Geben Sie die Größe des Editors an in pixel. Standard Größe ist 400';
 $lang['Высота блока рубрик'] = 'Größe des Blocks Kategorien';
 $lang['Укажите максимальную высоту блока рубрик в пикселах. При превышении этого значения, появятся полосы скроллинга. Если указать 0, то высота не ограничивается. Значение по-умолчанияю - 0.'] = 'Geben Sie die max.. Größe des Block der Kategorien in Pixel an. Wenn der Wert größer wird, kommt ein Scroll-Balken. Wenn man 0 eingibt, wird die Größe nicht eingeschränkt. Standard Wert ist 0.';
 
-# admin_page
+# admin/admin_page
 $lang['Автор'] = 'Autor';
 $lang['в новом окне'] = 'in einem neuen Fenster';
 $lang['Вам не разрешено редактировать чужие записи!'] = 'Sie sind nicht berechtigt fremde Einträge zu bearbeiten!';
@@ -340,8 +379,8 @@ $lang['Список всех страниц'] = 'Liste aller Seiten';
 $lang['Список страниц'] = 'Seiten auflisten';
 $lang['Статус'] = 'Status';
 $lang['Страница «Загрузки»'] = '«Hochladen»';
-$lang['Страница добавлена!'] = 'Seite hinzugefügt!';
-$lang['Страница обновлена!'] = 'Seite aktualisiert!';
+$lang['Страница добавлена!'] = 'Seite wurde hinzugefügt!';
+$lang['Страница обновлена!'] = 'Seite wurde aktualisiert!';
 $lang['Страница удалена'] = 'Seite wurde entfernt';
 $lang['Страницы'] = 'Seiten';
 $lang['Такая страница уже существует'] = 'Diese Seite existiert bereits';
@@ -360,6 +399,13 @@ $lang['Изменить дату публикации'] = 'Veröffentlichungsdat
 $lang['Фильтр по статусу'] = 'Filtern nach Status';
 $lang['Записи для блога'] = 'Blog-Seiten';
 $lang['Постоянные страницы'] = 'Statische Seiten';
+$lang['Тек. время:'] = 'Aktuelle Zeit:';
+$lang['Вернуться к списку страниц'] = 'Zur Liste der Webseiten';
+
+// почему-то не работают пока
+$lang['Опубликовать'] = 'Veröffentlicht';
+$lang['Черновик'] = 'Entwurf';
+$lang['Личное'] = 'Privat';
 
 # admin_plugins
 $lang['Автор'] = 'Autor';
@@ -409,6 +455,7 @@ $lang['Сайдбары не определены. Обычно они реги�
 'Sidebars sind nicht definiert. Normalerweise werden Sie in der Datei <b>functions.php</b> registriert. Zum Beispiel:';
 $lang['Сохранить изменения'] = 'Übernehmen';
 $lang['Доступные виджеты (добавляйте только функцию)'] = 'Verfügbare Widgets (nur die Funktion hinzufügen)';
+$lang['Первый сайдбар'] = 'Sidebar 1';
 
 # admin_users
 $lang['E-mail'] = 'E-mail';

@@ -8,7 +8,7 @@
 # функция автоподключения плагина
 function random_gal_autoload($args = array())
 {
-	mso_register_widget('random_gal_widget', t('Галерея', 'plugins')); # регистрируем виджет
+	mso_register_widget('random_gal_widget', t('Галерея')); # регистрируем виджет
 	mso_hook_add('custom_page_404', 'random_gal_custom_page_404'); # хук для подключения к шаблону
 	mso_hook_add('head', 'random_gal_head');
 }
@@ -16,7 +16,7 @@ function random_gal_autoload($args = array())
 # функция выполняется при деинсталяции плагина
 function random_gal_uninstall($args = array())
 {	
-	mso_delete_option_mask('random_gal_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('random_gal_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -71,29 +71,29 @@ function random_gal_widget_form($num = 1)
 			$out[$d] = $d;
 	}
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) . '</p>';
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) . '</p>';
 	
-	$form .= '<p><div class="t150">' . t('Галерея:', 'plugins') . '</div> '. form_dropdown( $widget . 'gal', $out, $options['gal']) . '</p>';
+	$form .= '<p><div class="t150">' . t('Галерея:') . '</div> '. form_dropdown( $widget . 'gal', $out, $options['gal']) . '</p>';
 
-	$form .= '<p><div class="t150">' . t('несколько, через |:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'galother', 'value'=>$options['galother'] ) ) . '</p>' ;
+	$form .= '<p><div class="t150">' . t('несколько, через |:') . '</div> '. form_input( array( 'name'=>$widget . 'galother', 'value'=>$options['galother'] ) ) . '</p>' ;
 	
-	$form .= '<p><div class="t150">' . t('Количество:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) ) . '</p>' ;
+	$form .= '<p><div class="t150">' . t('Количество:') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) ) . '</p>' ;
 	
-	$form .= '<p><div class="t150">' . t('Режим отображения:', 'plugins') . '</div> '. form_dropdown( $widget . 'type', 
+	$form .= '<p><div class="t150">' . t('Режим отображения:') . '</div> '. form_dropdown( $widget . 'type', 
 		array(
-			'image'=>t('Картинками', 'plugins'), 
-			'slider'=>t('Слайдер', 'plugins'), 
+			'image'=>t('Картинками'), 
+			'slider'=>t('Слайдер'), 
 			), $options['type']) . '</p>';
 	
-	$form .= '<p><div class="t150">' . t('CSS-cтиль блока:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'style', 'value'=>$options['style'] ) ) . '</p>' ;
+	$form .= '<p><div class="t150">' . t('CSS-cтиль блока:') . '</div> '. form_input( array( 'name'=>$widget . 'style', 'value'=>$options['style'] ) ) . '</p>' ;
 	
-	$form .= '<p><div class="t150">' . t('Дополнит. class:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'class', 'value'=>$options['class'] ) ) . '</p>' ;
+	$form .= '<p><div class="t150">' . t('Дополнит. class:') . '</div> '. form_input( array( 'name'=>$widget . 'class', 'value'=>$options['class'] ) ) . '</p>' ;
 	
-	$form .= '<p><div class="t150">' . t('CSS-cтиль img:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'style_img', 'value'=>$options['style_img'] ) ) . '</p>';
+	$form .= '<p><div class="t150">' . t('CSS-cтиль img:') . '</div> '. form_input( array( 'name'=>$widget . 'style_img', 'value'=>$options['style_img'] ) ) . '</p>';
 	
-	$form .= '<p><div class="t150">' . t('Свой HTML-блок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'html', 'value'=>$options['html'] ) )  . '</p>';
+	$form .= '<p><div class="t150">' . t('Свой HTML-блок:') . '</div> '. form_input( array( 'name'=>$widget . 'html', 'value'=>$options['html'] ) )  . '</p>';
 	
-	$form .= '<p><div class="t150">' . t('Сортировка:', 'plugins') . '</div> '. form_dropdown( $widget . 'sort', 
+	$form .= '<p><div class="t150">' . t('Сортировка:') . '</div> '. form_dropdown( $widget . 'sort', 
 		array(
 			'random'=>'Случайно', 
 			'name_file'=>'По именам файлов', 
@@ -107,7 +107,7 @@ function random_gal_widget_form($num = 1)
 			
 			), $options['sort']) . '</p>';
 	
-	$form .= '<p><div class="t150">' . t('Фильтр:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'filter', 'value'=>$options['filter'] ) ) . '</p>'; 
+	$form .= '<p><div class="t150">' . t('Фильтр:') . '</div> '. form_input( array( 'name'=>$widget . 'filter', 'value'=>$options['filter'] ) ) . '</p>'; 
 	$form .='<p><div class="t150">&nbsp;</div>Можно указать фразу, с которой должно начинаться хотя бы одно слово в описании файла.</p>';
 	
 	return $form;
@@ -137,7 +137,7 @@ function random_gal_widget_update($num = 1)
 	$newoptions['type'] = mso_widget_get_post($widget . 'type');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 
@@ -413,23 +413,23 @@ function random_gal_mso_options()
 		array(
 			'on' => array(
 						'type' => 'checkbox', 
-						'name' => t('Включить галереи', 'plugins'),
-						'description' => t('Если нужно организовать другой вывод галерей, то скопируйте файл <strong>gallery.php</strong> в каталог своего шаблона.', 'plugins'),
+						'name' => t('Включить галереи'),
+						'description' => t('Если нужно организовать другой вывод галерей, то скопируйте файл <strong>gallery.php</strong> в каталог своего шаблона.'),
 						'default' => '0' // для чекбоксов только 1 и 0
 						),
 					
 			'slug_gallery' => array(
 							'type' => 'text', 
-							'name' => t('Короткая ссылка на вывод галерей', 'plugins'),
-							'description' => t('Укажите ссылку по которой будут выводиться галереи. Например:', 'plugins') . ' <strong>gallery</strong> -&gt; <a href="' . getinfo('site_url') . 'gallery">' . getinfo('site_url') . '<strong>gallery</strong></a>', 
+							'name' => t('Короткая ссылка на вывод галерей'),
+							'description' => t('Укажите ссылку по которой будут выводиться галереи. Например:') . ' <strong>gallery</strong> -&gt; <a href="' . getinfo('site_url') . 'gallery">' . getinfo('site_url') . '<strong>gallery</strong></a>', 
 							'default' => 'gallery'
 						),
 						
 			'temp' => array(
 							'type' => 'info',
-							'title' => t('Определение галерей', 'plugins'),
-							'text' => t('<p>Галереи задаются по одной в одной строчке в формате:</p>', 'plugins') . NR .
-							t('<pre>короткая ссылка | заголовок | каталоги через % | сортировка | количество | фильтр</pre>', 'plugins') . '
+							'title' => t('Определение галерей'),
+							'text' => t('<p>Галереи задаются по одной в одной строчке в формате:</p>') . NR .
+							t('<pre>короткая ссылка | заголовок | каталоги через % | сортировка | количество | фильтр</pre>') . '
 							
 							<br><p>Пример:</p>
 							<pre>first | Моя галерея | / % my | name_file | 100</pre>
@@ -447,13 +447,13 @@ function random_gal_mso_options()
 							
 			'all' => array(
 						'type' => 'textarea', 
-						'name' => t('Список галерей', 'plugins'),
-						'description' => t('Укажите галереи', 'plugins'),
+						'name' => t('Список галерей'),
+						'description' => t('Укажите галереи'),
 						'default' => ''
 					),
 			),
-		t('Настройки галерей', 'plugins'), // титул
-		t('Укажите необходимые опции.', 'plugins')   // инфо
+		t('Настройки галерей'), // титул
+		t('Укажите необходимые опции.')   // инфо
 	);
 }
 

@@ -16,25 +16,25 @@
 		$options = array();
 		$options['header'] = $post['f_header'];
 	
-		mso_add_option($options_key, $options, 'plugins');
-		echo '<div class="update">' . t('Обновлено!', 'plugins') . '</div>';
+		mso_add_option($options_key, $options, 'plugins' );
+		echo '<div class="update">' . t('Обновлено!') . '</div>';
 	}
 	
 ?>
-<h1><?= t('Плагин', __FILE__) ?></h1>
-<p class="info"><?= t('Описание', __FILE__) ?></p>
+<h1><?= t('Плагин') ?></h1>
+<p class="info"><?= t('Описание') ?></p>
 
 <?php
 		$options = mso_get_option($options_key, 'plugins', array());
 		if ( !isset($options['header']) ) $options['header'] = ''; 
 
 		$form = '';
-		$form .= '<h2>' . t('Настройки', 'plugins') . '</h2>';
-		$form .= '<p><strong>' . t('Заголовок:', 'plugins') . '</strong> ' . ' <input name="f_header" type="text" value="' . $options['header'] . '"></p>';
+		$form .= '<h2>' . t('Настройки') . '</h2>';
+		$form .= '<p><strong>' . t('Заголовок:') . '</strong> ' . ' <input name="f_header" type="text" value="' . $options['header'] . '"></p>';
 		
 		echo '<form action="" method="post">' . mso_form_session('f_session_id');
 		echo $form;
-		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения', 'plugins') . '" style="margin: 25px 0 5px 0;">';
+		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 		echo '</form>';
 
 ?>

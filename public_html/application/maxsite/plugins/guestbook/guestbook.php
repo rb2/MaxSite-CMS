@@ -2,7 +2,7 @@
 
 mso_cur_dir_lang('templates');
 
-mso_head_meta('title', t('Гостевая книга', __FILE__) ); // meta title страницы
+mso_head_meta('title', t('Гостевая книга') ); // meta title страницы
 
 // стили свои подключим
 mso_hook_add('head', 'guestbook_css');
@@ -25,7 +25,7 @@ $CI = & get_instance();
 $options = mso_get_option('plugin_guestbook', 'plugins', array());
 
 if ( !isset($options['fields_arr']) ) 
-	$options['fields_arr'] = array('name' => t('Ваше имя:', __FILE__), 'text' => t('Ваш отзыв:', __FILE__)); 
+	$options['fields_arr'] = array('name' => t('Ваше имя:'), 'text' => t('Ваш отзыв:')); 
 
 if ( isset($options['text']) ) echo $options['text']; // из опций смотрим текст перед всем
 if ( !isset($options['limit']) ) $options['limit'] = 10; // отзывов на страницу
@@ -58,7 +58,7 @@ if ( $post = mso_check_post(array('f_session_id', 'f_submit_guestbook', 'f_field
 	$char = substr( $char, 1, 4);
 	if ($captcha != $char)
 	{ // не равны
-		echo '<div class="error">' . t('Привет роботам!', __FILE__) . '</div>';
+		echo '<div class="error">' . t('Привет роботам!') . '</div>';
 		mso_flush_cache();
 	}
 	else
@@ -95,8 +95,8 @@ if ( $post = mso_check_post(array('f_session_id', 'f_submit_guestbook', 'f_field
 		
 		if ($res)
 		{
-			echo '<div class="update">' . t('Ваш отзыв добавлен!', __FILE__);
-			if ( $options['moderation'] ) echo ' ' . t('Он будет опубликован после одобрения модератором.', __FILE__);
+			echo '<div class="update">' . t('Ваш отзыв добавлен!');
+			if ( $options['moderation'] ) echo ' ' . t('Он будет опубликован после одобрения модератором.');
 			echo '</div>';
 			
 			$text_email = t("Новая запись в гостевой книге") . ": \n" . $text_email;
@@ -105,11 +105,11 @@ if ( $post = mso_check_post(array('f_session_id', 'f_submit_guestbook', 'f_field
 			
 			if ( $options['email'] and mso_valid_email($options['email']) ) 
 			{
-				mso_mail($options['email'], t('Новая запись в гостевой книге', __FILE__), $text_email);
+				mso_mail($options['email'], t('Новая запись в гостевой книге'), $text_email);
 			}
 			
 		}
-		else echo '<div class="error">' . t('Ошибка добавления в базу данных...', __FILE__) . '</div>';
+		else echo '<div class="error">' . t('Ошибка добавления в базу данных...') . '</div>';
 		
 		mso_flush_cache();
 		
@@ -126,7 +126,7 @@ else
 	
 	foreach( $options['fields_arr'] as $key => $val )
 	{
-		echo '<tr><td style="vertical-align: top; text-align: right;" class="td1"><strong>' . t($val, __FILE__) . '</strong> </td><td class="td2">';
+		echo '<tr><td style="vertical-align: top; text-align: right;" class="td1"><strong>' . t($val) . '</strong> </td><td class="td2">';
 		
 		if ($key != 'text')
 		{
@@ -140,7 +140,7 @@ else
 
 	// капча из плагина капчи
 	
-	echo '<tr><td style="vertical-align: top; text-align: right;" class="td1"><strong>' . t('Введите нижние символы', 'plugins') . ' </td>
+	echo '<tr><td style="vertical-align: top; text-align: right;" class="td1"><strong>' . t('Введите нижние символы') . ' </td>
 			<td style="text-align: left;" class="td2"><input type="text" name="f_guestbook_captha" value="" maxlength="4"> <img src="' 
 			. getinfo('plugins_url') . 'captcha/img.php?image='
 			. $session['session_id']
@@ -148,10 +148,10 @@ else
 			. mso_slug(mso_current_url())
 			. '&code='
 			. time()
-			. '" title="' . t('Защита от спама: введите только нижние символы', 'plugins') . '" align="absmiddle"></td></tr>';
+			. '" title="' . t('Защита от спама: введите только нижние символы') . '" align="absmiddle"></td></tr>';
 
 	
-	echo '<tr><td class="td1">&nbsp;</td><td style="vertical-align: top; text-align: left;" class="td2"><input type="submit" class="submit" name="f_submit_guestbook" value="' . t('Отправить', __FILE__) . '"></td></tr>';
+	echo '<tr><td class="td1">&nbsp;</td><td style="vertical-align: top; text-align: left;" class="td2"><input type="submit" class="submit" name="f_submit_guestbook" value="' . t('Отправить') . '"></td></tr>';
 	
 	echo '</table></form></div>';
 }
@@ -202,7 +202,7 @@ if ($query->num_rows() > 0)
 	{
 		if (is_login()) 
 			$tl = '<br><a href="' . getinfo('siteurl') . 'admin/guestbook/editone/' . $book['guestbook_id'] . '">'
-				. t('Редактировать', __FILE__) . '</a>';
+				. t('Редактировать') . '</a>';
 		else $tl = '';
 
 		// pr($book);

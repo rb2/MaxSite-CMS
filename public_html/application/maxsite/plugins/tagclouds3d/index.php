@@ -15,7 +15,7 @@ function tagclouds3d_autoload($args = array())
 # функция выполняется при деинсталяции плагина
 function tagclouds3d_uninstall($args = array())
 {	
-	mso_delete_option_mask('tagclouds3d_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('tagclouds3d_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -152,7 +152,7 @@ function tagclouds3d_widget_update($num = 1)
 	/* === */
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

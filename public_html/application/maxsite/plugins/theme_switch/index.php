@@ -9,9 +9,9 @@
 # функция автоподключения плагина
 function theme_switch_autoload($args = array())
 {
-	mso_create_allow('theme_switch_edit', t('Админ-доступ к редактированию Theme switch', 'plugins'));
+	mso_create_allow('theme_switch_edit', t('Админ-доступ к редактированию Theme switch'));
 	mso_hook_add( 'admin_init', 'theme_switch_admin_init'); # хук на админку
-	mso_register_widget('theme_switch_widget', t('Theme switch', 'plugins')); # регистрируем виджет
+	mso_register_widget('theme_switch_widget', t('Theme switch')); # регистрируем виджет
 	mso_hook_add( 'init', 'theme_switch_init'); # хук на init
 	mso_hook_add( 'body_start', 'theme_switch_body_start'); # хук на body_start
 }
@@ -78,8 +78,8 @@ function theme_switch_init($args = array())
 # функция выполняется при деинсталяции плагина
 function theme_switch_uninstall($args = array())
 {	
-	mso_delete_option_mask('theme_switch_widget_', 'plugins'); // удалим созданные опции
-	mso_delete_option('theme_switch', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('theme_switch_widget_', 'plugins' ); // удалим созданные опции
+	mso_delete_option('theme_switch', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('theme_switch_edit'); // удалим созданные разрешения
 	
 	return $args;
@@ -98,7 +98,7 @@ function theme_switch_admin_init($args = array())
 		#			можно использовать добавочный, например demo/edit = http://сайт/admin/demo/edit
 		# Третий - название ссылки	
 		
-		mso_admin_menu_add('plugins', $this_plugin_url, 'Theme switch');
+		mso_admin_menu_add('plugins', $this_plugin_url, t('Theme switch'));
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 
@@ -118,12 +118,12 @@ function theme_switch_admin_page($args = array())
 	# выносим админские функции отдельно в файл
 	if ( !mso_check_allow('theme_switch_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	# выносим админские функции отдельно в файл
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Theme switch', 'plugins') . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Theme switch', 'plugins') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Theme switch') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Theme switch') . ' - " . $args; ' );
 	require(getinfo('plugins_dir') . 'theme_switch/admin.php');
 }
 
@@ -153,15 +153,15 @@ function theme_switch_widget_form($num = 1)
 	$options = mso_get_option($widget, 'plugins', array());
 	
 	if ( !isset($options['header']) ) $options['header'] = '';
-	if ( !isset($options['submit']) ) $options['submit'] = t('Переключить', 'plugins');;
+	if ( !isset($options['submit']) ) $options['submit'] = t('Переключить');;
 	
 	// вывод самой формы
 	$CI = & get_instance();
 	$CI->load->helper('form');
 		
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. 
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. 
 			form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
-	$form .= '<p><div class="t150">' . t('Надпись на кнопке:', 'plugins') . '</div> '. 
+	$form .= '<p><div class="t150">' . t('Надпись на кнопке:') . '</div> '. 
 			form_input( array( 'name'=>$widget . 'submit', 'value'=>$options['submit'] ) ) ;			
 	
 	return $form;
@@ -182,14 +182,14 @@ function theme_switch_widget_update($num = 1)
 	$newoptions['submit'] = mso_widget_get_post($widget . 'submit');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функция виджета
 function theme_switch_widget_custom($options = array(), $num = 1)
 {
 	if ( !isset($options['header']) ) $options['header'] = '';
-	if ( !isset($options['submit']) ) $options['submit'] = t('Переключить', 'plugins');
+	if ( !isset($options['submit']) ) $options['submit'] = t('Переключить');
 	
 	// выводим списком шаблоны, которые отмечены и сохранены в опции theme_switch (через admin.php)
 	$opt = mso_get_option('theme_switch', 'plugins', array());
@@ -212,7 +212,7 @@ function theme_switch_widget_custom($options = array(), $num = 1)
 			. $options['header'] 
 			. '<form action="" method="post">' 
 			. mso_form_session('f_session_id') . $out 
-			. '<input type="submit" name="f_theme_switch_submit" class="submit" value="' . $options['submit'] . '"></form></div>';
+			. '<p><input type="submit" name="f_theme_switch_submit" class="submit" value="' . $options['submit'] . '"></p></form></div>';
 	
 	return $out;	
 }
@@ -260,8 +260,8 @@ function theme_switch_body_start($args = '')
 	{
 		require($fn_info);
 		
-		$info_template .= '<p>Шаблон: <strong>' .$info['name'] . '</strong></p>';
-		$info_template .= '<p>Версия: <strong>' .$info['version'] . '</strong></p>';
+		$info_template .= '<p>' . t('Шаблон:') . ' <strong>' .$info['name'] . '</strong></p>';
+		$info_template .= '<p>' . t('Версия:') . ' <strong>' .$info['version'] . '</strong></p>';
 	}
 	
 	

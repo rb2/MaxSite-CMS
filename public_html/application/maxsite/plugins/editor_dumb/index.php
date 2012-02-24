@@ -9,7 +9,7 @@ function editor_dumb_autoload($args = array())
 # функция выполняется при деинсталяции плагина
 function editor_dumb_uninstall($args = array())
 {	
-	mso_delete_option('editor_dumb', 'plugins'); // удалим созданные опции
+	mso_delete_option('editor_dumb', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 

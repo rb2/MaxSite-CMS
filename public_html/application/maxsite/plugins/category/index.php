@@ -10,13 +10,13 @@
 function category_autoload($args = array())
 {
 	# регистрируем виджет
-	mso_register_widget('category_widget', t('Рубрики', 'plugins')); 
+	mso_register_widget('category_widget', t('Рубрики')); 
 }
 
 # функция выполняется при деинсталяции плагина
 function category_uninstall($args = array())
 {	
-	mso_delete_option_mask('category_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('category_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -67,59 +67,59 @@ function category_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Формат:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) 
-			. '<br><div class="t150">&nbsp;</div>' . t('Например:', 'plugins') . ' [LINK][TITLE]&lt;sup&gt;[COUNT]&lt;/sup&gt;[/LINK]&lt;br&gt;[DESCR]';
+	$form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) 
+			. '<br><div class="t150">&nbsp;</div>' . t('Например:') . ' [LINK][TITLE]&lt;sup&gt;[COUNT]&lt;/sup&gt;[/LINK]&lt;br&gt;[DESCR]';
 
-	$form .= '<p><div class="t150">' . t('Формат текущей:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'format_current', 'value'=>$options['format_current'] ) ) 
-			. '<br><div class="t150">&nbsp;</div>' . t('Например:', 'plugins') . ' &lt;span&gt;[TITLE]&lt;sup&gt;[COUNT]&lt;/sup&gt;&lt;/span&gt;&lt;br&gt;[DESCR]'
-			. '<br><div class="t150">&nbsp;</div>' . t('Все варианты:', 'plugins') . ' [SLUG], [ID_PARENT], [ID], [MENU_ORDER], [TITLE], [TITLE_HTML], [COUNT], [DESCR], [DESCR_HTML], [LINK][/LINK], [URL]'
+	$form .= '<p><div class="t150">' . t('Формат текущей:') . '</div> '. form_input( array( 'name'=>$widget . 'format_current', 'value'=>$options['format_current'] ) ) 
+			. '<br><div class="t150">&nbsp;</div>' . t('Например:') . ' &lt;span&gt;[TITLE]&lt;sup&gt;[COUNT]&lt;/sup&gt;&lt;/span&gt;&lt;br&gt;[DESCR]'
+			. '<br><div class="t150">&nbsp;</div>' . t('Все варианты:') . ' [SLUG], [ID_PARENT], [ID], [MENU_ORDER], [TITLE], [TITLE_HTML], [COUNT], [DESCR], [DESCR_HTML], [LINK][/LINK], [URL]'
 			
 			
 			;
 
-	$form .= '<p><div class="t150">' . t('Включить только:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'include', 'value'=>$options['include'] ) ) 
-			. '<br><div class="t150">&nbsp;</div>' . t('Укажите номера рубрик через запятую или пробел', 'plugins');
+	$form .= '<p><div class="t150">' . t('Включить только:') . '</div> '. form_input( array( 'name'=>$widget . 'include', 'value'=>$options['include'] ) ) 
+			. '<br><div class="t150">&nbsp;</div>' . t('Укажите номера рубрик через запятую или пробел');
 	
-	$form .= '<p><div class="t150">' . t('Исключить:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'exclude', 'value'=>$options['exclude'] ) )
-			. '<br><div class="t150">&nbsp;</div>' . t('Укажите номера рубрик через запятую или пробел', 'plugins');
+	$form .= '<p><div class="t150">' . t('Исключить:') . '</div> '. form_input( array( 'name'=>$widget . 'exclude', 'value'=>$options['exclude'] ) )
+			. '<br><div class="t150">&nbsp;</div>' . t('Укажите номера рубрик через запятую или пробел');
 
-	$form .= '<p><div class="t150">' . t('Если нет записей:', 'plugins') . '</div> '. 
+	$form .= '<p><div class="t150">' . t('Если нет записей:') . '</div> '. 
 		form_dropdown( $widget . 'hide_empty', array( 
-		'0'=>t('Отображать рубрику (количество записей ведется без учета опубликованности)', 'plugins'), 
-		'1'=>t('Скрывать рубрику (количество записей ведется только по опубликованным)', 'plugins')), 
+		'0'=>t('Отображать рубрику (количество записей ведется без учета опубликованности)'), 
+		'1'=>t('Скрывать рубрику (количество записей ведется только по опубликованным)')), 
 		$options['hide_empty']);
 	
-	$form .= '<p><div class="t150">' . t('Сортировка:', 'plugins') . '</div> '. 
+	$form .= '<p><div class="t150">' . t('Сортировка:') . '</div> '. 
 		form_dropdown( $widget . 'order', 
 			array( 
-				'category_name' => t('По имени рубрики', 'plugins'), 
-				'category_id' => t('По ID рубрики', 'plugins'), 
-				'category_menu_order' => t('По выставленному menu order', 'plugins'), 
-				'pages_count' => t('По количеству записей', 'plugins')), 
+				'category_name' => t('По имени рубрики'), 
+				'category_id' => t('По ID рубрики'), 
+				'category_menu_order' => t('По выставленному menu order'), 
+				'pages_count' => t('По количеству записей')), 
 				$options['order']);
 	
-	$form .= '<p><div class="t150">' . t('Порядок:', 'plugins') . '</div> '. 
+	$form .= '<p><div class="t150">' . t('Порядок:') . '</div> '. 
 		form_dropdown( $widget . 'order_asc', 
 			array( 
-				'ASC'=>t('Прямой', 'plugins'), 
-				'DESC'=>t('Обратный', 'plugins')
+				'ASC'=>t('Прямой'), 
+				'DESC'=>t('Обратный')
 				), $options['order_asc']);
 	
-	$form .= '<p><div class="t150">' . t('Включать потомков:', 'plugins') . '</div> '. 
+	$form .= '<p><div class="t150">' . t('Включать потомков:') . '</div> '. 
 			form_dropdown( $widget . 'include_child', 
 				array( 
-				'0'=>t('Всегда', 'plugins'), 
-				'1'=>t('Только если явно указана рубрика', 'plugins'),
-				'-1'=>t('Исключить всех', 'plugins')
+				'0'=>t('Всегда'), 
+				'1'=>t('Только если явно указана рубрика'),
+				'-1'=>t('Исключить всех')
 				), $options['include_child']);
 	
-	$form .= '<p><div class="t150">' . t('Ссылки рубрик:', 'plugins') . '</div> '. 
+	$form .= '<p><div class="t150">' . t('Ссылки рубрик:') . '</div> '. 
 			form_dropdown( $widget . 'nofollow', 
 				array( 
-				'0'=>t('Обычные', 'plugins'), 
-				'1'=>t('Устанавливать как nofollow (неиндексируемые поисковиками)', 'plugins')
+				'0'=>t('Обычные'), 
+				'1'=>t('Устанавливать как nofollow (неиндексируемые поисковиками)')
 				), $options['nofollow']);
 	
 	return $form;
@@ -149,7 +149,7 @@ function category_widget_update($num = 1)
 	$newoptions['nofollow'] = mso_widget_get_post($widget . 'nofollow');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 

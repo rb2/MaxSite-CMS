@@ -15,7 +15,7 @@
 		$options['height'] = $post['f_height'];
 		$options['slideshowspeed'] = $post['f_slideshowspeed'];
 	
-		mso_add_option($options_key, $options, 'plugins');
+		mso_add_option($options_key, $options, 'plugins' );
 		echo '<div class="update">Обновлено!</div>';
 	}
 ?>

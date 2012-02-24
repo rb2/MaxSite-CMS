@@ -73,7 +73,7 @@ mso_cur_dir_lang('admin');
 		
 		if (isset($result['result']) and $result['result']) 
 		{
-			echo '<div class="update">' . t('Обновлено!', 'admin') . '</div>'; // . $result['description'];
+			echo '<div class="update">' . t('Обновлено!') . '</div>'; // . $result['description'];
 			mso_flush_cache(); // сбросим кэш, поскольку могла измениться группа юзера
 			if ($change_pass ) 
 			{
@@ -83,7 +83,7 @@ mso_cur_dir_lang('admin');
 			}
 		}
 		else
-			echo '<div class="error">' . t('Ошибка обновления', 'admin') . '</div>';
+			echo '<div class="error">' . t('Ошибка обновления') . '</div>';
 		
 	}
 
@@ -128,7 +128,7 @@ mso_cur_dir_lang('admin');
 			$CI->table->set_template($tmpl); // шаблон таблицы
 			
 			// заголовки
-			$CI->table->set_heading( t('Название', 'admin'), t('Значение', 'admin'));
+			$CI->table->set_heading( t('Название'), t('Значение'));
 			
 
 
@@ -143,24 +143,24 @@ mso_cur_dir_lang('admin');
 			
 				$CI->table->add_row('ID', $id );
 									
-				$CI->table->add_row(t('Логин', 'admin'), $row['users_login'] );
+				$CI->table->add_row(t('Логин'), $row['users_login'] );
 										
-				_mso_add_row(t('Ник', 'admin'), 'f_nik', $row['users_nik'] );
-				_mso_add_row(t('E-mail', 'admin'), 'f_email', $row['users_email'] );
-				_mso_add_row(t('Фамилия', 'admin'), 'f_first_name', $row['users_first_name'] );
-				_mso_add_row(t('Имя', 'admin'), 'f_last_name', $row['users_last_name']);
-				_mso_add_row(t('ICQ', 'admin'), 'f_icq', $row['users_icq']);
-				_mso_add_row(t('Сайт', 'admin'), 'f_url', $row['users_url']);
-				_mso_add_row(t('Twitter', 'admin'), 'f_msn', $row['users_msn']);
-				_mso_add_row(t('Jabber', 'admin'), 'f_jaber', $row['users_jaber']);
-				_mso_add_row(t('Skype', 'admin'), 'f_skype', $row['users_skype']);
-				_mso_add_row(t('URL аватара', 'admin'), 'f_avatar_url', $row['users_avatar_url']);
+				_mso_add_row(t('Ник'), 'f_nik', $row['users_nik'] );
+				_mso_add_row(t('E-mail'), 'f_email', $row['users_email'] );
+				_mso_add_row(t('Фамилия'), 'f_first_name', $row['users_first_name'] );
+				_mso_add_row(t('Имя'), 'f_last_name', $row['users_last_name']);
+				_mso_add_row(t('ICQ'), 'f_icq', $row['users_icq']);
+				_mso_add_row(t('Сайт'), 'f_url', $row['users_url']);
+				_mso_add_row(t('Twitter'), 'f_msn', $row['users_msn']);
+				_mso_add_row(t('Jabber'), 'f_jaber', $row['users_jaber']);
+				_mso_add_row(t('Skype'), 'f_skype', $row['users_skype']);
+				_mso_add_row(t('URL аватара'), 'f_avatar_url', $row['users_avatar_url']);
 				
 				
-				$CI->table->add_row(t('Описание', 'admin'), '<textarea name="f_description" cols="90" rows="3">' . htmlspecialchars($row['users_description']) . '</textarea>');
+				$CI->table->add_row(t('Описание'), '<textarea name="f_description" cols="90" rows="3">' . htmlspecialchars($row['users_description']) . '</textarea>');
 				
 				if ( mso_check_allow('edit_users_admin_note') )
-					$CI->table->add_row(t('Примечание админа', 'admin'), '<textarea name="f_admin_note" cols="90" rows="3">' . htmlspecialchars($row['users_admin_note']) . '</textarea>');
+					$CI->table->add_row(t('Примечание админа'), '<textarea name="f_admin_note" cols="90" rows="3">' . htmlspecialchars($row['users_admin_note']) . '</textarea>');
 			
 				// ДР это три поля
 				$y = mso_date_convert('Y', $row['users_date_birth']);
@@ -176,10 +176,10 @@ mso_cur_dir_lang('admin');
 				$d_r = array_flip(range(1, 31));
 				foreach ($d_r as $key=>$val) $d_r[$key] = $key;			
 				
-				$CI->table->add_row(t('Дата рождения', 'admin'), 
-				t('Год:', 'admin') . ' ' . form_dropdown('f_date_birth_y', $y_r, $y, ' style="width: 100px;" ') . 
-				' ' . t('Месяц:', 'admin') . ' ' . form_dropdown('f_date_birth_m', $m_r, $m, ' style="width: 100px;" ' ) . 
-				' ' . t('День:', 'admin') . ' ' . form_dropdown('f_date_birth_d', $d_r, $d, ' style="width: 100px;" ' ) 
+				$CI->table->add_row(t('Дата рождения'), 
+				t('Год:') . ' ' . form_dropdown('f_date_birth_y', $y_r, $y, ' style="width: 100px;" ') . 
+				' ' . t('Месяц:') . ' ' . form_dropdown('f_date_birth_m', $m_r, $m, ' style="width: 100px;" ' ) . 
+				' ' . t('День:') . ' ' . form_dropdown('f_date_birth_d', $d_r, $d, ' style="width: 100px;" ' ) 
 				);
 
 
@@ -189,7 +189,7 @@ mso_cur_dir_lang('admin');
 				// в базе смещение хранится в формате секунд
 				$tz = sprintf('%.2f', $tz / 3600); // переводим в формат 7.00
 				
-				$CI->table->add_row(t('Смещение времени', 'admin'), 
+				$CI->table->add_row(t('Смещение времени'), 
 					form_dropdown('f_time_zone', array(
 					'0.00'=>'0:00', 
 					'1.00'=>'1:00', 
@@ -219,17 +219,17 @@ mso_cur_dir_lang('admin');
 					), $tz, ' style="width: 99%;" ' ) );
 				
 
-				$CI->table->add_row(t('Смайлики', 'admin'), 
-					form_dropdown('f_show_smiles', array('0'=>t('Прятать', 'admin'), '1'=>t('Отображать', 'admin')), $row['users_show_smiles'], ' style="width: 300px;" '));
+				$CI->table->add_row(t('Смайлики'), 
+					form_dropdown('f_show_smiles', array('0'=>t('Прятать'), '1'=>t('Отображать')), $row['users_show_smiles'], ' style="width: 300px;" '));
 				
 	
 				###!!! что за уведомления? для чего???
-				$CI->table->add_row(t('Уведомления', 'admin'), 
-					form_dropdown('f_notify', array('0'=>t('Без уведомлений', 'admin'), '1'=>t('Подписаться', 'admin')), $row['users_notify'], ' style="width: 300px;" '));
+				$CI->table->add_row(t('Уведомления'), 
+					form_dropdown('f_notify', array('0'=>t('Без уведомлений'), '1'=>t('Подписаться')), $row['users_notify'], ' style="width: 300px;" '));
 				
 				###!!! языки взять из CodeIgniter !!!
-				$CI->table->add_row(t('Язык', 'admin'), 
-					form_dropdown('f_language', array('ru'=>t('Русский', 'admin'), 'en'=> t('Английский', 'admin'), 'ua'=>'' . t('Украинский', 'admin')), $row['users_language'], ' style="width: 300px;" '));	
+				$CI->table->add_row(t('Язык'), 
+					form_dropdown('f_language', array('ru'=>t('Русский'), 'en'=> t('Английский'), 'ua'=>'' . t('Украинский')), $row['users_language'], ' style="width: 300px;" '));	
 				
 				
 				###!!! группу доделать !!!
@@ -244,12 +244,12 @@ mso_cur_dir_lang('admin');
 					foreach ($q->result_array() as $rw)
 						$groups[$rw['groups_id']] = $rw['groups_name'];
 				
-					$CI->table->add_row(t('Группа', 'admin'), 
+					$CI->table->add_row(t('Группа'), 
 					form_dropdown('f_groups_id', $groups, $row['groups_id'], ' style="width: 300px;" '));			
 				}
 				
-				_mso_add_row(t('Новый пароль (только английские символы, длина > 6 символов)', 'admin'), 'f_new_password', '');
-				_mso_add_row(t('Подтвердите пароль', 'admin'), 'f_new_confirm_password', '');
+				_mso_add_row(t('Новый пароль (только английские символы, длина > 6 символов)'), 'f_new_password', '');
+				_mso_add_row(t('Подтвердите пароль'), 'f_new_confirm_password', '');
 
 
 				###!!! здесь же по-идее нужно смотреть и мета для данного юзера
@@ -260,14 +260,14 @@ mso_cur_dir_lang('admin');
 			
 			echo '<form action="" method="post">' . mso_form_session('f_session_id');
 			echo $CI->table->generate();
-			echo '<p class="br"><input type="submit" name="f_submit[' . $id . ']" value="' . t('Изменить', 'admin') . '"></p>';
+			echo '<p class="br"><input type="submit" name="f_submit[' . $id . ']" value="' . t('Изменить') . '"></p>';
 			echo '</form>';
 		}
-		else echo '<div class="error">' . t('Ошибочный запрос', 'admin') . '</div>';
+		else echo '<div class="error">' . t('Ошибочный запрос') . '</div>';
 	}
 	else
 	{
-		echo '<div class="error">' . t('Ошибочный запрос', 'admin') . '</div>';
+		echo '<div class="error">' . t('Ошибочный запрос') . '</div>';
 	}
 
 # End of file

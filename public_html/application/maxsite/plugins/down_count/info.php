@@ -2,7 +2,7 @@
 
 $info = array(
 	'name' => 'Download count',
-	'description' => t('Подсчет количества переходов по ссылке. Обрамите нужную ссылку в [dc]...[/dc]', 'plugins'),
+	'description' => t('Подсчет количества переходов по ссылке. Обрамите нужную ссылку в [dc]...[/dc]'),
 	'version' => '1.1',
 	'author' => 'Максим, Wave',
 	'plugin_url' => 'http://max-3000.com/',

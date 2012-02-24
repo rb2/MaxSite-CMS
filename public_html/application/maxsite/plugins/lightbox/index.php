@@ -20,8 +20,8 @@ function lightbox_head($args = array())
 	
 	$url = getinfo('plugins_url') . 'lightbox/';
 	
-	$t_izob = t('Изображение', 'plugins');
-	$t_iz = t('из', 'plugins');
+	$t_izob = t('Изображение');
+	$t_iz = t('из');
 	
 	// http://leandrovieira.com/projects/jquery/lightbox/
 	echo <<<EOF

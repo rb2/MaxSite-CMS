@@ -4,10 +4,11 @@
  * MaxSite CMS
  * Language file
  * (c) http://max-3000.com/
- * Author: (c) Александр Шиллинг
- * Author URL: http://dignityinside.org
- * Update URL: http://dignityinside.org
- * Перевод плагинов в комплекте
+ * Author: (c) Alexander Schilling
+ * Author URL: http://alexanderschilling.net
+ * Update URL: http://alexanderschilling.net
+ * Plugins, die in MaxSite CMS Paket enthalten sind
+ * /maxsite/common/language/plugins/de.php
  */
  
 $lang['Доступ запрещен'] = 'Zugriff verweigert';
@@ -139,12 +140,12 @@ $lang['Подчеркнутый'] = 'Unterstrichen';
 $lang['Зачеркнутый'] = 'Durchgestrichen';
 $lang['Цитата'] = 'Zitat';
 $lang['Код'] = 'Code';
-$lang['Код или преформатированный текст'] = 'Code oder vorformatierten Text';
+$lang['Код или преформатированный текст'] = 'Code oder vorformatierter Text';
 
 # down_count
 $lang['Админ-доступ к настройкам счетчика переходов (Download count)'] = 'Admin Zugriff auf die Zähler Übergänge Einstellungen (Download count)';
 $lang['Счетчик переходов'] = 'Klick Zähler';
-$lang['Подсчет количества переходов по ссылке. Обрамите нужную ссылку в [dc]...[/dc]'] = 'Zählen der Anzahl der Klicks auf den Link. Verwenden Sie [dc]link[/dc]';
+$lang['Подсчет количества переходов по ссылке. Обрамите нужную ссылку в [dc]...[/dc]'] = 'Zählt die Anzahl der Klicks auf einem Link. Verwenden Sie [dc]link[/dc]';
 $lang['Данная ссылка доступна только со <a href="%s">страниц сайта</a>'] = ' Dieser Link ist nur von <a href="%s">seite verfügbar</a>';
 $lang['Запрещен переход по этой ссылке с чужого сайта'] = 'Der Übergang von anderen Seiten sind nicht erlaubt';
 $lang['Количество переходов'] = 'Anzahl der Klicks';
@@ -352,15 +353,16 @@ $lang['Также можно использовать регулярные вы�
 
 # search_form
 $lang['Форма поиска'] = 'Suchformular';
-$lang['Что искать?'] = 'Was wird gesucht?';
+$lang['Что искать?'] = 'Was suchen Sie?';
 $lang['Поиск'] = 'Suchen';
 $lang['Текст подсказки:'] = 'Hilfetext:';
 $lang['Текст на кнопке:'] = 'Text auf den Button:';
 $lang['CSS-стиль текста:'] = 'CSS Stil des Textes:';
 $lang['CSS-стиль кнопки:'] = 'CSS-Style des Button:';
+$lang['Текст внизу:'] = 'Text unten:';
 
 # sitemap
-$lang['Воспользуйтесь картой сайта'] = 'Verwenden Sie Sitemap';
+$lang['Воспользуйтесь картой сайта'] = 'Verwenden Sie das Sitemap';
 
 # tabs
 $lang['Табы (закладки)'] = 'Tab (Reiter)';
@@ -409,7 +411,7 @@ $lang['С помощью ушек вы можете размещать прои�
 'Mit den Ohren können Sie beliebigen HTML/PHP Code in Ihre Theme einfügen, Widget oder andere Plugins. Ohren kann man leicht benutzen, z.B. zur Ausgabe von Zähler, Werbung, Banner, etc. Erstellen Sie einfach ein Ohr und geben Sie den Namen in dem Widget ein oder mit Hilfe des Codes:';
 $lang['Вы можете вывести произвольную ушку прямо в тексте. Данный код выведет ушку «reklama»:'] = 'Sie können Ihr Ohr gleich in Text Ausgeben. Folgender Code gibt den Ohr «reklama» aus:';
 $lang['Ушка добавлена!'] = 'Ein neues Ohr wurde Hinzugefügt';
-$lang['Необходимо указать название ушки!'] = 'Sie müssen einen Namen für das Ohr eingeben!';
+$lang['Необходимо указать название ушки!'] = 'Sie müssen einen Namen für ein Ohr eingeben!';
 $lang['Обновлено!'] = 'Aktualisiert!';
 $lang['Новая ушка:'] = 'Neue Ohr:';
 $lang['Добавить новую ушку'] = 'Neue Ohr erstellen';
@@ -420,7 +422,6 @@ $lang['Заголовок (блока):'] = 'Titel (Block)';
 $lang['Ушка (название):'] = 'Ohr (Titel):';
 
 # wpconvert
-# пока здесь, потом перенесу в каталог плагина
 $lang['Админ-доступ к wpconvert'] = 'Admin-Zugriff wpconvert';
 $lang['Угу, зщас... У тебя сайт накроется, кто отвечать будет?! В ЛЕС!!!'] = 'Nein! Es kann Schiff gehen';
 $lang['Файл:'] = 'Datei:';
@@ -473,5 +474,120 @@ $lang['Я понял и согласен взять на себя всю отв�
 $lang['Выберите файл:'] = 'Wählen Sie die Datei';
 $lang['Проверить файл'] = 'Überprüfen Sie die Datei';
 $lang['Запустить конвертацию'] = 'Konvertierung Starten';
+
+// markitup
+$lang['Шрифт'] = 'Schriftart';
+$lang['Полужирный (важный)'] = 'Fett (wichtig)';
+$lang['Курсив (важный)']='Kursiv (wichtig)';
+$lang['Полужирный (простой)']='Halbfett (einfach)';
+$lang['Курсив (простой)']='Kursiv (einfach)';
+$lang['Подчеркнутый']='Unterstrichen';
+$lang['Зачеркнутый']='Durchgestrichen';
+$lang['Верхний индекс']='Hochgestellt';
+$lang['Нижний индекс']='Tiefgestellt';
+$lang['Уменьшенный шрифт']='Verkleinerte Schrift';
+$lang['Размер текста']='Größe des Textes';
+$lang['Ссылка']='Link';
+$lang['Адрес с http://']='Link mit http://';
+$lang['Ссылка (адрес и текст)']='Link (http:// und Text)';
+$lang['Текст ссылки']='Text des Link';
+$lang['Цитата']='Zitat';
+$lang['Цитата (блок)']='Zitat (Block)';
+$lang['Цитирование в строке']='Zitat in einer Zeile';
+$lang['Абревиатура']='Abkürzung';
+$lang['Определение']='Definition';
+$lang['Сноска']='Referenz';
+$lang['Адрес']='Url';
+$lang['Новый термин']='Neue Begriff';
+$lang['Изображение']='Bild';
+$lang['Описание']='Beschreibung';
+$lang['Цвет']='Farbe';
+$lang['Желтый']='Gelb';
+$lang['Оранжевый']='Orange';
+$lang['Красный']='Rot';
+$lang['Синий']='Blau';
+$lang['Фиолетовый']='Lila';
+$lang['Зеленый']='Grün';
+$lang['Белый']='Weiss';
+$lang['Серый']='Grau';
+$lang['Черный']='Schwarz';
+$lang['Ярко-голубой']='Hellblau';
+$lang['Ярко-зеленый']='Hellgrün';
+$lang['Таблица цветов']='Tabelle mit Farben';
+$lang['Выравнивание']='Ausrichtung';
+$lang['Абзац влево']='Absatz Link';
+$lang['Абзац по центру']='Absatz Mitte';
+$lang['Абзац вправо']='Absatz Rechts';
+$lang['Абзац по формату']='Blocksatz';
+$lang['Блок влево']='Block Links';
+$lang['Блок по центру']='Block Mitte';
+$lang['Блок вправо']='Block Rechts';
+$lang['Блок по формату']='Block Formatiert';
+$lang['p - абзац']='p - Absatz';
+$lang['свойства']='eigenschaften';
+$lang['Свойства']='Eigenschaften';
+$lang['Заголовок']='Überschrift';
+$lang['Заголовок 1']='Überschrift 1';
+$lang['Заголовок 2']='Überschrift 2';
+$lang['Заголовок 3']='Überschrift 3';
+$lang['Заголовок 4']='Überschrift 4';
+$lang['Заголовок 5']='Überschrift 5';
+$lang['Заголовок 6']='Überschrift 6';
+$lang['Список'] = 'Liste';
+$lang['Номера'] = 'Nummerierung';
+$lang['Элемент списка'] = 'Element einer Liste';
+$lang['Список определений'] = 'Liste von Definitionen';
+$lang['Определение'] = 'Definition';
+$lang['Описание'] = 'Beschreibung';
+$lang['Заготовка'] = 'Vorfertigung';
+$lang['Таблица'] = 'Tabelle';
+$lang['Строка'] = 'Zeile';
+$lang['Строка ячеек'] = 'Reihe von Zellen';
+$lang['Ячейки'] = 'Zellen';
+$lang['Заготовка1'] = 'Vorfertigung1';
+$lang['Заготовка2'] = 'Vorfertigung2';
+$lang['Преформатированный текст с подсветкой синтаксиса'] = 'Vorformatierten Text mit Syntax-Highlighting';
+$lang['Обычный текст'] = 'Text';
+$lang['PHP-код'] = 'PHP-Code';
+$lang['HTML-код'] = 'HTML-Code';
+$lang['CSS-код'] = 'CSS-Code';
+$lang['JavaScript-код'] = 'JavaScript-Code';
+$lang['Delphi/Pascal-код'] = 'Delphi/Pascal-Code';
+$lang['SQL-код'] = 'SQL-Code';
+$lang['C#-код'] = 'C#-Code';
+$lang['XML-код'] = 'XML-Code';
+$lang['Очистить текст от BB-кодов'] = 'BB-Codes aus dem Text entfernen';
+$lang['Очистить текст от HTML'] = 'HTML aus dem Text entfernen';
+$lang['Замена в тексте'] = 'Austausch im Text';
+$lang['Принудительный перенос']='Neue Zeile erzwingen';
+$lang['Линия']='Linie';
+$lang['Выполнить PHP-код'] = 'PHP-Code ausführen';
+$lang['Выполнить HTML-код'] = 'HTML-Code ausführen';
+$lang['Ушка'] = 'Ohr';
+$lang['Имя ушки'] = 'Name des Ohr';
+$lang['Счетчик перехода']='Besucher Zähler';
+$lang['Аудиоплеер MP3']='Audioplayer MP3';
+$lang['Адрес']='Adresse';
+$lang['FAQ (заготовка)']='FAQ (Vorfertigung)';
+$lang['вопрос']='frage';
+$lang['ответ']='antwort';
+$lang['вопрос2']='frage2';
+$lang['ответ2']='antwort2';
+$lang['Показать/спрятать (spoiler)']='Anzeigen/Verbergen (spoiler)';
+$lang['Заголовок блока']='Name des Blocks';
+$lang['Спрятать от незалогиненных']='Vor Nicht-Angemeldene verstecken';
+$lang['Форма (заготовка)']='Formular (Vorfertigung)';
+$lang['Моя форма'] = 'Mein Formular';
+$lang['Выберите специалиста'] = 'Wählen Sie ein Fachmann aus';
+$lang['Иванов # Петров # Сидоров'] = 'Ivanov # Petrov # Sidorov';
+$lang['Иванов'] = 'Ivanov';
+$lang['Отрезать для анонса']='Abschneiden für Kurznachricht';
+$lang['Быстрое сохранение текста'] = 'Schnelle Spreichern des Textes';
+$lang['Предпросмотр (с ALT скрыть)'] = 'Vorschau (mit ALT verstecken)';
+$lang['Полноэкранный режим редактора (F2)']='Vollbild (F2)';
+$lang['Помощь по BB-кодам']='Hilfe bei BB-Codes';
+$lang['Сохранено в']='Spreichern in';
+$lang['Что ищем?']='Was suchen wir?';
+$lang['На что меняем?']='Mit was ersetzen?';
 
 # end file

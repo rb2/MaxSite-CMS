@@ -19,7 +19,7 @@
 			
 			if ($act)
 			{
-				$out = '' . t('Выполнено:', 'admin') . ' ';
+				$out = '' . t('Выполнено:') . ' ';
 				foreach ($post['f_check_submit'] as $f_name=>$val)
 				{
 					if ($act == 'activate') mso_plugin_activate($f_name); # активация плагина
@@ -32,10 +32,10 @@
 				// echo '<div class="update">' . $out . ' &#149;</div>';
 			}
 			else
-				echo '<div class="error">' . t('Ошибка обновления', 'admin') . '</div>';
+				echo '<div class="error">' . t('Ошибка обновления') . '</div>';
 		}
 		else
-			echo '<div class="error">' . t('Отметьте необходимые плагины', 'admin') . '</div>';
+			echo '<div class="error">' . t('Отметьте необходимые плагины') . '</div>';
 	}
 
 ?>
@@ -60,7 +60,7 @@
 	$CI->table->set_template($tmpl); // шаблон таблицы
 	
 	// заголовки
-	$CI->table->set_heading(' ', t('Каталог', 'admin'), ' ', t('Название', 'admin'), t('Версия', 'admin'), t('Автор', 'admin'), t('Описание', 'admin'));
+	$CI->table->set_heading(' ', t('Каталог'), ' ', t('Название'), t('Версия'), t('Автор'), t('Описание'));
 	
 	// проходимся по каталогу плагинов и выводим информацию о них
 	
@@ -133,17 +133,17 @@
 					
 					if (in_array($dir, $MSO->active_plugins)) 
 					{
-						// $status = '<span style="color: green;"><strong>' . t('вкл', 'admin') . '</strong></span>';
+						// $status = '<span style="color: green;"><strong>' . t('вкл') . '</strong></span>';
 						
 						if (function_exists($dir . '_mso_options'))
 							// есть опции
-							$status = '<a title="' . t('Настройки плагина', 'admin') . '" href="' . getinfo('site_admin_url') . 'plugin_options/' . $dir . '">' . t('опции', 'admin') . '</a>';
+							$status = '<a title="' . t('Настройки плагина') . '" href="' . getinfo('site_admin_url') . 'plugin_options/' . $dir . '">' . t('опции') . '</a>';
 						else 
 							$status = ' ';
 						
 						$dir = '<label for="f_check_submit_' . $dir . '"><span class="plugin_on">' . $dir . '</span></label>';
 						
-						if ($options_url) $status .= ' <a href="' . $options_url . '" title="' . t('Настройки плагина', 'admin') . '">' . t('опции', 'admin') . '</a>';
+						if ($options_url) $status .= ' <a href="' . $options_url . '" title="' . t('Настройки плагина') . '">' . t('опции') . '</a>';
 						
 					}
 					else
@@ -151,7 +151,7 @@
 						
 						$dir = '<label for="f_check_submit_' . $dir . '">' . $dir . '</label>';
 						
-						$status = '<span class="gray">' . t('откл', 'admin') . '</span>';
+						$status = '<span class="gray">' . t('откл') . '</span>';
 						$description = '<span class="gray">' . $description . '</span>';
 						$dir = '<span class="gray">' . $dir . '</span>';
 						$version = '<span class="gray">' . $version . '</span>';
@@ -168,15 +168,15 @@
 		}
 	}
 	
-	$CI->table->set_caption('<h2>'.t('Активные плагины', 'admin') . '</h2>');
+	$CI->table->set_caption('<h2>'.t('Активные плагины') . '</h2>');
 	_create_table(true);
 	
 	$table1 = $CI->table->generate(); // вывод подготовленной таблицы
 	
 	# добавим строчку для дополнительного действия
 	$table1 .= '<p>
-				<input type="submit" name="f_deactivate_submit" value="&nbsp;- &nbsp;&nbsp;' . t('Выключить', 'admin') . '">
-				<input type="submit" name="f_uninstall_submit" value="&nbsp;x&nbsp;&nbsp;' . t('Деинсталировать', 'admin') . '">
+				<input type="submit" name="f_deactivate_submit" value="&nbsp;- &nbsp;&nbsp;' . t('Выключить') . '">
+				<input type="submit" name="f_uninstall_submit" value="&nbsp;x&nbsp;&nbsp;' . t('Деинсталировать') . '">
 				</p>';
 	
 	
@@ -192,16 +192,16 @@
 			  );
 
 	$CI->table->set_template($tmpl); // шаблон таблицы
-	$CI->table->set_caption('<h2>'.t('Неактивные плагины', 'admin') . '</h2>');
+	$CI->table->set_caption('<h2>'.t('Неактивные плагины') . '</h2>');
 	
 	// заголовки
-	$CI->table->set_heading(' ', t('Каталог', 'admin'), ' ', t('Название', 'admin'), t('Версия', 'admin'), t('Автор', 'admin'), t('Описание', 'admin'));
+	$CI->table->set_heading(' ', t('Каталог'), ' ', t('Название'), t('Версия'), t('Автор'), t('Описание'));
 	_create_table(false);
 	
 	$table2 = $CI->table->generate(); // вывод подготовленной таблицы
 	
 	# добавим строчку для дополнительного действия
-	$table2 .= '<p><input type="submit" name="f_activate_submit" value="&nbsp;+ &nbsp;&nbsp;' . t('Включить', 'admin') . '">	</p>';
+	$table2 .= '<p><input type="submit" name="f_activate_submit" value="&nbsp;+ &nbsp;&nbsp;' . t('Включить') . '">	</p>';
 	
 	
 	echo mso_load_jquery('jquery.tablesorter.js');

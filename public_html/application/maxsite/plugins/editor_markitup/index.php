@@ -14,7 +14,7 @@ function editor_markitup_autoload($args = array())
 # функция выполняется при деинсталяции плагина
 function editor_markitup_uninstall($args = array())
 {	
-	mso_delete_option('editor_markitup', 'plugins'); // удалим созданные опции
+	mso_delete_option('editor_markitup', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -88,7 +88,7 @@ function editor_markitup($args = array())
 	}
 	if ($smiles)
 	{
-		$smiles = NR . "{name:'Смайлы', openWith:':-)', closeWith:'', className:'smiles', dropMenu: [" 
+		$smiles = NR . "{name:'" . t('Смайлы') . "', openWith:':-)', closeWith:'', className:'smiles', dropMenu: [" 
 				. $smiles
 				. ']},';
 	}

@@ -486,7 +486,7 @@ function mso_cat_array_single($type = 'page', $order = 'category_name', $asc = '
 	}	
 
 	// нам нужно получить номера записей по каждой рубрике
-	$CI->db->select('cat2obj.*');
+	$CI->db->select('cat2obj.*, page.page_title, page.page_date_publish, page.page_slug');
 	$CI->db->from('category');
 	$CI->db->join('cat2obj', 'cat2obj.category_id = category.category_id');
 	$CI->db->join('page', 'cat2obj.page_id = page.page_id', 'left');
@@ -496,7 +496,7 @@ function mso_cat_array_single($type = 'page', $order = 'category_name', $asc = '
 	
 	if ($type_page) $CI->db->where('page_type_name', $type_page);
 	$CI->db->where('category_type', $type);
-	$CI->db->order_by('category.category_id');
+	$CI->db->order_by('category.category_id, page.page_date_publish asc'); // сортировка по дате публикации по возрастанию!
 
 	if ($query = $CI->db->get()) $cats_post = $query->result_array(); // здесь все рубрики
 	else $cats_post = array();
@@ -505,9 +505,22 @@ function mso_cat_array_single($type = 'page', $order = 'category_name', $asc = '
 	foreach ($cats_post as $key=>$val) 
 	{
 		if ($type == 'page') 
+		{
+			// в ключ pages доабвляем номера всех страниц рубрики
 			$cat[$val['category_id']]['pages'][] = $val['page_id'];
+			
+			// в ключ pages_detail массив данных записей: id, титул, дата, ссылка
+			$cat[$val['category_id']]['pages_detail'][$val['page_id']] = array(
+				'page_id'=>$val['page_id'],
+				'page_title'=>$val['page_title'],
+				'page_date_publish'=>$val['page_date_publish'],
+				'page_slug'=>$val['page_slug'],
+				);
+		}
 		else
+		{
 			$cat[$val['category_id']]['links'][] = $val['links_id'];
+		}
 	}
 
 

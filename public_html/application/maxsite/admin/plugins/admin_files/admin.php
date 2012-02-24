@@ -35,7 +35,7 @@
 		if ($current_dir_h2) $current_dir_h2 = '/' . $current_dir_h2;
 	}
 
-	echo '<h2>' . t('Текущий каталог:', 'admin') . ' uploads' . $current_dir_h2 . '</h2>';
+	echo '<h2>' . t('Текущий каталог:') . ' uploads' . $current_dir_h2 . '</h2>';
 
 
 	# новый каталог - создаем до того, как отобразить навигацию
@@ -46,21 +46,21 @@
 		$f_cat_name = mso_slug($post['f_cat_name']);
 
 		if (!$f_cat_name)
-			echo '<div class="error">' . t('Нужно ввести имя каталога', 'admin') . '</div>';
+			echo '<div class="error">' . t('Нужно ввести имя каталога') . '</div>';
 		else
 		{
 			$new_dir = getinfo('uploads_dir') . $f_cat_name;
 
 			if ( is_dir($new_dir) ) // уже есть
 			{
-				echo '<div class="error">' . t('Такой каталог уже есть!', 'admin') . '</div>';
+				echo '<div class="error">' . t('Такой каталог уже есть!') . '</div>';
 			}
 			else
 			{
 				@mkdir($new_dir, 0777); // нет каталога, пробуем создать
 				@mkdir($new_dir . '/_mso_i', 0777); // нет каталога, пробуем создать
 				@mkdir($new_dir . '/mini', 0777); // нет каталога, пробуем создать
-				echo '<div class="update">' . sprintf(t('Каталог <strong>%s</strong> создан!', 'admin'), $f_cat_name)
+				echo '<div class="update">' . sprintf(t('Каталог <strong>%s</strong> создан!'), $f_cat_name)
 					. '</div>';
 			}
 		}
@@ -90,7 +90,7 @@
 		else
 			$out = '<a href="' . $MSO->config['site_admin_url'] . 'files">uploads</a> | ' . $out;
 
-		$out = '<div class="admin_files_nav"><span>' . t('Навигация:', 'admin') . '</span> ' . $out . '</div>';
+		$out = '<div class="admin_files_nav"><span>' . t('Навигация:') . '</span> ' . $out . '</div>';
 		echo $out;
 	}
 
@@ -125,7 +125,7 @@
 			$mso_descritions[$post['f_file_name']]=$post['f_file_description'];
 			write_file($fn_mso_descritions, serialize($mso_descritions) ); // сохраняем файл
 
-		echo '<div class="update">' . t('Описание обновлено!', 'admin') . '</div>';
+		echo '<div class="update">' . t('Описание обновлено!') . '</div>';
 	}
 	# Конец Добавление Рамира
 
@@ -144,7 +144,7 @@
 			unset($mso_descritions[$file]);
 			write_file($fn_mso_descritions, serialize($mso_descritions) ); // сохраняем файл
 		}
-		echo '<div class="update">' . t('Выполнено', 'admin') . '</div>';
+		echo '<div class="update">' . t('Выполнено') . '</div>';
 	}
 
 
@@ -188,7 +188,7 @@
 			}
 		}
 
-		echo '<div class="update">' . t('Выполнено', 'admin') . '</div>';
+		echo '<div class="update">' . t('Выполнено') . '</div>';
 	}
 	
 	# загрузка нового файла
@@ -243,8 +243,8 @@
 			unset($_FILES[$key]);
 		}
 		
-		if ($res) echo '<div class="update">' . t('Загрузка выполнена', 'admin') . '</div>';
-			else echo '<div class="error">' . t('Возникли ошибки при загрузке', 'admin') . '</div>';
+		if ($res) echo '<div class="update">' . t('Загрузка выполнена') . '</div>';
+			else echo '<div class="error">' . t('Возникли ошибки при загрузке') . '</div>';
 		
 		
 		// после загрузки сразу обновим массив описаний - он ниже используется
@@ -259,10 +259,10 @@
 
 	// форма нового каталога
 	echo '
-		<div class="new_cat_upload"><h2>'. t('Новый каталог', 'admin'). '</h2>
+		<div class="new_cat_upload"><h2>'. t('Новый каталог'). '</h2>
 		<form action="" method="post">' . mso_form_session('f_session3_id') .
-		'<p>'. t('Имя каталога', 'admin'). ': <input type="text" name="f_cat_name" value="">
-		<input type="submit" name="f_newcat_submit" value="'. t('Создать', 'admin'). '" onClick="if(confirm(\'' . t('Создать каталог в uploads?', 'admin') . '\')) {return true;} else {return false;}" ></p>
+		'<p>'. t('Имя каталога'). ': <input type="text" name="f_cat_name" value="">
+		<input type="submit" name="f_newcat_submit" value="'. t('Создать'). '" onClick="if(confirm(\'' . t('Создать каталог в uploads?') . '\')) {return true;} else {return false;}" ></p>
 		</form></div>';
 
 	// размер
@@ -319,8 +319,8 @@
 	// форма загрузки
 	echo '
 		<div class="upload_file">
-		<h2>' . t('Загрузка файлов', 'admin') . '</h2>
-		<p>' . t('Для загрузки файла нажмите кнопку «Обзор», выберите файл на своем компьютере. После этого нажмите кнопку «Загрузить». Размер файла не должен превышать', 'admin') . ' ' . ini_get ('post_max_size') . '.</p>
+		<h2>' . t('Загрузка файлов') . '</h2>
+		<p>' . t('Для загрузки файла нажмите кнопку «Обзор», выберите файл на своем компьютере. После этого нажмите кнопку «Загрузить». Размер файла не должен превышать') . ' ' . ini_get ('post_max_size') . '.</p>
 		<form action="" method="post" enctype="multipart/form-data">' . mso_form_session('f_session2_id') .
 		'<p>';
 	
@@ -332,42 +332,42 @@
 	
 	
 	
-	echo '&nbsp;<input type="submit" name="f_upload_submit" value="' . t('Загрузить', 'admin') . '">&nbsp;<input type="reset" value="' . t('Сбросить', 'admin') . '"></p>
-		<p>' . t('Описание файла:', 'admin') . ' <input type="text" name="f_userfile_title" class="description_file" value=""></p>
+	echo '&nbsp;<input type="submit" name="f_upload_submit" value="' . t('Загрузить') . '">&nbsp;<input type="reset" value="' . t('Сбросить') . '"></p>
+		<p>' . t('Описание файла:') . ' <input type="text" name="f_userfile_title" class="description_file" value=""></p>
 
-		<p><label><input type="checkbox" name="f_userfile_resize" ' . $f_userfile_resize . 'value=""> ' . t('Для изображений изменить размер до', 'admin') . '</label>
-			<input type="text" name="f_userfile_resize_size" style="width: 50px" maxlength="4" value="' . $resize_images . '"> ' . t('px (по максимальной стороне).', 'admin') . '</p>
+		<p><label><input type="checkbox" name="f_userfile_resize" ' . $f_userfile_resize . 'value=""> ' . t('Для изображений изменить размер до') . '</label>
+			<input type="text" name="f_userfile_resize_size" style="width: 50px" maxlength="4" value="' . $resize_images . '"> ' . t('px (по максимальной стороне).') . '</p>
 
-		<p><label><input type="checkbox" name="f_userfile_mini" ' . $f_userfile_mini . 'value=""> ' . t('Для изображений сделать миниатюру размером', 'admin') . '</label>
-			<input type="text" name="f_userfile_mini_size" style="width: 50px" maxlength="4" value="' . $size_image_mini . '"> ' . t('px (по максимальной стороне).', 'admin') . ' <br><em>' . t('Примечание: миниатюра будет создана в каталоге', 'admin') . ' <strong>uploads/' . $current_dir . 'mini</strong></em></p>
+		<p><label><input type="checkbox" name="f_userfile_mini" ' . $f_userfile_mini . 'value=""> ' . t('Для изображений сделать миниатюру размером') . '</label>
+			<input type="text" name="f_userfile_mini_size" style="width: 50px" maxlength="4" value="' . $size_image_mini . '"> ' . t('px (по максимальной стороне).') . ' <br><em>' . t('Примечание: миниатюра будет создана в каталоге') . ' <strong>uploads/' . $current_dir . 'mini</strong></em></p>
 
 
-		<p>' . t('Миниатюру делать путем:', 'admin') . ' <select name="f_mini_type">
-		<option value="1"'.(($mini_type == 1)?(' selected="selected"'):('')).'>' . t('Пропорционального уменьшения', 'admin') . '</option>
-		<option value="2"'.(($mini_type == 2)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) по центру', 'admin') . '</option>
-		<option value="3"'.(($mini_type == 3)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) с левого верхнего края', 'admin') . '</option>
-		<option value="4"'.(($mini_type == 4)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) с левого нижнего края', 'admin') . '</option>
-		<option value="5"'.(($mini_type == 5)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) с правого верхнего края', 'admin') . '</option>
-		<option value="6"'.(($mini_type == 6)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) с правого нижнего края', 'admin') . '</option>
-		<option value="7"'.(($mini_type == 7)?(' selected="selected"'):('')).'>' . t('Уменьшения и обрезки (crop) в квадрат', 'admin') . '</option>
+		<p>' . t('Миниатюру делать путем:') . ' <select name="f_mini_type">
+		<option value="1"'.(($mini_type == 1)?(' selected="selected"'):('')).'>' . t('Пропорционального уменьшения') . '</option>
+		<option value="2"'.(($mini_type == 2)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) по центру') . '</option>
+		<option value="3"'.(($mini_type == 3)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) с левого верхнего края') . '</option>
+		<option value="4"'.(($mini_type == 4)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) с левого нижнего края') . '</option>
+		<option value="5"'.(($mini_type == 5)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) с правого верхнего края') . '</option>
+		<option value="6"'.(($mini_type == 6)?(' selected="selected"'):('')).'>' . t('Обрезки (crop) с правого нижнего края') . '</option>
+		<option value="7"'.(($mini_type == 7)?(' selected="selected"'):('')).'>' . t('Уменьшения и обрезки (crop) в квадрат') . '</option>
 		</select>
 		
-		&nbsp;<input type="submit" name="f_update_mini_submit" value="' . t('Обновить миниатюры', 'admin') . '" onClick="if(confirm(\'' . t('Обновить старые миниатюры (создать для тех файлов, у которых их нет) для всех изображений каталога?', 'admin') . '\')) {return true;} else {return false;}" >
+		&nbsp;<input type="submit" name="f_update_mini_submit" value="' . t('Обновить миниатюры') . '" onClick="if(confirm(\'' . t('Обновить старые миниатюры (создать для тех файлов, у которых их нет) для всех изображений каталога?') . '\')) {return true;} else {return false;}" >
 		
 		</p>
 
 		<p><label><input type="checkbox" name="f_userfile_water" value="" '
 			. ((file_exists(getinfo('uploads_dir') . 'watermark.png')) ? '' : ' disabled="disabled"') 
 			. ($use_watermark ? (' checked="checked"') : (''))
-			. '> ' . t('Для изображений установить водяной знак', 'admin') . '</label>
-			<br><em>' . t('Примечание: водяной знак должен быть файлом <strong>watermark.png</strong> и находиться в каталоге', 'admin') . ' <strong>uploads</strong></em></p>
+			. '> ' . t('Для изображений установить водяной знак') . '</label>
+			<br><em>' . t('Примечание: водяной знак должен быть файлом <strong>watermark.png</strong> и находиться в каталоге') . ' <strong>uploads</strong></em></p>
 
-		<p>' . t('Водяной знак устанавливается:', 'admin') . ' <select name="f_water_type">
-		<option value="1"'.(($watermark_type == 1)?(' selected="selected"'):('')).'>' . t('По центру', 'admin') . '</option>
-		<option value="2"'.(($watermark_type == 2)?(' selected="selected"'):('')).'>' . t('В левом верхнем углу', 'admin') . '</option>
-		<option value="3"'.(($watermark_type == 3)?(' selected="selected"'):('')).'>' . t('В правом верхнем углу', 'admin') . '</option>
-		<option value="4"'.(($watermark_type == 4)?(' selected="selected"'):('')).'>' . t('В левом нижнем углу', 'admin') . '</option>
-		<option value="5"'.(($watermark_type == 5)?(' selected="selected"'):('')).'>' . t('В правом нижнем углу', 'admin') . '</option>
+		<p>' . t('Водяной знак устанавливается:') . ' <select name="f_water_type">
+		<option value="1"'.(($watermark_type == 1)?(' selected="selected"'):('')).'>' . t('По центру') . '</option>
+		<option value="2"'.(($watermark_type == 2)?(' selected="selected"'):('')).'>' . t('В левом верхнем углу') . '</option>
+		<option value="3"'.(($watermark_type == 3)?(' selected="selected"'):('')).'>' . t('В правом верхнем углу') . '</option>
+		<option value="4"'.(($watermark_type == 4)?(' selected="selected"'):('')).'>' . t('В левом нижнем углу') . '</option>
+		<option value="5"'.(($watermark_type == 5)?(' selected="selected"'):('')).'>' . t('В правом нижнем углу') . '</option>
 		</select></p>
 		</form>
 		</div>
@@ -389,7 +389,7 @@
 
 		$CI->table->set_template($tmpl); // шаблон таблицы
 		// заголовки
-		$CI->table->set_heading('&bull;', t('Коды для вставки', 'admin'));
+		$CI->table->set_heading('&bull;', t('Коды для вставки'));
 	}
 
 	// проходимся по каталогу аплоада и выводим их списком
@@ -573,7 +573,7 @@
 		}
 
 		// nicothin добавил:
-		$cod .= '<br><a href="#" class="edit_descr_link" onClick="return false;">' . t('Изменить описание', 'admin') . '</a>';
+		$cod .= '<br><a href="#" class="edit_descr_link" onClick="return false;">' . t('Изменить описание') . '</a>';
 		// конец добавления
 
 		$out_all .= '<div class="cornerz"><div class="wrap">' . $sel . $predpr . $cod . '</div></div>';
@@ -594,16 +594,16 @@
 			echo '<div style="clear:both"></div></div>';
 		}
 
-		echo '<p class="br"><input type="submit" name="f_delete_submit" value="' . t('Удалить', 'admin') . '" onClick="if(confirm(\'' . t('Выделенные файы будут безвозвратно удалены! Удалять?', 'admin') . '\')) {return true;} else {return false;}" ></p>
-			<p class="br"><input type="button" id="check-all" value="' . t('Инвертировать выделение', 'admin') . '"></p>
+		echo '<p class="br"><input type="submit" name="f_delete_submit" value="' . t('Удалить') . '" onClick="if(confirm(\'' . t('Выделенные файы будут безвозвратно удалены! Удалять?') . '\')) {return true;} else {return false;}" ></p>
+			<p class="br"><input type="button" id="check-all" value="' . t('Инвертировать выделение') . '"></p>
 			</form>';
 
 		$n = '\n';
 		$up = $uploads_url;
 
-		$mess = t('Предварительно нужно выделить файлы для галереи', 'admin');
+		$mess = t('Предварительно нужно выделить файлы для галереи');
 		$session = mso_form_session('f_session_id');
-		$save_button = t('Сохранить', 'admin');
+		$save_button = t('Сохранить');
 
 		echo <<<EOF
 <script type="text/javascript">
@@ -683,16 +683,16 @@ $(function()
 </script>
 <hr class="br">
 EOF;
-		echo '<h2 class="br">' . t('Создание галереи', 'admin') . '</h2>
-		<p>' . t('Выделите нужные файлы. (У вас должен быть активирован плагин <strong>LightBox</strong>)', 'admin') . '</p>
-		<p>' . t('Название:', 'admin') . ' <input type="text" id="gallerycodename" value=""> ' . t('(если нужно)', 'admin') . '<br><input class="br" type="button" id="gallerycodeclick" value="' . t('Генерировать код галереи', 'admin') . '">
+		echo '<h2 class="br">' . t('Создание галереи') . '</h2>
+		<p>' . t('Выделите нужные файлы. (У вас должен быть активирован плагин <strong>LightBox</strong>)') . '</p>
+		<p>' . t('Название:') . ' <input type="text" id="gallerycodename" value=""> ' . t('(если нужно)') . '<br><input class="br" type="button" id="gallerycodeclick" value="' . t('Генерировать код галереи') . '">
 		</p>
 		<p><textarea id="gallerycode" style="display: none"></textarea>
 		';
 	}
 	else
 	{
-		echo '<p>' . t('Нет загруженных файлов', 'admin') . '</p>';
+		echo '<p>' . t('Нет загруженных файлов') . '</p>';
 	}
 
 ?>

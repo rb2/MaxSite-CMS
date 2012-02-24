@@ -10,7 +10,7 @@ function paginator_autoload($a = array())
 
 function paginator_activate($args = array())
 {
-	if (!function_exists('paginator3000_go')) mso_delete_option('paginator3000', 'plugins');
+	if (!function_exists('paginator3000_go')) mso_delete_option('paginator3000', 'plugins' );
 	return $args;
 }
 
@@ -79,7 +79,7 @@ function paginator_mso_options()
 
 function paginator_uninstall($args = array())
 {	
-	mso_delete_option('paginator', 'plugins');
+	mso_delete_option('paginator', 'plugins' );
 	return $args;
 }
 

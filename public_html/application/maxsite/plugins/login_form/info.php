@@ -2,7 +2,7 @@
 
 $info = array(
 	'name' => 'Login form',
-	'description' => t('Форма логина (виджет)', 'plugins'),
+	'description' => t('Форма логина (виджет)'),
 	'version' => '1.3',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',

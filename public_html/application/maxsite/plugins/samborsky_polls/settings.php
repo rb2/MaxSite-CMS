@@ -18,7 +18,7 @@ if ($post = mso_check_post(array('f_session_id', 'f_submit')))
 	$options['admin_number_records'] = (int)$options['admin_number_records'];
 	$options['show_archives_link'] = (int)$options['show_archives_link'];
 	
-	mso_add_option('plugin_samborsky_polls',  $options, 'plugins');
+	mso_add_option('plugin_samborsky_polls', $options, 'plugins' );
 }
 
 $default = array(

@@ -20,45 +20,45 @@
 		$options['referer'] = isset( $post['f_referer']) ? 1 : 0;
 		$options['real_title'] = isset( $post['f_real_title']) ? 1 : 0;
 	
-		mso_add_option($options_key, $options, 'plugins');
+		mso_add_option($options_key, $options, 'plugins' );
 		
-		echo '<div class="update">' . t('Обновлено!', 'plugins') . '</div>';
+		echo '<div class="update">' . t('Обновлено!') . '</div>';
 	}
 	
 ?>
-<h1><?= t('Счетчик переходов', 'plugins') ?></h1>
-<p class="info"><?= t('С помощью этого плагина вы можете подсчитывать количество скачиваний или переходов по ссылке. Для использования плагина обрамите нужную ссылку в код [dc]ваша ссылка[/dc]', 'plugins') ?></p>
+<h1><?= t('Счетчик переходов') ?></h1>
+<p class="info"><?= t('С помощью этого плагина вы можете подсчитывать количество скачиваний или переходов по ссылке. Для использования плагина обрамите нужную ссылку в код [dc]ваша ссылка[/dc]') ?></p>
 
 <?php
 		
 		$options = mso_get_option($options_key, 'plugins', array());
 		if ( !isset($options['file']) ) $options['file'] = 'dc.dat'; // путь к файлу данных
 		if ( !isset($options['prefix']) ) $options['prefix'] = 'dc'; // префикса
-		if ( !isset($options['format']) ) $options['format'] = ' <sup title="' . t('Количество переходов', 'plugins') . '">%COUNT%</sup>'; // формат количества
+		if ( !isset($options['format']) ) $options['format'] = ' <sup title="' . t('Количество переходов') . '">%COUNT%</sup>'; // формат количества
 		if ( !isset($options['referer']) ) $options['referer'] = 1; // запретить скачку с чужого сайта
 		if ( !isset($options['real_title']) ) $options['real_title'] = 1; // выводить в title реальный адрес
 
 		$form = '';
 
-		$form .= '<h2>' . t('Настройки', 'plugins') . '</h2>';
+		$form .= '<h2>' . t('Настройки') . '</h2>';
 		
-		$form .= '<p><strong>' . t('Файл для хранения количества скачиваний:', 'plugins') . '</strong><br>' . 
+		$form .= '<p><strong>' . t('Файл для хранения количества скачиваний:') . '</strong><br>' . 
 			getinfo('uploads_dir') . ' <input name="f_file" type="text" value="' . $options['file'] . '"></p>';
 			
-		$form .= '<p><strong>' . t('Префикс URL:', 'plugins') . '</strong> ' . getinfo('siteurl') . ' <input name="f_prefix" type="text" value="' . $options['prefix'] . '">/' . t('ссылка', 'plugins') . '</p>';
+		$form .= '<p><strong>' . t('Префикс URL:') . '</strong> ' . getinfo('siteurl') . ' <input name="f_prefix" type="text" value="' . $options['prefix'] . '">/' . t('ссылка') . '</p>';
 		
 		$form .= '<p><strong>Формат количества переходов:</strong> <input name="f_format" style="width: 400px;" type="text" value="' . htmlspecialchars($options['format']) . '"></p>';
 		
 		
 		$chk = $options['referer'] ? ' checked="checked"  ' : '';
-		$form .= '<p><label><input name="f_referer" type="checkbox" ' . $chk . '> <strong>' . t('Запретить переходы с чужих сайтов', 'plugins') . '</strong></label></p>';
+		$form .= '<p><label><input name="f_referer" type="checkbox" ' . $chk . '> <strong>' . t('Запретить переходы с чужих сайтов') . '</strong></label></p>';
 
 		$chk = $options['real_title'] ? ' checked="checked"  ' : '';
-		$form .= '<p><label><input name="f_real_title" type="checkbox" ' . $chk . '> <strong>' . t('Выводить в title реальный адрес', 'plugins') . '</strong></label></p>';
+		$form .= '<p><label><input name="f_real_title" type="checkbox" ' . $chk . '> <strong>' . t('Выводить в title реальный адрес') . '</strong></label></p>';
 		
 		echo '<form action="" method="post">' . mso_form_session('f_session_id');
 		echo $form;
-		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения', 'plugins') . '" style="margin: 25px 0 5px 0;">';
+		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 		echo '</form>';
 		
 		// выведем ниже формы всю статистику
@@ -85,9 +85,9 @@
 						'heading_cell_end'		=> '</th>',
 							);
 				$CI->table->set_template($tmpl);
-				$CI->table->set_heading('URL', t('переходов', 'plugins'));
+				$CI->table->set_heading('URL', t('переходов'));
 
-				echo '<br><h2>' . t('Статистика переходов', 'plugins') . '</h2>';
+				echo '<br><h2>' . t('Статистика переходов') . '</h2>';
 				foreach($data as $url => $aaa)
 				{
 					$CI->table->add_row(

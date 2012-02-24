@@ -32,7 +32,7 @@ function admin_page_admin_init($args = array())
 		# Третий - название ссылки	
 		# четвертый номер по порядку
 		
-		mso_admin_menu_add('page', $this_plugin_url, t('Список', 'admin'), 2);
+		mso_admin_menu_add('page', $this_plugin_url, t('Список'), 2);
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 
@@ -47,7 +47,7 @@ function admin_page_admin_init($args = array())
 		mso_admin_url_hook ($this_plugin_url, 'admin_page_edit');
 		
 		$this_plugin_url = 'page_new'; // url и hook
-		mso_admin_menu_add('page', $this_plugin_url, t('Создать', 'admin'), 1);
+		mso_admin_menu_add('page', $this_plugin_url, t('Создать'), 1);
 		mso_admin_url_hook ($this_plugin_url, 'admin_page_new');	
 	}
 	
@@ -65,8 +65,8 @@ function admin_page_admin($args = array())
 		return $args;
 	}
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Список страниц', 'admin') . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Список страниц', 'admin') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Список страниц') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Список страниц') . ' - " . $args; ' );
 	
 	require($MSO->config['admin_plugins_dir'] . 'admin_page/admin.php');
 }
@@ -84,8 +84,8 @@ function admin_page_edit($args = array())
 		return $args;
 	}
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Редактирование страницы', 'admin') . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Редактирование страницы', 'admin') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Редактирование страницы') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Редактирование страницы') . ' - " . $args; ' );
 	
 	require($MSO->config['admin_plugins_dir'] . 'admin_page/edit.php');
 }
@@ -103,8 +103,8 @@ function admin_page_new($args = array())
 		return $args;
 	}
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Создать страницу', 'admin') . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Создать страницу', 'admin') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Создать страницу') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Создать страницу') . ' - " . $args; ' );
 	
 	require($MSO->config['admin_plugins_dir'] . 'admin_page/new.php');
 }

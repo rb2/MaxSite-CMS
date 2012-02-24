@@ -22,14 +22,14 @@ function pagination2_go($r = array())
 	$options = mso_get_option('pagination2', 'plugins', array() ); // получаем опции
 	
 	if ( !isset($r['old']) ) 
-		$r['old'] = isset($options['old']) ? $options['old'] : t('Старее »»»', 'plugins');
+		$r['old'] = isset($options['old']) ? $options['old'] : t('Старее »»»');
 	
 	if ( !isset($r['new']) ) 
-		$r['new'] = isset($options['new']) ? $options['new'] : t('««« Новее', 'plugins');
+		$r['new'] = isset($options['new']) ? $options['new'] : t('««« Новее');
 
 	
 	if ( !isset($r['sep']) ) // разделитель
-		$r['sep'] = isset($options['sep']) ? $options['sep'] : t(' | ', 'plugins');
+		$r['sep'] = isset($options['sep']) ? $options['sep'] : t(' | ');
 		
 
 	# раньше - позже
@@ -50,7 +50,7 @@ function pagination2_go($r = array())
 # функция выполняется при деинсталяции плагина
 function pagination2_uninstall($args = array())
 {	
-	mso_delete_option('pagination2', 'plugins'); // удалим созданные опции
+	mso_delete_option('pagination2', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -64,13 +64,13 @@ function pagination2_mso_options()
 							'type' => 'text', 
 							'name' => 'Записи старее', 
 							'description' => 'Текст ссылок для старых записей', 
-							'default' => t('Старее »»»', 'plugins')
+							'default' => t('Старее »»»')
 						),
 			'new' => array(
 							'type' => 'text', 
 							'name' => 'Записи новее', 
 							'description' => 'Текст ссылки на новые записи', 
-							'default' => t('««« Новее', 'plugins')
+							'default' => t('««« Новее')
 						), 
 			'sep' => array(
 							'type' => 'text', 

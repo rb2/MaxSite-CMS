@@ -51,8 +51,8 @@
 	# функция вызываемая при хуке, указанном в mso_admin_url_hook
 	function samborsky_ping_admin_page($args = array()){
 		
-		mso_hook_add_dinamic('mso_admin_header',' return $args . "' . t('samborsky_ping', __FILE__) . '"; ' );
-		mso_hook_add_dinamic('admin_title',' return "' . t('samborsky_ping', __FILE__) . ' - " . $args; ' );
+		mso_hook_add_dinamic('mso_admin_header',' return $args . "' . t('samborsky_ping') . '"; ' );
+		mso_hook_add_dinamic('admin_title',' return "' . t('samborsky_ping') . ' - " . $args; ' );
 		
 		require(getinfo('plugins_dir') . 'samborsky_ping/admin.php');
 	}	
@@ -69,7 +69,7 @@
 		
 		$CI->xmlrpc->method('weblogUpdates.ping');
 		$CI->xmlrpc->request(array(
-			mso_get_option('name_site'),
+			mso_get_option('name_site', 'plugins' ),
 			getinfo('site_url'),
 			getinfo('site_url') . 'feed'
 		));		

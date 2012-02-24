@@ -9,13 +9,13 @@
 # функция автоподключения плагина
 function page_views_autoload($args = array())
 {
-	mso_register_widget('page_views_widget', t('Самое читаемое', 'plugins')); # регистрируем виджет
+	mso_register_widget('page_views_widget', t('Самое читаемое')); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function page_views_uninstall($args = array())
 {
-	mso_delete_option_mask('page_views_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('page_views_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -54,25 +54,25 @@ function page_views_widget_form($num = 1)
 	
 	$CI->db->select('page_type_id, page_type_name');
 	$query = $CI->db->get('page_type');
-	$types = array(0 => t('Все типы', 'plugins'));
+	$types = array(0 => t('Все типы'));
 	if ($query->num_rows() > 0)
 	{
 		foreach ($query->result_array() as $page)
 		$types[$page['page_type_id']] = $page['page_type_name'];
 	}
 
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Количество записей:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'limit', 'value'=>$options['limit'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Количество записей:') . '</div> '. form_input( array( 'name'=>$widget . 'limit', 'value'=>$options['limit'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Тип записей:', 'plugins') . '</div> '. form_dropdown( $widget . 'page_type', $types, array( 'value'=>$options['page_type'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Тип записей:') . '</div> '. form_dropdown( $widget . 'page_type', $types, array( 'value'=>$options['page_type'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Формат:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
 
-	$form .= '<p><div class="t150">&nbsp;</div><strong>[TITLE]</strong> - ' . t('название записи', 'plugins');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[COUNT]</strong> - ' . t('просмотров в день', 'plugins');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[ALLCOUNT]</strong> - ' . t('всего просмотров', 'plugins');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[A]</strong>' . t('ссылка', 'plugins') . '<strong>[/A]</strong>';
+	$form .= '<p><div class="t150">&nbsp;</div><strong>[TITLE]</strong> - ' . t('название записи');
+	$form .= '<br><div class="t150">&nbsp;</div><strong>[COUNT]</strong> - ' . t('просмотров в день');
+	$form .= '<br><div class="t150">&nbsp;</div><strong>[ALLCOUNT]</strong> - ' . t('всего просмотров');
+	$form .= '<br><div class="t150">&nbsp;</div><strong>[A]</strong>' . t('ссылка') . '<strong>[/A]</strong>';
 
 	return $form;
 }
@@ -94,7 +94,7 @@ function page_views_widget_update($num = 1)
 	$newoptions['format'] = mso_widget_get_post($widget . 'format');
 
 	if ( $options != $newoptions )
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 
@@ -172,7 +172,7 @@ function page_views_widget_custom($options = array(), $num = 1)
 				$out1 = str_replace('[ALLCOUNT]', $page['page_view_count'], $out1);
 
 				$out1 = str_replace('[A]', $link . $page['page_slug']
-						. '" title="' . t('Просмотров в сутки: ', 'plugins') . $page['sutki'] . '">'
+						. '" title="' . t('Просмотров в сутки: ') . $page['sutki'] . '">'
 						, $out1);
 
 				$out1 = str_replace('[/A]', '</a>', $out1);

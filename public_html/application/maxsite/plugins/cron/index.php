@@ -30,7 +30,7 @@ function cron_custom($args = array())
 # функция выполняется при деинстяляции плагина
 function cron_uninstall($args = array())
 {	
-	mso_delete_option('plugin_cron', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_cron', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 

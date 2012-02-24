@@ -13,13 +13,13 @@ function mso_admin_menu_default($args = array())
 	# группа - адрес - название ссылка - порядок в своей группе
 	# вначале нужно добавить все главные меню в той последовательности, которая нужна
 
-	mso_admin_menu_add('', '', t('Начало', 'admin') );
-	mso_admin_menu_add('page', '', t('Страницы', 'admin'));
-	mso_admin_menu_add('options', '', t('Настройки', 'admin'));
-	mso_admin_menu_add('users', '', t('Пользователи', 'admin'));
-	mso_admin_menu_add('plugins', '', t('Плагины', 'admin'));
+	mso_admin_menu_add('', '', t('Начало') );
+	mso_admin_menu_add('page', '', t('Страницы'));
+	mso_admin_menu_add('options', '', t('Настройки'));
+	mso_admin_menu_add('users', '', t('Пользователи'));
+	mso_admin_menu_add('plugins', '', t('Плагины'));
 	
-	$out = t('Меню не определено', 'admin');
+	$out = t('Меню не определено');
 	
 	return $out;
 }
@@ -35,7 +35,7 @@ function mso_admin_content_default($args = '')
 {
 	# связываем дефолтное содержимое с плагином admin_home
 	if (function_exists('admin_home_admin')) admin_home_admin();
-		else return t('Добро пожаловать в MaxSite CMS!', 'admin');
+		else return t('Добро пожаловать в MaxSite CMS!');
 }
 
 function mso_admin_footer_default($args = '')
@@ -45,11 +45,11 @@ function mso_admin_footer_default($args = '')
 	$CI = & get_instance(); 
 	$query_count = $CI->db->query_count;
 	$ver = $MSO->version;
-	$out = '<p>' . t('Страница создавалась {elapsed_time} секунд. Потребление памяти: {memory_usage}. Запросов MySQL:', 'admin') . ' '
+	$out = '<p>' . t('Страница создавалась {elapsed_time} секунд. Потребление памяти: {memory_usage}. Запросов MySQL:') . ' '
 	. $query_count . '. '
-	. t('Работает на <a href="http://max-3000.com/" style="color: white;">MaxSite CMS</a>.', 'admin'). ' ' 
+	. t('Работает на <a href="http://max-3000.com/" style="color: white;">MaxSite CMS</a>.'). ' ' 
 	. t('Версия') . ' '
-	. $ver . ' [<a href="' . $MSO->config['site_url'] . 'logout'.'">' . t('выйти', 'admin') . '</a>]</p>';
+	. $ver . ' [<a href="' . $MSO->config['site_url'] . 'logout'.'">' . t('выйти') . '</a>]</p>';
 	
 	return $out;
 }
@@ -85,36 +85,36 @@ mso_hook_add('admin_footer_default', 'mso_admin_footer_default');
 # их можно указать в самих плагинах, но это дефолтные, поэтому указываем здесь
 # для удобства
 
-mso_create_allow('edit_users_group', t('Разрешить изменять группу другим участникам', 'admin'));
-mso_create_allow('edit_users_admin_note', t('Разрешить изменять примечание админа', 'admin'));
-mso_create_allow('edit_other_users', t('Разрешить изменять анкетные данные других участников', 'admin'));
-mso_create_allow('edit_self_users', t('Разрешить изменять свои анкетные данные', 'admin'));
-mso_create_allow('edit_users_password', t('Разрешить изменять пароль других участников', 'admin'));
-mso_create_allow('edit_add_new_users', t('Разрешить добавлять новых пользователей', 'admin'));
-mso_create_allow('edit_delete_users', t('Разрешить удалять пользователей', 'admin'));
-mso_create_allow('edit_page_author', t('Разрешить менять автора', 'admin'));
+mso_create_allow('edit_users_group', t('Разрешить изменять группу другим участникам'));
+mso_create_allow('edit_users_admin_note', t('Разрешить изменять примечание админа'));
+mso_create_allow('edit_other_users', t('Разрешить изменять анкетные данные других участников'));
+mso_create_allow('edit_self_users', t('Разрешить изменять свои анкетные данные'));
+mso_create_allow('edit_users_password', t('Разрешить изменять пароль других участников'));
+mso_create_allow('edit_add_new_users', t('Разрешить добавлять новых пользователей'));
+mso_create_allow('edit_delete_users', t('Разрешить удалять пользователей'));
+mso_create_allow('edit_page_author', t('Разрешить менять автора'));
 
-mso_create_allow('admin_users_group', t('Админ-доступ к «Группам и разрешениям»', 'admin'));
-mso_create_allow('admin_users_users', t('Админ-доступ к «Список пользователей»', 'admin'));
-mso_create_allow('admin_plugins', t('Админ-доступ к «Плагинам»', 'admin'));
-mso_create_allow('admin_cat', t('Админ-доступ к «Рубрики»', 'admin'));
-mso_create_allow('admin_options', t('Админ-доступ к «Настройки»', 'admin'));
+mso_create_allow('admin_users_group', t('Админ-доступ к «Группам и разрешениям»'));
+mso_create_allow('admin_users_users', t('Админ-доступ к «Список пользователей»'));
+mso_create_allow('admin_plugins', t('Админ-доступ к «Плагинам»'));
+mso_create_allow('admin_cat', t('Админ-доступ к «Рубрики»'));
+mso_create_allow('admin_options', t('Админ-доступ к «Настройки»'));
 
-mso_create_allow('admin_page', t('Админ-доступ к «Страницы-список»', 'admin'));
-mso_create_allow('admin_page_new', t('Админ-доступ к «Создание страниц»', 'admin'));
-mso_create_allow('admin_page_publish', t('Разрешить сразу публиковать записи. Иначе только как черновик', 'admin'));
-mso_create_allow('admin_page_delete', t('Разрешить удалять страницы', 'admin'));
-mso_create_allow('admin_page_edit', t('Админ-доступ к «Редактирование страниц»', 'admin'));
-mso_create_allow('admin_page_edit_other', t('Админ-доступ к редактированию чужих страниц', 'admin'));
+mso_create_allow('admin_page', t('Админ-доступ к «Страницы-список»'));
+mso_create_allow('admin_page_new', t('Админ-доступ к «Создание страниц»'));
+mso_create_allow('admin_page_publish', t('Разрешить сразу публиковать записи. Иначе только как черновик'));
+mso_create_allow('admin_page_delete', t('Разрешить удалять страницы'));
+mso_create_allow('admin_page_edit', t('Админ-доступ к «Редактирование страниц»'));
+mso_create_allow('admin_page_edit_other', t('Админ-доступ к редактированию чужих страниц'));
 
-mso_create_allow('admin_sidebars', t('Админ-доступ к настройкам сайдбаров', 'admin'));
+mso_create_allow('admin_sidebars', t('Админ-доступ к настройкам сайдбаров'));
 
-mso_create_allow('admin_comments', t('Админ-доступ к просмотру комментариев', 'admin'));
-mso_create_allow('admin_comments_edit', t('Админ-доступ к редактированию комментариев', 'admin'));
+mso_create_allow('admin_comments', t('Админ-доступ к просмотру комментариев'));
+mso_create_allow('admin_comments_edit', t('Админ-доступ к редактированию комментариев'));
 
 
-mso_create_allow('admin_comusers', t('Админ-доступ к «Комментаторам»', 'admin'));
+mso_create_allow('admin_comusers', t('Админ-доступ к «Комментаторам»'));
 
-mso_create_allow('admin_home', t('Разрешить доступ (выборочно) к «Информация»', 'admin'));
+mso_create_allow('admin_home', t('Разрешить доступ (выборочно) к «Информация»'));
 
 ?>

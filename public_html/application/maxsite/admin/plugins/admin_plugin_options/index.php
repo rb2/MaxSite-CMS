@@ -11,7 +11,7 @@
 function admin_plugin_options_autoload($args = array())
 {	
 	mso_hook_add( 'admin_init', 'admin_plugin_options_admin_init');
-	mso_create_allow('admin_plugin_options', t('Админ-доступ к редактированию опций плагинов', 'admin'));
+	mso_create_allow('admin_plugin_options', t('Админ-доступ к редактированию опций плагинов'));
 }
 
 # функция выполняется при указаном хуке admin_init
@@ -30,7 +30,7 @@ function admin_plugin_options_admin_init($args = array())
 		# Четвертый - номер в меню
 		
 		// в меню не нужно
-		// mso_admin_menu_add('plugins', $this_plugin_url, t('Опции плагинов', 'admin'), 3);
+		// mso_admin_menu_add('plugins', $this_plugin_url, t('Опции плагинов'), 3);
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 
@@ -46,24 +46,24 @@ function admin_plugin_options_admin($args = array())
 {
 	if ( !mso_check_allow('admin_plugin_options') ) 
 	{
-		echo t('Доступ запрещен', 'admin');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Настройка опций плагинов', 'admin') . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Настройка опций плагинов', 'admin') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Настройка опций плагинов') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Настройка опций плагинов') . ' - " . $args; ' );
 	
 	if ($plugin = mso_segment(3))
 	{
 		if ( !file_exists(getinfo('plugins_dir') . $plugin . '/index.php') )
 		{
-			echo t('Плагин не найден.', 'admin');
+			echo t('Плагин не найден.');
 			return $args;
 		}	
 		
 		if (!function_exists($plugin . '_mso_options'))
 		{
-			echo t('Для данного плагина настроек опций не предусмотрено.', 'admin');
+			echo t('Для данного плагина настроек опций не предусмотрено.');
 			return $args;
 		}
 		else 
@@ -74,7 +74,7 @@ function admin_plugin_options_admin($args = array())
 	}
 	else
 	{
-		echo t('Неверно указан плагин.', 'admin');
+		echo t('Неверно указан плагин.');
 	}
 }
 
@@ -88,17 +88,17 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 	if ($title)
 		echo '<h1><a href="">' . t($title) . '</a></h1>';
 	else
-		echo '<h1><a href="">' . t('Опции плагина', 'admin') . '</a></h1>';
+		echo '<h1><a href="">' . t('Опции плагина') . '</a></h1>';
 	
 
 	if ($info)
 		echo '<p class="info">' . $info . '</p>';
 	else
-		echo '<p class="info">' . t('Укажите необходимые опции плагина.', 'admin') . '</p>';
+		echo '<p class="info">' . t('Укажите необходимые опции плагина.') . '</p>';
 		
 	
 	if ($text_other === true)
-		echo '<p><a href="' . getinfo('site_admin_url') . 'plugins">' . t('Вернуться на страницу плагинов', 'admin') . '</a></p>';
+		echo '<p><a href="' . getinfo('site_admin_url') . 'plugins">' . t('Вернуться на страницу плагинов') . '</a></p>';
 	elseif ($text_other) echo '<p>' . $text_other . '</p>';
 	
 	
@@ -149,7 +149,7 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 			mso_flush_cache(); // сбросим кэш
 		}
 		
-		echo '<div class="update">' . t('Обновлено!', 'admin') . '</div>';
+		echo '<div class="update">' . t('Обновлено!') . '</div>';
 	}
 	
 	if ($ar) // есть опции
@@ -163,8 +163,8 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 			{
 				$form .= '<div class="admin_plugin_options_info">'; 
 				
-				if (isset($val['title'])) $form .= '<h2>' . $val['title'] . '</h2>'; 
-				if (isset($val['text'])) $form .= $val['text']; 
+				if (isset($val['title'])) $form .= '<h2>' . t($val['title']) . '</h2>'; 
+				if (isset($val['text'])) $form .= t($val['text']); 
 				
 				$form .= '</div>'; 
 				
@@ -194,13 +194,13 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 			if ($val['type'] == 'text')
 			{
 				$form .= $group_start . '<strong>' 
-						. $val['name'] 
+						. t($val['name']) 
 						. '</strong><br><input type="text" value="'
 						. htmlspecialchars($options[$m]) 
 						. '" name="'
 						. $key . '-' . $type . '[' . $m . ']'
 						. '">' 
-						. $val['description'] 
+						. t($val['description']) 
 						. $group_end . NR;
 			}
 			elseif ($val['type'] == 'textarea')
@@ -210,11 +210,11 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 				
 				
 				$form .= $group_start . '<strong>' 
-						. $val['name'] 
+						. t($val['name']) 
 						. '</strong><br><textarea rows="' . $rows . '" name="'
 						. $key . '-' . $type . '[' . $m . ']'
 						. '">'
-						. htmlspecialchars($options[$m]) 
+						. t(htmlspecialchars($options[$m])) 
 						. '</textarea>' 
 						. $val['description'] 
 						. $group_end . NR;
@@ -229,9 +229,9 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 				$form .= $group_start  
 						. '<label><input class="checkbox" type="checkbox" value="' . $ch_val . '"'
 						. ' name="' . $key . '-' . $type . '[' . $m . ']' . '" ' . $checked . '> <strong>'
-						. $val['name']
+						. t($val['name'])
 						. '</strong></label>' 
-						. $val['description'] 
+						. t($val['description']) 
 						. $group_end . NR;
 				
 				# поскольку не отмеченные чекбоксы не передаются в POST, сделаем массив чекбоксов в hidden
@@ -241,7 +241,7 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 			elseif ($val['type'] == 'select')
 			{
 				$form .= $group_start . '<strong>' 
-						. $val['name'] 
+						. t($val['name']) 
 						. '</strong><br><select name="'
 						. $key . '-' . $type . '[' . $m . ']'
 						. '">';
@@ -261,17 +261,17 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 						
 						if (htmlspecialchars($options[$m]) == $v) $checked = 'selected="selected"';
 							else $checked = '';
-						$form .= NR . '<option value="' . $v . '" ' . $checked . '>' . $v_t . '</option>';
+						$form .= NR . '<option value="' . $v . '" ' . $checked . '>' . t($v_t) . '</option>';
 					}
 				}
 				$form .= '</select>' 
-						. $val['description'] 
+						. t($val['description']) 
 						. $group_end . NR;
 			}
 			elseif ($val['type'] == 'radio')
 			{
 				$form .= $group_start . '<strong>' 
-						. $val['name'] 
+						. t($val['name']) 
 						. '</strong><br>';
 						
 				if ( !isset($val['delimer']) ) $delimer = '<br>';
@@ -293,10 +293,10 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 						if (htmlspecialchars($options[$m]) == $v) $checked = 'checked="checked"';
 							else $checked = '';
 						
-						$form .= NR . '<label><input style="width: auto" type="radio" value="' . $v . '" ' . $checked . ' name="' . $key . '-' . $type . '[' . $m . ']' . '"> ' . $v_t . '</label>' . $delimer;
+						$form .= NR . '<label><input style="width: auto" type="radio" value="' . $v . '" ' . $checked . ' name="' . $key . '-' . $type . '[' . $m . ']' . '"> ' . t($v_t) . '</label>' . $delimer;
 					}
 				}
-				$form .= $val['description'] . $group_end . NR;
+				$form .= t($val['description']) . $group_end . NR;
 			}
 		}
 		
@@ -304,12 +304,12 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 		# выводим форму
 		echo NR . '<form method="post">' . mso_form_session('f_session_id');
 		echo $form;
-		echo NR . '<p class="br"><input type="submit" name="f_submit" value="' . t('Сохранить', 'admin') . '"></p>';
+		echo NR . '<p class="br"><input type="submit" name="f_submit" value="' . t('Сохранить') . '"></p>';
 		echo '</form>' . NR;
 	}
 	else
 	{
-		echo t('<p>Опции не определены.</p>', 'admin') . NR;
+		echo t('<p>Опции не определены.</p>') . NR;
 	}
 	
 }

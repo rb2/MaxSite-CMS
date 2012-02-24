@@ -10,13 +10,13 @@
 function login_form_autoload($args = array())
 {
 	# регистрируем виджет
-	mso_register_widget('login_form_widget', t('Форма логина', 'plugins')); 
+	mso_register_widget('login_form_widget', t('Форма логина')); 
 }
 
 # функция выполняется при деинсталяции плагина
 function login_form_uninstall($args = array())
 {	
-	mso_delete_option_mask('login_form_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('login_form_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -30,19 +30,19 @@ function login_form_widget($num = 1)
 		
 	if (is_login())
 	{
-		$out = '<p><strong>' . t('Привет,', 'plugins') . ' ' . getinfo('users_nik') . '!</strong><br>
-				[<a href="' . getinfo('siteurl') . 'admin">' . t('управление', 'plugins') . '</a>]
-				[<a href="' . getinfo('siteurl') . 'logout'.'">' . t('выйти', 'plugins') . '</a>] 
+		$out = '<p><strong>' . t('Привет,') . ' ' . getinfo('users_nik') . '!</strong><br>
+				[<a href="' . getinfo('siteurl') . 'admin">' . t('управление') . '</a>]
+				[<a href="' . getinfo('siteurl') . 'logout'.'">' . t('выйти') . '</a>] 
 				</p>';	
 	}
 	elseif ($comuser = is_login_comuser())
 	{
-		if (!$comuser['comusers_nik']) $cun = t('Привет!', 'plugins');
-			else $cun = t('Привет,', 'plugins') . ' ' . $comuser['comusers_nik'] . '!';
+		if (!$comuser['comusers_nik']) $cun = t('Привет!');
+			else $cun = t('Привет,') . ' ' . $comuser['comusers_nik'] . '!';
 			
 		$out = '<p><strong>' . $cun . '</strong><br>
-				[<a href="' . getinfo('siteurl') . 'users/' . $comuser['comusers_id'] . '">' . t('своя страница', 'plugins') . '</a>]
-				[<a href="' . getinfo('siteurl') . 'logout'.'">' . t('выйти', 'plugins') . '</a>] 
+				[<a href="' . getinfo('siteurl') . 'users/' . $comuser['comusers_id'] . '">' . t('своя страница') . '</a>]
+				[<a href="' . getinfo('siteurl') . 'logout'.'">' . t('выйти') . '</a>] 
 				</p>';
 
 	}
@@ -50,7 +50,7 @@ function login_form_widget($num = 1)
 	{
 		$after_form = (isset($options['after_form'])) ? $options['after_form'] : '';
 
-		$out = mso_login_form(array( 'login'=>t('Логин (email):', 'plugins') . ' ', 'password'=>t('Пароль:', 'plugins') . ' ', 'submit'=>'', 'form_end'=>$after_form ), getinfo('siteurl') . mso_current_url(), false);
+		$out = mso_login_form(array( 'login'=>t('Логин (email):') . ' ', 'password'=>t('Пароль:') . ' ', 'submit'=>'', 'form_end'=>$after_form ), getinfo('siteurl') . mso_current_url(), false);
 	}
 	
 	if ($out)
@@ -80,11 +80,11 @@ function login_form_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Текст после формы:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'after_form', 'value'=>$options['after_form'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст после формы:') . '</div> '. form_input( array( 'name'=>$widget . 'after_form', 'value'=>$options['after_form'] ) ) ;
 	
-	$form .= '<p><div class="t150">&nbsp;</div> '. t('Например, ссылка на регистрацию', 'plugins') ;
+	$form .= '<p><div class="t150">&nbsp;</div> '. t('Например, ссылка на регистрацию') ;
 	
 	return $form;
 }
@@ -104,7 +104,7 @@ function login_form_widget_update($num = 1)
 	$newoptions['after_form'] = mso_widget_get_post($widget . 'after_form');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # End of file

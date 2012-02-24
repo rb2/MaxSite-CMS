@@ -35,7 +35,7 @@ function comment_smiles_custom($arg = array())
 	$smileys=_get_smiley_array();
   
 	// идея Евгений - http://jenweb.info/page/hide-smileys, http://forum.max-3000.com/viewtopic.php?f=6&t=3192
-	echo NR . '<div style="width: 19px; height: 19px; float: right; text-align: right; margin-top: -23px; cursor: pointer; background: url(\'' . getinfo('plugins_url') . 'comment_smiles/bg.gif\') no-repeat;" title="' . t('Показать/скрыть смайлики', 'plugins') . '" class="btn-smiles"></div>' . NR; 
+	echo NR . '<div style="width: 19px; height: 19px; float: right; text-align: right; margin-top: -23px; cursor: pointer; background: url(\'' . getinfo('plugins_url') . 'comment_smiles/bg.gif\') no-repeat;" title="' . t('Показать/скрыть смайлики') . '" class="btn-smiles"></div>' . NR; 
   
 	echo '<p style="padding-bottom:5px;" class="comment_smiles">';
   

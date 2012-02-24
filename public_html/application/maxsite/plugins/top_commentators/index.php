@@ -11,13 +11,13 @@
 function top_commentators_autoload($args = array())
 {
   # регистрируем виджет
-  mso_register_widget('top_commentators_widget', t('Активные комментаторы', __FILE__));
+  mso_register_widget('top_commentators_widget', t('Активные комментаторы'));
 }
 
 # функция выполняется при деинсталяции плагина
 function top_commentators_uninstall($args = array())
 {  
-  mso_delete_option_mask('top_commentators_widget_', 'plugins'); // удалим созданные опции
+  mso_delete_option_mask('top_commentators_widget_', 'plugins' ); // удалим созданные опции
   return $args;
 }
 
@@ -56,14 +56,14 @@ function top_commentators_widget_form($num = 1)
   $CI = & get_instance();
   $CI->load->helper('form');
   
-  $form = '<p><div class="t150">' . t('Заголовок:', __FILE__) . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+  $form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
   
-  $form .= '<p><div class="t150">' . t('Формат:', __FILE__) . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) )
-      . '<br><div class="t150">&nbsp;</div>' . t('Возможные подстановки:', __FILE__) . ' [LINK_URL][/LINK] [LINK_PAGE][/LINK] [NAME] [COUNT]';
+  $form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) )
+      . '<br><div class="t150">&nbsp;</div>' . t('Возможные подстановки:') . ' [LINK_URL][/LINK] [LINK_PAGE][/LINK] [NAME] [COUNT]';
 
-  $form .= '<p><div class="t150">' . t('Количество комментаторов:', __FILE__) . '</div> '. form_input( array( 'name'=>$widget . 'commentators_cnt', 'value'=>$options['commentators_cnt'] ) ) ;
+  $form .= '<p><div class="t150">' . t('Количество комментаторов:') . '</div> '. form_input( array( 'name'=>$widget . 'commentators_cnt', 'value'=>$options['commentators_cnt'] ) ) ;
 
-  $form .= '<p><div class="t150">' . t('За сколько дней учитывать комментарии:', __FILE__) . '</div> '. form_input( array( 'name'=>$widget . 'days', 'value'=>$options['days'] ) ) ;
+  $form .= '<p><div class="t150">' . t('За сколько дней учитывать комментарии:') . '</div> '. form_input( array( 'name'=>$widget . 'days', 'value'=>$options['days'] ) ) ;
 
   return $form;
 }
@@ -86,7 +86,7 @@ function top_commentators_widget_update($num = 1)
   $newoptions['days'] = mso_widget_get_post($widget . 'days');
 
   if ( $options != $newoptions ) 
-    mso_add_option($widget, $newoptions, 'plugins');
+    mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 
@@ -130,7 +130,7 @@ function top_commentators_widget_custom($options = array(), $num = 1)
       foreach ($users as $user)
       {
         if ( $user['comusers_nik'] == '' )
-          $user['comusers_nik'] = t('Комментатор', __FILE__) . ' ' . $user['comusers_id'] ;
+          $user['comusers_nik'] = t('Комментатор') . ' ' . $user['comusers_id'] ;
 
         if ( $user['comusers_url'] == '' )
           $user['comusers_url'] = getinfo('siteurl') . 'users/' . $user['comusers_id'];

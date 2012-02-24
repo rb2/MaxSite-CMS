@@ -9,13 +9,13 @@
 # функция автоподключения плагина
 function page_comments_autoload($args = array())
 {
-	mso_register_widget('page_comments_widget', t('Самое комментируемое', 'plugins')); # регистрируем виджет
+	mso_register_widget('page_comments_widget', t('Самое комментируемое')); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function page_comments_uninstall($args = array())
 {	
-	mso_delete_option_mask('page_comments_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('page_comments_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -51,15 +51,15 @@ function page_comments_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Количество записей:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'limit', 'value'=>$options['limit'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Количество записей:') . '</div> '. form_input( array( 'name'=>$widget . 'limit', 'value'=>$options['limit'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Формат:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
 	
-	$form .= '<p><div class="t150">&nbsp;</div><strong>[TITLE]</strong> - ' . t('название записи', 'plugins');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[COUNT]</strong> - ' . t('количество комментариев', 'plugins');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[A]</strong>' . t('ссылка', 'plugins') . '<strong>[/A]</strong>';
+	$form .= '<p><div class="t150">&nbsp;</div><strong>[TITLE]</strong> - ' . t('название записи');
+	$form .= '<br><div class="t150">&nbsp;</div><strong>[COUNT]</strong> - ' . t('количество комментариев');
+	$form .= '<br><div class="t150">&nbsp;</div><strong>[A]</strong>' . t('ссылка') . '<strong>[/A]</strong>';
 	
 	return $form;
 }
@@ -80,7 +80,7 @@ function page_comments_widget_update($num = 1)
 	$newoptions['format'] = mso_widget_get_post($widget . 'format');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

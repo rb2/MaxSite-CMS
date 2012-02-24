@@ -26,7 +26,7 @@ function feedburner_count_autoload($args = array()){
 
 # функция выполняется при деинсталяции плагина
 function feedburner_count_uninstall($args = array()){	
-	mso_delete_option('samborsky_feedburner_count', 'plugins');
+	mso_delete_option('samborsky_feedburner_count', 'plugins' );
 	return $args;
 }
 

@@ -8,7 +8,7 @@
 # функция автоподключения плагина
 function ushki_autoload($args = array())
 {
-	mso_create_allow('plugin_ushki', t('Админ-доступ к Ушкам', 'plugins'));
+	mso_create_allow('plugin_ushki', t('Админ-доступ к Ушкам'));
 	mso_hook_add( 'admin_init', 'ushki_admin_init'); # хук на админку
 	mso_register_widget('ushki_widget', 'Ушки'); # регистрируем виджет
 	//mso_hook_add( 'content', 'ushki_content'); # хук на вывод контента
@@ -32,7 +32,7 @@ function ushki_uninstall($args = array())
 {	
 	mso_remove_allow('plugin_ushki');
 	mso_remove_allow('ushki_edit'); // старое ошибочное разрешение
-	mso_delete_option_mask('ushki_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('ushki_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -49,7 +49,7 @@ function ushki_admin_init($args = array())
 		#			можно использовать добавочный, например demo/edit = http://сайт/admin/demo/edit
 		# Третий - название ссылки	
 		
-		mso_admin_menu_add('plugins', $this_plugin_url, t('Ушки', 'plugins'));
+		mso_admin_menu_add('plugins', $this_plugin_url, t('Ушки'));
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 
@@ -67,7 +67,7 @@ function ushki_admin_page($args = array())
 	# выносим админские функции отдельно в файл
 	if ( !mso_check_allow('plugin_ushki') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	
@@ -111,9 +111,9 @@ function ushki_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 		
-	$form = '<p><div class="t150">' . t('Заголовок (блока):', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок (блока):') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	//$form .= '<p><div class="t150">' . t('Ушка (название):', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'ushka', 'value'=>$options['ushka'] ) ) ;
+	//$form .= '<p><div class="t150">' . t('Ушка (название):') . '</div> '. form_input( array( 'name'=>$widget . 'ushka', 'value'=>$options['ushka'] ) ) ;
 	
 	
 	# получим список всех ушек
@@ -125,7 +125,7 @@ function ushki_widget_form($num = 1)
 		$ushki_list[$val['name']] = $val['name'];
 	}
 		
-	$form .= '<p><div class="t150">' . t('Ушка (название):', 'plugins') . '</div> '. 
+	$form .= '<p><div class="t150">' . t('Ушка (название):') . '</div> '. 
 		form_dropdown( $widget . 'ushka', 
 		$ushki_list, 
 		$options['ushka']);
@@ -149,7 +149,7 @@ function ushki_widget_update($num = 1)
 	$newoptions['ushka'] = mso_widget_get_post($widget . 'ushka');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # вывод ушки в виджете

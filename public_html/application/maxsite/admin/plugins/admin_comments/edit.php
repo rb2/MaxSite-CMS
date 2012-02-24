@@ -144,7 +144,7 @@ mso_cur_dir_lang('admin');
 			}
 
 			echo '<form action="" method="post">' . mso_form_session('f_session_id');
-			//echo '<h3>' . t('Текст', 'admin') . '</h3>';
+			//echo '<h3>' . t('Текст') . '</h3>';
 
 			// хуки для текстового поля комментирования
 			mso_hook('admin_comment_edit');

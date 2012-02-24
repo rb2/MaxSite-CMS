@@ -131,18 +131,30 @@
 				if ( mso_valid_email($to_email) ) mso_mail($to_email, $subject, $text_email);
 			}
 
-			if ($form_hide) echo '<p class="comment-ok">'. t('Ваше сообщение отправлено!'). '</p><p>'
-					. str_replace("\n", '<br>', htmlspecialchars($subject. "\n" . $_POST['contact_message']))
-					. '</p>';
-			//$form_hide = true;
+
+			if (!$form_hide) 
+			{
+				$msg = '<p><b>' . htmlspecialchars($subject) . '</b></p>';
+				
+				$msg .= str_replace("\n", '<br><br>', '<p style="font-size: .9em">' . htmlspecialchars($_POST['contact_message']) . '</p>');
+				
+				echo '<div class="comment-ok">'. t('Ваше сообщение отправлено!'). '</div>'
+					. $msg
+					. '<hr>';
+				
+				echo mso_load_jquery('jquery.scrollto.js');
+				echo '<script>$(document).ready(function(){$.scrollTo("div.comment-ok", 500);})</script>';
+					
+				// $form_hide = true;
+			}
 		}
 		// неверные данные
 		else {
-			echo '<p class="comment-error">'. t('Письмо не отправлено'). '</p>';
-			echo '<p>'. t('Обнаружены следующие ошибки'). ':</p><ul>'.$errors_msg.'</ul>';
+			echo '<div class="comment-error">'. t('Письмо не отправлено'). '</div>';
+			echo '<p><b>'. t('Обнаружены следующие ошибки'). '</b></p><ul>'.$errors_msg.'</ul><hr>';
 			
 			echo mso_load_jquery('jquery.scrollto.js');
-			echo '<script>$(document).ready(function(){$.scrollTo("p.comment-error", 500);})</script>';
+			echo '<script>$(document).ready(function(){$.scrollTo("div.comment-error", 500);})</script>';
 		}
 	}
 
@@ -165,7 +177,7 @@
 		</tr>
 		<tr>
 			<td align="right" class="t1"><label for="contact_mail"><?=t('E-mail')?><span class="reqtxt">*</span></label></td>
-			<td class="t2 input-text"><input name="contact_mail" type="text" value="<?=( (isset($_POST['contact_mail'])?($_POST['contact_mail']):('')) );?>" id="contact_mail" style="width: 98%;<?=( ($err_email)?(' border-color: red;'):('') );?>"></td>
+			<td class="t2 input-text"><input name="contact_mail" type="email" value="<?=( (isset($_POST['contact_mail'])?($_POST['contact_mail']):('')) );?>" id="contact_mail" style="width: 98%;<?=( ($err_email)?(' border-color: red;'):('') );?>"></td>
 		</tr>
 <?php if (mso_get_option('ask_tel', 'templates', '1')) { ?>
 		<tr>
@@ -210,21 +222,21 @@ else
 			<td class="t2 textarea"><textarea name="contact_message" style="width: 98%; height: 200px;<?=( ($err_text)?(' border-color: red;'):('') );?>"><?=( (isset($_POST['contact_message'])?($_POST['contact_message']):('')) );?></textarea></td>
 		</tr>
 		<tr>
-			<td align="right" valign="top" class="t1"><label for="contact_antispam"><?=t('Антиспам')?>: <?= $antispam1; ?>+<?= $antispam2; ?>=</label></td>
-			<td class="t2 input-text"><input name="contact_antispam" type="text" value="" id="contact_antispam" style="<?=( ($err_antispam)?('border-color: red;'):('') );?>"><span class="reqtxt-otvet"><?=t('Укажите свой ответ')?></span><span class="reqtxt">*</span></td>
+			<td align="right" valign="top" class="t1"><label for="contact_antispam"><?=t('Антиспам')?><span class="reqtxt">*</span>: <?= $antispam1; ?>+<?= $antispam2; ?>=</label></td>
+			<td class="t2 input-text"><label><input name="contact_antispam" type="text" value="" id="contact_antispam" style="<?=( ($err_antispam)?('border-color: red;'):('') );?>"><span class="reqtxt-otvet"><?=t('Укажите свой ответ')?></span></label></td>
 		</tr>
 <?php if (mso_get_option('ask_copy', 'templates', '1')) { ?>
 		<tr>
-			<td align="right" class="t1"><label for="subscribe"><?=t('Отправить копию письма на ваш e-mail?')?></label></td>
-			<td valign="top" class="t2 input-checkbox"><label><input name="subscribe" id="subscribe" value="" <?=( (isset($_POST['subscribe'])?('checked="checked"'):('')) );?> type="checkbox">&nbsp;<?=t('Да')?></label></td>
+			<td align="right" class="t1">&nbsp;</td>
+			<td valign="top" class="t2 input-checkbox"><label><input name="subscribe" id="subscribe" value="" <?=( (isset($_POST['subscribe'])?('checked="checked"'):('')) );?> type="checkbox">&nbsp;<?=t('Отправить копию письма на мой email')?></label></td>
 		</tr>
 <?php } ?>
 		<tr>
-			<td align="right" colspan="2" class="t3"><?=t('Поля, помеченные символом <span class="reqtxt">*</span> обязательны для заполнения.')?></td>
+			<td align="right" colspan="2" class="t3"></td>
 		</tr>
 		<tr>
-			<td align="right" class="t1 input-submit"><input name="submit" type="submit" value="<?=t('Отправить')?>"></td>
-			<td class="t2 input-clear"><input name="clear" type="reset" value="<?=t('Очистить форму')?>"></td>
+			<td align="right" class="t1 input-submit">&nbsp;</td>
+			<td class="t2 input-clear"><input name="submit" type="submit" value="<?=t('Отправить')?>"> <input name="clear" type="reset" value="<?=t('Очистить форму')?>"><p class="hint"><?=t('Поля, помеченные символом <span class="reqtxt">*</span> обязательны для заполнения.')?></p></td>
 		</tr>
 	</table>
 </form>

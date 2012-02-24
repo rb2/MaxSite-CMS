@@ -18,7 +18,7 @@ function shjs_autoload()
 # функция выполняется при деинсталяции плагина
 function shjs_uninstall($args = array())
 {	
-	mso_delete_option('plugin_shjs', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_shjs', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -67,16 +67,16 @@ function shjs_mso_options()
 		array(
 			'css' => array(
 							'type' => 'select', 
-							'name' => t('Стиль оформления', __FILE__), 
-							'description' => t('Выберите схему подсветки кода', __FILE__), 
+							'name' => t('Стиль оформления'), 
+							'description' => t('Выберите схему подсветки кода'), 
 							'values' => $all_css,
 							'default' => 'sh_maxsite'
 						),
 			
 			'default_lang' => array(
 							'type' => 'select', 
-							'name' => t('Язык программирования по-умолчанию', __FILE__), 
-							'description' => t('Выберите язык, который будет применяться к &lt;pre&gt; и [pre] без указанного class.', __FILE__), 
+							'name' => t('Язык программирования по-умолчанию'), 
+							'description' => t('Выберите язык, который будет применяться к &lt;pre&gt; и [pre] без указанного class.'), 
 							'values' => $all_lang,
 							'default' => 'sh_php'
 						),			

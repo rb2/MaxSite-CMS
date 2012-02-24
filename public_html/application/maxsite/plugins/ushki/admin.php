@@ -6,16 +6,16 @@
  */
 
 ?>
-<h1><?= t('Ушки', 'plugins')?></h1>
+<h1><?= t('Ушки')?></h1>
 
-<p class="info"><?= t('С помощью ушек вы можете размещать произвольный html/php код в шаблоне, виджете или прочих плагинах. Ушки удобно использовать для вывода счетчика, рекламы и т.п. Просто создайте ушку, а потом укажите её имя в виджете или с помощью кода:', 'plugins') ?></p>
+<p class="info"><?= t('С помощью ушек вы можете размещать произвольный html/php код в шаблоне, виджете или прочих плагинах. Ушки удобно использовать для вывода счетчика, рекламы и т.п. Просто создайте ушку, а потом укажите её имя в виджете или с помощью кода:') ?></p>
 <pre>
 &lt;?php
 	if (function_exists('ushka')) echo ushka('имя ушки');
 ?&gt;
 </pre>
 <br>
-<p class="info"><?= t('Вы можете вывести произвольную ушку прямо в тексте. Данный код выведет ушку «reklama»:', 'plugins') ?></p>
+<p class="info"><?= t('Вы можете вывести произвольную ушку прямо в тексте. Данный код выведет ушку «reklama»:') ?></p>
 
 <pre>
 [ushka=reklama]
@@ -42,10 +42,10 @@
 			$ushki = mso_get_float_option($key, $type, array());
 			$ushki[] = array('name' => $ushka_new, 'type' => 'html', 'text' => '' ); // добавили новую
 			mso_add_float_option($key, $ushki, $type); // и в опции
-			echo '<div class="update">' . t('Ушка добавлена!', 'plugins') . '</div>';
+			echo '<div class="update">' . t('Ушка добавлена!') . '</div>';
 		}
 		else 
-			echo '<div class="error">' . t('Необходимо указать название ушки!', 'plugins') . '</div>';
+			echo '<div class="error">' . t('Необходимо указать название ушки!') . '</div>';
 	}
 	
 	if ( $post = mso_check_post(array('f_session_id', 'f_submit', 'f_ushka')) )
@@ -65,7 +65,7 @@
 		// pr($ushki_new);
 		mso_add_float_option($key, $ushki_new, $type);
 
-		echo '<div class="update">' . t('Обновлено!', 'plugins') . '</div>';
+		echo '<div class="update">' . t('Обновлено!') . '</div>';
 	}
 	
 
@@ -86,8 +86,8 @@
 		// pr($ushki);
 		
 		echo '<form action="" method="post">' . mso_form_session('f_session_id') . '
-		<p><strong>' . t('Новая ушка:', 'plugins') . '</strong> ' . ' <input name="f_ushka_new" type="text" value="">
-		<input type="submit" name="f_submit_new" value="' . t('Добавить новую ушку', 'plugins') . '"></p>
+		<p><strong>' . t('Новая ушка:') . '</strong> ' . ' <input name="f_ushka_new" type="text" value="">
+		<input type="submit" name="f_submit_new" value="' . t('Добавить новую ушку') . '"></p>
 		</form>';
 		
 		$form = '';
@@ -104,7 +104,7 @@
 			
 			$form .= '<p><input name="f_ushka['.$id.'][name]" type="text" value="'. $us['name'] . '"  style="width: 400px;">
 				<select style="width: 150px;" name="f_ushka[' . $id . '][type]"><option value="html"' . $sel_html . '/>TEXT/HTML</option><option value="php"' . $sel_php . '>PHP</option></select>
-				<label><input name="f_ushka[' . $id . '][delete]" type="checkbox"> ' . t('Удалить', 'plugins') . '</label>
+				<label><input name="f_ushka[' . $id . '][delete]" type="checkbox"> ' . t('Удалить') . '</label>
 			</p>';
 			
 			$form .= '<p><textarea name="f_ushka[' . $id . '][text]" style="width: 99%; height: 220px;">' . htmlspecialchars($us['text']) . '</textarea>';
@@ -114,9 +114,9 @@
 		
 		if ($form)
 		{
-			echo '<h2>' . t('Ушки', 'plugins') . '</h2><form action="" method="post">' . mso_form_session('f_session_id');
+			echo '<h2>' . t('Ушки') . '</h2><form action="" method="post">' . mso_form_session('f_session_id');
 			echo $form;
-			echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения', 'plugins') . '" style="margin: 25px 0 5px 0;">';
+			echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 			echo '</form>';
 		}
 

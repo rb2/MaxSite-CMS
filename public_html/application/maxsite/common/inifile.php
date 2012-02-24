@@ -112,7 +112,7 @@ function _mso_ini_check_php_callback($matches)
 function mso_view_ini($all = false) 
 {
 	if (!$all) return '';
-	// pr($all);
+	//pr($all);
 	$CI = & get_instance();
 	
 	$CI->load->library('table');
@@ -179,7 +179,7 @@ function mso_view_ini($all = false)
 
 		// получаем текущее значение опции из массива $all_options
 		$options_present = false;
-		$value = $default; // нет значание, поэтому берем дефолт
+		$value = t($default); // нет значения, поэтому берем дефолт
 
 		foreach ($all_options as $v)
 		{
@@ -216,7 +216,7 @@ function mso_view_ini($all = false)
 				else $checked = '';
 				
 			$f .= '<label><input type="checkbox" name="' . $name_f . '" ' . $checked . '> ' 
-			. $key . '</label>' 
+			. t($key) . '</label>' 
 			. NR;
 			
 			$f .= '<input type="hidden" name="f_all_checkbox[' . $options_key . '_m_s_o_' . $options_type . ']">' . NR;
@@ -263,7 +263,7 @@ function mso_view_ini($all = false)
 					$name_f1 = 'f_options[' . $mkey . ']';
 					
 					$f .= '<label><input type="checkbox" name="' . $name_f . '[]" value="' . $mr1 . '" ' 
-							. $checked . '> ' . $mr2 . '</label>' . $delimer . NR;
+							. $checked . '> ' . t($mr2) . '</label>' . $delimer . NR;
 				}
 				
 				$f .= '<input type="hidden" name="f_all_checkbox[' . $options_key . '_m_s_o_' . $options_type . ']">' . NR;
@@ -294,7 +294,7 @@ function mso_view_ini($all = false)
 					$mr2 = str_replace('&gt;', '>', $mr2);
 
 					$f .= '<label><input type="radio" name="' . $name_f . '" value="' . $mr1 . '" ' 
-							. $checked . '> ' . $mr2 . '</label>' . $delimer . NR;
+							. $checked . '> ' . t($mr2) . '</label>' . $delimer . NR;
 				}
 			}
 		}
@@ -319,7 +319,7 @@ function mso_view_ini($all = false)
 					
 					if ($value == $val) $checked = 'selected="selected"';
 						else $checked = '';
-					$f .= NR . '<option value="' . $val . '" ' . $checked . '>' . $val_t . '</option>';
+					$f .= NR . '<option value="' . $val . '" ' . $checked . '>' . t($val_t) . '</option>';
 				}
 				$f .= NR . '</select>' . NR;
 			}

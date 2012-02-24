@@ -11,7 +11,7 @@ function last_comments_autoload($args = array())
 {
 	global $MSO;
 	
-	mso_register_widget('last_comments_widget', t('Последние комментарии', 'plugins')); # регистрируем виджет
+	mso_register_widget('last_comments_widget', t('Последние комментарии')); # регистрируем виджет
 	mso_hook_add('new_comment', 'last_comments_new_comment'); # хук на новый коммент - нужно сбросить кэш комментариев
 	
 	// для того, чтобы обновлять только ключи этого виджета, а не всего кэша
@@ -24,7 +24,7 @@ function last_comments_autoload($args = array())
 # функция выполняется при деинсталяции плагина
 function last_comments_uninstall($args = array())
 {	
-	mso_delete_option_mask('last_comments_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('last_comments_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -71,13 +71,13 @@ function last_comments_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) );
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) );
 	
-	$form .= '<p><div class="t150">' . t('Количество:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) );
+	$form .= '<p><div class="t150">' . t('Количество:') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) );
 	
-	$form .= '<p><div class="t150">' . t('Количество слов:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'words', 'value'=>$options['words'] ) );
+	$form .= '<p><div class="t150">' . t('Количество слов:') . '</div> '. form_input( array( 'name'=>$widget . 'words', 'value'=>$options['words'] ) );
 	
-	$form .= '<p><div class="t150">' . t('Количество символов в одном слове:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'maxchars', 'value'=>$options['maxchars'] ) );
+	$form .= '<p><div class="t150">' . t('Количество символов в одном слове:') . '</div> '. form_input( array( 'name'=>$widget . 'maxchars', 'value'=>$options['maxchars'] ) );
 	
 	return $form;
 }
@@ -99,7 +99,7 @@ function last_comments_widget_update($num = 1)
 	$newoptions['maxchars'] = (int) mso_widget_get_post($widget . 'maxchars');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина
@@ -173,7 +173,7 @@ function last_comments_widget_custom($options = array(), $num = 1)
 				elseif ($comments_comusers_id) // это комюзер
 				{
 					if ($comusers_nik) $out .= $comusers_nik;
-						else $out .= t('Комментатор', 'plugins') . ' ' . $comusers_id;
+						else $out .= t('Комментатор') . ' ' . $comusers_id;
 				}
 				elseif ($comments_author_name) $out .= $comments_author_name; // аноним . ' (анонимно)'
 				else $out .= ' ' . t('Аноним');

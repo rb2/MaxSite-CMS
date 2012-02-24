@@ -60,8 +60,8 @@ function mso_upload($config_library = array(), $field_userfile = 'f_userfile', $
 	
 	$res = $CI->upload->do_upload($field_userfile);
 
-	if (!isset($r['message1'])) $r['message1'] = '<div class="update">' . t('Загрузка выполнена', 'admin') . '</div>';
-	if (!isset($r['message2'])) $r['message2'] = '<div class="error">' . t('Не удалось перименовать файл в нижний регистр', 'admin') . '</div>';
+	if (!isset($r['message1'])) $r['message1'] = '<div class="update">' . t('Загрузка выполнена') . '</div>';
+	if (!isset($r['message2'])) $r['message2'] = '<div class="error">' . t('Не удалось перименовать файл в нижний регистр') . '</div>';
 	
 	// описание файла
 	if (!isset($r['userfile_title'])) $r['userfile_title'] = false;
@@ -180,7 +180,7 @@ function mso_upload($config_library = array(), $field_userfile = 'f_userfile', $
 					$CI->image_lib->initialize($r_conf );
 
 					if (!$CI->image_lib->resize())
-						echo '<div class="error">' . t('Уменьшение изображения:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+						echo '<div class="error">' . t('Уменьшение изображения:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 				}
 
 			}
@@ -190,7 +190,7 @@ function mso_upload($config_library = array(), $field_userfile = 'f_userfile', $
 			{ //todo — проверка, всё ли нам прислали, всё ли на месте. В идеале бы проверить размеры картинки по отношению к ватермарке.
 				if (!file_exists($r['userfile_water_file']))
 				{
-					echo '<div class="error">' . t('Водяной знак:', 'admin') . ' ' . t('файл водяного знака не найден! Загрузите его в каталог uploads/', 'admin') . '</div>';
+					echo '<div class="error">' . t('Водяной знак:') . ' ' . t('файл водяного знака не найден! Загрузите его в каталог uploads/') . '</div>';
 				}
 				else
 				{
@@ -213,7 +213,7 @@ function mso_upload($config_library = array(), $field_userfile = 'f_userfile', $
 
 					$CI->image_lib->initialize($r_conf );
 					if (!$CI->image_lib->watermark())
-						echo '<div class="error">' . t('Водяной знак:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+						echo '<div class="error">' . t('Водяной знак:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 				}
 			}
 	
@@ -229,7 +229,7 @@ function mso_upload($config_library = array(), $field_userfile = 'f_userfile', $
 	else
 	{
 		$er = $CI->upload->display_errors();
-		echo '<div class="error">' . t('Ошибка загрузки файла.', 'admin') . $er . '</div>';
+		echo '<div class="error">' . t('Ошибка загрузки файла.') . $er . '</div>';
 		return false;
 	}
 		
@@ -291,7 +291,7 @@ function mso_upload_mini($up_data, $r = array())
 				$r_conf['y_axis'] = round($image_height / 2 - $size / 2);
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->crop())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 			}
 			elseif ($mini_type == 3) // Обрезки (crop) с левого верхнего края
 			{
@@ -300,7 +300,7 @@ function mso_upload_mini($up_data, $r = array())
 
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->crop())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 			}
 			elseif ($mini_type == 4) // Обрезки (crop) с левого нижнего края
 			{
@@ -309,7 +309,7 @@ function mso_upload_mini($up_data, $r = array())
 
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->crop())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 			}
 			elseif ($mini_type == 5) // Обрезки (crop) с правого верхнего края
 			{
@@ -318,7 +318,7 @@ function mso_upload_mini($up_data, $r = array())
 
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->crop())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 			}
 			elseif ($mini_type == 6) // Обрезки (crop) с правого нижнего края
 			{
@@ -327,7 +327,7 @@ function mso_upload_mini($up_data, $r = array())
 
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->crop())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 			}
 			elseif ($mini_type == 7) // Уменьшения и обрезки (crop) в квадрат
 			{
@@ -338,7 +338,7 @@ function mso_upload_mini($up_data, $r = array())
 					
 					$CI->image_lib->initialize($r_conf );
 					if (!$CI->image_lib->resize())
-						echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+						echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 					
 					$r_conf['x_axis'] = round(($resize - $size) / 2);
 					$r_conf['y_axis'] = 0;
@@ -348,7 +348,7 @@ function mso_upload_mini($up_data, $r = array())
 					
 					$CI->image_lib->initialize($r_conf );
 					if (!$CI->image_lib->crop())
-						echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+						echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 				}
 				elseif ($image_width < $image_height) // Если высота больше ширины
 				{
@@ -357,7 +357,7 @@ function mso_upload_mini($up_data, $r = array())
 					
 					$CI->image_lib->initialize($r_conf );
 					if (!$CI->image_lib->resize())
-						echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+						echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 					
 					$r_conf['x_axis'] = 0;
 					$r_conf['y_axis'] = round(($resize - $size) / 2);
@@ -367,20 +367,20 @@ function mso_upload_mini($up_data, $r = array())
 					
 					$CI->image_lib->initialize($r_conf );
 					if (!$CI->image_lib->crop())
-						echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+						echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 				}
 				else // Равны
 				{
 					$CI->image_lib->initialize($r_conf );
 					if (!$CI->image_lib->resize())
-						echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+						echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 				}					
 			}
 			else // ничего не указано - Пропорционального уменьшения
 			{
 				$CI->image_lib->initialize($r_conf);
 				if (!$CI->image_lib->resize())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 			}
 		}
 		else
@@ -445,7 +445,7 @@ function mso_upload_prev($up_data, $r = array())
 
 			$CI->image_lib->initialize($r_conf );
 			if (!$CI->image_lib->crop())
-				echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+				echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 		}
 		elseif ($mini_type == 3) // Обрезки (crop) с левого верхнего края
 		{
@@ -454,7 +454,7 @@ function mso_upload_prev($up_data, $r = array())
 
 			$CI->image_lib->initialize($r_conf );
 			if (!$CI->image_lib->crop())
-				echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+				echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 		}
 		elseif ($mini_type == 4) // Обрезки (crop) с левого нижнего края
 		{
@@ -463,7 +463,7 @@ function mso_upload_prev($up_data, $r = array())
 
 			$CI->image_lib->initialize($r_conf );
 			if (!$CI->image_lib->crop())
-				echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+				echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 		}
 		elseif ($mini_type == 5) // Обрезки (crop) с правого верхнего края
 		{
@@ -472,7 +472,7 @@ function mso_upload_prev($up_data, $r = array())
 
 			$CI->image_lib->initialize($r_conf );
 			if (!$CI->image_lib->crop())
-				echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+				echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 		}
 		elseif ($mini_type == 6) // Обрезки (crop) с правого нижнего края
 		{
@@ -481,7 +481,7 @@ function mso_upload_prev($up_data, $r = array())
 
 			$CI->image_lib->initialize($r_conf );
 			if (!$CI->image_lib->crop())
-				echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+				echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 		}
 		elseif ($mini_type == 7) // Уменьшения и обрезки (crop) в квадрат
 		{
@@ -492,7 +492,7 @@ function mso_upload_prev($up_data, $r = array())
 				
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->resize())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 				
 				$r_conf['x_axis'] = round(($resize - $size) / 2);
 				$r_conf['y_axis'] = 0;
@@ -502,7 +502,7 @@ function mso_upload_prev($up_data, $r = array())
 				
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->crop())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 			}
 			elseif ($image_width < $image_height) // Если высота больше ширины
 			{
@@ -511,7 +511,7 @@ function mso_upload_prev($up_data, $r = array())
 				
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->resize())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 				
 				$r_conf['x_axis'] = 0;
 				$r_conf['y_axis'] = round(($resize - $size) / 2);
@@ -521,20 +521,20 @@ function mso_upload_prev($up_data, $r = array())
 				
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->crop())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 			}
 			else // Равны
 			{
 				$CI->image_lib->initialize($r_conf );
 				if (!$CI->image_lib->resize())
-					echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+					echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 			}					
 		}
 		else // ничего не указано - Пропорционального уменьшения
 		{
 			$CI->image_lib->initialize($r_conf );
 			if (!$CI->image_lib->resize())
-				echo '<div class="error">' . t('Создание миниатюры:', 'admin') . ' ' . $CI->image_lib->display_errors() . '</div>';
+				echo '<div class="error">' . t('Создание миниатюры:') . ' ' . $CI->image_lib->display_errors() . '</div>';
 		}
 
 	}

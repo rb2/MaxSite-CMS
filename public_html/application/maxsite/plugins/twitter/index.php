@@ -15,7 +15,7 @@ function twitter_autoload($args = array())
 # функция выполняется при деинсталяции плагина
 function twitter_uninstall($args = array())
 {	
-	mso_delete_option_mask('twitter_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('twitter_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -39,7 +39,7 @@ function twitter_widget_form($num = 1)
 	// получаем опции 
 	$options = mso_get_option($widget, 'plugins', array());
 	
-	if ( !isset($options['header']) ) $options['header'] = t('Мой Twitter', 'plugins');
+	if ( !isset($options['header']) ) $options['header'] = t('Мой Twitter');
 	if ( !isset($options['url']) ) $options['url'] = 'http://twitter.com/statuses/user_timeline/14057433.rss';
 	if ( !isset($options['count']) ) $options['count'] = '7';
 	if ( !isset($options['max_word_description']) ) $options['max_word_description'] = '0';
@@ -54,25 +54,25 @@ function twitter_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<div class="t150">' . t('Заголовок:', 'plugins') . '</div><p>'. form_input( array( 'name'=>$widget . '_header', 'value'=>$options['header'] ) ) ;
+	$form = '<div class="t150">' . t('Заголовок:') . '</div><p>'. form_input( array( 'name'=>$widget . '_header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<div class="t150">' . t('Адрес:', 'plugins') . '</div><p>'. form_input( array( 'name'=>$widget . '_url', 'value'=>$options['url'] ) ) ;
+	$form .= '<div class="t150">' . t('Адрес:') . '</div><p>'. form_input( array( 'name'=>$widget . '_url', 'value'=>$options['url'] ) ) ;
 	
-	$form .= '<div class="t150">' . t('Количество записей:', 'plugins') . '</div><p>'. form_input( array( 'name'=>$widget . '_count', 'value'=>$options['count'] ) ) ;
+	$form .= '<div class="t150">' . t('Количество записей:') . '</div><p>'. form_input( array( 'name'=>$widget . '_count', 'value'=>$options['count'] ) ) ;
 	
-	$form .= '<div class="t150">' . t('Формат вывода:', 'plugins') . '</div><p>'. form_input( array( 'name'=>$widget . '_format', 'value'=>$options['format'] ) ) ;
+	$form .= '<div class="t150">' . t('Формат вывода:') . '</div><p>'. form_input( array( 'name'=>$widget . '_format', 'value'=>$options['format'] ) ) ;
 	
 	$form .= '<div class="t150">&nbsp;</div><p>%TITLE% %DATE% %LINK%</p>';
 	
 	// %DESCRIPTION% 
 	
-	$form .= '<div class="t150">' . t('Формат даты:', 'plugins') . '</div><p>'. form_input( array( 'name'=>$widget . '_format_date', 'value'=>$options['format_date'] ) ) ;
+	$form .= '<div class="t150">' . t('Формат даты:') . '</div><p>'. form_input( array( 'name'=>$widget . '_format_date', 'value'=>$options['format_date'] ) ) ;
 	
-	$form .= '<div class="t150">' . t('Количество слов:', 'plugins') . '</div><p>'. form_input( array( 'name'=>$widget . '_max_word_description', 'value'=>$options['max_word_description'] ) ) ;
+	$form .= '<div class="t150">' . t('Количество слов:') . '</div><p>'. form_input( array( 'name'=>$widget . '_max_word_description', 'value'=>$options['max_word_description'] ) ) ;
 	
-	$form .= '<div class="t150">' . t('Текст в конце блока:', 'plugins') . '</div><p>'. form_input( array( 'name'=>$widget . '_footer', 'value'=>$options['footer'] ) ) ;
+	$form .= '<div class="t150">' . t('Текст в конце блока:') . '</div><p>'. form_input( array( 'name'=>$widget . '_footer', 'value'=>$options['footer'] ) ) ;
 
-	$form .= '<div class="t150">' . t('Отображать ник:', 'plugins') . '</div><p>'. form_checkbox( array( 'name'=>$widget . '_show_nick', 'value'=> 'show_nick', 'checked' =>  $options['show_nick']) ) ;
+	$form .= '<div class="t150">' . t('Отображать ник:') . '</div><p>'. form_checkbox( array( 'name'=>$widget . '_show_nick', 'value'=> 'show_nick', 'checked' =>  $options['show_nick']) ) ;
 	
 	return $form;
 }
@@ -101,7 +101,7 @@ function twitter_widget_update($num = 1)
 	
 	$newoptions['show_nick'] =  mso_widget_get_post($widget . '_show_nick');
 		
-	if ( $options != $newoptions ) mso_add_option($widget, $newoptions, 'plugins');
+	if ( $options != $newoptions ) mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 

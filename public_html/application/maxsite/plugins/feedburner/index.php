@@ -8,7 +8,7 @@
 # функция автоподключения плагина
 function feedburner_autoload($args = array())
 {
-	mso_create_allow('feedburner_edit', t('Админ-доступ к feedburner', 'plugins'));
+	mso_create_allow('feedburner_edit', t('Админ-доступ к feedburner'));
 	mso_hook_add( 'admin_init', 'feedburner_admin_init'); # хук на админку
 	mso_hook_add( 'init', 'feedburner_init'); # хук на init
 }
@@ -16,7 +16,7 @@ function feedburner_autoload($args = array())
 # функция выполняется при деинстяляции плагина
 function feedburner_uninstall($args = array())
 {	
-	mso_delete_option('plugin_feedburner', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_feedburner', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 

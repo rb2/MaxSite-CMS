@@ -11,7 +11,7 @@ function colorbox_autoload($args = array())
 
 function colorbox_uninstall($args = array())
 {	
-	mso_delete_option('plugin_colorbox', 'plugins');
+	mso_delete_option('plugin_colorbox', 'plugins' );
 	return $args;
 }
 

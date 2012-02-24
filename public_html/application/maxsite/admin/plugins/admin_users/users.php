@@ -28,12 +28,12 @@
 		if (isset($result['result'])) 
 		{
 			if ($result['result'] == 1)
-				echo '<div class="update">' . t('Пользователь создан!', 'admin') . '</div>'; // . $result['description'];
+				echo '<div class="update">' . t('Пользователь создан!') . '</div>'; // . $result['description'];
 			else 
-				echo '<div class="error">' . t('Произошла ошибка', 'admin') . '<p>' . $result['description'] . '</p></div>';
+				echo '<div class="error">' . t('Произошла ошибка') . '<p>' . $result['description'] . '</p></div>';
 		}
 		else
-			echo '<div class="error">' . t('Ошибка обновления', 'admin') . '</div>';
+			echo '<div class="error">' . t('Ошибка обновления') . '</div>';
 	}
 	
 	# удаление пользователя
@@ -58,12 +58,12 @@
 		if (isset($result['result'])) 
 		{
 			if ($result['result'] == 1)
-				echo '<div class="update">' . t('Пользователь удален!', 'admin') . '</div>'; // . $result['description'];
+				echo '<div class="update">' . t('Пользователь удален!') . '</div>'; // . $result['description'];
 			else 
-				echo '<div class="error">' . t('Произошла ошибка', 'admin') . '<p>' . $result['description'] . '</p></div>';
+				echo '<div class="error">' . t('Произошла ошибка') . '<p>' . $result['description'] . '</p></div>';
 		}
 		else
-			echo '<div class="error">' . t('Ошибка удаления', 'admin') . '</div>';
+			echo '<div class="error">' . t('Ошибка удаления') . '</div>';
 	}
 
 ?>
@@ -85,7 +85,7 @@
 		  
 	$CI->table->set_template($tmpl); // шаблон таблицы
 
-	$CI->table->set_heading('ID', t('Логин', 'admin'), t('Ник', 'admin'), t('E-mail', 'admin'), t('Сайт', 'admin'), t('Группа', 'admin'), t('Действие', 'admin'));
+	$CI->table->set_heading('ID', t('Логин'), t('Ник'), t('E-mail'), t('Сайт'), t('Группа'), t('Действие'));
 	
 	
 	$CI->db->select('*');
@@ -109,7 +109,7 @@
 		
 		$groups_name = $row['groups_name'];
 		
-		$act = '<a href="'.$this_url.'/edit/' . $id . '">' . t('Изменить', 'admin') . '</a>';
+		$act = '<a href="'.$this_url.'/edit/' . $id . '">' . t('Изменить') . '</a>';
 		
 		# админа (1) удалять нельзя
 		if ($id > 1) $all_users[$id] = $id . ' - ' . $nik . ' - ' . $email;
@@ -146,9 +146,9 @@
 		$form = '';
 		$CI->load->helper('form');
 		
-		$form .= '<p class="input"><strong>' . t('Логин', 'admin') . ' </strong>'. form_input( array( 'name'=>'f_user_login' ) ) .'</p>';
+		$form .= '<p class="input"><strong>' . t('Логин') . ' </strong>'. form_input( array( 'name'=>'f_user_login' ) ) .'</p>';
 		$form .= '<p class="input"><strong>E-mail </strong>'. form_input( array( 'name'=>'f_user_email' ) ) .'</p>';
-		$form .= '<p class="input"><strong>' . t('Пароль', 'admin') . ' </strong>'. form_input( array( 'name'=>'f_user_password' ) ) .'</p>';
+		$form .= '<p class="input"><strong>' . t('Пароль') . ' </strong>'. form_input( array( 'name'=>'f_user_password' ) ) .'</p>';
 		
 		$CI->db->select('groups_id, groups_name');
 		$q = $CI->db->get('groups');
@@ -156,13 +156,13 @@
 		foreach ($q->result_array() as $rw)
 			$groups[$rw['groups_id']] = $rw['groups_name'];
 
-		$form .= '<p class="input"><strong>' . t('Группа', 'admin') . ' </strong>'. form_dropdown('f_user_group', $groups, '');	
-		$form .=  '<p class="input_submit"><input type="submit" name="f_submit" value="' . t('Создать пользователя', 'admin') . '"></p>';
+		$form .= '<p class="input"><strong>' . t('Группа') . ' </strong>'. form_dropdown('f_user_group', $groups, '');	
+		$form .=  '<p class="input_submit"><input type="submit" name="f_submit" value="' . t('Создать пользователя') . '"></p>';
 		
 		echo '<div class="item new_user">';
 		echo '<form action="" method="post">' . mso_form_session('f_session_id');
-		echo '<h2 class="br">' . t('Создать нового пользователя', 'admin') . '</h2>';
-		echo '<p>' . t('Если данные некорректны, то пользователь создан не будет. Для нового пользователя-админа нужно обновить разрешения.', 'admin') . '</p>';
+		echo '<h2 class="br">' . t('Создать нового пользователя') . '</h2>';
+		echo '<p>' . t('Если данные некорректны, то пользователь создан не будет. Для нового пользователя-админа нужно обновить разрешения.') . '</p>';
 		echo $form;
 		echo '</form>';
 		echo '</div>';
@@ -174,13 +174,13 @@
 		
 		echo '<div class="item delete_user">';
 		echo '<form action="" method="post">' . mso_form_session('f_session_id');
-		echo '<h2 class="br">' . t('Удалить пользователя', 'admin') . '</h2>';
-		echo '<p class="input"><strong>' . t('Удалить', 'admin') . ' </strong>';
+		echo '<h2 class="br">' . t('Удалить пользователя') . '</h2>';
+		echo '<p class="input"><strong>' . t('Удалить') . ' </strong>';
 		echo form_dropdown('f_user_delete', $all_users, '', '');
 		echo '</p>';
-		echo '<p class="checkbox"><label><input type="checkbox" name="f_delete_user_comments"> ' . t('Удалить все комментарии пользователя. Иначе комментарии отметятся как анонимные.', 'admin') . '</label></p>';
-		echo '<p class="checkbox"><label><input type="checkbox" name="f_delete_user_pages"> ' . t('Удалить все страницы пользователя. Иначе у страниц автором станет администратор.', 'admin') . '</label></p>';
-		echo '<p class="input_submit"><input type="submit" name="f_delete_submit" value="' . t('Удалить пользователя', 'admin') . '" onClick="if(confirm(\'' . t('Удалить пользователя?', 'admin') . '\')) {return true;} else {return false;}"></p>';
+		echo '<p class="checkbox"><label><input type="checkbox" name="f_delete_user_comments"> ' . t('Удалить все комментарии пользователя. Иначе комментарии отметятся как анонимные.') . '</label></p>';
+		echo '<p class="checkbox"><label><input type="checkbox" name="f_delete_user_pages"> ' . t('Удалить все страницы пользователя. Иначе у страниц автором станет администратор.') . '</label></p>';
+		echo '<p class="input_submit"><input type="submit" name="f_delete_submit" value="' . t('Удалить пользователя') . '" onClick="if(confirm(\'' . t('Удалить пользователя?') . '\')) {return true;} else {return false;}"></p>';
 		echo '</form>';
 		echo '</div>';
 	}

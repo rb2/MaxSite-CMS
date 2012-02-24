@@ -27,7 +27,7 @@ function admin_home_admin_init($args = array())
 	# Третий - название ссылки	
 	# Четвертый - номер в меню
 	
-	mso_admin_menu_add('', $this_plugin_url, t('Информация', 'admin'));
+	mso_admin_menu_add('', $this_plugin_url, t('Информация'));
 
 	# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 	# связанную функцию именно она будет вызываться, когда 
@@ -35,10 +35,10 @@ function admin_home_admin_init($args = array())
 	mso_admin_url_hook ($this_plugin_url, 'admin_home_admin');
 	
 	
-	mso_admin_menu_add('', 'go_site', t('Переход к сайту', 'admin'));
+	mso_admin_menu_add('', 'go_site', t('Переход к сайту'));
 	mso_admin_url_hook ('go_site', 'admin_home_go_site');
 	
-	mso_admin_menu_add('', 'logout', t('Выход', 'admin'), 20);
+	mso_admin_menu_add('', 'logout', t('Выход'), 20);
 	mso_admin_url_hook ('logout', 'admin_home_logout');
 	
 	return $args;
@@ -50,8 +50,8 @@ function admin_home_admin($args = array())
 	# выносим админские функции отдельно в файл
 	global $MSO;
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Информация', 'admin') . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Информация', 'admin') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Информация') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Информация') . ' - " . $args; ' );
 	
 	require($MSO->config['admin_plugins_dir'] . 'admin_home/admin.php');
 }

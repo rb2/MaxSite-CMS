@@ -8,13 +8,13 @@
 # функция автоподключения плагина
 function random_pages_autoload($args = array())
 {
-	mso_register_widget('random_pages_widget', t('Случайные статьи', 'plugins')); # регистрируем виджет
+	mso_register_widget('random_pages_widget', t('Случайные статьи')); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function random_pages_uninstall($args = array())
 {
-	mso_delete_option_mask('random_pages_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('random_pages_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -51,13 +51,13 @@ function random_pages_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Количество:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Количество:') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Тип страниц:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'page_type', 'value'=>$options['page_type'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Тип страниц:') . '</div> '. form_input( array( 'name'=>$widget . 'page_type', 'value'=>$options['page_type'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Показывать содержимое:', 'plugins') . '</div> '. form_checkbox( array( 'name'=>$widget . 'page_content', 'checked'=>$options['page_content'], 'value'=>'page_content' ) ) ;
+	$form .= '<p><div class="t150">' . t('Показывать содержимое:') . '</div> '. form_checkbox( array( 'name'=>$widget . 'page_content', 'checked'=>$options['page_content'], 'value'=>'page_content' ) ) ;
 	
 	return $form;
 }
@@ -79,7 +79,7 @@ function random_pages_widget_update($num = 1)
 	$newoptions['page_content'] = mso_widget_get_post($widget . 'page_content');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

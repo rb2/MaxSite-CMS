@@ -8,13 +8,13 @@
 # функция автоподключения плагина
 function authors_autoload($args = array())
 {
-	mso_register_widget('authors_widget', t('Авторы', 'plugins')); # регистрируем виджет
+	mso_register_widget('authors_widget', t('Авторы')); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function authors_uninstall($args = array())
 {	
-	mso_delete_option_mask('authors_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('authors_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -47,7 +47,7 @@ function authors_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
 	return $form;
 }
@@ -66,7 +66,7 @@ function authors_widget_update($num = 1)
 	$newoptions['header'] = mso_widget_get_post($widget . 'header');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

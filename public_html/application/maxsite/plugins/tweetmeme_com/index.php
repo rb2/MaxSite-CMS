@@ -16,7 +16,7 @@ function tweetmeme_com_autoload()
 # функция выполняется при деинсталяции плагина
 function tweetmeme_com_uninstall($args = array())
 {	
-	mso_delete_option('plugin_tweetmeme_com', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_tweetmeme_com', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -49,7 +49,7 @@ function tweetmeme_com_mso_options()
 					),
 			'temp' => array(
 							'type' => 'info',
-							'title' => t('Настройки tweetmeme.com', 'plugins'),
+							'title' => t('Настройки tweetmeme.com'),
 							'text' => '<p>Они используются если вы выберите вариант отображения блока с помощью этого сервиса</p>'
 						),
 						
@@ -69,7 +69,7 @@ function tweetmeme_com_mso_options()
 					
 			'temp2' => array(
 							'type' => 'info',
-							'title' => t('Настройки twitter.com', 'plugins'),
+							'title' => t('Настройки twitter.com'),
 							'text' => '<p>Они используются если вы выберите вариант отображения блока с оригинального twitter.com</p>'
 						),
 

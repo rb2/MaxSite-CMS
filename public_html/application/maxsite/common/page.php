@@ -242,7 +242,7 @@ function mso_get_pages($r = array(), &$pag)
 					if ( $pages[0]['page_id_autor'] <> $MSO->data['session']['users_id'] ) return array();
 					else
 					{
-						if ($page_status == 'draft') $pages[0]['page_title'] .= ' ' . t('(черновик)', 'common');
+						if ($page_status == 'draft') $pages[0]['page_title'] .= ' ' . t('(черновик)');
 						// else $pages[0]['page_title'] .= ' (личное)';
 					}
 
@@ -393,7 +393,7 @@ function mso_get_pages($r = array(), &$pag)
 			foreach ($cat as $key=>$val)
 			{
 				$page_cat[$val['page_id']][] = $val['category_id'];
-				$page_cat_detail[$val['page_id']][$val['category_id']] = array('category_name' => $val['category_name'], 'category_slug' => $val['category_slug'], 'category_desc' => $val['category_desc'], 'category_id_parent' => $val['category_id_parent']);
+				$page_cat_detail[$val['page_id']][$val['category_id']] = array('category_name' => $val['category_name'], 'category_slug' => $val['category_slug'], 'category_desc' => $val['category_desc'], 'category_id_parent' => $val['category_id_parent'], 'category_id' => $val['category_id']);
 			}
 		}
 		
@@ -1564,7 +1564,7 @@ function mso_page_content($page_content = '', $use_password = true, $message = '
 		$form ='<p><strong>' . t($message) . '</strong></p>';
 		$form .= '<form action="' . getinfo('siteurl') . 'page/' . $page['page_slug'] . '" method="post">' . mso_form_session('f_session_id');
 		$form .= '<input type="hidden" name="f_page_id" value="' . $page['page_id'] . '">';
-		$form .= '<p>' . t('Пароль:', 'common') . ' <input type="text" name="f_password" value=""> ';
+		$form .= '<p>' . t('Пароль:') . ' <input type="text" name="f_password" value=""> ';
 		$form .= '<input type="submit" name="f_submit" value="ОК"></p>';
 		$form .= '</form>';
 
@@ -1927,7 +1927,7 @@ function _mso_page_map_get_child($page_id = 0, $cur_id = 0)
 # блок "Еще записи этой рубрики"
 function mso_page_other_pages($page_id = 0, $page_categories = array())
 {
-	if ($bl_title = mso_get_option('page_other_pages', 'templates', t('Еще записи по теме', '')))
+	if ($bl_title = mso_get_option('page_other_pages', 'templates', t('Еще записи по теме')))
 	{
 		// алгоритм получения записей
 		$algoritm = mso_get_option('page_other_pages_algoritm', 'templates', 'all');

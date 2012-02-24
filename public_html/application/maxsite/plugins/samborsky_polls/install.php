@@ -204,7 +204,7 @@ function sp_add_options()
 		'secur_polls' => t('Защита по Coookie','plugins')
 	);
 	
-	mso_add_option('plugin_samborsky_polls',  $options, 'plugins');
+	mso_add_option('plugin_samborsky_polls',  $options, 'plugins' );
 }
 
 ?>

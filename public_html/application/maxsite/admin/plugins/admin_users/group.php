@@ -28,14 +28,14 @@ mso_cur_dir_lang('admin');
 			if ($query->num_rows() == 0 ) // нет такого типа страниц
 			{
 					if ($CI->db->insert('groups', array( 'groups_name'=>$f_new)))
-							echo '<div class="update">' . t('Новая группа добавлена!', 'admin') . '</div>';
+							echo '<div class="update">' . t('Новая группа добавлена!') . '</div>';
 						else
-							echo '<div class="error">' . t('Ошибка добавления!', 'admin') . '</div>';
+							echo '<div class="error">' . t('Ошибка добавления!') . '</div>';
 			}
 			else
-				echo '<div class="error">' . t('Такая группа уже существует!', 'admin') . '</div>';
+				echo '<div class="error">' . t('Такая группа уже существует!') . '</div>';
 		}
-		else echo '<div class="error">' . t('Ошибочное имя', 'admin') . '</div>';
+		else echo '<div class="error">' . t('Ошибочное имя') . '</div>';
 			
 	}
 	elseif ( $post = mso_check_post(array('f_session_id', 'f_delete_submit', 'f_delete_check')) )
@@ -53,9 +53,9 @@ mso_cur_dir_lang('admin');
 			$CI->db->where_not_in('groups_name', array('admins', 'users'));
 			
 			if ( $CI->db->delete('groups') )
-						echo '<div class="update">' . t('Удаление выполнено', 'admin') . '</div>';
+						echo '<div class="update">' . t('Удаление выполнено') . '</div>';
 					else
-						echo '<div class="error">' . t('Ошибка удаления!', 'admin') . '</div>';
+						echo '<div class="error">' . t('Ошибка удаления!') . '</div>';
 			
 			// нужно изменить у всех юзеров этой группы группу на users = 2
 			$CI->db->where_in('users_groups_id', $w_in);
@@ -127,9 +127,9 @@ mso_cur_dir_lang('admin');
 		// сбросить весь кэш
 		mso_flush_cache();
 		
-		echo '<div class="update">' . t('Обновление выполнено', 'admin') . '</div>';
+		echo '<div class="update">' . t('Обновление выполнено') . '</div>';
 	}
-	elseif ($_POST) echo '<div class="error">' . t('Ошибочный запрос', 'admin') . '</div>';
+	elseif ($_POST) echo '<div class="error">' . t('Ошибочный запрос') . '</div>';
 	
 	$CI->load->library('table');
 	
@@ -158,7 +158,7 @@ mso_cur_dir_lang('admin');
 		
 
 		// формируем первую строчку таблицы
-		$r = array(t('Действие', 'admin'), t('Код', 'admin'));
+		$r = array(t('Действие'), t('Код'));
 		
 		
 		foreach ($us as $row) $r[] = $row['groups_name'];
@@ -202,7 +202,7 @@ mso_cur_dir_lang('admin');
 			$data_table[] = $r; // добавим строчку
 		}
 		
-		$dop = '<p class="br"><input type="submit" name="f_submit" value="' . t('Изменить разрешения', 'admin') . '"></p>';
+		$dop = '<p class="br"><input type="submit" name="f_submit" value="' . t('Изменить разрешения') . '"></p>';
 		
 		
 		echo mso_load_jquery('jquery.tablesorter.js');
@@ -236,10 +236,10 @@ mso_cur_dir_lang('admin');
 		
 		if ($delete) 
 		{
-			$delete = '<p class="input checkbox wleft br"><strong>' . t('Удалить группы', 'admin') . ' </strong>' . $delete . '</p><p class="input_submit"><input type="submit" name="f_delete_submit" value="' . t('Удалить отмеченные группы', 'admin') . '" onClick="if(confirm(\'' . t('Уверены?', 'admin') . '\')) {return true;} else {return false;}" ></p>';
+			$delete = '<p class="input checkbox wleft br"><strong>' . t('Удалить группы') . ' </strong>' . $delete . '</p><p class="input_submit"><input type="submit" name="f_delete_submit" value="' . t('Удалить отмеченные группы') . '" onClick="if(confirm(\'' . t('Уверены?') . '\')) {return true;} else {return false;}" ></p>';
 		}
 		
-		$delete = '<div class="item usergroup"><h2>' . t('Добавить/Удалить группу пользователей', 'admin') . '</h2><p class="input"><strong>' . t('Добавить группу', 'admin') . ' </strong><input type="text" name="f_new"> <input type="submit" name="f_new_submit" value="' . t('Создать новую группу', 'admin') . '"></p> 
+		$delete = '<div class="item usergroup"><h2>' . t('Добавить/Удалить группу пользователей') . '</h2><p class="input"><strong>' . t('Добавить группу') . ' </strong><input type="text" name="f_new"> <input type="submit" name="f_new_submit" value="' . t('Создать новую группу') . '"></p> 
 		' . $delete . '</div>';
 		
 		// добавляем форму, а также текущую сессию
@@ -249,7 +249,7 @@ mso_cur_dir_lang('admin');
 	}
 	else // $all
 	{
-		echo'<div class="error">' . t('Пока нет ни одного действия...', 'admin') . '</div>';
+		echo'<div class="error">' . t('Пока нет ни одного действия...') . '</div>';
 	}
 	
 ?>

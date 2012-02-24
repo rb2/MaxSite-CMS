@@ -37,7 +37,7 @@ function multipage_admin_init($args = array())
 	if ( isset($options['admin_menu']) and ($options['admin_menu'] == 1))
 	{
 		$this_plugin_url = 'plugin_options/multipage';
-		mso_admin_menu_add('plugins', $this_plugin_url, t('Multipage', __FILE__));
+		mso_admin_menu_add('plugins', $this_plugin_url, t('Multipage'));
 		mso_admin_url_hook ($this_plugin_url, 'multipage_admin_page');
 	}
 
@@ -48,7 +48,7 @@ function multipage_admin_init($args = array())
 
 function multipage_uninstall($args = array())
 {
-	mso_delete_option('plugin_multipage', 'plugins');
+	mso_delete_option('plugin_multipage', 'plugins' );
 	return $args;
 }
 
@@ -60,62 +60,62 @@ function multipage_mso_options()
 		array(
 			'pagebreak' => array(
 							'type' => 'text',
-							'name' => t('Разделитель страниц', __FILE__),
-							'description' => t('Разделитель страниц в тексте: [pagebreak], &lt;!-- Page break --&gt; или как вам будет угодно.', __FILE__),
+							'name' => t('Разделитель страниц'),
+							'description' => t('Разделитель страниц в тексте: [pagebreak], &lt;!-- Page break --&gt; или как вам будет угодно.'),
 							'default' => '[pagebreak]'
 						),
 			'next_url' => array(
 							'type' => 'text',
-							'name' => t('«Next» в ссылках', __FILE__),
-							'description' => t('«Next» в ссылках http://site.com/page/slug/next/2 — например: next, page, pageid.', __FILE__),
+							'name' => t('«Next» в ссылках'),
+							'description' => t('«Next» в ссылках http://site.com/page/slug/next/2 — например: next, page, pageid.'),
 							'default' => 'next'
 						),
 			'process_category' => array(
 							'type' => 'select',
-							'name' => t('Обрабатывать тексты на главной, в категориях и т.п.', __FILE__),
-							'description' => t('Если не обрабатывать, тексты выводятся только до первого разделителя. Иначе разделитель нужно ставить после [cut] или в виде html-комментария.<br>Не обрабатывать — экономней по ресурсам.', __FILE__),
-							'values' => t('0||Не обрабатывать # 1||Удалять разделители # 2||Выводить до первого разделителя', __FILE__),
+							'name' => t('Обрабатывать тексты на главной, в категориях и т.п.'),
+							'description' => t('Если не обрабатывать, тексты выводятся только до первого разделителя. Иначе разделитель нужно ставить после [cut] или в виде html-комментария.<br>Не обрабатывать — экономней по ресурсам.'),
+							'values' => t('0||Не обрабатывать # 1||Удалять разделители # 2||Выводить до первого разделителя'),
 							'default' => '0'
 						),
 			'autoclose' => array(
 							'type' => 'checkbox',
-							'name' => t('Автоматически закрывать теги на страницах', __FILE__),
-							'description' => t('Плагин сам закрывает те теги, которые разбивает разделитель, и тем самым спасает от глюков с сайдбарами и т.п.. Экономней делать это вручную, а опцию отключить.', __FILE__),
+							'name' => t('Автоматически закрывать теги на страницах'),
+							'description' => t('Плагин сам закрывает те теги, которые разбивает разделитель, и тем самым спасает от глюков с сайдбарами и т.п.. Экономней делать это вручную, а опцию отключить.'),
 							'default' => '1'
 						),
 			'admin_menu' => array(
 							'type' => 'checkbox',
-							'name' => t('Показывать меню настройки плагина в админке', __FILE__),
+							'name' => t('Показывать меню настройки плагина в админке'),
 							'description' => '',
 							'default' => '0'
 						),
 			'pag_start' => array(
 							'type' => 'checkbox',
-							'name' => t('Выводить листалку над текстом', __FILE__),
+							'name' => t('Выводить листалку над текстом'),
 							'description' => '',
 							'default' => '0'
 						),
 			'pag_end' => array(
 							'type' => 'checkbox',
-							'name' => t('Выводить листалку под текстом', __FILE__),
+							'name' => t('Выводить листалку под текстом'),
 							'description' => '',
 							'default' => '1'
 						),
 			'before_pag' => array(
 							'type' => 'textarea',
-							'name' => t('Текст перед листалкой', __FILE__),
-							'description' => t('Если вы хотите предварить листалку текстом или обернуть в какие-то теги.', __FILE__),
+							'name' => t('Текст перед листалкой'),
+							'description' => t('Если вы хотите предварить листалку текстом или обернуть в какие-то теги.'),
 							'default' => ''
 						),
 			'after_pag' => array(
 							'type' => 'textarea',
-							'name' => t('Текст после листалки', __FILE__),
-							'description' => t('А здесь теги закрываются.', __FILE__),
+							'name' => t('Текст после листалки'),
+							'description' => t('А здесь теги закрываются.'),
 							'default' => ''
 						),
 			),
-		t('Настройки плагина «Multipage»', __FILE__),
-		t('Укажите необходимые опции.', __FILE__)
+		t('Настройки плагина «Multipage»'),
+		t('Укажите необходимые опции.')
 	);
 }
 

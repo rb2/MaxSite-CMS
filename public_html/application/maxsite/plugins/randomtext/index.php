@@ -10,12 +10,12 @@
 function randomtext_autoload($args = array())
 {
 	# регистрируем виджет
-	mso_register_widget('randomtext_widget', t('Цитаты', 'plugins')); 
+	mso_register_widget('randomtext_widget', t('Цитаты')); 
 }
 
 function randomtext_uninstall($args = array())
 {	
-	mso_delete_option_mask('randomtext_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('randomtext_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -48,13 +48,13 @@ function randomtext_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. 
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. 
 			form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Способ вывода:', 'plugins') . '</div> '. form_dropdown( $widget . 'once_daily', array( 'random'=>t('Случайным образом', 'plugins'), 'day'=>t('Раз в сутки', 'plugins')), $options['once_daily']);
+	$form .= '<p><div class="t150">' . t('Способ вывода:') . '</div> '. form_dropdown( $widget . 'once_daily', array( 'random'=>t('Случайным образом'), 'day'=>t('Раз в сутки')), $options['once_daily']);
 	
 	$form .= '<br><div class="t150">&nbsp</div> ' . 
-			t('При выборе «Раз в сутки» выводится строчка, номер которой совпадает с сегодняшним числом.', 'plugins');
+			t('При выборе «Раз в сутки» выводится строчка, номер которой совпадает с сегодняшним числом.');
 	
 	return $form;
 }
@@ -74,14 +74,14 @@ function randomtext_widget_update($num = 1)
 	$newoptions['once_daily'] = mso_widget_get_post($widget . 'once_daily');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 
 # основная функция
 function randomtext_widget_custom($arg = array(), $num = 1)
 {
-	if ( !isset($arg['header'])) $arg['header'] = mso_get_val('widget_header_start', '<h2 class="box"><span>') . t('Цитата', 'plugins') . mso_get_val('widget_header_end', '</span></h2>') ;
+	if ( !isset($arg['header'])) $arg['header'] = mso_get_val('widget_header_start', '<h2 class="box"><span>') . t('Цитата') . mso_get_val('widget_header_end', '</span></h2>') ;
 	if ( !isset($arg['block_start']) ) $arg['block_start'] = '<div class="random-text">';
 	if ( !isset($arg['block_end']) ) $arg['block_end'] = '</div>';
 	if ( !isset($arg['once_daily']) ) $arg['once_daily'] = 'random';

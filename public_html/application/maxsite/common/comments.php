@@ -22,7 +22,7 @@ function mso_get_comments($page_id = 0, $r = array())
 	if ( !isset($r['tags_comusers']) )	$r['tags_comusers'] = '<a><p><img><strong><em><i><b><u><s><font><pre><code><blockquote>';
 	if ( !isset($r['anonim_comments']) )	$r['anonim_comments'] = array();
 	if ( !isset($r['anonim_title']) )	$r['anonim_title'] = '';// ' ('. t('анонимно'). ')'; // дописка к имени для анонимов
-	if ( !isset($r['anonim_no_name']) )	$r['anonim_no_name'] = t('Аноним', 'template');// Если не указано имя анонима
+	if ( !isset($r['anonim_no_name']) )	$r['anonim_no_name'] = t('Аноним');// Если не указано имя анонима
 	
 	// если аноним указывает имя с @, то это страница в твиттере - делаем ссылку
 	if ( !isset($r['anonim_twitter']) )	$r['anonim_twitter'] = true; 
@@ -657,6 +657,10 @@ function mso_get_new_comment($args = array())
 							
 							// отправляем ему уведомление с кодом активации
 							mso_email_message_new_comuser($comusers_id, $ins_data, mso_get_option('comusers_activate_auto', 'general', '0')); 
+							
+							mso_flush_cache();
+							$CI->db->cache_delete_all();
+							
 						}
 						else
 							return '<div class="' . $args['css_error']. '">'. t('Ошибка регистрации'). '</div>';
@@ -1433,8 +1437,20 @@ function mso_comuser_lost($args = array())
 
 			$CI->db->cache_delete_all();
 
-			if ($res)
-				return '<div class="' . $args['css_ok']. '">'. t('Новый пароль установлен!'). '</div>';
+			if ($res) // все ок
+			{
+				// сразу логиним и редиректим на страницу комюзера
+				$data = array(
+					'email' => $comusers_email,
+					'password' => $comusers_new_password,
+					'redirect' => getinfo('siteurl') . 'users/' . $id,
+					'allow_create_new_comuser' => false 
+				);
+				
+				mso_comuser_auth($data);
+				exit;
+				// return '<div class="' . $args['css_ok']. '">'. t('Новый пароль установлен!'). '</div>';
+			}
 			else
 				return '<div class="' . $args['css_error']. '">'. t('Ошибка БД при смене пароля...'). '</div>';
 
@@ -1640,6 +1656,9 @@ function mso_comuser_auth($data)
 	$comusers_nik = isset($data['comusers_nik']) ? $data['comusers_nik'] : '';
 	$redirect = isset($data['redirect']) ? $data['redirect'] : true;
 	
+	// разрешить создавать через эту функцию новых комюзеров (если такого email нет в базе)
+	$allow_create_new_comuser = isset($data['allow_create_new_comuser']) ? $data['allow_create_new_comuser'] : true;
+	
 	$CI = & get_instance();
 
 
@@ -1704,7 +1723,7 @@ function mso_comuser_auth($data)
 			mso_add_to_cookie($name_cookies, $value, $expire, $redirect); // в куку для всего сайта
 		}
 	}
-	else
+	elseif ($data['allow_create_new_comuser']) // только если разрешено создавать новых комюзеров
 	{
 		// нет такого email, нужно регистрировать комюзера
 		

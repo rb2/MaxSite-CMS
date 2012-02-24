@@ -10,13 +10,13 @@
 	# сделаем меню горизонтальное в текущей закладке
 	// основной url этого плагина - жестко задается
 	$plugin_url = getinfo('site_admin_url') . 'guestbook';
-	$a  = mso_admin_link_segment_build($plugin_url, '', t('Настройки гостевой книги', __FILE__), 'select') . ' | ';
-	$a .= mso_admin_link_segment_build($plugin_url, 'edit', t('Редактирование отзывов', __FILE__), 'select');
+	$a  = mso_admin_link_segment_build($plugin_url, '', t('Настройки гостевой книги'), 'select') . ' | ';
+	$a .= mso_admin_link_segment_build($plugin_url, 'edit', t('Редактирование отзывов'), 'select');
 	echo $a;
 ?>
 </div>
 
-<h1><?= t('Редактирование отзыва', __FILE__) ?></h1>
+<h1><?= t('Редактирование отзыва') ?></h1>
 
 <?php
 // проверим верность 4-го сектора
@@ -27,7 +27,7 @@ if (!is_numeric($id)) $id = false; // не число
 
 if (!$id) 
 {
-	echo t('Ошибочный номер', __FILE__);
+	echo t('Ошибочный номер');
 	return; // выходим
 }
 
@@ -41,7 +41,7 @@ if ( $post = mso_check_post(array('f_session_id', 'f_submit_guestbook_delete', '
 	
 	if ($post['f_fields_guestbook']['id'] != $id)
 	{
-		echo t('Ошибочный номер', __FILE__);
+		echo t('Ошибочный номер');
 		return;
 	}
 
@@ -50,7 +50,7 @@ if ( $post = mso_check_post(array('f_session_id', 'f_submit_guestbook_delete', '
 	
 	mso_flush_cache();
 	
-	echo '<div class="update">' . t('Удалено!', __FILE__) . '</div>';
+	echo '<div class="update">' . t('Удалено!') . '</div>';
 	return;
 }
 
@@ -61,7 +61,7 @@ if ( $post = mso_check_post(array('f_session_id', 'f_submit_guestbook', 'f_field
 	
 	if ($post['f_fields_guestbook']['id'] != $id)
 	{
-		echo t('Ошибочный номер', __FILE__);
+		echo t('Ошибочный номер');
 		return;
 	}
 	
@@ -80,9 +80,9 @@ if ( $post = mso_check_post(array('f_session_id', 'f_submit_guestbook', 'f_field
 	mso_flush_cache();
 	
 	if ($CI->db->update('guestbook', $data ) )
-		echo '<div class="update">' . t('Обновлено!', __FILE__) . '</div>';
+		echo '<div class="update">' . t('Обновлено!') . '</div>';
 	else 
-		echo '<div class="error">' . t('Ошибка обновления', __FILE__) . '</div>';
+		echo '<div class="error">' . t('Ошибка обновления') . '</div>';
 }
 
 
@@ -90,7 +90,7 @@ if ( $post = mso_check_post(array('f_session_id', 'f_submit_guestbook', 'f_field
 
 $options = mso_get_option('plugin_guestbook', 'plugins', array());
 if ( !isset($options['slug']) ) $options['slug'] = 'guestbook';
-echo '<p><a href="' . getinfo('siteurl') . $options['slug']  . '#guestbook-' . $id. '" target="_blank">' . t('Посмотреть отзыв на сайте', __FILE__) . '</a></p>';
+echo '<p><a href="' . getinfo('siteurl') . $options['slug']  . '#guestbook-' . $id. '" target="_blank">' . t('Посмотреть отзыв на сайте') . '</a></p>';
 	
 
 
@@ -105,7 +105,7 @@ $tmpl = array (
 $CI->table->set_template($tmpl); // шаблон таблицы
 
 // заголовки
-$CI->table->set_heading(t('Поле', __FILE__), t('Значение', __FILE__)); 
+$CI->table->set_heading(t('Поле'), t('Значение')); 
 
 // теперь получаем сами записи
 $CI->db->from('guestbook');
@@ -137,7 +137,7 @@ if ($query->num_rows() > 0)
 			{
 				$check = $val ? ' checked' : '';
 				$val_out = '<label><input name="f_fields_guestbook[' . $key . ']" type="checkbox" ' . $check . '/> ' 
-					. t('Опубликовать', __FILE__) . '</label>';
+					. t('Опубликовать') . '</label>';
 			}
 			elseif ($key != 'text') // для всех кроме text - input
 			{
@@ -156,7 +156,7 @@ if ($query->num_rows() > 0)
 	echo '<form action="" method="post">' . mso_form_session('f_session_id');
 	echo $CI->table->generate(); // вывод подготовленной таблицы
 	echo '<input type="submit" name="f_submit_guestbook" value="' . t('Изменить', 'admin') . '" style="margin: 10px 0;">';
-	echo ' <input type="submit" name="f_submit_guestbook_delete" onClick="if(confirm(\'' . t('Удалить отзыв?', __FILE__) . '\')) {return true;} else {return false;}" value="' . t('Удалить отзыв', __FILE__) . '">';
+	echo ' <input type="submit" name="f_submit_guestbook_delete" onClick="if(confirm(\'' . t('Удалить отзыв?') . '\')) {return true;} else {return false;}" value="' . t('Удалить отзыв') . '">';
 	echo '</form>';
 
 }

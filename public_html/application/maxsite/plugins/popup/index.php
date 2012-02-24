@@ -20,7 +20,7 @@ function popup_autoload()
 # функция выполняется при активации (вкл) плагина
 function popup_activate($args = array())
 {	
-	mso_create_allow('popup_edit', t('Админ-доступ к настройкам', 'plugins') . ' ' . t('PopUp', 'plugins'));
+	mso_create_allow('popup_edit', t('Админ-доступ к настройкам') . ' ' . t('PopUp'));
 	return $args;
 }
 
@@ -28,7 +28,7 @@ function popup_activate($args = array())
 # функция выполняется при деинсталяции плагина
 function popup_uninstall($args = array())
 {	
-	mso_delete_option('plugin_popup', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_popup', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('popup_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -142,7 +142,7 @@ function popup_body_end($args = array())
 {	
 	$options = mso_get_option('plugin_popup', 'plugins', array());
 	if (!isset($options['popup-content']) or !$options['popup-content']) return $args;
-	if (!isset($options['popup-header'])) $options['popup-header'] = t('Интересные записи', 'plugins');
+	if (!isset($options['popup-header'])) $options['popup-header'] = t('Интересные записи');
 	if ($options['popup-header']) $options['popup-header'] = '<h3 class="popup-header">' . $options['popup-header'] . '</h3>';
 	
 	
@@ -166,7 +166,7 @@ function popup_mso_options()
 {
 	if ( !mso_check_allow('popup_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return;
 	}
 	
@@ -175,100 +175,100 @@ function popup_mso_options()
 		array(
 			'popup-header' => array(
 							'type' => 'text', 
-							'name' => t('Заголовок блока', 'plugins'), 
-							'description' => t('Укажите заголовок блока', 'plugins'), 
-							'default' => t('Интересные записи', 'plugins'),
+							'name' => t('Заголовок блока'), 
+							'description' => t('Укажите заголовок блока'), 
+							'default' => t('Интересные записи'),
 						),
 						
 			'popup-content' => array(
 							'type' => 'textarea', 
-							'name' => t('Текст блока', 'plugins'), 
-							'description' => t('Укажите текст блока', 'plugins'), 
+							'name' => t('Текст блока'), 
+							'description' => t('Укажите текст блока'), 
 							'default' => '',
 						),			
 			
 			'popup-position' => array(
 							'type' => 'select', 
-							'name' => t('Положение блока', 'plugins'), 
-							'description' => t('Выберите расположение блока на сайте', 'plugins'), 
+							'name' => t('Положение блока'), 
+							'description' => t('Выберите расположение блока на сайте'), 
 							'values' => 'br||Снизу справа # bl||Снизу слева # tp||Сверху справа # tl||Сверху слева # wt||Во всю ширину окна сверху # wb||Во всю ширину окна снизу',
 							'default' => 'br',
 						),
 						
 			'popup-xy' => array(
 							'type' => 'select', 
-							'name' => t('Точка отсчета для задания положения блока', 'plugins'), 
-							'description' => t('', 'plugins'), 
+							'name' => t('Точка отсчета для задания положения блока'), 
+							'description' => t(''), 
 							'values' => 'bottom||Низ страницы # top||Верх страницы',
 							'default' => 'bottom',
 						),
 			
 			'popup-bottom' => array(
 							'type' => 'text', 
-							'name' => t('Расстояние от точки отсчета, на которой появится (если низ)/исчезнет (если верх) блок (px)', 'plugins'), 
-							'description' => t('Вне этой границы блок не отображается', 'plugins'), 
+							'name' => t('Расстояние от точки отсчета, на которой появится (если низ)/исчезнет (если верх) блок (px)'), 
+							'description' => t('Вне этой границы блок не отображается'), 
 							'default' => 500,
 						),
 						
 			'popup-fade' => array(
 							'type' => 'text', 
-							'name' => t('Время эффекта появления блока', 'plugins'), 
-							'description' => t('Указывается в миллисекундах', 'plugins'), 
+							'name' => t('Время эффекта появления блока'), 
+							'description' => t('Указывается в миллисекундах'), 
 							'default' => 600,
 						),
 						
 			'popup-cookie' => array(
 							'type' => 'text', 
-							'name' => t('При закрытии блока не показывать его в течение', 'plugins'), 
-							'description' => t('Укажите срок в днях', 'plugins'), 
+							'name' => t('При закрытии блока не показывать его в течение'), 
+							'description' => t('Укажите срок в днях'), 
 							'default' => 30,
 						),
 						
 			'popup-allways-view' => array(
 							'type' => 'checkbox', 
-							'name' => t('Всегда отображать блок', 'plugins'), 
-							'description' => t('Если отметить, то блок отображается всегда, без учета скролинга страницы.', 'plugins'), 
+							'name' => t('Всегда отображать блок'), 
+							'description' => t('Если отметить, то блок отображается всегда, без учета скролинга страницы.'), 
 							'default' => 0,
 						),
 						
 			'popup-btn-close' => array(
 							'type' => 'checkbox', 
-							'name' => t('Отображать кнопку закрытия блока', 'plugins'), 
-							'description' => '', //t('', 'plugins'), 
+							'name' => t('Отображать кнопку закрытия блока'), 
+							'description' => '', //t(''), 
 							'default' => 1,
 						),
 						
 			'popup-btn-close-color' => array(
 							'type' => 'select', 
-							'name' => t('Цвет кнопки закрытия', 'plugins'), 
-							'description' => t('Можно подстроить под дизайн своего сайта', 'plugins'), 
+							'name' => t('Цвет кнопки закрытия'), 
+							'description' => t('Можно подстроить под дизайн своего сайта'), 
 							'values' => 'grey||Серый # red||Красный # orange||Оранжевый # green||Зеленый # blue||Синий',
 							'default' => 'grey',
 						),
 			
 			'popup-my-style-block' => array(
 							'type' => 'text', 
-							'name' => t('Свои css-стили блока', 'plugins'), 
-							'description' => t('Укажите свой вариант оформления', 'plugins'), 
+							'name' => t('Свои css-стили блока'), 
+							'description' => t('Укажите свой вариант оформления'), 
 							'default' => '',
 						),
 						
 			'popup-my-style-header' => array(
 							'type' => 'text', 
-							'name' => t('Свои css-стили заголовка блока', 'plugins'), 
-							'description' => t('Укажите свой вариант', 'plugins'), 
+							'name' => t('Свои css-стили заголовка блока'), 
+							'description' => t('Укажите свой вариант'), 
 							'default' => '',
 						),	
 							
 			'popup-my-style-content' => array(
 							'type' => 'text', 
-							'name' => t('Свои css-стили текста блока', 'plugins'), 
-							'description' => t('Укажите свой вариант', 'plugins'), 
+							'name' => t('Свои css-стили текста блока'), 
+							'description' => t('Укажите свой вариант'), 
 							'default' => '',
 						),			
 			),
-		t('Настройки плагина PopUp', 'plugins'), // титул
-		t('Плагин выводит всплывающее popup-окно на страницах сайта.', 'plugins')   // инфо
+		t('Настройки плагина PopUp'), // титул
+		t('Плагин выводит всплывающее popup-окно на страницах сайта.')   // инфо
 	);
 }
 

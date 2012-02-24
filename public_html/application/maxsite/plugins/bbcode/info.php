@@ -2,7 +2,7 @@
 
 $info = array(
 	'name' => 'BBCode',
-	'description' => t('Конвертирует тэги BBCode в HTML', 'plugins'),
+	'description' => t('Конвертирует тэги BBCode в HTML'),
 	'version' => '2.3',
 	'author' => 'Alexander Makarov, MAX',
 	'plugin_url' => 'http://code-igniter.ru/forum/topic86.html',

@@ -2,7 +2,7 @@
 
 mso_cur_dir_lang('templates');
 
-mso_head_meta('title', t('Галерея', __FILE__) ); // meta title страницы
+mso_head_meta('title', t('Галерея') ); // meta title страницы
 
 
 # начальная часть шаблона
@@ -44,7 +44,7 @@ if (isset($options['all']))
 	}
 	else // выводим список всех
 	{
-		echo '<h1>' . t('Галереи', __FILE__) . '</h1>';
+		echo '<h1>' . t('Галереи') . '</h1>';
 		echo '<div class="gallery_page"><ul class="gallery_page">';
 		
 		foreach($all as $gal)

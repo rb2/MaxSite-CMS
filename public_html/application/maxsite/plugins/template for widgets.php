@@ -11,13 +11,13 @@
 # функция автоподключения плагина
 function %%%_autoload()
 {
-	mso_register_widget('%%%_widget', t('%%%', __FILE__)); # регистрируем виджет
+	mso_register_widget('%%%_widget', t('%%%') ); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function %%%_uninstall($args = array())
 {	
-	mso_delete_option_mask('%%%_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('%%%_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -51,7 +51,7 @@ function %%%_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. 
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. 
 			form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
 	return $form;
@@ -71,7 +71,7 @@ function %%%_widget_update($num = 1)
 	$newoptions['header'] = mso_widget_get_post($widget . 'header');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

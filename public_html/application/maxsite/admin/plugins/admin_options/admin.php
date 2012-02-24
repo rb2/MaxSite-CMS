@@ -12,10 +12,10 @@ mso_cur_dir_lang('admin');
 	$plugin_url = $MSO->config['site_admin_url'] . 'options';
 	
 	// само меню
-	$a  = mso_admin_link_segment_build($plugin_url, '', t('Настройки сайта', 'admin'), 'select') . ' | ';
-	$a .= mso_admin_link_segment_build($plugin_url, 'templates', t('Шаблон сайта', 'admin'), 'select') . ' | ';
-	$a .= mso_admin_link_segment_build($plugin_url, 'editor', t('Настройка редактора', 'admin'), 'select') . ' | ';
-	$a .= mso_admin_link_segment_build($plugin_url, 'page_type', t('Типы страниц', 'admin'), 'select'); // . ' | ';
+	$a  = mso_admin_link_segment_build($plugin_url, '', t('Настройки сайта'), 'select') . ' | ';
+	$a .= mso_admin_link_segment_build($plugin_url, 'templates', t('Шаблон сайта'), 'select') . ' | ';
+	$a .= mso_admin_link_segment_build($plugin_url, 'editor', t('Настройка редактора'), 'select') . ' | ';
+	$a .= mso_admin_link_segment_build($plugin_url, 'page_type', t('Типы страниц'), 'select'); // . ' | ';
 	// $a .= mso_admin_link_segment_build($plugin_url, 'other', 'Прочее', 'select');
 	
 	$a = mso_hook('plugin_admin_options_menu', $a);

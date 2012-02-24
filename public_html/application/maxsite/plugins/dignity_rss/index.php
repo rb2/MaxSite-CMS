@@ -11,13 +11,13 @@
 # функция автоподключения плагина
 function dignity_rss_autoload($args = array())
 {
-	mso_register_widget('dignity_rss_widget', t('RSS подписка', 'plugins')); # регистрируем виджет
+	mso_register_widget('dignity_rss_widget', t('RSS подписка')); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function dignity_rss_uninstall($args = array())
 {	
-	mso_delete_option_mask('dignity_rss_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('dignity_rss_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -39,16 +39,16 @@ function dignity_rss_widget($num = 1)
 	else $options['feed_url'] = getinfo('rss_url');
 
 	if (isset($options['google_text']) ) $options['google_text'] = $options['google_text'];
-	else $options['google_text'] = t('Читать RSS через Google', 'plugins');
+	else $options['google_text'] = t('Читать RSS через Google');
 
 	if (isset($options['yandex_text']) ) $options['yandex_text'] = $options['yandex_text'];
-	else $options['yandex_text'] = t('Читать RSS через Яндекс', 'plugins');
+	else $options['yandex_text'] = t('Читать RSS через Яндекс');
 
 	if (isset($options['rss_text']) ) $options['rss_text'] = $options['rss_text'];
-	else $options['rss_text'] = t('RSS лента', 'plugins');
+	else $options['rss_text'] = t('RSS лента');
 
 	if (isset($options['rss_to_email']) ) $options['rss_to_email'] = $options['rss_to_email'];
-	else $options['rss_to_email'] = t('RSS-лента на E-Mail', 'plugins');
+	else $options['rss_to_email'] = t('RSS-лента на E-Mail');
 
 	if (isset($options['textposle']) ) $options['textposle'] = '<p>' . $options['textposle'] . '</p>';
 	else $options['textposle'] = '';
@@ -67,34 +67,34 @@ function dignity_rss_widget_form($num = 1)
 	// получаем опции 
 	$options = mso_get_option($widget, 'plugins', array());
 	
-	if ( !isset($options['header']) ) $options['header'] = t('Подписка на новости', 'plugins');
+	if ( !isset($options['header']) ) $options['header'] = t('Подписка на новости');
 	if ( !isset($options['textdo']) ) $options['textdo'] = '';
 	if ( !isset($options['feed_url']) ) $options['feed_url'] = getinfo('rss_url');
-	if ( !isset($options['google_text']) ) $options['google_text'] = t('Читать блог через Google', 'plugins');
-	if ( !isset($options['yandex_text']) ) $options['yandex_text'] = t('Читать блог через Яндекс', 'plugins');
-	if ( !isset($options['rss_text']) ) $options['rss_text'] = t('RSS лента', 'plugins');
-	if ( !isset($options['rss_to_email']) ) $options['rss_to_email'] = t('Получать RSS-ленту на почту', 'plugins');
+	if ( !isset($options['google_text']) ) $options['google_text'] = t('Читать блог через Google');
+	if ( !isset($options['yandex_text']) ) $options['yandex_text'] = t('Читать блог через Яндекс');
+	if ( !isset($options['rss_text']) ) $options['rss_text'] = t('RSS лента');
+	if ( !isset($options['rss_to_email']) ) $options['rss_to_email'] = t('Получать RSS-ленту на почту');
 	if ( !isset($options['textposle']) ) $options['textposle'] = '';
 	
 	// вывод самой формы
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Текст вначале:', 'plugins') . '</div> '. form_textarea( array( 'name'=>$widget . 'textdo', 'value'=>$options['textdo'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст вначале:') . '</div> '. form_textarea( array( 'name'=>$widget . 'textdo', 'value'=>$options['textdo'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Адрес RSS-Feed:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'feed_url', 'value'=>$options['feed_url'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Адрес RSS-Feed:') . '</div> '. form_input( array( 'name'=>$widget . 'feed_url', 'value'=>$options['feed_url'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Текст для Google:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'google_text', 'value'=>$options['google_text'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст для Google:') . '</div> '. form_input( array( 'name'=>$widget . 'google_text', 'value'=>$options['google_text'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Текст для Яндекс:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'yandex_text', 'value'=>$options['yandex_text'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст для Яндекс:') . '</div> '. form_input( array( 'name'=>$widget . 'yandex_text', 'value'=>$options['yandex_text'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Текст RSS ленты:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'rss_text', 'value'=>$options['rss_text'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст RSS ленты:') . '</div> '. form_input( array( 'name'=>$widget . 'rss_text', 'value'=>$options['rss_text'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Текст RSS-лента на почту:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'rss_to_email', 'value'=>$options['rss_to_email'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст RSS-лента на почту:') . '</div> '. form_input( array( 'name'=>$widget . 'rss_to_email', 'value'=>$options['rss_to_email'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Текст в конце:', 'plugins') . '</div> '. form_textarea( array( 'name'=>$widget . 'textposle', 'value'=>$options['textposle'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст в конце:') . '</div> '. form_textarea( array( 'name'=>$widget . 'textposle', 'value'=>$options['textposle'] ) ) ;
 	
 	return $form;
 }
@@ -121,7 +121,7 @@ function dignity_rss_widget_update($num = 1)
 	$newoptions['textposle'] = mso_widget_get_post($widget . 'textposle');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

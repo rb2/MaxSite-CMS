@@ -15,7 +15,7 @@ function rater_autoload($args = array())
 		mso_hook_add( 'content_end', 'rater_content_end');
 	}
 	
-	mso_register_widget('rater_widget', t('Рейтинг страниц', 'plugins')); # регистрируем виджет
+	mso_register_widget('rater_widget', t('Рейтинг страниц')); # регистрируем виджет
 }
 
 function rater_head($args = array())
@@ -49,8 +49,8 @@ function rater_content_end($arg = array())
 	
 	
 	echo '
-	<div id="rater" title="' . t('Текущая оценка:', 'plugins') . ' ' . $curvalue . '. ' 
-		. t('Голосов:', 'plugins') . ' ' . $page['page_rating_count'] 
+	<div id="rater" title="' . t('Текущая оценка:') . ' ' . $curvalue . '. ' 
+		. t('Голосов:') . ' ' . $page['page_rating_count'] 
 		. '"><script type="text/javascript">
 		$(\'#rater\').rater(\'' . $path 
 		. '\', {maxvalue:10, style:\'basic\', curvalue:' . $curvalue . ', slug:\''. $page_id . '\'});
@@ -63,7 +63,7 @@ function rater_content_end($arg = array())
 # функция выполняется при деинсталяции плагина
 function rater_uninstall($args = array())
 {	
-	mso_delete_option_mask('rater_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('rater_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -91,7 +91,7 @@ function rater_widget_form($num = 1)
 	// получаем опции 
 	$options = mso_get_option($widget, 'plugins', array());
 	
-	if ( !isset($options['header']) ) $options['header'] = t('Рейтинг страниц', 'plugins');
+	if ( !isset($options['header']) ) $options['header'] = t('Рейтинг страниц');
 	if ( !isset($options['count']) ) $options['count'] = 10;
 	if ( !isset($options['format']) ) $options['format'] = '[A][TITLE][/A] <sup>[BALL]</sup>';
 	
@@ -99,17 +99,17 @@ function rater_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Количество:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Количество:') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Формат:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
 	
-	$form .= '<p><div class="t150">&nbsp;</div><strong>[TITLE]</strong> - ' . t('название записи', 'plugins');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[COUNT]</strong> - ' . t('всего голосов', 'plugins');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[BALL]</strong> -  ' . t('общий бал (деление общего рейтинга на кол-во голосов) - округлен до целого', 'plugins');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[REALBALL]</strong> -  ' . t('общий бал (дробный)', 'plugins');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[A]</strong>' . t('ссылка', 'plugins') . '<strong>[/A]</strong>';
+	$form .= '<p><div class="t150">&nbsp;</div><strong>[TITLE]</strong> - ' . t('название записи');
+	$form .= '<br><div class="t150">&nbsp;</div><strong>[COUNT]</strong> - ' . t('всего голосов');
+	$form .= '<br><div class="t150">&nbsp;</div><strong>[BALL]</strong> -  ' . t('общий бал (деление общего рейтинга на кол-во голосов) - округлен до целого');
+	$form .= '<br><div class="t150">&nbsp;</div><strong>[REALBALL]</strong> -  ' . t('общий бал (дробный)');
+	$form .= '<br><div class="t150">&nbsp;</div><strong>[A]</strong>' . t('ссылка') . '<strong>[/A]</strong>';
 
 	return $form;
 }
@@ -130,7 +130,7 @@ function rater_widget_update($num = 1)
 	$newoptions['count'] = mso_widget_get_post($widget . 'count');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина
@@ -176,8 +176,8 @@ function rater_widget_custom($options = array(), $num = 1)
 			$out1 = str_replace('[BALL]', (round((real) $page['page_ball'])), $out1);
 			
 			$out1 = str_replace('[A]', $link . $page['page_slug'] 
-					. '" title="' . t('Голосов:', 'plugins') . ' ' . $page['page_rating_count'] 
-					. ' ' . t('Общий бал:', 'plugins') . ' ' . (real) $page['page_ball']
+					. '" title="' . t('Голосов:') . ' ' . $page['page_rating_count'] 
+					. ' ' . t('Общий бал:') . ' ' . (real) $page['page_ball']
 					. '">'
 					, $out1);
 			$out1 = str_replace('[/A]', '</a>', $out1);

@@ -166,13 +166,13 @@
 			{
 				$url = '<a href="' 
 						. mso_get_permalink_page($result['result'][0])
-						. '" target="_blank">' . t('Посмотреть запись', 'admin') . '</a> | '
+						. '" target="_blank">' . t('Посмотреть запись') . '</a> | '
 						. '<a href="' . $MSO->config['site_admin_url'] . 'page_edit/' 
-						. $result['result'][0] . '">' . t('Изменить', 'admin') . '</a>';
+						. $result['result'][0] . '">' . t('Изменить') . '</a>';
 			}
 			else $url = '';
 
-			echo '<div class="update">' . t('Страница добавлена!', 'admin') . ' ' . $url . '</div>'; // . $result['description'];
+			echo '<div class="update">' . t('Страница добавлена!') . ' ' . $url . '</div>'; // . $result['description'];
 			
 			# mso_flush_cache(); // сбросим кэш - перенес в mso_new_page
 			
@@ -204,9 +204,9 @@
 		else
 		{
 			if (isset($result['description']) and $result['description'] == 'Existing page') 
-				echo '<div class="error">' . t('Такая страница уже существует', 'admin') . '</div>';
+				echo '<div class="error">' . t('Такая страница уже существует') . '</div>';
 			else
-				echo '<div class="error">' . t('Ошибка создания страницы', 'admin') . '</div>';
+				echo '<div class="error">' . t('Ошибка создания страницы') . '</div>';
 		}
 	}
 	else 
@@ -232,7 +232,7 @@
 	// получим все опции редактора
 	$editor_options = mso_get_option('editor_options', 'admin', array());
 	
-	echo '<h1 class="content">' . t('Создать страницу', 'admin') . '</h1>';
+	echo '<h1 class="content">' . t('Создать страницу') . '</h1>';
 	
 	
 	// $input_style = 'class="f_header"'; 
@@ -280,7 +280,7 @@
 			'sort' => isset($editor_options['tags_sort']) ? $editor_options['tags_sort'] : 0, 
 			
 			'block_start' => '<p id="f_all_tags_max_num"><br>',
-			'block_end' => ' <a title="' . t('Показать все метки', 'admin') . '" href="#" onClick="shtags(1); return false;">&gt;&gt;&gt;</a></p>',
+			'block_end' => ' <a title="' . t('Показать все метки') . '" href="#" onClick="shtags(1); return false;">&gt;&gt;&gt;</a></p>',
 			'format' => '<span style="font-size: %SIZE%%"><a href="#" onClick="addTag(\'%TAG%\'); return false;">%TAG%</a><sub style="font-size: 7pt;">%COUNT%</sub></span>'
 		));
 		
@@ -292,7 +292,7 @@
 			'sort' => isset($editor_options['tags_sort']) ? $editor_options['tags_sort'] : 0, 
 			
 			'block_start' => '<p id="f_all_tags_all" style="display: none;"><br>',
-			'block_end' => ' <a title="' . t('Показать только самые популярные метки', 'admin') . '" href="#" onClick="shtags(2); return false;">&lt;&lt;&lt;</a></p>',
+			'block_end' => ' <a title="' . t('Показать только самые популярные метки') . '" href="#" onClick="shtags(2); return false;">&lt;&lt;&lt;</a></p>',
 			'format' => '<span style="font-size: %SIZE%%"><a href="#" onClick="addTag(\'%TAG%\'); return false;">%TAG%</a><sub style="font-size: 7pt;">%COUNT%</sub></span>'
 		));
 	}
@@ -311,7 +311,7 @@
 		if ($f_page_type == $row['page_type_id']) $che = 'checked="checked"';
 			else $che = '';
 			
-		$page_type_desc = $row['page_type_desc'] ? ' <em>(' . t($row['page_type_desc'], 'admin') . ')</em>' : '';
+		$page_type_desc = $row['page_type_desc'] ? ' <em>(' . t($row['page_type_desc']) . ')</em>' : '';
 			
 		$all_post_types .= '<p><label><input name="f_page_type[]" type="radio" ' . $che 
 								. ' value="' . $row['page_type_id'] . '"> ' 
@@ -386,7 +386,7 @@
 	
 	//$date_time = 'Сейчас: ' . date('Y-m-d H:i:s');
 		
-	$date_time = t('Тек. время:', 'admin') . ' ' . date('Y-m-d H:i:s');
+	$date_time = t('Тек. время:') . ' ' . date('Y-m-d H:i:s');
 	
 		
 	$date_cur_y = date('Y');
@@ -427,7 +427,7 @@
 
 
 	$all_pages = NR . '<select name="f_page_parent"  style="margin-top: 5px; width: 99%;" >' . NR;
-	$all_pages .= NR . '<option value="0">' . t('Нет', 'admin') . '</option>';
+	$all_pages .= NR . '<option value="0">' . t('Нет') . '</option>';
 	
 	// если отмечена опция отрображать блок
 	if (!isset($editor_options['page_all_parent']) or (isset($editor_options['page_all_parent']) and $editor_options['page_all_parent']))
@@ -460,7 +460,7 @@
 	$f_status_draft = $f_status_private = '';
 	$f_status_publish = 'checked';
 	
-	$f_return = '<input name="f_return" type="checkbox" title="' . t('После сохранения вернуться к редактированию', 'admin') . '">';
+	$f_return = '<input name="f_return" type="checkbox" title="' . t('После сохранения вернуться к редактированию') . '">';
 										// checked="checked"
 
 	# форма вынесена в отдельный файл, поскольку она одна и таже для new и edit

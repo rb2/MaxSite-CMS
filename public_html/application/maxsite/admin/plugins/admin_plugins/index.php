@@ -29,7 +29,7 @@ function admin_plugins_admin_init($args = array())
 		# Четвертый - номер в меню
 		
 		
-		mso_admin_menu_add('options', $this_plugin_url, t('Плагины', 'admin'));
+		mso_admin_menu_add('options', $this_plugin_url, t('Плагины'));
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 
@@ -47,12 +47,12 @@ function admin_plugins_admin($args = array())
 	global $MSO;
 	if ( !mso_check_allow('admin_plugins') ) 
 	{
-		echo t('Доступ запрещен', 'admin');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Настройка плагинов', 'admin') . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Настройка плагинов', 'admin') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Настройка плагинов') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Настройка плагинов') . ' - " . $args; ' );
 	
 	require($MSO->config['admin_plugins_dir'] . 'admin_plugins/admin.php');
 }

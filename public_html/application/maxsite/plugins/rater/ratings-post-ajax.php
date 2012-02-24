@@ -21,7 +21,7 @@
 
 		if ( in_array($slug, $all_slug) ) // уже есть текущий урл - не увеличиваем счетчик
 		{
-			echo '<span>' . t('Вы уже голосовали!', 'plugins') . '</span>';
+			echo '<span>' . t('Вы уже голосовали!') . '</span>';
 			return;
 		}
 
@@ -71,10 +71,10 @@
 
 				$sredn = round($page_rating / $page_rating_count);
 
-				echo '<span>' . t('Ваша оценка:', 'plugins') . '</span> ' . $rating . '<br><span>' 
-							. t('Средняя оценка', 'plugins') . '</span>: ' . $sredn 
-							. ' ' . t('из', 'plugins') . ' ' . $page_rating_count . ' ' 
-							. t('проголосовавших', 'plugins');
+				echo '<span>' . t('Ваша оценка:') . '</span> ' . $rating . '<br><span>' 
+							. t('Средняя оценка') . '</span>: ' . $sredn 
+							. ' ' . t('из') . ' ' . $page_rating_count . ' ' 
+							. t('проголосовавших');
 				
 				mso_hook('global_cache_all_flush'); // сбрасываем весь html-кэш
 			

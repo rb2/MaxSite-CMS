@@ -10,7 +10,7 @@ echo '<div class="info info-top">';
 		if (is_type('page'))
 		{
 		
-			mso_page_date($page_date_publish, array('format' => 'j F Y г.'), '<span title="' . t('Дата публикации') . '"><img src="' . getinfo('template_url') . 'images/date.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
+			mso_page_date($page_date_publish, array('format' => t('j F Y г.')), '<span title="' . t('Дата публикации') . '"><img src="' . getinfo('template_url') . 'images/date.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
 			mso_page_author_link($users_nik, $page_id_autor, '<span style="margin-left: 15px;" title="' . t('Автор') . '"><img src="' . getinfo('template_url') . 'images/user.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
@@ -30,7 +30,7 @@ echo '<div class="info info-top">';
 				'posle' => ($page_count_comments ? 
 							mso_page_title($page_slug . '#comments', $page_count_comments, ' ', '', true, false)
 							: 
-							mso_page_title($page_slug . '#comments', 'Обсудить', ' ', '', true, false)
+							mso_page_title($page_slug . '#comments', t('Обсудить'), ' ', '', true, false)
 							) . '</span>',
 				));
 
@@ -42,7 +42,7 @@ echo '<div class="info info-top">';
 		}
 		else // все остальные страницы
 		{
-			mso_page_date($page_date_publish, array('format' => 'j F Y г.'), '<span title="' . t('Дата публикации') . '"><img src="' . getinfo('template_url') . 'images/date.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
+			mso_page_date($page_date_publish, array('format' => t('j F Y г.')), '<span title="' . t('Дата публикации') . '"><img src="' . getinfo('template_url') . 'images/date.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
 			mso_page_author_link($users_nik, $page_id_autor, '<span style="margin-left: 15px;" title="' . t('Автор') . '"><img src="' . getinfo('template_url') . 'images/user.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
@@ -61,7 +61,7 @@ echo '<div class="info info-top">';
 				'posle' => ($page_count_comments ? 
 							mso_page_title($page_slug . '#comments', $page_count_comments, ' ', '', true, false)
 							: 
-							mso_page_title($page_slug . '#comments', 'Обсудить', ' ', '', true, false)
+							mso_page_title($page_slug . '#comments', t('Обсудить'), ' ', '', true, false)
 							) . '</span>',
 				));
 

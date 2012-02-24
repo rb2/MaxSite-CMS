@@ -8,7 +8,7 @@
 # функция автоподключения плагина
 function perelinks_autoload($args = array())
 {
-	mso_create_allow('perelinks_edit', t('Доступ к настройкам «perelinks»', __FILE__));
+	mso_create_allow('perelinks_edit', t('Доступ к настройкам «perelinks»'));
 	mso_hook_add( 'content_content', 'perelinks_custom'); # хук на админку
 	mso_hook_add( 'admin_init', 'perelinks_admin_init'); # хук на админку
 }
@@ -16,7 +16,7 @@ function perelinks_autoload($args = array())
 
 function perelinks_uninstall($args = array())
 {
-	mso_delete_option('plugin_perelinks', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_perelinks', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -30,7 +30,7 @@ function perelinks_admin_init($args = array())
 	}
 
 	$this_plugin_url = 'perelinks'; // url и hook
-	mso_admin_menu_add('plugins', $this_plugin_url, t('Плагин perelinks', __FILE__));
+	mso_admin_menu_add('plugins', $this_plugin_url, t('Плагин perelinks'));
 	mso_admin_url_hook ($this_plugin_url, 'perelinks_admin_page');
 
 	return $args;
@@ -44,12 +44,12 @@ function perelinks_admin_page($args = array())
 	# выносим админские функции отдельно в файл
 	if ( !mso_check_allow('perelinks_edit') )
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Плагин perelinks', __FILE__) . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Плагин perelinks', __FILE__) . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Плагин perelinks') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Плагин perelinks') . ' - " . $args; ' );
 
 	require(getinfo('plugins_dir') . 'perelinks/admin.php');
 }

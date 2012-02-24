@@ -521,7 +521,7 @@
 			{
 				# отметить все комментарии юзера как анонима без имени
 				$CI->db->where(array ('comments_users_id' => $users_id));
-				$CI->db->update('comments', array('comments_users_id' => '0', 'comments_author_name' => t('Аноним', 'admin') ) );
+				$CI->db->update('comments', array('comments_users_id' => '0', 'comments_author_name' => t('Аноним') ) );
 			}
 			
 			

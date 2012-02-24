@@ -2,7 +2,7 @@
 
 $info = array(
 	'name' => 'Random pages',
-	'description' => t('Виджет «Случайные статьи»', 'plugins'),
+	'description' => t('Виджет «Случайные статьи»'),
 	'version' => '1.1',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',

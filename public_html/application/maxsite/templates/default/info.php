@@ -10,7 +10,7 @@
 $info = array(
 	'name' => 'Default',
 	'description' => t('Шаблон для MaxSite CMS', __FILE__),
-	'version' => '3.0',
+	'version' => '3.1',
 	'author' => 'Максим',
 	'template_url' => 'http://max-3000.com/',
 	'author_url' => 'http://maxsite.org/'

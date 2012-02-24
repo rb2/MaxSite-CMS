@@ -22,7 +22,7 @@ function samborsky_polls_autoload($args = array())
 	// Хук в <head></head>
 	mso_hook_add('head', 'samborsky_polls_head');
 	mso_hook_add('custom_page_404', 'samborsky_polls_archive_404'); # По какому адресу будем показывать архив
-	mso_register_widget('samborsky_polls_widget', t('Голосования', 'plugins')); # регистрируем виджет
+	mso_register_widget('samborsky_polls_widget', t('Голосования')); # регистрируем виджет
 }
 
 function samborsky_polls_head($args = array()){
@@ -80,7 +80,7 @@ function samborsky_polls_init($args = array()){
 	
 	$this_plugin_url = 'samborsky_polls';
 
-	mso_admin_menu_add('plugins',$this_plugin_url,t('Голосования', 'plugins'));
+	mso_admin_menu_add('plugins',$this_plugin_url,t('Голосования'));
 	mso_admin_url_hook($this_plugin_url, 'samborsky_polls_admin_page');
 	
 	return $args;
@@ -90,12 +90,12 @@ function samborsky_polls_init($args = array()){
 function samborsky_polls_admin_page($args = array()){
 	# выносим админские функции отдельно в файл	
 	if( !mso_check_allow('samborsky_polls_edit') ){
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	
-	mso_hook_add_dinamic('mso_admin_header',' return $args . "' . t('Голосования', 'plugins') . '"; ' );
-	mso_hook_add_dinamic('admin_title',' return "' . t('Голосования', 'plugins') . ' - " . $args; ' );
+	mso_hook_add_dinamic('mso_admin_header',' return $args . "' . t('Голосования') . '"; ' );
+	mso_hook_add_dinamic('admin_title',' return "' . t('Голосования') . ' - " . $args; ' );
 	
 	require(getinfo('plugins_dir') . 'samborsky_polls/admin.php');
 }
@@ -172,13 +172,13 @@ function samborsky_polls_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> ' . 
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> ' . 
 			form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 			
-	$form .= '<p><div class="t150">' . t('Номер голосования:', 'plugins') . '</div> ' . 
+	$form .= '<p><div class="t150">' . t('Номер голосования:') . '</div> ' . 
 			form_input( array( 'name'=>$widget . 'polls_id', 'value'=>$options['polls_id'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Текст после:', 'plugins') . '</div> ' . 
+	$form .= '<p><div class="t150">' . t('Текст после:') . '</div> ' . 
 			form_textarea( array( 'name'=>$widget . 'text_posle', 'value'=>$options['text_posle'], 'style'=>'height: 100px;' ) ) ;
 			
 	return $form;
@@ -200,7 +200,7 @@ function samborsky_polls_widget_update($num = 1)
 	$newoptions['text_posle'] = mso_widget_get_post($widget . 'text_posle');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

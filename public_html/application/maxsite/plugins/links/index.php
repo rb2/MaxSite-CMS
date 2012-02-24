@@ -9,13 +9,13 @@
 # функция автоподключения плагина
 function links_autoload()
 {
-	mso_register_widget('links_widget', t('Ссылки', 'plugins')); # регистрируем виджет
+	mso_register_widget('links_widget', t('Ссылки')); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function links_uninstall($args = array())
 {	
-	mso_delete_option_mask('links_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('links_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -51,23 +51,23 @@ function links_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Ссылки:', 'plugins') . '</div> '. form_textarea( array( 'name'=>$widget . 'links', 'value'=>$options['links'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Ссылки:') . '</div> '. form_textarea( array( 'name'=>$widget . 'links', 'value'=>$options['links'] ) ) ;
 	
-	$form .= '<br><div class="t150">&nbsp;</div>' . t('Указывайте по одной ссылке в каждом абзаце в формате:', 'plugins') . '
+	$form .= '<br><div class="t150">&nbsp;</div>' . t('Указывайте по одной ссылке в каждом абзаце в формате:') . '
 			  <br><div class="t150">&nbsp;</div><strong>http://links/ | название | описание | noindex | _blank</strong>
-			  <br><div class="t150">&nbsp;</div><strong>noindex</strong> - ' . t('обрамить ссылку в nofollow, если не нужно - указать пробел', 'plugins') . '
-			  <br><div class="t150">&nbsp;</div><strong>_blank</strong> - ' . t('открыть ссылку в новом окне, если не нужно - указать пробел', 'plugins') . '
+			  <br><div class="t150">&nbsp;</div><strong>noindex</strong> - ' . t('обрамить ссылку в nofollow, если не нужно - указать пробел') . '
+			  <br><div class="t150">&nbsp;</div><strong>_blank</strong> - ' . t('открыть ссылку в новом окне, если не нужно - указать пробел') . '
 			  ';
 	
-	$form .= '<p><div class="t150">' . t('Отображать:', 'plugins') . '</div> '. 
+	$form .= '<p><div class="t150">' . t('Отображать:') . '</div> '. 
 		form_dropdown( $widget . 'screenshot', array( 
-		'0'=>t('Обычным списком', 'plugins'), 
-		'1'=>t('Использовать скриншот сайта 120x83px (бэби)', 'plugins'), 
-		'2'=>t('Использовать скриншот сайта 202x139px (маленький)', 'plugins'), 
-		'3'=>t('Использовать скриншот сайта 305x210px (средний)', 'plugins'), 
-		'4'=>t('Использовать скриншот сайта 400x275px (большой)', 'plugins')), 
+		'0'=>t('Обычным списком'), 
+		'1'=>t('Использовать скриншот сайта 120x83px (бэби)'), 
+		'2'=>t('Использовать скриншот сайта 202x139px (маленький)'), 
+		'3'=>t('Использовать скриншот сайта 305x210px (средний)'), 
+		'4'=>t('Использовать скриншот сайта 400x275px (большой)')), 
 		$options['screenshot']);
 		
 	$form .= '<p><div class="t150">&nbsp;</div><strong>Скриншоты создаются с помощью <a href="http://www.webmorda.kz/" target="_blank">Мордашка твоего сайта</a></strong></p>';
@@ -91,7 +91,7 @@ function links_widget_update($num = 1)
 	$newoptions['screenshot'] = mso_widget_get_post($widget . 'screenshot');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

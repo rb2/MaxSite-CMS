@@ -9,7 +9,7 @@
 # функция автоподключения плагина
 function guestbook_autoload($args = array())
 {
-	mso_create_allow('guestbook_edit', t('Админ-доступ к гостевой книге', __FILE__));
+	mso_create_allow('guestbook_edit', t('Админ-доступ к гостевой книге'));
 	mso_hook_add('admin_init', 'guestbook_admin_init'); # хук на админку
 	mso_hook_add('custom_page_404', 'guestbook_custom_page_404'); # хук для подключения к шаблону
 }
@@ -57,7 +57,7 @@ function guestbook_activate($args = array())
 # функция выполняется при деинстяляции плагина
 function guestbook_uninstall($args = array())
 {	
-	mso_delete_option('plugin_guestbook', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_guestbook', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('guestbook_edit'); // удалим созданные разрешения
 	
 	// удалим таблицу
@@ -84,7 +84,7 @@ function guestbook_admin_init($args = array())
 	#			можно использовать добавочный, например demo/edit = http://сайт/admin/demo/edit
 	# Третий - название ссылки	
 	
-	mso_admin_menu_add('plugins', $this_plugin_url, t('Гостевая книга', __FILE__));
+	mso_admin_menu_add('plugins', $this_plugin_url, t('Гостевая книга'));
 
 	# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 	# связанную функцию именно она будет вызываться, когда 
@@ -100,12 +100,12 @@ function guestbook_admin_page($args = array())
 	# выносим админские функции отдельно в файл
 	if ( !mso_check_allow('guestbook_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Гостевая книга', __FILE__) . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Гостевая книга', __FILE__) . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Гостевая книга') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Гостевая книга') . ' - " . $args; ' );
 	
 	if ( mso_segment(3) == 'edit') require(getinfo('plugins_dir') . 'guestbook/edit.php');
 	elseif ( mso_segment(3) == 'editone') require(getinfo('plugins_dir') . 'guestbook/editone.php');

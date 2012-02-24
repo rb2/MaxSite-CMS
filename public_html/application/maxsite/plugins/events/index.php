@@ -8,14 +8,14 @@
 # функция автоподключения плагина
 function events_autoload($args = array())
 {
-	mso_register_widget('events_widget', t('События', 'plugins')); # регистрируем виджет
+	mso_register_widget('events_widget', t('События')); # регистрируем виджет
 }
 
 
 # функция выполняется при деинсталяции плагина
 function events_uninstall($args = array())
 {	
-	mso_delete_option_mask('events_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('events_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -50,23 +50,23 @@ function events_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> ' . 
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> ' . 
 			form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 			
-	$form .= '<p><div class="t150">' . t('Формат даты:', 'plugins') . '</div> '. 
+	$form .= '<p><div class="t150">' . t('Формат даты:') . '</div> '. 
 			form_input( array( 'name'=>$widget . 'format_date', 'value'=>$options['format_date'] ) );
 			
-	$form .= '<br><div class="t150">&nbsp;</div>' . t('Как это <a href="http://ru.php.net/date" target="_blank">принято в PHP</a>', 'plugins');
+	$form .= '<br><div class="t150">&nbsp;</div>' . t('Как это <a href="http://ru.php.net/date" target="_blank">принято в PHP</a>');
 	
 	
-	$form .= '<p><div class="t150">' . t('События:', 'plugins') . '</div> '. form_textarea( array( 'name'=>$widget . 'events', 'value'=>$options['events'] ) ) ;
-	$form .= '<br><div class="t150">&nbsp;</div>' . t('Указывайте по одному событию в каждом абзаце в формате:', 'plugins') . ' 
-			  <br><div class="t150">&nbsp;</div><strong>' . t('дата | до | после | текст события', 'plugins') . '</strong>, ' . t('где', 'plugins') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>дата</strong> в формате yyyy-mm-dd', 'plugins') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>до</strong> - выводить событие до наступления N-дней', 'plugins') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>после</strong> - выводить событие после прошествия N-дней', 'plugins') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>В тексте события</strong> можно использовать HTML', 'plugins') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>ПРИМЕР:</strong> 2008-09-01 | 3 | 1 | Пора в школу!', 'plugins') . '
+	$form .= '<p><div class="t150">' . t('События:') . '</div> '. form_textarea( array( 'name'=>$widget . 'events', 'value'=>$options['events'] ) ) ;
+	$form .= '<br><div class="t150">&nbsp;</div>' . t('Указывайте по одному событию в каждом абзаце в формате:') . ' 
+			  <br><div class="t150">&nbsp;</div><strong>' . t('дата | до | после | текст события') . '</strong>, ' . t('где') . '
+			  <br><div class="t150">&nbsp;</div>' . t('<strong>дата</strong> в формате yyyy-mm-dd') . '
+			  <br><div class="t150">&nbsp;</div>' . t('<strong>до</strong> - выводить событие до наступления N-дней') . '
+			  <br><div class="t150">&nbsp;</div>' . t('<strong>после</strong> - выводить событие после прошествия N-дней') . '
+			  <br><div class="t150">&nbsp;</div>' . t('<strong>В тексте события</strong> можно использовать HTML') . '
+			  <br><div class="t150">&nbsp;</div>' . t('<strong>ПРИМЕР:</strong> 2008-09-01 | 3 | 1 | Пора в школу!') . '
 			  ';
 	return $form;
 }
@@ -87,7 +87,7 @@ function events_widget_update($num = 1)
 	$newoptions['format_date'] = mso_widget_get_post($widget . 'format_date');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина
@@ -117,13 +117,13 @@ function events_widget_custom($options = array(), $num = 1)
 				'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
 				
 	$day_ru = array(
-				t('Понедельник', 'plugins'), t('Вторник', 'plugins'), t('Среда', 'plugins'), t('Четверг', 'plugins'), t('Пятница', 'plugins'), t('Суббота', 'plugins'), t('Воскресенье', 'plugins'), 
+				t('Понедельник'), t('Вторник'), t('Среда'), t('Четверг'), t('Пятница'), t('Суббота'), t('Воскресенье'), 
 				
-				t('Пн', 'plugins'), t('Вт', 'plugins'), t('Ср', 'plugins'), t('Чт', 'plugins'), t('Пт', 'plugins'), t('Сб', 'plugins'), t('Вс', 'plugins'), 
+				t('Пн'), t('Вт'), t('Ср'), t('Чт'), t('Пт'), t('Сб'), t('Вс'), 
 				
-				t('января', 'plugins'), t('февраля', 'plugins'), t('марта', 'plugins'), t('апреля', 'plugins'), t('мая', 'plugins'), t('июня', 'plugins'), t('июля', 'plugins'), t('августа', 'plugins'), t('сентября', 'plugins'), t('октября', 'plugins'), t('ноября', 'plugins'), t('декабря', 'plugins'), 
+				t('января'), t('февраля'), t('марта'), t('апреля'), t('мая'), t('июня'), t('июля'), t('августа'), t('сентября'), t('октября'), t('ноября'), t('декабря'), 
 				
-				t('янв', 'plugins'), t('фев', 'plugins'), t('мар', 'plugins'), t('апр', 'plugins'), t('май', 'plugins'), t('июн', 'plugins'), t('июл', 'plugins'), t('авг', 'plugins'), t('сен', 'plugins'), t('окт', 'plugins'), t('ноя', 'plugins'), t('дек', 'plugins'));
+				t('янв'), t('фев'), t('мар'), t('апр'), t('май'), t('июн'), t('июл'), t('авг'), t('сен'), t('окт'), t('ноя'), t('дек'));
 	
 	$events = explode("\n", trim($options['events']));
 	asort($events);

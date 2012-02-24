@@ -9,13 +9,13 @@
 # функция автоподключения плагина
 function text_block_autoload($args = array())
 {
-	mso_register_widget('text_block_widget', t('Текстовый блок', 'plugins')); # регистрируем виджет
+	mso_register_widget('text_block_widget', t('Текстовый блок')); # регистрируем виджет
 }
 
 # функция выполняется при деинсталяции плагина
 function text_block_uninstall($args = array())
 {	
-	mso_delete_option_mask('text_block_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('text_block_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -55,14 +55,14 @@ function text_block_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Текст:', 'plugins') . '</div> '. form_textarea( array( 'name'=>$widget . 'text', 'value'=>$options['text'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Текст:') . '</div> '. form_textarea( array( 'name'=>$widget . 'text', 'value'=>$options['text'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Тип:', 'plugins') . '</div> '. form_dropdown( $widget . 'type', array( 'html'=>t('HTML или текст', 'plugins'), 'php'=>'PHP'), $options['type']);
+	$form .= '<p><div class="t150">' . t('Тип:') . '</div> '. form_dropdown( $widget . 'type', array( 'html'=>t('HTML или текст'), 'php'=>'PHP'), $options['type']);
 	
 	
-	$form .= '<br><div class="t150">&nbsp;</div>' . t('Можно использовать HTML-тэги. Если тип PHP, то код должен выполняться без ошибок!', 'plugins');
+	$form .= '<br><div class="t150">&nbsp;</div>' . t('Можно использовать HTML-тэги. Если тип PHP, то код должен выполняться без ошибок!');
 	
 	return $form;
 }
@@ -83,7 +83,7 @@ function text_block_widget_update($num = 1)
 	$newoptions['type'] = mso_widget_get_post($widget . 'type');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

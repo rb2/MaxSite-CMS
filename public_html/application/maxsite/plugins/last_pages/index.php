@@ -10,13 +10,13 @@
 function last_pages_autoload($args = array())
 {
 	# регистрируем виджет
-	mso_register_widget('last_pages_widget', t('Последние записи', 'plugins'));
+	mso_register_widget('last_pages_widget', t('Последние записи'));
 }
 
 # функция выполняется при деинсталяции плагина
 function last_pages_uninstall($args = array())
 {
-	mso_delete_option_mask('last_pages_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('last_pages_widget_', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -68,40 +68,40 @@ function last_pages_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
-	$form .= '<p><div class="t150">' . t('Формат:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
 
 	$form .= '<br><div class="t150">&nbsp</div> %TITLE% %DATE% %TEXT% %TEXT_CUT% %TEXT_PREV% %IMG_PREV% %COMMENTS% %URL%';
 
 
-	$form .= '<p><div class="t150">' . t('Количество:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Количество:') . '</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Формат даты:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'date_format', 'value'=>$options['date_format'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Формат даты:') . '</div> '. form_input( array( 'name'=>$widget . 'date_format', 'value'=>$options['date_format'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Формат комментариев:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'comments_format', 'value'=>$options['comments_format'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Формат комментариев:') . '</div> '. form_input( array( 'name'=>$widget . 'comments_format', 'value'=>$options['comments_format'] ) ) ;
 
 
-	$form .= '<p><br><div class="t150">' . t('Тип страниц:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'page_type', 'value'=>$options['page_type'] ) ) ;
+	$form .= '<p><br><div class="t150">' . t('Тип страниц:') . '</div> '. form_input( array( 'name'=>$widget . 'page_type', 'value'=>$options['page_type'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Исключить рубрики:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'exclude_cat', 'value'=>$options['exclude_cat'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Исключить рубрики:') . '</div> '. form_input( array( 'name'=>$widget . 'exclude_cat', 'value'=>$options['exclude_cat'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Включить рубрики:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'include_cat', 'value'=>$options['include_cat'] ) ) ;
+	$form .= '<p><div class="t150">' . t('Включить рубрики:') . '</div> '. form_input( array( 'name'=>$widget . 'include_cat', 'value'=>$options['include_cat'] ) ) ;
 
-	$form .= '<p><div class="t150">' . t('Сортировка:', 'plugins') . '</div> '. form_dropdown( $widget . 'sort', array( 'page_date_publish'=>t('По дате', 'plugins'), 'page_title'=>t('По алфавиту', 'plugins')), $options['sort']);
+	$form .= '<p><div class="t150">' . t('Сортировка:') . '</div> '. form_dropdown( $widget . 'sort', array( 'page_date_publish'=>t('По дате'), 'page_title'=>t('По алфавиту')), $options['sort']);
 
-	$form .= '<p><div class="t150">' . t('Порядок сортировки:', 'plugins') . '</div> '. form_dropdown( $widget . 'sort_order', array( 'asc'=>t('Прямой', 'plugins'), 'desc'=>t('Обратный', 'plugins')), $options['sort_order']);
+	$form .= '<p><div class="t150">' . t('Порядок сортировки:') . '</div> '. form_dropdown( $widget . 'sort_order', array( 'asc'=>t('Прямой'), 'desc'=>t('Обратный')), $options['sort_order']);
 
-	$form .= '<p><div class="t150">' . t('Метаполе миниатюры:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'img_prev', 'value'=>$options['img_prev'] ) ) ;
-	$form .= '<br><div class="t150">&nbsp</div> ' . t('Ключ метаполя, где расположен адрес миниатюры изображения записи.', 'plugins');
+	$form .= '<p><div class="t150">' . t('Метаполе миниатюры:') . '</div> '. form_input( array( 'name'=>$widget . 'img_prev', 'value'=>$options['img_prev'] ) ) ;
+	$form .= '<br><div class="t150">&nbsp</div> ' . t('Ключ метаполя, где расположен адрес миниатюры изображения записи.');
 	
-	$form .= '<p><div class="t150">' . t('Миниатюра по-умолчанию:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'img_prev_def', 'value'=>$options['img_prev_def'] ) ) ;
-	$form .= '<br><div class="t150">&nbsp</div> ' . t('Адрес миниатюры изображения, которое будет выводиться там, где не указано метаполе.', 'plugins');
+	$form .= '<p><div class="t150">' . t('Миниатюра по-умолчанию:') . '</div> '. form_input( array( 'name'=>$widget . 'img_prev_def', 'value'=>$options['img_prev_def'] ) ) ;
+	$form .= '<br><div class="t150">&nbsp</div> ' . t('Адрес миниатюры изображения, которое будет выводиться там, где не указано метаполе.');
 	
-	$form .= '<p><div class="t150">' . t('Атрибуты миниатюры:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'img_prev_attr', 'value'=>$options['img_prev_attr'] ) ) ;
-	$form .= '<br><div class="t150">&nbsp</div> ' . t('Например можно указать class, style.', 'plugins');
+	$form .= '<p><div class="t150">' . t('Атрибуты миниатюры:') . '</div> '. form_input( array( 'name'=>$widget . 'img_prev_attr', 'value'=>$options['img_prev_attr'] ) ) ;
+	$form .= '<br><div class="t150">&nbsp</div> ' . t('Например можно указать class, style.');
 	
-	$form .= '<p><div class="t150">' . t('Количество слов:', 'plugins') . '</div> '. form_input( array( 'name'=>$widget . 'max_words', 'value'=>$options['max_words'] ) ) ;
-	$form .= '<br><div class="t150">&nbsp</div> ' . t('Используется только с %TEXT_PREV%.', 'plugins');
+	$form .= '<p><div class="t150">' . t('Количество слов:') . '</div> '. form_input( array( 'name'=>$widget . 'max_words', 'value'=>$options['max_words'] ) ) ;
+	$form .= '<br><div class="t150">&nbsp</div> ' . t('Используется только с %TEXT_PREV%.');
 	
 	
 	return $form;
@@ -135,7 +135,7 @@ function last_pages_widget_update($num = 1)
 	$newoptions['max_words'] = mso_widget_get_post($widget . 'max_words');
 
 	if ( $options != $newoptions )
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 
@@ -155,7 +155,7 @@ function last_pages_widget_custom($arg = array(), $num = 1)
 	if (!isset($arg['img_prev_attr'])) 	$arg['img_prev_attr'] = 'class="left"';
 	if (!isset($arg['max_words']) ) 	$arg['max_words'] = 20;
 
-	if ( !isset($arg['header']) ) $arg['header'] = mso_get_val('widget_header_start', '<h2 class="box"><span>') . t('Последние записи', 'plugins') . mso_get_val('widget_header_end', '</span></h2>');
+	if ( !isset($arg['header']) ) $arg['header'] = mso_get_val('widget_header_start', '<h2 class="box"><span>') . t('Последние записи') . mso_get_val('widget_header_end', '</span></h2>');
 
 	if ( !isset($arg['block_start']) ) $arg['block_start'] = '<div class="last-pages"><ul class="is_link">';
 	if ( !isset($arg['block_end']) ) $arg['block_end'] = '</ul></div>';

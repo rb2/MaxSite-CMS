@@ -37,7 +37,7 @@
 	// получим все данные из ini-файла
 	$all = mso_get_ini_file( $MSO->config['admin_plugins_dir'] . 'admin_page/meta.ini');
 	
-	//  pr($all);
+	//pr($all);
 	
 	// подключаем meta.ini из текущего шаблона
 	// при этом складываем их с дефолтным
@@ -57,8 +57,8 @@
 		if ($meta_templ) $all = array_merge($all, $meta_templ);
 	}
 	
+	
 	// pr($all);
-
 	// проходимся по всем ini-опциям
 	// для совместимости используем вместо meta_  options_
 	foreach ($all as $key=>$row)
@@ -174,8 +174,8 @@
 			. NR;
 		}
 		
-		if ($description) $f .= '<p>' .  $description . '</p>';
-		$key = '<h3>' . $key . '</h3>';
+		if ($description) $f .= '<p>' .  t($description) . '</p>';
+		$key = '<h3>' . t($key) . '</h3>';
 		
 		// $all_meta .= '<div>' . $key . NR . $f . '</div>';
 		
@@ -190,4 +190,4 @@
 	}
 
 
-?>
+# end file

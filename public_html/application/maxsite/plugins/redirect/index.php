@@ -17,7 +17,7 @@ function redirect_autoload($args = array())
 # функция выполняется при активации (вкл) плагина
 function redirect_activate($args = array())
 {	
-	mso_create_allow('redirect_edit', t('Админ-доступ к плагину редиректов', 'plugins'));
+	mso_create_allow('redirect_edit', t('Админ-доступ к плагину редиректов'));
 	return $args;
 }
 
@@ -25,7 +25,7 @@ function redirect_activate($args = array())
 function redirect_uninstall($args = array())
 {
 	mso_remove_allow('redirect_edit'); // удалим созданные разрешения
-	mso_delete_option('redirect', 'plugins'); // удалим созданные опции
+	mso_delete_option('redirect', 'plugins' ); // удалим созданные опции
 	return $args;
 }
 
@@ -145,7 +145,7 @@ function redirect_admin_init($args = array())
 	#			можно использовать добавочный, например demo/edit = http://сайт/admin/demo/edit
 	# Третий - название ссылки
 
-	mso_admin_menu_add('plugins', $this_plugin_url, t('Редиректы', 'plugins'));
+	mso_admin_menu_add('plugins', $this_plugin_url, t('Редиректы'));
 
 	# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url)
 	# связанную функцию именно она будет вызываться, когда
@@ -161,12 +161,12 @@ function redirect_admin_page($args = array())
 	# выносим админские функции отдельно в файл
 	if ( !mso_check_allow('redirect_edit') )
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Редиректы', __FILE__) . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Редиректы', __FILE__) . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Редиректы') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Редиректы') . ' - " . $args; ' );
 
 	require(getinfo('plugins_dir') . 'redirect/admin.php');
 }

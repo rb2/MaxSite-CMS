@@ -12,13 +12,13 @@
 function %%%_autoload()
 {
 	mso_hook_add( 'admin_init', '%%%_admin_init'); # хук на админку
-	mso_register_widget('%%%_widget', t('%%%', __FILE__)); # регистрируем виджет
+	mso_register_widget('%%%_widget', t('%%%')); # регистрируем виджет
 }
 
 # функция выполняется при активации (вкл) плагина
 function %%%_activate($args = array())
 {	
-	mso_create_allow('%%%_edit', t('Админ-доступ к настройкам', 'plugins') . ' ' . t('%%%', __FILE__));
+	mso_create_allow('%%%_edit', t('Админ-доступ к настройкам') . ' ' . t('%%%'));
 	return $args;
 }
 
@@ -26,7 +26,7 @@ function %%%_activate($args = array())
 # функция выполняется при деинсталяции плагина
 function %%%_uninstall($args = array())
 {	
-	mso_delete_option_mask('%%%_widget_', 'plugins'); // удалим созданные опции
+	mso_delete_option_mask('%%%_widget_', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('%%%_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -44,7 +44,7 @@ function %%%_admin_init($args = array())
 		#			можно использовать добавочный, например demo/edit = http://сайт/admin/demo/edit
 		# Третий - название ссылки	
 		
-		mso_admin_menu_add('plugins', $this_plugin_url, t('Плагин %%%', __FILE__));
+		mso_admin_menu_add('plugins', $this_plugin_url, t('Плагин %%%'));
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 
@@ -60,13 +60,13 @@ function %%%_admin_page($args = array())
 {
 	if ( !mso_check_allow('%%%_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 
 	# выносим админские функции отдельно в файл
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('%%%', __FILE__) . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('%%%', __FILE__) . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('%%%') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('%%%') . ' - " . $args; ' );
 	require(getinfo('plugins_dir') . '%%%/admin.php');
 }
 
@@ -101,7 +101,7 @@ function %%%_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 		
-	$form = '<p><div class="t150">' . t('Заголовок:', 'plugins') . '</div> '. 
+	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. 
 			form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
 	return $form;
@@ -121,7 +121,7 @@ function %%%_widget_update($num = 1)
 	$newoptions['header'] = mso_widget_get_post($widget . 'header');
 	
 	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins');
+		mso_add_option($widget, $newoptions, 'plugins' );
 }
 
 # функции плагина

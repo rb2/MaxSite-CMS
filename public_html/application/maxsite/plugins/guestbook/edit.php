@@ -11,13 +11,13 @@
 	# сделаем меню горизонтальное в текущей закладке
 	// основной url этого плагина - жестко задается
 	$plugin_url = getinfo('site_admin_url') . 'guestbook';
-	$a  = mso_admin_link_segment_build($plugin_url, '', t('Настройки гостевой книги', __FILE__), 'select') . ' | ';
-	$a .= mso_admin_link_segment_build($plugin_url, 'edit', t('Редактирование отзывов', __FILE__), 'select');
+	$a  = mso_admin_link_segment_build($plugin_url, '', t('Настройки гостевой книги'), 'select') . ' | ';
+	$a .= mso_admin_link_segment_build($plugin_url, 'edit', t('Редактирование отзывов'), 'select');
 	echo $a;
 ?>
 </div>
 
-<h1><?= t('Редактирование отзывов', __FILE__) ?></h1>
+<h1><?= t('Редактирование отзывов') ?></h1>
 
 <?php
 
@@ -81,10 +81,10 @@ if ($query->num_rows() > 0)
 	foreach ($books as $book) 
 	{
 		if ($book['guestbook_approved']) $approved = '';
-			else $approved = '<a title="' . t('Редактировать', __FILE__) . '" style="color: red" href="' . getinfo('site_admin_url') . 'guestbook/editone/' . $book['guestbook_id'] . '">' . t('Ожидает одобрения!', __FILE__) . '</a><br><br>';
+			else $approved = '<a title="' . t('Редактировать') . '" style="color: red" href="' . getinfo('site_admin_url') . 'guestbook/editone/' . $book['guestbook_id'] . '">' . t('Ожидает одобрения!') . '</a><br><br>';
 		
 		$CI->table->add_row(
-				'<a title="' . t('Редактировать', __FILE__) . '" href="' . getinfo('site_admin_url') . 'guestbook/editone/' . $book['guestbook_id'] . '">' 
+				'<a title="' . t('Редактировать') . '" href="' . getinfo('site_admin_url') . 'guestbook/editone/' . $book['guestbook_id'] . '">' 
 					. $book['guestbook_id'] . '</a>',
 					
 				$approved

@@ -9,7 +9,7 @@
 # функция автоподключения плагина
 function admin_files_autoload($args = array())
 {	
-	mso_create_allow('admin_files',  t('Админ-доступ к файлам (загрузка, просмотр)', 'admin'));
+	mso_create_allow('admin_files',  t('Админ-доступ к файлам (загрузка, просмотр)'));
 	mso_hook_add( 'admin_init', 'admin_files_admin_init');
 	mso_hook_add( 'admin_head', 'admin_files_admin_head');
 }
@@ -42,7 +42,7 @@ function admin_files_admin_init($args = array())
 	# Третий - название ссылки	
 	# Четвертый - номер в меню
 	
-	mso_admin_menu_add('options', $this_plugin_url, '' . t('Загрузки', 'admin'));
+	mso_admin_menu_add('options', $this_plugin_url, '' . t('Загрузки'));
 
 	# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 	# связанную функцию именно она будет вызываться, когда 
@@ -64,8 +64,8 @@ function admin_files_admin($args = array())
 	# выносим админские функции отдельно в файл
 	global $MSO;
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Загрузки. Файлы. Галереи', 'admin') . '"; ' );
-	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Загрузки. Файлы. Галереи', 'admin') . ' - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . "' . t('Загрузки. Файлы. Галереи') . '"; ' );
+	mso_hook_add_dinamic( 'admin_title', ' return "' . t('Загрузки. Файлы. Галереи') . ' - " . $args; ' );
 	
 	require($MSO->config['admin_plugins_dir'] . 'admin_files/admin.php');
 }

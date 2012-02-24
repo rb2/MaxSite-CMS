@@ -9,7 +9,7 @@
 # функция автоподключения плагина
 function main_menu_autoload()
 {
-	mso_create_allow('main_menu_edit', t('Админ-доступ к редактированию MainMenu', __FILE__));
+	mso_create_allow('main_menu_edit', t('Админ-доступ к редактированию MainMenu'));
 	mso_hook_add( 'main_menu', 'main_menu_custom');
 	mso_hook_add( 'head', 'main_menu_head');
 	mso_hook_add( 'admin_init', 'main_menu_admin_init'); # хук на админку
@@ -19,7 +19,7 @@ function main_menu_autoload()
 # функция выполняется при деинсталяции плагина
 function main_menu_uninstall($args = array())
 {	
-	mso_delete_option('plugin_main_menu', 'plugins'); // удалим созданные опции
+	mso_delete_option('plugin_main_menu', 'plugins' ); // удалим созданные опции
 	mso_remove_allow('main_menu_edit'); // удалим созданные разрешения
 	return $args;
 }
@@ -30,7 +30,7 @@ function main_menu_mso_options()
 {
 	if ( !mso_check_allow('main_menu_edit') ) 
 	{
-		echo t('Доступ запрещен', 'plugins');
+		echo t('Доступ запрещен');
 		return $args;
 	}
 	
@@ -129,7 +129,7 @@ function main_menu_admin_init($args = array())
 	if ( mso_check_allow('main_menu_edit') ) 
 	{
 		$this_plugin_url = 'plugin_options/main_menu'; // url и hook
-		mso_admin_menu_add('plugins', $this_plugin_url, t('Меню (Main menu)', 'plugins'));
+		mso_admin_menu_add('plugins', $this_plugin_url, t('Меню (Main menu)'));
 		mso_admin_url_hook ($this_plugin_url, 'plugin_main_menu');
 	}
 	

@@ -81,7 +81,7 @@ mso_cur_dir_lang('templates');
 							</p>
 							
 							<p><label>
-									<span class="indent"><?=t('E-mail')?></span><input type="text" name="comments_email" class="comments_email" id="comments_email" onfocus="document.getElementById('comments_reg_2').checked = 'checked';"></label> 
+									<span class="indent"><?=t('E-mail')?></span><input type="email" name="comments_email" class="comments_email" id="comments_email" onfocus="document.getElementById('comments_reg_2').checked = 'checked';"></label> 
 										
 									<input type="button" class="comments_copy" title="<?=t('Использовать email как пароль')?>" value="&gt;" onclick="document.getElementById('comments_reg_2').checked = 'checked'; document.getElementById('comments_password').value=document.getElementById('comments_email').value; "> 
 										
