@@ -56,8 +56,12 @@ if ($comments) // есть страницы
 	
 	echo '<ol>';
 	
+	static $num_comment = 0; // номер комментария по порядку - если нужно выводить в type_foreach-файле
+	
 	foreach ($comments as $comment)  // выводим в цикле
 	{
+		$num_comment++;
+		
 		if ($f = mso_page_foreach('page-comments')) 
 		{
 			require($f); // подключаем кастомный вывод
@@ -74,24 +78,43 @@ if ($comments) // есть страницы
 		
 		$comments_date = mso_date_convert('Y-m-d в H:i:s', $comments_date);
 		
-		echo NR . '<li style="clear: both"' . $class . '><div class="comment-info"><span class="date"><a href="#comment-' . $comments_id . '" id="comment-' . $comments_id . '">' . $comments_date . '</a></span>';
-		echo ' | <span class="url">' . $comments_url . '</span>';
+		$comment_info = '';
+		echo NR . '<li style="clear: both"' . $class . '>';
+		
+		
+		$comment_info .= '<span class="date"><a href="#comment-' 
+			. $comments_id 
+			. '" id="comment-' . $comments_id . '">' . $comments_date . '</a></span>'
+			.' | <span class="url">' . $comments_url . '</span>';
 		
 		if ($comusers_url and mso_get_option('allow_comment_comuser_url', 'general', 0))
 		{
-			echo ' <a href="' . $comusers_url . '" rel="nofollow" class="outlink"><img src="' . getinfo('template_url') . 'images/outlink.png" width="16" height="16" alt="link" title="' . t('Сайт комментатора') . '"></a>';
+			$comment_info .= ' <a href="' 
+				. $comusers_url 
+				. '" rel="nofollow" class="outlink"><img src="' 
+				. getinfo('template_url') 
+				. 'images/outlink.png" width="16" height="16" alt="link" title="' 
+				. t('Сайт комментатора') . '"></a>';
 		}
 		
-		if ($edit_link) echo ' | <a href="' . $edit_link . $comments_id . '">edit</a>';
+		if ($edit_link) $comment_info .= ' | <a href="' . $edit_link . $comments_id . '">edit</a>';
 		
-		if (!$comments_approved) echo ' | '. t('Ожидает модерации');
+		if (!$comments_approved) $comment_info .= ' | '. t('Ожидает модерации');
 		
-		echo '</div>';
 		
-		echo '<div class="comments_content">' 
-			. mso_avatar($comment) 
-			. mso_comments_content($comments_content) 
-			. '</div>';
+		if ($f = mso_page_foreach('page-comments-out')) 
+		{
+			require($f); // подключаем кастомный вывод
+		}
+		else
+		{
+			echo '<div class="comment-info">' . $comment_info . '</div>';
+			
+			echo '<div class="comments_content">'
+				. mso_avatar($comment) 
+				. mso_comments_content($comments_content) 
+				. '</div>';
+		}
 		
 		echo '</li>'; 
 		

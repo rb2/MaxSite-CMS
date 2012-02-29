@@ -870,11 +870,11 @@ class CI_DB_active_record extends CI_DB_driver {
 	 */
 	public function limit($value, $offset = '')
 	{
-		$this->ar_limit = $value;
+		$this->ar_limit = (int) $value;
 
 		if ($offset != '')
 		{
-			$this->ar_offset = $offset;
+			$this->ar_offset = (int) $offset;
 		}
 
 		return $this;
@@ -1322,7 +1322,7 @@ class CI_DB_active_record extends CI_DB_driver {
 		{
 			if ($this->db_debug)
 			{
-				return $this->display_error('db_myst_use_index');
+				return $this->display_error('db_must_use_index');
 			}
 
 			return FALSE;
@@ -1666,6 +1666,8 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @return	string
 	 */
+	 
+	/* MaxSite CMS меняем  protected на public */
 	public function _compile_select($select_override = FALSE)
 	{
 		// Combine any cached components with the current statements
@@ -1988,6 +1990,8 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @return	void
 	 */
+	 
+	/* MaxSite CMS меняем  protected на public */
 	public function _reset_select()
 	{
 		$ar_reset_items = array(

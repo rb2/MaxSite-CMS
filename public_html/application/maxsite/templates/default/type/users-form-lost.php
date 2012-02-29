@@ -56,12 +56,17 @@ if ($comuser_info)
 		}
 		else // активация завершена - можно вывести поля для редактирования
 		{
-			echo '<form method="post" class="comusers-form">' . mso_form_session('f_session_id');
+			echo '<form method="post" class="comusers-form fform">' . mso_form_session('f_session_id');
 			echo '<p>'. t('Если у вас сохранился код активации, то вы можете сразу заполнить все поля. Если код активации утерян, то вначале введите только email и нажмите кнопку «Готово». На указанный email вы получите код активации. После этого вы можете вернуться на эту страницу и заполнить все поля.'). '</p>';
-			echo '<p><strong>'. t('Ваш email'). ':</strong> <input type="text" name="f_comusers_email" value="">*</p>';
-			echo '<p><strong>'. t('Ваш код активации'). ':</strong> <input type="text" name="f_comusers_activate_key" value=""></p>';
-			echo '<p><strong>'. t('Новый пароль'). ':</strong> <input type="text" name="f_comusers_password" value=""></p>';
-			echo '<input type="submit" name="f_submit[' . $comusers_id . ']" value="'. t('Готово'). '"></p></form>';
+			
+			echo '<p><span class="ffirst ftitle">'. t('Ваш email'). '</span><span><input type="text" name="f_comusers_email" value=""></span></p>';
+			
+			echo '<p><span class="ffirst ftitle">'. t('Ваш код активации'). '</span><span><input type="text" name="f_comusers_activate_key" 
+			value=""></span></p>';
+			
+			echo '<p><span class="ffirst ftitle">'. t('Новый пароль'). '</span><span><input type="text" name="f_comusers_password" value=""></span></p>';
+			
+			echo '<p><span class="ffirst"></span><span><input type="submit" name="f_submit[' . $comusers_id . ']" value="'. t('Готово'). '"></span></p></form>';
 		}
 		
 	} // mso_page_foreach

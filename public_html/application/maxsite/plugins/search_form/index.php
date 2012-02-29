@@ -47,7 +47,7 @@ function search_form_widget_form($num = 1)
 	if ( !isset($options['text']) ) $options['text'] = t('Что искать?');
 	if ( !isset($options['submit']) ) $options['submit'] = t('Поиск');
 	if ( !isset($options['style_text']) ) $options['style_text'] = '';
-	if ( !isset($options['style_submit']) ) $options['style_submit'] = 'margin-left: 5px; font-size: 8pt;';
+	if ( !isset($options['style_submit']) ) $options['style_submit'] = '';
 	if ( !isset($options['text_posle']) ) $options['text_posle'] = '';
 	
 	// вывод самой формы
@@ -102,7 +102,7 @@ function search_form_widget_custom($options = array(), $num = 1)
 	if ( !isset($options['text']) ) $options['text'] = t('Что искать?');
 	if ( !isset($options['submit']) ) $options['submit'] = t('Поиск');
 	if ( !isset($options['style_text']) ) $options['style_text'] = '';
-	if ( !isset($options['style_submit']) ) $options['style_submit'] = 'margin-left: 5px; font-size: 8pt;';
+	if ( !isset($options['style_submit']) ) $options['style_submit'] = '';
 	if ( !isset($options['text_posle']) ) $options['text_posle'] = '';
 	
 	if ($options['text_posle'])
@@ -114,8 +114,15 @@ function search_form_widget_custom($options = array(), $num = 1)
 	if ($options['style_text']) $options['style_text'] = ' style ="' . $options['style_text'] . '"';
 	
 	$out .= '
-	<form class="search_form_widget" name="f_search" method="get" onsubmit="location.href=\'' . getinfo('siteurl') . 'search/\' + encodeURIComponent(this.s.value).replace(/%20/g, \'+\'); return false;">
-	<input type="text" name="s"' . $options['style_text'] . ' class="search_text" onfocus="if (this.value == \'' . $options['text'] . '\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'' . $options['text'] . '\';}" value="' . $options['text'] . '"><input type="submit" name="Submit" value="' . $options['submit'] . '" style="' . $options['style_submit'] . '" class="search_submit">'
+	<form class="search_form_widget fform" name="f_search" method="get" onsubmit="location.href=\'' . getinfo('siteurl') . 'search/\' + encodeURIComponent(this.s.value).replace(/%20/g, \'+\'); return false;">
+	<p>
+	<span>
+	<input type="text" name="s"' . $options['style_text'] . ' class="search_text" onfocus="if (this.value == \'' . $options['text'] . '\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'' . $options['text'] . '\';}" value="' . $options['text'] . '">
+	</span>
+	<span>
+	<input type="submit" name="Submit" value="' . $options['submit'] . '" style="' . $options['style_submit'] . '" class="search_submit">
+	</span>
+	</p>'
 	. $options['text_posle']
 	.'</form>';
 	
@@ -124,3 +131,4 @@ function search_form_widget_custom($options = array(), $num = 1)
 	return $out;	
 }
 
+# end file

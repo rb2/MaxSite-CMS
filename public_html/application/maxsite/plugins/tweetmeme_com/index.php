@@ -186,7 +186,7 @@ function tweetmeme_com_content($text = '')
 		
 		
 		$text = '<div class="tweetmeme_com"' . $style . '>' 
-		. '<a href="http://twitter.com/share" class="twitter-share-button" data-url="' . $url . '"' 
+		. '<a rel="nofollow" href="http://twitter.com/share" class="twitter-share-button" data-url="' . $url . '"' 
 		. $options['twitter_data-count'] 
 		. ' data-text="' . $page['page_title'] . '" '
 		. $options['twitter_data-via']

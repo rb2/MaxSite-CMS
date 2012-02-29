@@ -1848,12 +1848,26 @@ function mso_login_form($conf = array(), $redirect = '', $echo = true)
 	}
 	
 	$out = <<<EOF
-	<form method="post" action="{$action}" name="flogin" class="flogin">
+	<form method="post" action="{$action}" name="flogin" class="flogin fform">
 		<input type="hidden" value="{$redirect}" name="flogin_redirect">
 		<input type="hidden" value="{$session_id}" name="flogin_session_id">
-		<p class="flogin_user"><label class="flogin_user"><span>{$login}</span><input type="text" value="" name="flogin_user" class="flogin_user"></label></p>
-		<p class="flogin_password"><label class="flogin_password"><span>{$password}</span><input type="password" value="" name="flogin_password" class="flogin_password"></label></p>
-		<p class="flogin_submit">{$submit}<input type="submit" name="flogin_submit" class="flogin_submit" value="{$submit_value}"></p>
+		
+		<p>
+			<label><span class="nocell ftitle">{$login}</span>
+			<input type="text" value="" name="flogin_user" class="flogin_user">
+			</label>
+		</p>
+		
+		<p>
+			<label><span class="nocell ftitle">{$password}</span>
+			<input type="password" value="" name="flogin_password" class="flogin_password">
+			</label>
+		</p>
+		
+		<p>
+			<span>{$submit}<input type="submit" name="flogin_submit" class="flogin_submit" value="{$submit_value}"></span>
+		</p>
+		
 		{$hook_login_form_auth}
 		{$form_end}
 	</form>
@@ -3145,8 +3159,8 @@ function t($w = '', $file = false)
 			{
 				$fn = str_replace($bd, '', $fn);
 				$fn = dirname($file) . '/language/';
-				
-				$langs = _t_add_file_to_lang($langs, $fn, $current_language);
+
+				$langs = _t_add_file_to_lang($langs, $fn, $current_language, true);
 			}
 			
 			$file_langs[$file] = true;
@@ -3164,11 +3178,15 @@ function t($w = '', $file = false)
 
 # служебная функция для t()
 # нигде не использовать!
-function _t_add_file_to_lang($langs, $path, $current_language)
+function _t_add_file_to_lang($langs, $path, $current_language, $full_name = false)
 {
 	global $MSO;
 	
-	$fn = $MSO->config['base_dir'] . $path . $current_language . '.php';
+	if ($full_name) 
+		$fn = $path . $current_language . '.php';
+	else
+		$fn = $MSO->config['base_dir'] . $path . $current_language . '.php';
+	
 	
 	if (file_exists($fn))
 	{

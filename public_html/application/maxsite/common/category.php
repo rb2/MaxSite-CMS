@@ -492,7 +492,21 @@ function mso_cat_array_single($type = 'page', $order = 'category_name', $asc = '
 	$CI->db->join('page', 'cat2obj.page_id = page.page_id', 'left');
 	$CI->db->join('page_type', 'page_type.page_type_id = page.page_type_id');
 	$CI->db->where('page_status', 'publish');
-	$CI->db->where('page_date_publish <', date('Y-m-d H:i:s'));
+	// $CI->db->where('page_date_publish <', date('Y-m-d H:i:s'));
+	
+	// учитываем дату с временной поправкой
+	$time_zone = getinfo('time_zone');
+	if ($time_zone < 10 and $time_zone > 0) $time_zone = '0' . $time_zone;
+	elseif ($time_zone > -10 and $time_zone < 0) 
+	{ 
+		$time_zone = '0' . $time_zone; 
+		$time_zone = str_replace('0-', '-0', $time_zone); 
+	}
+	else $time_zone = '00.00';
+	$time_zone = str_replace('.', ':', $time_zone);
+
+	$CI->db->where('page_date_publish < ', 'DATE_ADD(NOW(), INTERVAL "' . $time_zone . '" HOUR_MINUTE)', false);
+	
 	
 	if ($type_page) $CI->db->where('page_type_name', $type_page);
 	$CI->db->where('category_type', $type);

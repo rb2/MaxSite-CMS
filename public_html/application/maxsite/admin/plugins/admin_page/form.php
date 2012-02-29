@@ -113,6 +113,22 @@
 		{
 			select_page_type();
 		});
+		
+		$("#set_current_time").click(function()
+		{
+			var d = new Date();
+			
+			$("select[name=f_date_y]").val(d.getFullYear());
+			$("select[name=f_date_m]").val(1 + d.getMonth());
+			$("select[name=f_date_d]").val(d.getDate());
+			$("select[name=f_time_h]").val(d.getHours());
+			$("select[name=f_time_m]").val(d.getMinutes());
+			$("select[name=f_time_s]").val(d.getSeconds());
+
+			return false;
+		});		
+		
+		
 	});
 	
 	</script>
@@ -184,7 +200,11 @@
 
 			<div class="block_page page_date">
 				<h3>' . t('Дата публикации') . '</h3>
-				<p><label><input name="f_date_change" type="checkbox" ' . $f_date_change . '> ' . t('Изменить дату публикации') . '</label></p>
+				<p><label><input name="f_date_change" type="checkbox" ' . $f_date_change . '> ' . t('Изменить дату публикации') . '</label> 
+				
+				<a href="#" style="font-size: 1.2em; text-decoration: none;" id="set_current_time" title="' . t('Уставновить текущее время компьютера') . '">&#9685;</a>
+				
+				</p>
 				<p>' . $date_y . ' - ' . $date_m . ' - ' . $date_d . '</p>
 				<p>' . $time_h . ' : ' . $time_m . ' : ' . $time_s . '</p>
 				<p><em>' . $date_time . '</em></p>

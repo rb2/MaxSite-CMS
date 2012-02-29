@@ -2,5 +2,5 @@
 
 	# дополнительный файл к functions.php
 	
-	// mso_register_sidebar('2', t('Второй сайдбар', 'templates'));
+	// mso_register_sidebar('2', t('Второй сайдбар'));
 

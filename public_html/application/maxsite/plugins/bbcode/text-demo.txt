@@ -29,29 +29,28 @@
 
 <pre>
 &lt;html&gt;
-	&lt;head&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		
-	&lt;/body&gt;
-&lt;/html&gt;
+<br>	&lt;head&gt;
+<br>	&lt;/head&gt;
+<br>	&lt;body&gt;
+<br>		
+<br>	&lt;/body&gt;
+<br>&lt;/html&gt;
 </pre>
 
 
 <h2>Текст CODE</h2>
 
 <code>
-&lt;html&gt;
-	&lt;head&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		
-	&lt;/body&gt;
-&lt;/html&gt;
+<br>&lt;html&gt;
+<br>	&lt;head&gt;
+<br>	&lt;/head&gt;
+<br>	&lt;body&gt;
+<br>		
+<br>	&lt;/body&gt;
+<br>&lt;/html&gt;
 </code>
 
 <hr>
-
 
 
 <h2>Изображение в тексте IMG</h2>
@@ -98,6 +97,19 @@
 [div(radius8 white bg-red box-shadow margin20 margin-lr0 padding10)]radius8 white bg-red box-shadow margin20 margin-lr0 padding10[/div] 
 
 
+[div(message note small)]message note small[/div] 
+[div(message alert small)]message alert small[/div] 
+[div(message error small)]message error small[/div] 
+[div(message ok small)]message ok small[/div] 
+[div(message about small)]message about small[/div] 
+
+[div(message idea small)]message idea small[/div]
+[div(message mail small)]message mail small[/div] 
+[div(message home small)]message home small[/div] 
+[div(message question small)]message question small[/div] 
+
+
+
 <h2>Обычный список UL/LI</h2>
 <ul>
 <li>Nulla lobortis semper libero, rutrum volutpat leo faucibus a. Fusce justo eros, porta at cursus eu, tincidunt ut magna. Nulla.</li>
@@ -114,16 +126,20 @@
 <li>Aliquam nec bibendum libero. Phasellus.</li>
 </ol>
 
-<h2>Список определений (DL/DT)</h2>
+<h2>Список определений (DL/DT/DD)</h2>
 
 <dl>
 <dt>title</dt>
 <dd>definition</dd>
 <dd>definition</dd>
-<dt>title</dt>
-<dt>title</dt>
 <dd>definition</dd>
 <dt>title</dt>
+<dd>definition</dd>
+<dd>definition</dd>
+<dd>definition</dd>
+<dt>title</dt>
+<dd>definition</dd>
+<dd>definition</dd>
 <dd>definition</dd>
 </dl>
 
@@ -156,3 +172,147 @@
 <td>Ячейка 3.4</td>
 </tr>
 </table>
+
+
+<h2>Таблица TABLE.zebra (чередующиеся строки)</h2>
+
+<table class="zebra">
+<tr>
+<th>Заголовок 1 TH</th>
+<th>Заголовок 2 TH</th>
+<th>Заголовок 3 TH</th>
+<th>Заголовок 4 TH</th>
+</tr>
+<tr>
+<td>Ячейка 1.1</td>
+<td>Ячейка 1.2</td>
+<td>Ячейка 1.3</td>
+<td>Ячейка 1.4</td>
+</tr>
+<tr>
+<td>Ячейка 2.1</td>
+<td>Ячейка 2.2</td>
+<td>Ячейка 2.3</td>
+<td>Ячейка 2.4</td>
+</tr>
+<tr>
+<td>Ячейка 3.1</td>
+<td>Ячейка 3.2</td>
+<td>Ячейка 3.3</td>
+<td>Ячейка 3.4</td>
+</tr>
+<tr>
+<td>Ячейка 4.1</td>
+<td>Ячейка 4.2</td>
+<td>Ячейка 4.3</td>
+<td>Ячейка 4.4</td>
+</tr>
+</table>
+
+
+<h2>Пример формы .fform</h2>
+
+[html]
+<form class="fform" style="width: 100%">
+<fieldset>
+<legend>Пример формы</legend>
+
+<p>
+<span class="ffirst ftitle">Выбери:</span>
+<span>
+<select name="fields">
+<option selected="selected">Первый</option>
+<option>Второй</option>
+<option>Третий</option>
+</select>
+</span>
+</p>
+<hr>
+<p>
+<span class="ffirst ftitle">Отметь:</span>
+<label><input type="checkbox"> Первый</label>
+<label><input type="checkbox"> Второй</label>
+<label><input type="checkbox"> Третий</label>
+</p>
+<p>
+<span class="ffirst"></span>
+<span>Отметь и получи приз!</span>
+</p>
+<hr>
+<p>
+<span class="ffirst ftitle">Выбери:</span>
+<label><input type="radio" name="switch_radio[]"> Первый</label>
+<label><input type="radio" name="switch_radio[]"> Второй</label>
+<label><input type="radio" name="switch_radio[]"> Третий</label>
+<label><input type="radio" name="switch_radio[]"> Четвертый</label>
+
+</p>
+<hr>
+<p>
+<span class="ffirst ftitle ftop">Выбери:</span>
+
+<label class="ffirst nocell"><input type="radio" name="switch_radio2[]"> Первый</label>
+[br]<label class="ffirst nocell"><input type="radio" name="switch_radio2[]"> Второй</label>
+[br]<label class="ffirst nocell"><input type="radio" name="switch_radio2[]"> Третий</label>
+</p>
+
+<hr>
+
+<p>
+<label class="ffirst ftitle" for="f-email">Email:</label>
+<span><input type="email" placeholder="Укажите свой email" id="f-email"></span>
+
+<span class="fempty"></span>
+<span class="fbutton"><button type="button">copy</button></span>
+
+<label class="ftitle" for="f-password">Пароль:</label>
+<span><input type="password" placeholder="Ваш пароль" id="f-password"></span>
+</p>
+<p>
+<label class="ftitle ffirst" for="f-site2">Сайт:</label>
+<span><input type="url" placeholder="Адрес сайта" id="f-site2"></span>
+
+<span class="fempty"></span>
+
+<label class="ftitle" for="f-name">Имя:</label>
+<span><input type="text" id="f-name" placeholder="Ваше имя"></span>
+</p>
+
+<p>
+<label class="ftitle ffirst" for="f-site1">Cайт:</label>
+<span><input type="url" id="f-site1"></span>
+</p>
+
+<p>
+<label class="ffirst ftitle ftop" for="f-text1">Ваш текст:</label>
+<span><textarea id="f-text1"></textarea></span>
+</p>
+
+<p>
+<span class="ffirst"></span>
+<span><input type="search" placeholder="Введите фразу для поиска"></span>
+<span class="fbutton"><input type="submit" value="Поиск"></span>
+</p>
+
+<hr>
+
+<p>
+<span><input type="search" placeholder="Введите фразу для поиска"></span>
+<span class="fsubmit"><input type="submit" value="Поиск"></span>
+</p>
+
+<hr>
+
+<p><label>Сайт:<input type="text"></label></p>
+
+<p><label>Имя:<input type="text"></label></p>
+
+<p><label>Ваш текст:<textarea></textarea></label></p>
+
+<p><label><input type="checkbox"> Согласен с правилами</label></p> 
+
+<p><span><input type="submit" value="Отправить"> <input type="reset" value="Сброс"></span></p>
+ 
+</fieldset>
+</form>
+[/html]

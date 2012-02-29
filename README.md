@@ -20,3 +20,5 @@
 * http://max-3000.com/
 * http://templates.max-3000.com/
 * http://max-3000.com/wiki/
+* http://maxsite.org/twitter
+

@@ -276,7 +276,8 @@ function bbcode_custom($text = '')
 		if (file_exists(getinfo('plugins_dir') . 'bbcode/text-demo.txt') )
 		{
 			$text_demo = file(getinfo('plugins_dir') . 'bbcode/text-demo.txt');
-			$text_demo = implode("MSO_N", $text_demo);
+			//$text_demo = implode("MSO_N", $text_demo);
+			$text_demo = implode("\n", $text_demo);
 			$text = str_replace('[text-demo]', $text_demo, $text);
 		}
 	}

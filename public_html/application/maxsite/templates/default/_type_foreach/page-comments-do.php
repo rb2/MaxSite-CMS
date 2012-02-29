@@ -3,4 +3,3 @@
 	echo '<div class="comments">';
 	echo '<h3 class="comments">' . t('Комментариев') . ': ' . count($comments) . '</h3>';
 		
-?>
