@@ -9,13 +9,13 @@
 # функция автоподключения плагина
 function smtp_mail_autoload()
 {
-	mso_create_allow('smtp_mail_edit', t('Админ-доступ к настройкам') . ' smtp_mail');
 	mso_hook_add( 'mail', 'smtp_mail_custom');
 }
 
 # функция выполняется при активации (вкл) плагина
 function smtp_mail_activate($args = array())
 {
+	mso_create_allow('smtp_mail_edit', t('Админ-доступ к настройкам') . ' smtp_mail');
 	return $args;
 }
 

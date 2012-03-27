@@ -1,8 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
-	mso_cur_dir_lang('admin');
-
-?>
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <h1><?= t('Загрузки. Файлы. Галереи') ?></h1>
 <p class="info"><?= t('Здесь вы можете выполнить необходимые операции с файлами.') ?></p>
@@ -446,14 +442,14 @@
 			if ($title) $title_f = '<br><em>' . htmlspecialchars($title) . '</em>';
 		}
 		
+		if (!$title) $title = $file;
+		
 		$datefile = preg_replace('!START(.*)END!', '', $datefile);
 
-		$sel = form_checkbox('f_check_files[]', $file, false,
-			'title="' . htmlspecialchars($title) . '" id="' . mso_strip($file) . '" class="f_check_files"')
-			. '<label for="' . mso_strip($file)
-			. '"> '
-			. $file . $title_f . '</label>'
-			. '<br><i>' . date("Y-m-d H:i:s", $datefile) . '</i>';
+		$sel = '<label title="' . htmlspecialchars($title) . '">'. form_checkbox('f_check_files[]', $file, false,
+			'class="f_check_files"')
+			. ' ' . $file . $title_f . '</label>'
+			. '<br><i class="date">' . date("Y-m-d H:i:s", $datefile) . '</i>';
 			
 
 		$cod1 = stripslashes(htmlspecialchars( $uploads_url . $file ) );
@@ -464,7 +460,7 @@
 		# $cod .= '<p><input type="text" style="width: 99%;" value="' . $cod1 . '">';
 
 		$cod .= '<a href="#"
-			onClick = "jAlert(\'<textarea cols=60 rows=4>' . $cod1 . '</textarea>\', \'Адрес файла\'); return false;">Адрес</a>';
+			onClick = "jAlert(\'<textarea cols=60 rows=4>' . $cod1 . '</textarea>\', \'' . t('Адрес файла') . '\'); return false;">' . t('Адрес') . '</a>';
 
 		# $cod .= '<p><textarea style="width: 99%;">' . $cod1 . '</textarea>';
 
@@ -509,7 +505,7 @@
       
       
 		$cod .= ' | <a href="#"
-			onClick = "jAlert(\'<textarea cols=60 rows=5>' . $cod2 . '</textarea>\', \'HTML-ссылка файла\'); return false;">HTML-ссылка</a>';
+			onClick = "jAlert(\'<textarea cols=60 rows=5>' . $cod2 . '</textarea>\', \'' . t('HTML-ссылка файла') . '\'); return false;">' . t('HTML-ссылка') . '</a>';
 
 
 		if ( $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif' or $ext == 'png'  )
@@ -545,13 +541,13 @@
 				$cod4 = stripslashes(htmlspecialchars( '[img]' . $uploads_url . $file . '[/img]') );
 			}
 
-			$cod .= ' | <a href="#" onClick = "jAlert(\'<textarea cols=60 rows=6>' . $cod3 . '</textarea>\', \'Код [image] файла\'); return false;">[image]</a>';
+			$cod .= '<br><a href="#" onClick = "jAlert(\'<textarea cols=60 rows=6>' . $cod3 . '</textarea>\', \'' . t('Код [image] файла') . '\'); return false;">[image]</a>';
 			
 			
-			$cod .= ' | <a href="#" onClick = "jAlert(\'<textarea cols=60 rows=6>' . $cod4 . '</textarea>\', \'Код [img] файла\'); return false;">[img]</a>';
+			$cod .= ' | <a href="#" onClick = "jAlert(\'<textarea cols=60 rows=6>' . $cod4 . '</textarea>\', \'' . t('Код [img] файла') . '\'); return false;">[img]</a>';
 			
 			if ($cod_prev)
-				$cod .= ' | <a href="#" onClick = "jAlert(\'<textarea cols=60 rows=6>' . $cod_prev . '</textarea>\', \'Адрес превью (100x100)\'); return false;">Превью (100x100)</a>';			
+				$cod .= '<br><a href="#" onClick = "jAlert(\'<textarea cols=60 rows=6>' . $cod_prev . '</textarea>\', \'' . t('Адрес превью (100x100)') . '\'); return false;">' . t('Превью (100x100)') . '</a>';			
 
 			$predpr = '<a class="lightbox" href="' . $uploads_url . $file . '" target="_blank" title="' . htmlspecialchars($title) . ' ('. $file . ')' . '"><img class="file_img" alt="" src="' . $uploads_url . $_f . '"></a>';
 
@@ -563,7 +559,7 @@
 				$predpr = '<a href="' . $uploads_url . $file . '" target="_blank" title="' . $title . ' ('. $file . ')' . '"><img class="file_img" alt="" src="' . getinfo('admin_url') . 'plugins/admin_files/mp3.png"></a>';
 
 				$cod .= ' | <a href="#"
-			onClick = "jAlert(\'<textarea cols=60 rows=6>' . stripslashes(htmlspecialchars( '[audio=' . $uploads_url . $file . ']') ) . '</textarea>\', \'Код [audio] файла\'); return false;">Код [audio]</a>';
+			onClick = "jAlert(\'<textarea cols=60 rows=6>' . stripslashes(htmlspecialchars( '[audio=' . $uploads_url . $file . ']') ) . '</textarea>\', \'' . t('Код [audio] файла') . '\'); return false;">' . t('Код [audio]') . '</a>';
 
 			}
 			else
@@ -584,7 +580,7 @@
 	// добавляем форму, а также текущую сессию
 	if ($out_all != '') 
 	{
-		echo '<form action="" method="post">' . mso_form_session('f_session_id');
+		echo '<form method="post">' . mso_form_session('f_session_id');
 		if ($admin_view_files == 'table') 
 			echo $CI->table->generate(); // вывод подготовленной таблицы
 		else

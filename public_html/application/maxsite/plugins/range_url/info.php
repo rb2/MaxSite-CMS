@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => t('Range URL'),
+	'name' => t('«Правильные» URL сайта'),
 	'description' => t('Позволяет задать шаблоны «правильных» URL сайта. Адреса, не подходящие ни под один шаблон, будут отдаваться как 404-страница.'),
 	'version' => '1.2',
 	'author' => 'Максим',

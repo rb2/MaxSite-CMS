@@ -17,7 +17,7 @@
 4. Ячейка label без input оформляется с атрибутом for на input в другой ячейке.
 
 5. Класс span.ffirst или label.ffirst используется для первой ячейки. У него 
-	задан фиксированный размер.
+	задан фиксированный размер 90px.
 	
 6. Класс span.ftitle или label.ftitle используется для оформления названия поля.
 
@@ -30,29 +30,110 @@
 	Используется для высоких ячеек.
 
 10. Класс span.fsubmit и label.fsubmit используется для ячейки кнопки Submit.
-	Размер 80px с правым выравниванием.
+	Размер кнопки 95px с правым выравниванием. Размер ячейки 100px.
 
-11. Класс span.nocell и label.nocell отменяет создание ячейки для указанного <span> и <label>.
-	Для переносов используется <br> 
+11. Класс span.fbutton и label.fbutton используется для ячейки кнопок. По-умолчанию
+	размер ячейки и размер кнопки совпадают и равны 50px.
 
-12. Класс span.fhint и label.fhint используются для ячейки подсказки.
- 
+12. Класс span.nocell и label.nocell отменяет создание ячейки для указанного <span> и <label>.
+	Для переносов используется <br>.
+
+13. Класс span.fhint и label.fhint используются для ячейки подсказки.
+
+14. Класс span.fheader и label.fheader используются для ячейки заголовка-подсказки (полужирный).
+
+15. Класс p.nop используется для отмены верхнего поля (padding-top). 
+	Использовать совместно с подсказками, если нужноу меньшить визуальный отступ.
+
+
+
 
 ПРИМЕР ФОРМЫ
 ----------------------------------------------------------------------------------
  
-
 <form class="fform" style="width: 600px">
 <fieldset>
 <legend>Пример формы</legend>
 
 <p>
+	<span class="ffirst">Настройки</span>
+	<span class="fheader">Выберите необходимые опции:</span>
+</p>
+
+<p class="nop">
+	<span class="ffirst"></span>
+	<label><input type="checkbox"> Первая</label>
+	<label><input type="checkbox"> Вторая</label>
+	<label><input type="checkbox"> Третья</label>
+	<label><input type="checkbox"> Четвертая</label>
+	<label><input type="checkbox"> Пятая</label>
+</p>
+
+<hr>
+
+<p>
+	<span class="ffirst">Адреса</span>
+	<span class="ffirst ftitle">Facebook</span>
+	<span><input type="text"></span>
+	<span class="fempty"></span>
+	<label><input type="checkbox"> Вкл/выкл</label>
+</p>
+
+<p class="nop">
+	<span class="ffirst"></span>
+	<span class="ffirst ftitle">Twitter</span>
+	<span><input type="text"></span>
+	<span class="fempty"></span>
+	<label><input type="checkbox"> Вкл/выкл</label>
+</p>
+
+
+<p class="nop">
+	<span class="ffirst"></span>
+	<span class="ffirst ftitle">RSS</span>
+	<span><input type="text"></span>
+	<span class="fempty"></span>
+	<label><input type="checkbox"> Вкл/выкл</label>
+</p>
+
+<hr>
+
+<p>
+	<span style="width: 300px"><input type="text"></span>
+	<span class="fempty"></span>
+	<label>Имя</label>
+</p>
+
+<p>
+	<span style="width: 300px"><input type="email"></span>
+	<span class="fempty"></span>
+	<label>Email</label>
+</p>
+<p>
+	<span style="width: 300px">
+		<select name="fields">
+		<option selected="selected">Первый</option>
+		<option>Второй</option>
+		<option>Третий</option>
+		</select>
+	</span>
+	<span class="fempty"></span>
+	<label>Тема</label>
+</p>
+
+<p>
+	<span><textarea></textarea></span>
+</p>
+
+<hr>
+
+<p>
 	<span class="ffirst ftitle">Выбери:</span>
 	<span>
 		<select name="fields">
-			<option selected="selected">Первый</option>
-			<option>Второй</option>
-			<option>Третий</option>
+		<option selected="selected">Первый</option>
+		<option>Второй</option>
+		<option>Третий</option>
 		</select>
 	</span>
 </p>
@@ -63,7 +144,7 @@
 	<label><input type="checkbox"> Второй</label>
 	<label><input type="checkbox"> Третий</label>
 </p>
-<p>
+<p class="nop">
 	<span class="ffirst"></span>
 	<span class="fhint">Отметь и получи приз!</span>
 </p>

@@ -68,7 +68,7 @@ function loginza_auth_mso_options()
 		return;
 	}
 	
-	$curl = (!function_exists('curl_init')) ? '<span style="color:red">Для работы плагина требуется наличие включенной PHP-библиотеки CURL!</span><br><br>' : '';
+	$curl = (!function_exists('curl_init')) ? '<span style="color:red">' . t('Для работы плагина требуется наличие включенной PHP-библиотеки CURL!') . '</span><br><br>' : '';
 	
 	mso_admin_plugin_options('plugin_loginza_auth', 'plugins', 
 		array(

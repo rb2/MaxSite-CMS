@@ -172,14 +172,11 @@ function samborsky_polls_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> ' . 
-			form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
-			
-	$form .= '<p><div class="t150">' . t('Номер голосования:') . '</div> ' . 
-			form_input( array( 'name'=>$widget . 'polls_id', 'value'=>$options['polls_id'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Текст после:') . '</div> ' . 
-			form_textarea( array( 'name'=>$widget . 'text_posle', 'value'=>$options['text_posle'], 'style'=>'height: 100px;' ) ) ;
+	$form .= mso_widget_create_form(t('Номер голосования'), form_input( array( 'name'=>$widget . 'polls_id', 'value'=>$options['polls_id'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Текст после'),form_textarea( array( 'name'=>$widget . 'text_posle', 'value'=>$options['text_posle'], 'style'=>'height: 100px;' ) ) , '');
 			
 	return $form;
 }

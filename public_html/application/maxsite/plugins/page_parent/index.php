@@ -49,9 +49,9 @@ function page_parent_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Номер страницы:') . '</div> '. form_input( array( 'name'=>$widget . 'page_id', 'value'=>$options['page_id'] ) ) ;
+	$form .= mso_widget_create_form(t('Номер страницы'), form_input( array( 'name'=>$widget . 'page_id', 'value'=>$options['page_id'] ) ), '');
 	
 	return $form;
 }
@@ -83,6 +83,7 @@ function page_parent_widget_custom($options = array(), $num = 1)
 	if ( !isset($options['header']) ) $options['header'] = '';
 	if ( !isset($options['page_id']) ) $options['page_id'] = 0;
 	
+	if (!$options['page_id']) return '';
 	
 	$r = mso_page_map($options['page_id']); // построение карты страниц
 	
@@ -96,4 +97,4 @@ function page_parent_widget_custom($options = array(), $num = 1)
 	return $out;	
 }
 
-?>
+# end file

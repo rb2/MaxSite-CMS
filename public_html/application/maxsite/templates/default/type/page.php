@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-mso_cur_dir_lang('templates');
-
 mso_page_view_count_first(); // для подсчета количества прочтений страницы
 
 // параметры для получения страниц

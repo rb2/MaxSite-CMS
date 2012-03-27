@@ -9,7 +9,7 @@
 function twitter_autoload($args = array())
 {
 	# регистрируем виджет
-	mso_register_widget('twitter_widget', 'Twitter, RSS'); 
+	mso_register_widget('twitter_widget', t('Мой Twitter')); 
 }
 
 # функция выполняется при деинсталяции плагина
@@ -54,25 +54,22 @@ function twitter_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<div class="t150">' . t('Заголовок:') . '</div><p>'. form_input( array( 'name'=>$widget . '_header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . '_header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<div class="t150">' . t('Адрес:') . '</div><p>'. form_input( array( 'name'=>$widget . '_url', 'value'=>$options['url'] ) ) ;
+	$form .= mso_widget_create_form(t('Адрес RSS'), form_input( array( 'name'=>$widget . '_url', 'value'=>$options['url'] ) ), '');
 	
-	$form .= '<div class="t150">' . t('Количество записей:') . '</div><p>'. form_input( array( 'name'=>$widget . '_count', 'value'=>$options['count'] ) ) ;
+	$form .= mso_widget_create_form(t('Количество записей'), form_input( array( 'name'=>$widget . '_count', 'value'=>$options['count'] ) ), '');
 	
-	$form .= '<div class="t150">' . t('Формат вывода:') . '</div><p>'. form_input( array( 'name'=>$widget . '_format', 'value'=>$options['format'] ) ) ;
+	$form .= mso_widget_create_form(t('Формат вывода'), form_input( array( 'name'=>$widget . '_format', 'value'=>$options['format'] ) ), '%TITLE% %DATE% %LINK%');
 	
-	$form .= '<div class="t150">&nbsp;</div><p>%TITLE% %DATE% %LINK%</p>';
+	$form .= mso_widget_create_form(t('Формат даты'), form_input( array( 'name'=>$widget . '_format_date', 'value'=>$options['format_date'] ) ), '');
 	
-	// %DESCRIPTION% 
+	$form .= mso_widget_create_form(t('Количество слов'), form_input( array( 'name'=>$widget . '_max_word_description', 'value'=>$options['max_word_description'] ) ), '');
 	
-	$form .= '<div class="t150">' . t('Формат даты:') . '</div><p>'. form_input( array( 'name'=>$widget . '_format_date', 'value'=>$options['format_date'] ) ) ;
+	$form .= mso_widget_create_form(t('Текст в конце блока'), form_input( array( 'name'=>$widget . '_footer', 'value'=>$options['footer'] ) ), '');
 	
-	$form .= '<div class="t150">' . t('Количество слов:') . '</div><p>'. form_input( array( 'name'=>$widget . '_max_word_description', 'value'=>$options['max_word_description'] ) ) ;
+	$form .= mso_widget_create_form('', form_checkbox( array( 'name'=>$widget . '_show_nick', 'value'=> 'show_nick', 'checked' =>  $options['show_nick'])) . ' ' . t('Отображать ник'));
 	
-	$form .= '<div class="t150">' . t('Текст в конце блока:') . '</div><p>'. form_input( array( 'name'=>$widget . '_footer', 'value'=>$options['footer'] ) ) ;
-
-	$form .= '<div class="t150">' . t('Отображать ник:') . '</div><p>'. form_checkbox( array( 'name'=>$widget . '_show_nick', 'value'=> 'show_nick', 'checked' =>  $options['show_nick']) ) ;
 	
 	return $form;
 }

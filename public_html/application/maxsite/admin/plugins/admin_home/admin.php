@@ -1,14 +1,12 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');?>
 
-mso_cur_dir_lang('admin');
-
-?>
 <h1><?= t('Добро пожаловать в MaxSite CMS!') ?></h1>
 <br>
 <ul>
 	<li><a href="http://max-3000.com/"><?= t('Официальный сайт') ?></a></li>
 	<li><a href="http://max-3000.com/help"><?= t('Центр помощи') ?></a></li>
 	<li><a href="http://max-3000.com/page/faq"><?= t('ЧАВО по MaxSite CMS для новичков') ?></a></li>
+	<li><a href="http://wiki.max-3000.com/"><?= t('Wiki MaxSite CMS') ?></a></li>
 	<li><a href="http://forum.max-3000.com/"><?= t('Форум поддержки') ?></a></li>
 </ul>
 <br>

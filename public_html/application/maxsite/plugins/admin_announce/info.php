@@ -11,4 +11,4 @@ $info = array(
 	'options_url' => getinfo('site_admin_url') . 'plugin_admin_announce',
 );
 
-?>
+# end file

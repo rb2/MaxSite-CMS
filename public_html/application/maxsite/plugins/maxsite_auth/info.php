@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => t('Maxsite Auth'),
+	'name' => t('Авторизация MaxSiteAuth'),
 	'description' => t('Авторизация с помощью своего сайта на других сайтах, работающих на MaxSite CMS. Тестовая версия!'),
 	'version' => '1.2',
 	'author' => 'Максим',

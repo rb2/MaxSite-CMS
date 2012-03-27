@@ -5,7 +5,7 @@
  * (c) http://max-3000.com/
  */
 
-	mso_cur_dir_lang(__FILE__);
+
 	$CI = & get_instance();
 	$options_key = 'plugin_admin_announce';
 

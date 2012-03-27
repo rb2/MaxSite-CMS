@@ -14,6 +14,9 @@ function bbcode_autoload($args = array())
 	if (!array_key_exists('bbcode_level', $options)) $options['bbcode_level'] = 1;
 	if ( ($options['bbcode_level'] == 1) or ($options['bbcode_level'] == 3) ) mso_hook_add( 'content', 'bbcode_custom', 20); # хук на вывод контента
 	if ( ($options['bbcode_level'] == 2) or ($options['bbcode_level'] == 3) ) mso_hook_add( 'comments_content', 'bbcode_custom', 20);
+	
+	mso_hook_add( 'editor_content', 'bbcode_editor_content'); // обработка текста для визуалього редактора
+	
 }
 
 # функция выполняется при деинсталяции плагина
@@ -196,16 +199,27 @@ function bbcode_custom($text = '')
 		# headers
 		'~\[h1\](.*?)\[\/h1\]~si'				=> '<h1>$1</h1>',
 		'~\[h1\((.[^ ]*?)\)\](.*?)\[\/h1\]~si'	=> '<h1 class="$1">$2</h1>',
+		'~\[h1 (.*?)\](.*?)\[\/h1\]~si' 		=> '<h1 $1>$2</h1>',
+		
 		'~\[h2\](.*?)\[\/h2\]~si'				=> '<h2>$1</h2>',
 		'~\[h2\((.[^ ]*?)\)\](.*?)\[\/h2\]~si'	=> '<h2 class="$1">$2</h2>',
+		'~\[h2 (.*?)\](.*?)\[\/h2\]~si' 		=> '<h2 $1>$2</h2>',
+		
 		'~\[h3\](.*?)\[\/h3\]~si'				=> '<h3>$1</h3>',
 		'~\[h3\((.[^ ]*?)\)\](.*?)\[\/h3\]~si'	=> '<h3 class="$1">$2</h3>',
+		'~\[h3 (.*?)\](.*?)\[\/h3\]~si' 		=> '<h3 $1>$2</h3>',
+		
 		'~\[h4\](.*?)\[\/h4\]~si'				=> '<h4>$1</h4>',
 		'~\[h4\((.[^ ]*?)\)\](.*?)\[\/h4\]~si'	=> '<h4 class="$1">$2</h4>',
+		'~\[h4 (.*?)\](.*?)\[\/h4\]~si' 		=> '<h4 $1>$2</h4>',
+		
 		'~\[h5\](.*?)\[\/h5\]~si'				=> '<h5>$1</h5>',
 		'~\[h5\((.[^ ]*?)\)\](.*?)\[\/h5\]~si'	=> '<h5 class="$1">$2</h5>',
+		'~\[h5 (.*?)\](.*?)\[\/h5\]~si' 		=> '<h5 $1>$2</h5>',
+		
 		'~\[h6\](.*?)\[\/h6\]~si'				=> '<h6>$1</h6>',
 		'~\[h6\((.[^ ]*?)\)\](.*?)\[\/h6\]~si'	=> '<h6 class="$1">$2</h6>',
+		'~\[h6 (.*?)\](.*?)\[\/h6\]~si' 		=> '<h6 $1>$2</h6>',
 
 		# [code=language][/code]
 		'~\[code\](.*?)\[\/code\]~si'			=> '<code>$1</code>',
@@ -257,18 +271,25 @@ function bbcode_custom($text = '')
 		'~\[quote\](.*?)\[\/quote\]~si'												=> '<blockquote>$1</blockquote>',
 		'~\[quote=(?:&quot;|"|\')?(.*?)["\']?(?:&quot;|"|\')?\](.*?)\[\/quote\]~si'	=> '<blockquote><strong class="src">$1:</strong>$2</blockquote>',
 
+		
 		# [div(class)]текст[/div]
 		'~\[div\((.*?)\)\](.*?)\[\/div\]~si' 	=> '<div class="$1">$2</div>',
 
 		# [div style="color: red"]текст[/div] - произвольные атрибуты
 		'~\[div (.*?)\](.*?)\[\/div\]~si' 		=> '<div $1>$2</div>',
 
-		# [span(class)]текст[/div]
+		# [div(class) атрибуты]текст[/div]
+		'~\[div\((.*?)\) (.*?)\](.*?)\[\/div\]~si' 	=> '<div class="$1" $2>$3</div>',
+		
+		# [span(class)]текст[/span]
 		'~\[span\((.*?)\)\](.*?)\[\/span\]~si' 	=> '<span class="$1">$2</span>',
 
 		# [span style="color: red"]текст[/span] - произвольные атрибуты
 		'~\[span (.*?)\](.*?)\[\/span\]~si' 	=> '<span $1>$2</span>',
 
+		# [span(class) атрибуты]текст[/span]
+		'~\[span\((.*?)\) (.*?)\](.*?)\[\/span\]~si' 	=> '<span class="$1" $2>$3</span>',
+		
 	);
 
 	if (strpos($text, '[text-demo]') !== false) // есть вхождение [text-demo]
@@ -286,6 +307,27 @@ function bbcode_custom($text = '')
 	
   return $text;
 
+}
+
+function bbcode_editor_content_callback($matches)
+{
+	$m = $matches[2];
+
+	$m = htmlspecialchars($m);
+	
+	$m = str_replace("&amp;lt;br&amp;gt;", "<br>", $m);
+	$m = str_replace("&amp;", "&", $m);
+
+	$m = '[pre' . $matches[1] . ']' . $m . '[/pre]';
+
+	return $m;
+}
+
+function bbcode_editor_content($text = '')
+{
+	$text = preg_replace_callback('~\[pre(.*?)\](.*?)\[\/pre\]~si', 'bbcode_editor_content_callback', $text);
+	
+	return $text;
 }
 
 # end file

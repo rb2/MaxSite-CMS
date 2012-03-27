@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-	mso_cur_dir_lang('admin');
-
 	$CI = & get_instance();
 
 	// проверяем входящие данные если было обновление

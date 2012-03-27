@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Authors',
-	'description' => 'Виджет выводит список авторов сайта',
+	'name' => t('Авторы'),
+	'description' => t('Виджет выводит список авторов сайта'),
 	'version' => '1.0',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',
@@ -10,4 +10,4 @@ $info = array(
 	'group' => 'template'
 );
 
-?>
+# end file

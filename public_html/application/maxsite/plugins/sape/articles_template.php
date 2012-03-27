@@ -11,4 +11,4 @@ echo '{body}';
 
 require(getinfo('template_dir') . 'main-end.php');
 	
-?>
+# end file

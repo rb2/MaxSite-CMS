@@ -10,7 +10,13 @@
 function psevdocode_autoload($args = array())
 {
 	mso_hook_add( 'content', 'psevdocode_go'); # хук на вывод контента
-	mso_create_allow('psevdocode_edit', t('Админ-доступ к настройкам') . ' ' . t('псевдокода'));
+}
+
+# функция выполняется при активации (вкл) плагина
+function psevdocode_activate($args = array())
+{	
+	mso_create_allow('psevdocode_edit', t('Админ-доступ к настройкам псевдокода'));
+	return $args;
 }
 
 # функция выполняется при деинсталяции плагина

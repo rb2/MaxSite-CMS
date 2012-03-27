@@ -1,8 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
-
-mso_cur_dir_lang('admin');
-
-?>
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
 <h1><?= t('Шаблоны для сайта') ?></h1>
 <p class="info"><?= t('Выберите нужный шаблон. Все шаблоны хранятся в каталоге <strong>«maxsite/templates»</strong>. Название шаблона совпадает с названием его каталога.') ?></p>

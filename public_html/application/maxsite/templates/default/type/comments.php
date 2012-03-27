@@ -6,8 +6,6 @@
  */
 
 
-mso_cur_dir_lang('templates');
-
 // возможно включен плагин last_comments - тогда выводим все через него
 if ( function_exists('last_comments_widget_custom') )
 {

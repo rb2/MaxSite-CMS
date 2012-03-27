@@ -1,0 +1,550 @@
+@import url('../../../templates/default/css/less/include/helpers.less'); 
+
+@import url('../../../templates/default/css/less/include/mso-reset.less');
+@import url('../../../templates/default/css/less/include/mso-default.less');
+@import url('../../../templates/default/css/less/include/mso-forms.less');
+// @import url('../../../templates/default/css/less/include/mso-helpers.less');
+
+
+@import url('../../../templates/default/css/less/include/mso-button.less');
+
+
+body {background: #F0F0F0;}
+
+a {
+	color: #035984;
+	text-decoration: none;
+	
+	&:hover {
+		text-decoration: underline; 
+		color: red;
+	}
+}
+
+/* база заголовков */
+h1 {
+	font-size: 2em; 
+	margin: 0 0 5px 0; 
+	font-weight: normal; 
+	line-height: 1.2em;
+	color: #395766;
+}
+
+h2 {
+	font-size: 1.4em; 
+	margin: 15px 0 5px 0; 
+	font-weight: normal; 
+	line-height: 1.1em;
+}
+
+h3 {
+	font-size: 1.2em; 
+	margin: 15px 0 5px 0; 
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 1.1em; 
+	margin: 15px 0 5px 0; 
+	font-weight: bold;
+}
+
+h5 {
+	font-size: 1.0em; 
+	margin: 15px 0 5px 0; 
+	font-weight: bold;
+}
+
+h6 {
+	font-size: .9em; 
+	margin: 15px 0 5px 0; 
+	font-weight: bold;
+}
+
+// шапка
+@color1: #395766; // цвет фона
+@color2: #DDD; // цвет текста простого
+@color3: #DDD; // цвет ссылки заголовка
+
+div.admin-header {
+	font-size: 12pt; 
+	.box_shadow(0, 3px);
+	
+	background: @color1;
+	color: @color2;
+
+	.text_shadow(1px, 1px, 1px, darken(@color2, 90%));
+	
+	div.r {
+		padding: 10px 0 10px 10px;
+		margin: 0 10px 20px 0;
+		background: url("images/maxsitelogo-blue.png") no-repeat right center;
+	}
+	
+	h1 {
+		font-size: 16pt; 
+		padding: 5px 0 0 0; 
+		display: inline;
+		
+		&:after {content: " → "}
+		
+		color: @color3;
+		
+		a {
+			color: @color3;
+		}
+	}
+}
+
+
+div.admin-menu {
+	width: 190px;
+	float: left;
+	
+	div.r {padding-left: 10px;}
+}
+
+div.admin-content {
+	margin: 0 10px 15px 205px;
+	
+	div.r {
+		padding: 10px 15px 15px 15px;
+		background: white;
+		.box_shadow(0px, 0px);
+		.border_radius(5px);
+	}
+}
+
+div.admin-footer {
+	clear: both;
+	background: #253842;
+	color: #F0F0F0;
+	text-align: center;
+	font-size: 9pt;
+	
+	div.r {
+		padding: 5px 0;
+	}
+	
+	a {
+		color: #F0F0F0;
+		text-decoration: underline;
+	}
+}
+
+// меню
+@color4: #6C8A99; // цвет фона заголовка
+@color5: #D2F0FF; // цвет текста загловка
+@color7: #BAC6CC; // цвет фон текущий элемент
+@color6: #395766; // цвет текст текущий элемент
+
+ul.admin-menu {
+	list-style: none;
+	margin-left: 0;
+	font-family: Arial, sans-serif;
+	
+	li {
+		line-height: 1.5em;
+		
+		a {
+			display: block;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+	
+	// заголовок блока
+	li.admin-menu-top > a {
+		background: @color4;
+		color: @color5;
+		font-size: 12pt;
+		padding: 5px 0 5px 5px;
+		
+		margin-bottom: 7px;
+		
+		.text_shadow(1px, 1px, 1px, #333);		
+		.border_radius(2px);
+		.box_shadow(0, 1px);
+		
+		&:before {content: "☉ "}
+	}
+	
+	ul.admin-submenu {
+		list-style: none;
+		margin-left: 20px;
+
+		li a {
+			color: #333;
+			background: none;
+			text-shadow: none;
+			font-size: 10pt;
+			.box_shadow(none);
+			
+			&:hover {
+				background: darken(@color7, 10%);
+				margin: 0 0 0 -20px;
+				padding-left: 20px;
+				.border_radius(5px);
+			}
+		}
+		
+		// текущий элемент
+		li.admin-menu-selected {
+			a {
+				color: @color6;
+				background: @color7;
+				&:before {content: "✔ "}
+				
+				margin: 0 0 0 -20px;
+				padding: 3px 0 3px 5px;
+				
+				.border_radius(5px);
+				.text_shadow(0, 0, 3px, lighten(@color5, 20%));
+				
+				&:hover {
+					background: darken(@color7, 10%);
+				}
+			}
+			
+		}
+	}
+}
+
+
+td div.section {
+	
+	background: #395766;
+	color: #EBD4D7;
+	
+	font-size: 10pt;
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+	
+	padding: 0 5px;
+	
+	h2 {
+		margin:0;
+		padding: 0;
+		font-size: 11pt;
+		font-weight: bold;
+		height: 30px;
+		line-height: 30px;
+	}
+}
+
+
+
+div.admin-h-menu {
+	
+	padding: 5px;
+	margin: 0 0 10px 0;
+	.border_radius(5px);
+	
+	@color1: #D6DEE2;
+	background: #6C8A99;
+	
+	color: @color1;
+	
+	a {
+		color: @color1;
+	}
+	
+	a.select {
+		color: lighten(@color1, 20%);
+		font-weight: bold;
+	}
+}
+
+
+p.nav {
+	color: white;
+	font-size: 0;
+	//height: 25px;
+	line-height: 25px;
+	margin: 0;
+	
+	a {
+		background: #EEE;
+		padding: 5px 5px;
+		margin: 0 3px;
+		font-size: 10pt;
+		.border_radius(5px);
+		white-space: nowrap;
+		
+		&:hover {
+			background: #DDD;
+			text-decoration: none;
+		}
+	}
+}
+
+
+table.page {
+
+	tr:nth-child(odd) td, tr:nth-child(odd) th {background-color: #f0f0f0;}
+	
+	tr:hover {
+		td, th {background-color: #f6f6f6;}
+	}
+	
+	td {border: none;}
+
+	input[type="text"], 
+	input[type="email"], 
+	input[type="password"], 
+	input[type="url"], 
+	input[type="search"], 
+	input[type="number"], 
+	textarea,
+	select {
+		width: 99%;
+	}
+}
+
+table.new_or_edit {
+	
+	td {
+		border: none;
+	}
+	
+	td.editor_and_meta {
+		
+		padding: 0 15px 0 0;
+	
+		input.f_header {
+			width: 99%;
+			font-size: 1.5em;
+			margin: 5px 0;
+		}
+		
+		
+		div.page_meta {
+			
+			h3 {margin: 25px 0 0 0;}
+			p {margin: 0;}
+			
+			div {
+				background: #F0F0F0;
+				padding: 5px;
+				margin: 10px 0;
+				.border(1px, #C7C7C7);
+				.border_radius(10px);
+				
+				h3 {
+					margin: 0;
+					font-size: 10pt;
+				}
+			}
+			
+			input[type="text"], 
+			input[type="email"], 
+			input[type="password"], 
+			input[type="url"], 
+			input[type="search"], 
+			input[type="number"], 
+			textarea,
+			select {
+				width: 99%;
+			}
+			
+		}
+	}
+	
+	td.page_info {
+		width: 230px;
+		padding: 0;
+		font-size: 9pt;
+		
+		div.block_page {
+			padding: 0 5px;
+			margin: 0 0 15px 0;
+			
+			background: #F0F0F0;
+			.border(1px, #738992);
+			.border_radius(10px);
+
+		
+		}
+		
+		h3 {
+			margin: 0 -5px 5px -5px;
+			font-size: 10pt;
+			
+			padding: 3px 7px;
+			.border_radius(5px, 5px, 0, 0);
+			
+			@color: #CCD7DC;
+			
+			color: @color;
+			background: darken(@color, 40%);
+			.text_shadow(1px, 1px, 1px, darken(@color, 80%));
+		}
+		
+		div.cat_page {
+			ul {
+				list-style-type: none; 
+				margin: 0 0 5px 0;
+				
+				li {
+					margin: 5px 5px 0 0;
+					font-weight: bold;
+				}
+				
+				li li {
+					font-weight: normal;
+					margin: 3px 5px 0 20px;
+					font-size: .9em;
+				}
+				
+				li label {
+					display: block;
+				}
+				
+				li label:hover {
+					background: #C7C7C7;
+					.border_radius(5px);
+	
+					margin-left: -20px;
+					padding-left: 20px;
+				}
+			}
+		}
+	}
+}
+
+// сайдбары
+textarea.admin_sidebars {
+	width: 99%;
+}
+
+table.widgets-allow {
+	width: auto;
+	
+	td {border: none;}
+}
+
+// виджеты
+div.admin-edit-widgets-form {
+	
+	h3 {
+		background: #8BB2C5;
+		color: #D2F0FF;
+		margin: 5px 0 5px 0;
+		padding: 5px 10px;
+		font-size: 10pt;
+		
+		.border_radius(5px);
+		.box_shadow(0, 1px);
+		&:before {content: "▶ "}
+		
+		a {
+			color: #41535C;
+			margin-left: 5px;
+			//.text_shadow(1px, 1px, 1px, #AAA);		
+		}
+	}
+	
+	p {margin: 0;}
+	
+	div.admin_widgets {
+	
+		background: #EDF1F3;
+		
+		.background_gradient(darken(#EDF1F3, 10%), #EDF1F3);
+		
+		.border_radius(5px);
+		
+		padding: 5px;
+		
+		div.t150 {
+			width: 180px;
+			float: left;
+			font-weight: bold;
+			text-align: right;
+			padding-right: 5px;
+		}
+		
+		
+		input[type="text"], 
+		input[type="email"], 
+		input[type="password"], 
+		input[type="url"], 
+		input[type="search"], 
+		input[type="number"], 
+		textarea,
+		select {
+			min-width: 600px;
+		}
+		
+	}
+}
+
+// форма для виджетов
+// подстройка полей
+form.admin_widgets {
+	p {
+		@first: 200px; // размер первой ячейки или отступ (+5 на padding)
+		
+		span, label {
+			&.ffirst {width: @first;} // ширина первой ячейки
+			&.ffirst.ftitle {width: @first - 5px;} // корректировка для двойного класса ffirst.ftitle
+			&.ftitle {font-weight: bold;}
+			&.ftop {padding-top: 1px;}
+		}
+	}
+}
+
+// загрузки 
+div.float-parent {
+	div.cornerz {
+		display: inline-block;
+		vertical-align: top;
+		margin: 0 15px 15px 0;
+		min-height: 165px;
+		width: 200px;
+		
+		.border(1px, #DDD);
+		.border_radius(5px);
+		.box_shadow(0px, 0px);
+		text-align: center;
+		
+		div.wrap {
+			margin: 5px;
+			
+			overflow: hidden;
+			
+			label {
+				font-weight: bold;
+				white-space: nowrap;
+				font-size: .8em;
+				
+			}
+			
+			em { // описание 
+				font-size: 1em;
+			}
+			
+			i.date { // дата
+				display: block;
+				color: gray;
+			}
+			
+			a.lightbox { // ссылка с картинкой
+				display: block;
+				margin: 5px 0 0 0;
+				
+				img {
+					max-width: 180px;
+					.box_shadow(0px, 0px);
+				}
+			}
+			
+			p { // ссылки для копирования
+				margin: 5px 0 0 0;
+			}
+		}
+	}
+
+}

@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Rater',
+	'name' => t('Рейтинг записей'),
 	'description' => t('Оценка статей посетителями'),
 	'version' => '1.1',
 	'author' => 'MAX',

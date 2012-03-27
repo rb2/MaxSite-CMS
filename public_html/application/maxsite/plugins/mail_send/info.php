@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => t('Mail Send'),
+	'name' => t('Email-рассылка'),
 	'description' => t('Отправка email-сообщений по списку рассылки'),
 	'version' => '1.0',
 	'author' => 'Максим',

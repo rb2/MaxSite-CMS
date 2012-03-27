@@ -5,9 +5,18 @@
  * (c) http://max-3000.com/
  */
 
-mso_cur_dir_lang('templates');
 
 # коммментарии
+
+
+$page_text_ok = true; // разрешить вывод текста комментария в зависимости отпароля записи
+
+if (isset($page['page_password']) and $page['page_password']) // есть пароль у страницы
+{
+	$page_text_ok = (isset($page['page_password_ok'])); // нет отметки, что пароль пройден
+}
+
+
 echo '<span><a id="comments"></a></span>';
 
 // получаем список комментариев текущей страницы
@@ -44,7 +53,7 @@ if (is_login()) $edit_link = getinfo('siteurl') . 'admin/comments/edit/';
 
 if ($comments or $page_comment_allow) echo NR . '<div class="type type_page_comments">' . NR;
 
-if ($comments) // есть страницы
+if ($page_text_ok and $comments) // есть страницы
 { 	
 
 	if ($f = mso_page_foreach('page-comments-do')) require($f); // подключаем кастомный вывод
@@ -125,7 +134,7 @@ if ($comments) // есть страницы
 	echo '</div>' . NR;
 }
 
-if ($page_comment_allow)
+if ($page_comment_allow and $page_text_ok)
 {
 	// если запрещены комментарии и от анонимов и от комюзеров, то выходим
 	if ( mso_get_option('allow_comment_anonim', 'general', '1') 

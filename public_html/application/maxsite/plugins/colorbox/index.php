@@ -2,11 +2,17 @@
 
 function colorbox_autoload($args = array())
 {
-	mso_create_allow('colorbox_edit', 'Админ-доступ к настройкам плагина ColorBox');
 	mso_hook_add( 'admin_init', 'colorbox_admin_init');
 	mso_hook_add( 'head', 'colorbox_head');
 	mso_hook_add( 'admin_head', 'colorbox_head');
 	mso_hook_add( 'content_out', 'colorbox_content');
+}
+
+# функция выполняется при активации (вкл) плагина
+function colorbox_activate($args = array())
+{	
+	mso_create_allow('colorbox_edit', 'Админ-доступ к настройкам плагина ColorBox');
+	return $args;
 }
 
 function colorbox_uninstall($args = array())

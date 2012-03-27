@@ -32,22 +32,18 @@ function forms_content_callback($matches)
 	$text = str_replace("\n\n", "\n", $text);
 	$text = trim($text);
 	
-	
 	$out = ''; // убиваем исходный текст формы
-	
-	//pr($text);
-	// занесем в массив все поля
 	
 	//$r = preg_match_all('!\[email=(.*?)\]|\[redirect=(.*?)\]\[subject=(.*?)\]|\[field\](.*?)\[\/field\]|\[ushka=(.*?)\]!is', $text, $all);
 	
-	
+	// на какой email отправляем
 	$r = preg_match_all('!\[email=(.*?)\]!is', $text, $all);
 	if ($r)
 		$email = trim(implode(' ', $all[1]));
 	else
 		$email = mso_get_option('admin_email', 'general', 'admin@site.com');
 	
-	
+	// тема письма
 	$r = preg_match_all('!\[subject=(.*?)\]!is', $text, $all);
 	if ($r)
 		$subject = trim(implode(' ', $all[1]));
@@ -55,6 +51,7 @@ function forms_content_callback($matches)
 		$subject = t('Обратная связь');
 	
 	
+	// куда редиректить после отправки
 	$r = preg_match_all('!\[redirect=(.*?)\]!is', $text, $all);
 	if ($r)
 		$redirect = trim(implode(' ', $all[1]));
@@ -62,26 +59,37 @@ function forms_content_callback($matches)
 		$redirect = '';
 	
 	
+	// eirf к форме
 	$r = preg_match_all('!\[ushka=(.*?)\]!is', $text, $all);
 	if ($r)
 		$ushka = trim(implode(' ', $all[1]));
 	else
 		$ushka = '';
 	
+	// отправить копию на ваш email
+	$r = preg_match_all('!\[nocopy\]!is', $text, $all);
+	if ($r)
+		$forms_subscribe = false;
+	else
+		$forms_subscribe = true;
+	
+	// кнопка Сброс формы
+	$r = preg_match_all('!\[noreset\]!is', $text, $all);
+	if ($r)
+		$reset = false;
+	else
+		$reset = true;	
+	
 	
 	// pr($all);
-
+	
+	
+	// поля формы
 	$r = preg_match_all('!\[field\](.*?)\[\/field\]!is', $text, $all);
 	
 	$f = array(); // массив для полей
 	if ($r)
 	{
-		//$email = trim(implode(' ', $all[1]));
-		//$redirect = trim(implode(' ', $all[2]));
-		//$subject = trim(implode(' ', $all[3]));
-		
-		//$ushka = trim(implode(' ', $all[5]));
-		
 		$fields = $all[1];
 		
 		/*
@@ -91,6 +99,25 @@ function forms_content_callback($matches)
 		pr($subject);
 		pr($ushka);
 		*/
+		
+		
+		if ($subject)
+		{
+			// поле тема письма делаем в виде обязательнного поля select.
+			
+			// формируем массив для формы
+			$subject_f['require'] = 1;
+			$subject_f['type'] = 'select';
+			$subject_f['description'] = t('Тема письма');
+			//$subject_f['tip'] = t('Выберите тему письма');
+			$subject_f['values'] = $subject;
+			$subject_f['default'] = '';
+
+			// преобразования, чтобы сделать ключ для поля 
+			$f1['subject'] = $subject_f; // у поля тема будет ключ subject
+			foreach($f as $key=>$val) $f1[$key] = $val; 
+			$f = $f1;
+		}
 		
 		$i = 0;
 
@@ -181,7 +208,7 @@ function forms_content_callback($matches)
 			// всё ок
 			if ($ok)
 			{
-				// pr($post);
+				//pr($post);
 				// pr($f);
 				// pr($redirect);
 				// pr($email);
@@ -192,26 +219,35 @@ function forms_content_callback($matches)
 				if (!mso_valid_email($email)) 
 					$email = mso_get_option('admin_email', 'general', 'admin@site.com'); // куда приходят письма
 					
-				$message = 'Имя: ' . $post['forms_name'] . "\n";
-				$message .= 'Email: ' . $post['forms_email'] . "\n";
+				$message = t('Имя: ') . $post['forms_name'] . "\n";
+				$message .= t('Email: ') . $post['forms_email'] . "\n";
 				
 				foreach ($post['forms_fields'] as $key=>$val)
 				{
+					//pr($key);
+					if ($key === 'subject' and $val)
+					{
+						$subject = $val;
+						
+						//pr($subject);
+						continue;
+					}
+					
 					$message .= $f[$key]['description'] . ': ' . $val . "\n\n";
 				}
 				
 				if ($_SERVER['REMOTE_ADDR'] and $_SERVER['HTTP_REFERER'] and $_SERVER['HTTP_USER_AGENT']) 
 				{
-					$message .= "\n" . 'IP-адрес: ' . $_SERVER['REMOTE_ADDR'] . "\n";
-					$message .= 'Отправлено со страницы: ' . $_SERVER['HTTP_REFERER'] . "\n";
-					$message .= 'Браузер: ' . $_SERVER['HTTP_USER_AGENT'] . "\n";
+					$message .= "\n" . t('IP-адрес: ') . $_SERVER['REMOTE_ADDR'] . "\n";
+					$message .= t('Отправлено со страницы: ') . $_SERVER['HTTP_REFERER'] . "\n";
+					$message .= t('Браузер: ') . $_SERVER['HTTP_USER_AGENT'] . "\n";
 				}
 				
 				// pr($message);
 				
 				$form_hide = mso_mail($email, $subject, $message, $post['forms_email']);
 				
-				if ( isset($post['forms_subscribe']) ) 
+				if ( $forms_subscribe and isset($post['forms_subscribe']) ) 
 					mso_mail($post['forms_email'], t('Вами отправлено сообщение:') . ' ' . $subject, $message);
 				
 				
@@ -224,7 +260,7 @@ function forms_content_callback($matches)
 			}
 			else // какая-то ошибка, опять отображаем форму
 			{
-				$out .= forms_show_form($f, $ushka);
+				$out .= forms_show_form($f, $ushka, $forms_subscribe, $reset, $subject);
 			}
 			
 			
@@ -236,14 +272,14 @@ function forms_content_callback($matches)
 		}
 		else // нет post
 		{
-			$out .= forms_show_form($f, $ushka);
+			$out .= forms_show_form($f, $ushka, $forms_subscribe, $reset, $subject);
 		}
 	}
 
 	return $out;
 }
 
-function forms_show_form($f = array(), $ushka = '')
+function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $reset = true, $subject = '')
 {
 	$out = '';
 
@@ -252,7 +288,24 @@ function forms_show_form($f = array(), $ushka = '')
 	
 	$id = 1; // счетчик для id label
 	
-	
+	if ($subject)
+	{
+		// поле тема письма делаем в виде обязательнного поля select.
+		
+		// формируем массив для формы
+		$subject_f['require'] = 1;
+		$subject_f['type'] = 'select';
+		$subject_f['description'] = t('Тема письма');
+		//$subject_f['tip'] = t('Выберите тему письма');
+		$subject_f['values'] = $subject;
+		$subject_f['default'] = '';
+
+		// преобразования, чтобы сделать ключ для поля 
+		$f1['subject'] = $subject_f; // у поля тема будет ключ subject
+		foreach($f as $key=>$val) $f1[$key] = $val; 
+		$f = $f1;
+	}
+
 	$out .= NR . '<div class="forms"><form method="post" class="plugin_forms fform">' . mso_form_session('forms_session');
 	
 	$out .= '<input type="hidden" name="forms_antispam1" value="' . $antispam1 * 984 . '">';
@@ -303,7 +356,6 @@ function forms_show_form($f = array(), $ushka = '')
 			
 		if ($val['type'] == 'text') #####
 		{
-		
 			//type_text - type для input HTML5
 			if (isset($val['type_text']) and  trim($val['type_text'])) $type_text = htmlspecialchars(trim($val['type_text']));
 				else $type_text = 'text';
@@ -342,11 +394,15 @@ function forms_show_form($f = array(), $ushka = '')
 	// обязательные поля антиспама и отправка и ресет
 	$out .= NR . '<p><label class="ffirst ftitle" for="id-' . ++$id . '">' . $antispam1 . ' + ' . $antispam2 . ' =</label>';
 	$out .= '<span><input name="forms_antispam" type="text" required maxlength="3" value="" placeholder="' . t('Укажите свой ответ') . '" id="id-' . $id . '"></span><p>';
-
-	$out .= NR . '<p><span class="ffirst"></span><label><input name="forms_subscribe" value="" type="checkbox"  class="forms_checkbox"> ' . t('Отправить копию письма на ваш e-mail') . '</label></p>';
+	
+	if ($forms_subscribe)
+		$out .= NR . '<p><span class="ffirst"></span><label><input name="forms_subscribe" value="" type="checkbox"  class="forms_checkbox"> ' . t('Отправить копию письма на ваш e-mail') . '</label></p>';
 	
 	$out .= NR . '<p><span class="ffirst"></span><span class="submit"><input name="forms_submit" type="submit" class="forms_submit" value="' . t('Отправить') . '">';
-	$out .= '<input name="forms_clear" type="reset" class="forms_reset" value="' . t('Очистить форму') . '"></span></p>';
+	
+	if ($reset) $out .= ' <input name="forms_clear" type="reset" class="forms_reset" value="' . t('Очистить форму') . '">';
+	
+	$out .= '</span></p>';
 	
 	if (function_exists('ushka')) $out .= ushka($ushka);
 	

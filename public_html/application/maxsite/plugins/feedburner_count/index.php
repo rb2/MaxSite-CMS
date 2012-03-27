@@ -89,4 +89,4 @@ function feedburner_count_need_update($lastupdate, $updateinterval) {
 }
 
 
-?>
+# end file

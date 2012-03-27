@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Picasa',
-	'description' => 'Виджет «Веб-альбомы Picasa»',
+	'name' => t('Веб-альбомы Picasa'),
+	'description' => t('Виджет «Веб-альбомы Picasa»'),
 	'version' => '1.2',
 	'author' => 'DRiVER',
 	'plugin_url' => 'http://DRiVERlab.ru/page/17',
@@ -10,4 +10,4 @@ $info = array(
 	'group' => 'template'
 );
 
-?>
+# end file

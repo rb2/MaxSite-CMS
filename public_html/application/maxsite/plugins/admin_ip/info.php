@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Admin IP',
-	'description' => 'Плагин разрешает доступ в админ-панель только с указанных IP.',
+	'name' => t('Admin IP'),
+	'description' => t('Плагин разрешает доступ в админ-панель только с указанных IP'),
 	'version' => '1.0',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',

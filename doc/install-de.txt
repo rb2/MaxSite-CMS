@@ -2,10 +2,8 @@
 INSTALLATION MaxSite CMS
 =====================
 
-Forum (auf Deutsch):
-http://forum.alexanderschilling.net/
-
 Information auf Russisch:
+
 Offizielle Website: http://max-3000.com/
 Hilfe: http://max-3000.com/help
 Forum: http://forum.max-3000.com/
@@ -20,7 +18,7 @@ SYSTEMANFORDERUNGEN
 ==================
 1. Fähigkeit zur Arbeit mit .htaccess und aktiven mod_rewrite.
 2. MySQL > 4.1. Arbeit mit UTF8. Datenbank Typ MyISAM.
-3. Aktive bibliothek mbstring.
+3. Aktive Bibliothek mbstring.
 4. PHP > 5.1.6.
 
 
@@ -29,16 +27,16 @@ INSTALLATION
 =========
 
 Die Installation des Systems erfolgt sehr schnell. Bevor Sie beginnen, müssen
-die Parameter in den Konfigurationsdateien von Datenbank-Zugriff eingeben. Das System
+die Parameter in den Konfigurationsdateien von der MySQL Datenbank eingeben. Das System
 wird dann die Installation selbst durchzuführen.
 
 Folgen Sie einfach dieser Anleitung und es wird alles klappen! :-)
 
-Falls Sie Probleme haben oder Hilfe brauchen, kommen Sie bei Deutsche Support Forum vorbei:
-http://forum.alexanderschilling.net/
+Falls Sie Probleme haben oder Hilfe brauchen, kommen Sie bei Deutsche Support Seite vorbei:
+http://de.maxsitecms.com
 
-	| Da alle Dateien in UTF8 codiert sind, ändern Sie am besten die Datein
-	| nicht mit Notepad, der Probleme hat mit diesem Modus, sondern mit hilfe normale
+	| Da alle Dateien in UTF8 codiert sind, ändern Sie am besten die Dateien
+	| nicht mit Notepad, der Probleme hat mit diesem Modus, sondern mit Hilfe einer guten
 	| Software, z.B. Notepad2: http://www.flos-freeware.ch/
 
 ________________________________________________________________________________
@@ -50,14 +48,14 @@ ________________________________________________________________________________
 
 2. Öffnen Sie die Datei «application/maxsite/mso_config.php-distr». 
 	
-    Geben Sie in dieser Datei Ihre Geheimwort ein. Sie wird bei
+    Geben Sie in dieser Datei Ihre Geheim Wort ein. Sie wird bei
     der Verschlüsselung verwendet. Bitte beachten Sie, dass eine Änderung der 
-    Geheimwort nach der Installation Ihr Passwort ungültig macht.
-    Wenn Sie nichts eingeben, dann wird als Geheimwort die URL der Webseite verwendet.
-    Wenn Sie später einen Umzug auf andere URL plannen, dann sollen Sie
-    ein Geheimwort am besten gleich eingeben.
+    Geheim Wort nach der Installation Ihr Passwort ungültig macht.
+    Wenn Sie nichts eingeben, dann wird als Geheim Wort die URL der Webseite verwendet.
+    Wenn Sie später einen Umzug auf andere URL planen, dann sollen Sie
+    ein Geheim Wort am besten gleich eingeben.
     
-    Wählen Sie Deutsch als Standart Sprache aus.
+    Wählen Sie Deutsch als Standard Sprache aus.
     $MSO->language = 'de';
 
     Danach laden Sie die Datei auf dem Server mit dem Namen mso_config.php hoch.
@@ -65,10 +63,10 @@ ________________________________________________________________________________
 
 3. Benennen Sie die Datei «.htaccess-distr» in «.htaccess» um.
 
-    Wenn Ihre Webseite nicht in Rootverzeichnes liegt, sondern in einen unterordner
+    Wenn Ihre Webseite nicht in Rootverzeichnes liegt, sondern in einen unter Ordner
     z.B. http://www.your-site.com/blog/, dann Öffnen Sie die Datei
     .htaccess-subdir und ersetzen Sie in diese Datei alle #subdir# mit dem Name
-    ihren Unterordner (in unseren Bsp. "blog" - ohne anführungszeichen!).
+    ihren unter Ordner (in unseren Bsp. "blog" - ohne Anführungszeichen!).
 
     Danach laden Sie die Datei auf dem Server mit dem Namen .htaccess hoch.
     (Beachten Sie das ein Punkt "." vor den Beginn der Dateiname stehen muss)
@@ -77,7 +75,7 @@ ________________________________________________________________________________
 ________________________________________________________________________________
 
 4. Setzten Sie die Rechte für den Ordner /application/cache/ auf 777, sowie
-    auf unterordner "html" und "rss", die für Cache verwendet werden.
+    auf unter Ordner "html" und "rss", die für Cache verwendet werden.
 ________________________________________________________________________________
 
 5. Setzten Sie die Rechte für die Datei sitemap.xml auf 666. Die Datei wird
@@ -85,7 +83,7 @@ ________________________________________________________________________________
     Indizierung durch Suchmaschinen.
 ________________________________________________________________________________
 
-6. Setzten Sie die Rechte für den Ordner /uploads/ auf 777, sowie auf unterordner
+6. Setzten Sie die Rechte für den Ordner /uploads/ auf 777, sowie auf unter Ordner
    "_mso_float", "_mso_i" и "mini".
 ________________________________________________________________________________
 
@@ -97,7 +95,7 @@ ________________________________________________________________________________
 	
 		$mso_install = true; 
 
-    Dies teilt das System mit, das eine Installation erfolgreicht durchgeführt wurde,
+    Dies teilt das System mit, das eine Installation erfolgreich durchgeführt wurde,
     und das eine auf eine weitere Überprüfung verzichtet wird.
 ________________________________________________________________________________
 
@@ -108,10 +106,9 @@ ________________________________________________________________________________
     Speichern Sie die Datei als "robots.txt" ab. Diese Datei wird verwendet
     bei der Indexierung Ihrer Website durch die Suchmaschinen. Beachten Sie,
     dass eine URL mit www und ohne www für die Suchmaschine zwei verschiedene
-    Seiten sind. Ich empfehle desweiteren in der Datei .htaccess, einen
+    Seiten sind. Ich empfehle des weiteren in der Datei .htaccess, einen
     automatischen redirect aktivieren (mehr dazu siehe unten).
 ________________________________________________________________________________
-
 
 
 =============
@@ -129,7 +126,7 @@ Upgrades von früheren Versionen
 ==============================
 
 In der Regel, muss man den neue Zip-Arhiv mit dem Aktuellen MaxSite CMS herunterladen,
-auf dem Server/Hosting hochladen und enpacken, alle bestehende Dateien muss man überschreiben.
+auf dem Server/Hosting hoch-laden und entpacken, alle bestehende Dateien muss man überschreiben.
 Danach muss man in Admin-Panel reingehen und den Cache der System zurücksetzen.
 Wenn keine besondere Updates sind, dann Funktioniert es immer.
 
@@ -138,9 +135,9 @@ Wenn Ihre Version älter ist als 0.5, dann machen Sie so:
     - Logen Sie sich auf dem FTP-Server an.
     - Ändern Sie den Name des Ordners "system" in "system-old" um.
     - Laden Sie alle Datein der MaxSite CMS auf dem Server hoch.
-    - Setzten die Rechte 777 auf "application/cache", sowie alle unterordner.
+    - Setzten die Rechte 777 auf "application/cache", sowie alle unter Ordner.
     - In der Admin-Panel müssen den System Cache zurücksetzten.
-    - Wenn Sie alles Überpfrüft haben, und die Seite Funktionier perfekt,
+    - Wenn Sie alles Überprüft haben, und die Seite Funktioniert perfekt,
     dann können Sie den Ordner "system-old" entfernen.
 
 
@@ -165,7 +162,8 @@ ein.
 
 Wenn PHP als FastCGI
 --------------------
-In diesem Fall müssen Sie die passende Konfigurationseinstellungen finden für .htaccess.
+In diesem Fall müssen Sie die passende Konfiguration Einstellungen für .htaccess
+ finden
 In meinen Bsp. hat es mit folgenden Einstellungen Funktioniert, 
 die ich in .htaccess-fastcgi eingefügt habe.
 
@@ -177,7 +175,7 @@ kann man versuchen:
 
 	RewriteRule ^(.*)$ /index.php?/$1 [L,QSA]
 
-Desweiteren muss man in config.php den richtigen Wert für "uri_protocol" eintragen.
+Des weiteren muss man in config.php den richtigen Wert für "uri_protocol" eintragen.
 Bei mir hat es so Funktioniert:
 
 	$config['uri_protocol']	= "REQUEST_URI";
@@ -222,14 +220,11 @@ MÖGLICHE FEHLER
 	* Wenn das Fehler Call-time pass-by-reference has been deprecated kommt, 
 	  siehe .htaccess weiter unten.
 	  
-
-
 ===================
 Richtlinien für .htaccess
 ===================
 Wenn der Server eine 500-Fehlermeldung ausgibt, bedeutet es dass Sie keine
-richtlinien ausführen können .htaccess.
-
+Richtlinien ausführen können .htaccess.
 
 # 
 Options +FollowSymLinks
@@ -250,7 +245,6 @@ php_value memory_limit 16M
 
 # Wenn die Fehler Call-time pass-by-reference has been deprecated kommt
 php_flag allow_call_time_pass_reference on
-
 
 # UTF-8 wird als Standart verwendet.
 AddDefaultCharset UTF-8

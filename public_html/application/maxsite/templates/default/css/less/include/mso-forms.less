@@ -97,7 +97,8 @@ form.fform {
 			&.fcenter {text-align: center;}
 			&.fempty {width: 10px;} // пустая ячейка
 			
-			&.fhint {font-size: .9em; color: #606060; padding-bottom: 5px;} // текстовая подсказка
+			&.fhint {font-size: .9em; color: #606060; padding-top: 0; padding-bottom: 5px;} // текстовая подсказка
+			&.fheader {font-weight: bold;} // текстовая подсказка-заголовок
 			
 			
 			// отмена ячейки - обычный span и label
@@ -108,7 +109,7 @@ form.fform {
 			}
 		}
 		
-		&.nop {padding: 0;} // если нужен нулевой отступ padding
+		&.nop {padding-top: 0;} // если нужен нулевой отступ padding
 	}
 	
 }

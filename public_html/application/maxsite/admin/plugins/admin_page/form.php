@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 	
-	mso_cur_dir_lang('admin');
-	
 	# Форма - работает совместно с edit и new
 	
 	$page_files = '';
@@ -124,6 +122,9 @@
 			$("select[name=f_time_h]").val(d.getHours());
 			$("select[name=f_time_m]").val(d.getMinutes());
 			$("select[name=f_time_s]").val(d.getSeconds());
+			
+			$("#f_date_change").attr("checked", "checked");
+
 
 			return false;
 		});		
@@ -200,7 +201,7 @@
 
 			<div class="block_page page_date">
 				<h3>' . t('Дата публикации') . '</h3>
-				<p><label><input name="f_date_change" type="checkbox" ' . $f_date_change . '> ' . t('Изменить дату публикации') . '</label> 
+				<p><label><input name="f_date_change" id="f_date_change" type="checkbox" ' . $f_date_change . '> ' . t('Изменить дату') . '</label> 
 				
 				<a href="#" style="font-size: 1.2em; text-decoration: none;" id="set_current_time" title="' . t('Уставновить текущее время компьютера') . '">&#9685;</a>
 				

@@ -48,6 +48,8 @@ myBbcodeSettings = {
 			{name:'<?= t('Сноска') ?>', openBlockWith:'[cite]', closeBlockWith:'[/cite]', className:"cite"}, 
 			{name:'<?= t('Адрес') ?>', openBlockWith:'[address]', closeBlockWith:'[/address]', className:"address"}, 
 			{name:'<?= t('Новый термин') ?>', openBlockWith:'[dfn]', closeBlockWith:'[/dfn]', className:"dfn"}, 
+			{name:'<?= t('Код (строка)') ?>', openBlockWith:'[code]', closeBlockWith:'[/code]', className:"code1"}, 
+			
 		]},
 	
 		{name:'<?= t('Изображение') ?>', openBlockWith:'[img [![<?= t('Описание') ?>]!]][![<?= t('Адрес') ?>]!][/img]', className:"picture", dropMenu: [
@@ -81,6 +83,15 @@ myBbcodeSettings = {
 		
 		{separator:'---------------' },
 		
+		{name:'<?= t('Заголовок') ?>', openWith:'[h1]', closeWith:'[/h1]', className:"h1", dropMenu: [
+			{name:'<?= t('Заголовок 1') ?>', openWith:'[h1]', closeWith:'[/h1]', className:"h1"}, 
+			{name:'<?= t('Заголовок 2') ?>', openWith:'[h2]', closeWith:'[/h2]', className:"h2"}, 
+			{name:'<?= t('Заголовок 3') ?>', openWith:'[h3]', closeWith:'[/h3]', className:"h3"}, 
+			{name:'<?= t('Заголовок 4') ?>', openWith:'[h4]', closeWith:'[/h4]', className:"h4"}, 
+			{name:'<?= t('Заголовок 5') ?>', openWith:'[h5]', closeWith:'[/h5]', className:"h5"}, 
+			{name:'<?= t('Заголовок 6') ?>', openWith:'[h6]', closeWith:'[/h6]', className:"h6"}, 
+		]},
+		
 		{name:'<?= t('Выравнивание') ?>', openWith:'[pleft]', closeWith:'[/pleft]', className:"left", dropMenu :[  
 			{name:'<?= t('Абзац влево') ?>', openWith:'[pleft]', closeWith:'[/pleft]', className:"left" },
 			{name:'<?= t('Абзац по центру') ?>', openWith:'[pcenter]', closeWith:'[/pcenter]', className:"center" },
@@ -106,14 +117,18 @@ myBbcodeSettings = {
 			{name:'&lt;span <?= t('свойства') ?>&gt;', openBlockWith:'[span [![<?= t('Свойства') ?>]!]]', closeBlockWith:'[/span]', className:"add"}, 
 		]},
 
-		{name:'<?= t('Заголовок') ?>', openWith:'[h1]', closeWith:'[/h1]', className:"h1", dropMenu: [
-			{name:'<?= t('Заголовок 1') ?>', openWith:'[h1]', closeWith:'[/h1]', className:"h1"}, 
-			{name:'<?= t('Заголовок 2') ?>', openWith:'[h2]', closeWith:'[/h2]', className:"h2"}, 
-			{name:'<?= t('Заголовок 3') ?>', openWith:'[h3]', closeWith:'[/h3]', className:"h3"}, 
-			{name:'<?= t('Заголовок 4') ?>', openWith:'[h4]', closeWith:'[/h4]', className:"h4"}, 
-			{name:'<?= t('Заголовок 5') ?>', openWith:'[h5]', closeWith:'[/h5]', className:"h5"}, 
-			{name:'<?= t('Заголовок 6') ?>', openWith:'[h6]', closeWith:'[/h6]', className:"h6"}, 
+		{name:'<?= t('Сообщения') ?>', openWith:'[div(message [![Css message]!])]', closeWith:'[/div]', className:"page-red", dropMenu :[  
+			{name:'Note', openBlockWith:'[div(message note)]', closeBlockWith:'[/div]', className:"add"}, 
+			{name:'Alert', openBlockWith:'[div(message alert)]', closeBlockWith:'[/div]', className:"add"}, 
+			{name:'Idea', openBlockWith:'[div(message idea)]', closeBlockWith:'[/div]', className:"add"}, 
+			{name:'Error', openBlockWith:'[div(message error)]', closeBlockWith:'[/div]', className:"add"}, 
+			{name:'Ok', openBlockWith:'[div(message ok)]', closeBlockWith:'[/div]', className:"add"}, 
+			{name:'About', openBlockWith:'[div(message about)]', closeBlockWith:'[/div]', className:"add"}, 
+			{name:'Mail', openBlockWith:'[div(message mail)]', closeBlockWith:'[/div]', className:"add"}, 
+			{name:'Home', openBlockWith:'[div(message home)]', closeBlockWith:'[/div]', className:"add"}, 
+			{name:'Question', openBlockWith:'[div(message question)]', closeBlockWith:'[/div]', className:"add"}, 
 		]},
+
 		
 		{name: '<?= t('Список') ?>', className:"list-bullet", openBlockWith:'[list]\n', openWith:'[*]', closeWith:'', closeBlockWith:'\n[/list]', multiline:true, dropMenu: [ 
 			{name:'<?= t('Номера') ?>', className:'list-numeric', openBlockWith:'[ol]\n', openWith:'[*]', closeWith:'', closeBlockWith:'\n[/ol]', multiline:true}, 

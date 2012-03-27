@@ -1,7 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 	
-	mso_cur_dir_lang('admin');
-	
+
 	$CI = & get_instance();
 	$CI->load->helper('file'); // хелпер для работы с файлами
 	$CI->load->library('table');

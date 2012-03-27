@@ -80,21 +80,22 @@ function dignity_rss_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
-
-	$form .= '<p><div class="t150">' . t('Текст вначале:') . '</div> '. form_textarea( array( 'name'=>$widget . 'textdo', 'value'=>$options['textdo'] ) ) ;
-
-	$form .= '<p><div class="t150">' . t('Адрес RSS-Feed:') . '</div> '. form_input( array( 'name'=>$widget . 'feed_url', 'value'=>$options['feed_url'] ) ) ;
-
-	$form .= '<p><div class="t150">' . t('Текст для Google:') . '</div> '. form_input( array( 'name'=>$widget . 'google_text', 'value'=>$options['google_text'] ) ) ;
-
-	$form .= '<p><div class="t150">' . t('Текст для Яндекс:') . '</div> '. form_input( array( 'name'=>$widget . 'yandex_text', 'value'=>$options['yandex_text'] ) ) ;
-
-	$form .= '<p><div class="t150">' . t('Текст RSS ленты:') . '</div> '. form_input( array( 'name'=>$widget . 'rss_text', 'value'=>$options['rss_text'] ) ) ;
-
-	$form .= '<p><div class="t150">' . t('Текст RSS-лента на почту:') . '</div> '. form_input( array( 'name'=>$widget . 'rss_to_email', 'value'=>$options['rss_to_email'] ) ) ;
-
-	$form .= '<p><div class="t150">' . t('Текст в конце:') . '</div> '. form_textarea( array( 'name'=>$widget . 'textposle', 'value'=>$options['textposle'] ) ) ;
+	
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Текст вначале'), form_textarea( array( 'name'=>$widget . 'textdo', 'value'=>$options['textdo'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Адрес RSS-Feed'), form_input( array( 'name'=>$widget . 'feed_url', 'value'=>$options['feed_url'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Текст для Google'), form_input( array( 'name'=>$widget . 'google_text', 'value'=>$options['google_text'] )) , '');
+	
+	$form .= mso_widget_create_form(t('Текст для Яндекс'), form_input( array( 'name'=>$widget . 'yandex_text', 'value'=>$options['yandex_text'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Текст RSS ленты'), form_input( array( 'name'=>$widget . 'rss_text', 'value'=>$options['rss_text'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Текст RSS-лента на почту'), form_input( array( 'name'=>$widget . 'rss_to_email', 'value'=>$options['rss_to_email'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Текст в конце'), form_textarea( array( 'name'=>$widget . 'textposle', 'value'=>$options['textposle'] ) ), '');
 	
 	return $form;
 }
@@ -147,4 +148,4 @@ function dignity_rss_widget_custom($options = array(), $num = 1)
 	return $header . $textdo . $rss_f . $rss_google_read . $rss_yandex_read . $rss_mail . $textposle;
 }
 
-?>
+# end file

@@ -51,27 +51,19 @@ function links_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Ссылки:') . '</div> '. form_textarea( array( 'name'=>$widget . 'links', 'value'=>$options['links'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<br><div class="t150">&nbsp;</div>' . t('Указывайте по одной ссылке в каждом абзаце в формате:') . '
-			  <br><div class="t150">&nbsp;</div><strong>http://links/ | название | описание | noindex | _blank</strong>
-			  <br><div class="t150">&nbsp;</div><strong>noindex</strong> - ' . t('обрамить ссылку в nofollow, если не нужно - указать пробел') . '
-			  <br><div class="t150">&nbsp;</div><strong>_blank</strong> - ' . t('открыть ссылку в новом окне, если не нужно - указать пробел') . '
-			  ';
+	$form .= mso_widget_create_form(t('Ссылки'), form_textarea( array( 'name'=>$widget . 'links', 'value'=>$options['links'] ) ), t('Указывайте по одной ссылке в каждом абзаце в формате:<br><strong>http://links/ | название | описание | noindex | _blank</strong><br><strong>noindex</strong> - обрамить ссылку в nofollow, если не нужно - указать пробел<br><strong>_blank</strong> - открыть ссылку в новом окне, если не нужно - указать пробел'));
 	
-	$form .= '<p><div class="t150">' . t('Отображать:') . '</div> '. 
-		form_dropdown( $widget . 'screenshot', array( 
+	$form .= mso_widget_create_form(t('Отображать'), form_dropdown( $widget . 'screenshot', array( 
 		'0'=>t('Обычным списком'), 
 		'1'=>t('Использовать скриншот сайта 120x83px (бэби)'), 
 		'2'=>t('Использовать скриншот сайта 202x139px (маленький)'), 
 		'3'=>t('Использовать скриншот сайта 305x210px (средний)'), 
 		'4'=>t('Использовать скриншот сайта 400x275px (большой)')), 
-		$options['screenshot']);
-		
-	$form .= '<p><div class="t150">&nbsp;</div><strong>Скриншоты создаются с помощью <a href="http://www.webmorda.kz/" target="_blank">Мордашка твоего сайта</a></strong></p>';
-
+		$options['screenshot']), t('Скриншоты создаются с помощью <a href="http://www.webmorda.kz/" target="_blank">Мордашка твоего сайта</a>'));
+	
 	return $form;
 }
 
@@ -222,4 +214,4 @@ function links_widget_custom($options = array(), $num = 1)
 	return $out;
 }
 
-?>
+# end file

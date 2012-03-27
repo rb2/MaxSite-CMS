@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-	mso_cur_dir_lang('templates');
-	
 	# подготовка данных
 	$min_search_chars = 2; // минимальное кол-во симоволов при поиске
 	
@@ -33,7 +31,7 @@
 	}
 	else
 	{
-		$par = array( 'limit' => 15, 'cut'=>false, 'type'=>false ); 
+		$par = array( 'limit' => 7, 'cut'=>false, 'type'=>false ); 
 		
 		// подключаем кастомный вывод, где можно изменить массив параметров $par для своих задач
 		if ($f = mso_page_foreach('search-mso-get-pages')) require($f); 

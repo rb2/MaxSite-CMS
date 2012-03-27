@@ -32,7 +32,7 @@
 		$form .= '<h2>' . t('Настройки') . '</h2>';
 		$form .= '<p><strong>' . t('Заголовок:') . '</strong> ' . ' <input name="f_header" type="text" value="' . $options['header'] . '"></p>';
 		
-		echo '<form action="" method="post">' . mso_form_session('f_session_id');
+		echo '<form method="post" class="fform">' . mso_form_session('f_session_id');
 		echo $form;
 		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 		echo '</form>';

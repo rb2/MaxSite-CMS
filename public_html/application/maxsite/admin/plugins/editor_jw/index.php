@@ -30,7 +30,10 @@ function editor_jw($args = array())
 		else $editor_config['content'] = '';
 		
 	if (!$editor_config['content']) $editor_config['content'] = '<br>';
-		
+	
+	$editor_config['content'] = mso_hook('editor_content', $editor_config['content']);
+
+	
 	if (isset($args['do'])) $editor_config['do'] = $args['do'];
 		else $editor_config['do'] = '';
 		

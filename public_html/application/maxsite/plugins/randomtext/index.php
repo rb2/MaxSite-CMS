@@ -48,14 +48,11 @@ function randomtext_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. 
-			form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Способ вывода:') . '</div> '. form_dropdown( $widget . 'once_daily', array( 'random'=>t('Случайным образом'), 'day'=>t('Раз в сутки')), $options['once_daily']);
+	$form .= mso_widget_create_form(t('Способ вывода'), form_dropdown( $widget . 'once_daily', array( 'random'=>t('Случайным образом'), 'day'=>t('Раз в сутки')), $options['once_daily']), t('При выборе «Раз в сутки» выводится строчка, номер которой совпадает с сегодняшним числом'));
 	
-	$form .= '<br><div class="t150">&nbsp</div> ' . 
-			t('При выборе «Раз в сутки» выводится строчка, номер которой совпадает с сегодняшним числом.');
-	
+
 	return $form;
 }
 
@@ -144,6 +141,8 @@ function randomtext_widget_custom($arg = array(), $num = 1)
 Чем проще человек выражается, тем легче его понимают. /Фенимор Купер/
 Когда Бог создавал время, он создал его достаточно. /Ирландская поговорка/
 Это великолепные золотые часы на цепочке. Я горжусь ими. Их продал мне мой дедушка, когда лежал на смертном одре. /Вуди Аллен/';
+	
+	
 	}
 	
 	

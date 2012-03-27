@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-mso_cur_dir_lang('templates');
-
 // нужно выводить рубрики блоками - сделаем отдельным файлом
 if (mso_get_option('home_cat_block', 'templates', '0'))
 {

@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Search form',
+	'name' => t('Форма поиска'),
 	'description' => t('Виджет «Форма поиска»'),
 	'version' => '1.4',
 	'author' => 'Максим',

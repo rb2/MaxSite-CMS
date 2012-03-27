@@ -9,12 +9,17 @@
 # функция автоподключения плагина
 function antispam_autoload($args = array())
 {
-	mso_create_allow('antispam_edit', t('Админ-доступ к antispam'));
 	mso_hook_add( 'admin_init', 'antispam_admin_init'); # хук на админку
 	mso_hook_add( 'new_comments_check_spam', 'antispam_check_spam'); # хук новый комментарий
 	mso_hook_add( 'new_comments_check_spam_comusers', 'antispam_check_spam_comusers'); # хук новый комментарий для комюзера
 }
 
+# функция выполняется при активации (вкл) плагина
+function antispam_activate($args = array())
+{	
+	mso_create_allow('antispam_edit', t('Админ-доступ к antispam'));
+	return $args;
+}
 
 # функция выполняется при деактивации (выкл) плагина
 function antispam_deactivate($args = array())

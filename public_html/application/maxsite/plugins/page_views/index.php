@@ -61,18 +61,14 @@ function page_views_widget_form($num = 1)
 		$types[$page['page_type_id']] = $page['page_type_name'];
 	}
 
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Количество записей'), form_input( array( 'name'=>$widget . 'limit', 'value'=>$options['limit'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Тип записей'), form_dropdown( $widget . 'page_type', $types, array( 'value'=>$options['page_type'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Формат'), form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ), t('<strong>[TITLE]</strong> - название записи<br><strong>[COUNT]</strong> - просмотров в день<br><strong>[ALLCOUNT]</strong> - всего просмотров<br><strong>[A]</strong>ссылка<strong>[/A]</strong>'));
 
-	$form .= '<p><div class="t150">' . t('Количество записей:') . '</div> '. form_input( array( 'name'=>$widget . 'limit', 'value'=>$options['limit'] ) ) ;
-
-	$form .= '<p><div class="t150">' . t('Тип записей:') . '</div> '. form_dropdown( $widget . 'page_type', $types, array( 'value'=>$options['page_type'] ) ) ;
-
-	$form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
-
-	$form .= '<p><div class="t150">&nbsp;</div><strong>[TITLE]</strong> - ' . t('название записи');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[COUNT]</strong> - ' . t('просмотров в день');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[ALLCOUNT]</strong> - ' . t('всего просмотров');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[A]</strong>' . t('ссылка') . '<strong>[/A]</strong>';
 
 	return $form;
 }
@@ -131,7 +127,6 @@ function page_views_widget_custom($options = array(), $num = 1)
 	$CI->db->where('page_view_count > ', '0');
 	if ( $options['page_type'] ) $CI->db->where('page_type_id', $options['page_type']);
 	$CI->db->where('page_date_publish <', date('Y-m-d H:i:s'));
-	//$CI->db->where('page_date_publish <', 'NOW()', false);
 	$CI->db->order_by('page_id', 'desc');
 
 	$query = $CI->db->get('page');
@@ -147,8 +142,6 @@ function page_views_widget_custom($options = array(), $num = 1)
 				$pages[$key]['sutki'] = round( $val['page_view_count'] / ($curdate - strtotime($val['page_date_publish'])) * 86400);
 			else
 				$pages[$key]['sutki'] = $val['page_view_count'];
-
-
 		}
 
 		usort($pages, 'page_views_cmp'); // отсортируем по ['sutki']
@@ -197,4 +190,4 @@ function page_views_widget_custom($options = array(), $num = 1)
 	return $out;
 }
 
-# End of file
+# end file

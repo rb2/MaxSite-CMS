@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-mso_cur_dir_lang('admin');
-
 ?>
 
 <h1><?= t('Основные настройки') ?></h1>

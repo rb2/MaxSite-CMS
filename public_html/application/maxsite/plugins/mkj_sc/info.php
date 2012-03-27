@@ -1,8 +1,8 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 $info = array(
-	'name' => 'MKJ SimpleCaptcha',
-	'description' => 'Простая капча - выбрать из трёх рисунков один. Настройки текста, картинок.',
+	'name' => t('Капча SimpleCaptcha'),
+	'description' => t('Простая капча - выбрать из трёх рисунков один'),
 	'version' => '0.3',
 	'author' => 'Moringotto',
 	'plugin_url' => 'http://moringotto.ru/page/simplecaptcha.html',

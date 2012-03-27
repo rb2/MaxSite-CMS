@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-mso_cur_dir_lang('templates');
-
 require_once( getinfo('common_dir') . 'comments.php' );
 
 

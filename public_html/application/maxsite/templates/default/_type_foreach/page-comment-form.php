@@ -1,8 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
-mso_cur_dir_lang('templates');
-
-?>
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
 <div class="comment-form">
 	<form action="" method="post">

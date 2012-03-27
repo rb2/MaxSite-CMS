@@ -9,11 +9,18 @@
 # функция автоподключения плагина
 function down_count_autoload($args = array())
 {
-	mso_create_allow('down_count_edit', t('Админ-доступ к настройкам счетчика переходов (Download count)')); 
 	mso_hook_add( 'admin_init', 'down_count_admin_init'); # хук на админку
 	mso_hook_add( 'admin_head', 'down_count_head');
 	mso_hook_add( 'content', 'down_count_content'); # хук на обработку текста
 	mso_hook_add( 'init', 'down_count_init'); # хук на обработку входящего url
+}
+
+
+# функция выполняется при активации (вкл) плагина
+function down_count_activate($args = array())
+{	
+	mso_create_allow('down_count_edit', t('Админ-доступ к настройкам счетчика переходов (Download count)')); 
+	return $args;
 }
 
 # функция выполняется при деинстяляции плагина

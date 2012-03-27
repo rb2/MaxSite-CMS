@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-mso_cur_dir_lang('templates');
-
 ?>
 
 <div class="comment-form">
@@ -87,6 +85,7 @@ mso_cur_dir_lang('templates');
 								<label for="comments_email" class="ffirst ftitle"><?=t('E-mail')?></label>
 								<span><input type="email" name="comments_email" class="comments_email" id="comments_email" onfocus="document.getElementById('comments_reg_2').checked = 'checked';"></span> 
 										
+								<span class="fempty"></span>
 								<span class="fbutton"><input type="button" class="comments_copy" title="<?=t('Использовать email как пароль')?>" value="&gt;" onclick="document.getElementById('comments_reg_2').checked = 'checked'; document.getElementById('comments_password').value=document.getElementById('comments_email').value; "></span>
 										
 								<label for="comments_password" class="ftitle"><?=t('Пароль')?></label>
@@ -118,7 +117,7 @@ mso_cur_dir_lang('templates');
 				<?php 
 					if (mso_hook_present('page-comment-form')) 
 					{
-						echo '<p class="hint comments_auth">' . t('Авторизация:') . ' ';
+						echo '<p class="hint comments_auth"><span class="ffirst">' . t('Авторизация') . '&nbsp;</span>';
 						mso_hook('page-comment-form');
 						echo '</p>';
 					}

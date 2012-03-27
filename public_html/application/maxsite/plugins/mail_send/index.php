@@ -9,8 +9,14 @@
 # функция автоподключения плагина
 function mail_send_autoload()
 {
-	mso_create_allow('mail_send_edit', t('Админ-доступ к плагину Mail Send'));
 	mso_hook_add( 'admin_init', 'mail_send_admin_init'); # хук на админку
+}
+
+# функция выполняется при активации (вкл) плагина
+function mail_send_activate($args = array())
+{	
+	mso_create_allow('mail_send_edit', t('Админ-доступ к плагину Mail Send'));
+	return $args;
 }
 
 # функция выполняется при деинстяляции плагина
@@ -65,4 +71,4 @@ function mail_send_admin_page($args = array())
 }
 
 
-?>
+# end file

@@ -67,60 +67,48 @@ function category_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) 
-			. '<br><div class="t150">&nbsp;</div>' . t('Например:') . ' [LINK][TITLE]&lt;sup&gt;[COUNT]&lt;/sup&gt;[/LINK]&lt;br&gt;[DESCR]';
-
-	$form .= '<p><div class="t150">' . t('Формат текущей:') . '</div> '. form_input( array( 'name'=>$widget . 'format_current', 'value'=>$options['format_current'] ) ) 
-			. '<br><div class="t150">&nbsp;</div>' . t('Например:') . ' &lt;span&gt;[TITLE]&lt;sup&gt;[COUNT]&lt;/sup&gt;&lt;/span&gt;&lt;br&gt;[DESCR]'
-			. '<br><div class="t150">&nbsp;</div>' . t('Все варианты:') . ' [SLUG], [ID_PARENT], [ID], [MENU_ORDER], [TITLE], [TITLE_HTML], [COUNT], [DESCR], [DESCR_HTML], [LINK][/LINK], [URL]'
-			
-			
-			;
-
-	$form .= '<p><div class="t150">' . t('Включить только:') . '</div> '. form_input( array( 'name'=>$widget . 'include', 'value'=>$options['include'] ) ) 
-			. '<br><div class="t150">&nbsp;</div>' . t('Укажите номера рубрик через запятую или пробел');
+	$form .= mso_widget_create_form(t('Формат'), form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ), t('Например: [LINK][TITLE]&lt;sup&gt;[COUNT]&lt;/sup&gt;[/LINK]&lt;br&gt;[DESCR]'));
 	
-	$form .= '<p><div class="t150">' . t('Исключить:') . '</div> '. form_input( array( 'name'=>$widget . 'exclude', 'value'=>$options['exclude'] ) )
-			. '<br><div class="t150">&nbsp;</div>' . t('Укажите номера рубрик через запятую или пробел');
-
-	$form .= '<p><div class="t150">' . t('Если нет записей:') . '</div> '. 
-		form_dropdown( $widget . 'hide_empty', array( 
+	$form .= mso_widget_create_form(t('Формат текущей'), form_input( array( 'name'=>$widget . 'format_current', 'value'=>$options['format_current'] ) ), t('Например: &lt;span&gt;[TITLE]&lt;sup&gt;[COUNT]&lt;/sup&gt;&lt;/span&gt;&lt;br&gt;[DESCR]<br>Все варианты: [SLUG], [ID_PARENT], [ID], [MENU_ORDER], [TITLE], [TITLE_HTML], [COUNT], [DESCR], [DESCR_HTML], [LINK][/LINK], [URL]'));
+	
+	$form .= mso_widget_create_form(t('Включить только'), form_input( array( 'name'=>$widget . 'include', 'value'=>$options['include'] ) ), t('Укажите номера рубрик через запятую или пробел'));
+	
+	$form .= mso_widget_create_form(t('Исключить'), form_input( array( 'name'=>$widget . 'exclude', 'value'=>$options['exclude'] ) ), t('Укажите номера рубрик через запятую или пробел'));
+	
+	$form .= mso_widget_create_form(t('Если нет записей'), form_dropdown( $widget . 'hide_empty', array( 
 		'0'=>t('Отображать рубрику (количество записей ведется без учета опубликованности)'), 
 		'1'=>t('Скрывать рубрику (количество записей ведется только по опубликованным)')), 
-		$options['hide_empty']);
+		$options['hide_empty']), '');
 	
-	$form .= '<p><div class="t150">' . t('Сортировка:') . '</div> '. 
-		form_dropdown( $widget . 'order', 
+	$form .= mso_widget_create_form(t('Сортировка'), form_dropdown( $widget . 'order', 
 			array( 
 				'category_name' => t('По имени рубрики'), 
 				'category_id' => t('По ID рубрики'), 
 				'category_menu_order' => t('По выставленному menu order'), 
 				'pages_count' => t('По количеству записей')), 
-				$options['order']);
+				$options['order']), '');
 	
-	$form .= '<p><div class="t150">' . t('Порядок:') . '</div> '. 
-		form_dropdown( $widget . 'order_asc', 
+	$form .= mso_widget_create_form(t('Порядок'), form_dropdown( $widget . 'order_asc', 
 			array( 
 				'ASC'=>t('Прямой'), 
 				'DESC'=>t('Обратный')
-				), $options['order_asc']);
+				), $options['order_asc']), '');
 	
-	$form .= '<p><div class="t150">' . t('Включать потомков:') . '</div> '. 
-			form_dropdown( $widget . 'include_child', 
+	$form .= mso_widget_create_form(t('Включать потомков'), form_dropdown( $widget . 'include_child', 
 				array( 
 				'0'=>t('Всегда'), 
 				'1'=>t('Только если явно указана рубрика'),
 				'-1'=>t('Исключить всех')
-				), $options['include_child']);
+				), $options['include_child']), '');
 	
-	$form .= '<p><div class="t150">' . t('Ссылки рубрик:') . '</div> '. 
-			form_dropdown( $widget . 'nofollow', 
+	$form .= mso_widget_create_form(t('Ссылки рубрик'), form_dropdown( $widget . 'nofollow', 
 				array( 
 				'0'=>t('Обычные'), 
 				'1'=>t('Устанавливать как nofollow (неиндексируемые поисковиками)')
-				), $options['nofollow']);
+				), $options['nofollow']), '');
+	
 	
 	return $form;
 }
@@ -192,4 +180,4 @@ function category_widget_custom($options = array(), $num = 1)
 }
 
 
-?>
+# end file

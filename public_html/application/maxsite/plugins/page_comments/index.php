@@ -51,15 +51,11 @@ function page_comments_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Количество записей:') . '</div> '. form_input( array( 'name'=>$widget . 'limit', 'value'=>$options['limit'] ) ) ;
+	$form .= mso_widget_create_form(t('Количество записей'), form_input( array( 'name'=>$widget . 'limit', 'value'=>$options['limit'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
-	
-	$form .= '<p><div class="t150">&nbsp;</div><strong>[TITLE]</strong> - ' . t('название записи');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[COUNT]</strong> - ' . t('количество комментариев');
-	$form .= '<br><div class="t150">&nbsp;</div><strong>[A]</strong>' . t('ссылка') . '<strong>[/A]</strong>';
+	$form .= mso_widget_create_form(t('Формат'), form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ), t('<strong>[TITLE]</strong> - название записи<br><strong>[COUNT]</strong> - количество комментариев<br><strong>[A]</strong>ссылка<strong>[/A]</strong>'));
 	
 	return $form;
 }
@@ -146,4 +142,4 @@ function page_comments_widget_custom($options = array(), $num = 1)
 	return $out;	
 }
 
-?>
+# end file

@@ -6,8 +6,6 @@
  */
 
 
-mso_cur_dir_lang('templates');
-
 header('Content-type: text/html; charset=utf-8');
 header('Content-Type: application/rss+xml');
 	

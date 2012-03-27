@@ -141,8 +141,8 @@ function spoiler_head($args = array())
 # функция отрабатывающая миниопции плагина (function плагин_mso_options)
 function spoiler_mso_options() 
 {
-	mso_cur_dir_lang(__FILE__);
-//// Взято из wp-converter
+
+	//// Взято из wp-converter
 	$CI = & get_instance();
 	// найдем все файлы по маске *.css
 	$CI->load->helper('directory');
@@ -197,4 +197,5 @@ function spoiler_mso_options()
 		t('<p>С помощью этого плагина вы можете скрывать текст под спойлер.<br>Для использования плагина обрамите нужный текст в код [spoiler]ваш текст[/spoiler]</p><p class="info">Также возможны такие варианты: <br>[spoiler=показать]ваш текст[/spoiler], [spoiler=показать/спрятать]ваш текст[/spoiler], [spoiler=/спрятать]ваш текст[/spoiler]</p>')  // инфа
     );
 }
-?>
+
+# end file

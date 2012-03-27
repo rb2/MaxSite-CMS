@@ -56,14 +56,14 @@ function top_commentators_widget_form($num = 1)
   $CI = & get_instance();
   $CI->load->helper('form');
   
-  $form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+  $form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
   
-  $form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) )
-      . '<br><div class="t150">&nbsp;</div>' . t('Возможные подстановки:') . ' [LINK_URL][/LINK] [LINK_PAGE][/LINK] [NAME] [COUNT]';
+  $form .= mso_widget_create_form(t('Формат'), form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ), t('Возможные подстановки: [LINK_URL]ссылка[/LINK] [LINK_PAGE]ссылка[/LINK] [NAME] [COUNT]'));
+  
+  $form .= mso_widget_create_form('Количество комментаторов', form_input( array( 'name'=>$widget . 'commentators_cnt', 'value'=>$options['commentators_cnt'] ) ), '');
+  
+  $form .= mso_widget_create_form(t('За сколько дней учитывать комментарии'), form_input( array( 'name'=>$widget . 'days', 'value'=>$options['days'])), '');
 
-  $form .= '<p><div class="t150">' . t('Количество комментаторов:') . '</div> '. form_input( array( 'name'=>$widget . 'commentators_cnt', 'value'=>$options['commentators_cnt'] ) ) ;
-
-  $form .= '<p><div class="t150">' . t('За сколько дней учитывать комментарии:') . '</div> '. form_input( array( 'name'=>$widget . 'days', 'value'=>$options['days'] ) ) ;
 
   return $form;
 }
@@ -112,7 +112,7 @@ function top_commentators_widget_custom($options = array(), $num = 1)
     $CI->db->limit($options['commentators_cnt']);
     
     
-    $CI->db->where('comments_date >', date('Y-m-d H:i:s',time()-$options['days']*24*60*60));
+    $CI->db->where('comments_date >', date('Y-m-d H:i:s', time()-$options['days']*24*60*60));
     
     
     $CI->db->where('comments_approved', '1');
@@ -149,5 +149,4 @@ function top_commentators_widget_custom($options = array(), $num = 1)
   return $out;
 }
 
-
-?>
+# end file

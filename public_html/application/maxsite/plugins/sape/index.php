@@ -9,12 +9,17 @@
 # функция автоподключения плагина
 function sape_autoload($args = array())
 {
-	mso_create_allow('sape_edit', 'Админ-доступ к редактированию sape');
 	mso_hook_add( 'init', 'sape_init'); # хук на инициализацию
 	mso_hook_add( 'admin_init', 'sape_admin_init'); # хук на админку
 	mso_register_widget('sape_widget', 'Sape.ru'); # регистрируем виджет
 }
 
+# функция выполняется при активации (вкл) плагина
+function sape_activate($args = array())
+{	
+	mso_create_allow('sape_edit', t('Админ-доступ к редактированию sape'));
+	return $args;
+}
 
 # функция выполняется при деинсталяции плагина
 function sape_uninstall($args = array())
@@ -180,15 +185,16 @@ function sape_widget_form($num = 1)
 	// вывод самой формы
 	$CI = & get_instance();
 	$CI->load->helper('form');
-		
-	$form = '<p><div class="t150">Заголовок:</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
-	$form .= '<p><div class="t150">Количество ссылок:</div> '. form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'] ) ) ;
-	$form .= '<p><div class="t150">&nbsp;</div> Если этот виджет последний или единственный, то оставьте это поле пустым или 0';
-	$form .= '<p><div class="t150">HTML до:</div> '. form_input( array( 'name'=>$widget . 'htmldo', 'value'=>$options['htmldo'] ) ) ;
-	$form .= '<p><div class="t150">HTML после:</div> '. form_input( array( 'name'=>$widget . 'htmlposle', 'value'=>$options['htmlposle'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . 'Выводить:' . '</div> '. 
-		form_dropdown( $widget . 'links_or_articles', array('links'=>'Ссылки', 'articles'=>'Статьи'), $options['links_or_articles']);
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'])));
+	
+	$form .= mso_widget_create_form(t('Количество ссылок'), form_input( array( 'name'=>$widget . 'count', 'value'=>$options['count'])), t('Если этот виджет последний или единственный, то оставьте это поле пустым или 0'));
+	
+	$form .= mso_widget_create_form(t('HTML до'), form_input( array( 'name'=>$widget . 'htmldo', 'value'=>$options['htmldo'])), '');
+	
+	$form .= mso_widget_create_form(t('HTML после'), form_input( array( 'name'=>$widget . 'htmlposle', 'value'=>$options['htmlposle'])), '');
+	
+	$form .= mso_widget_create_form(t('Выводить'), form_dropdown( $widget . 'links_or_articles', array('links'=>t('Ссылки'), 'articles'=>t('Статьи')), $options['links_or_articles']), '');
 	
 	
 	return $form;
@@ -314,4 +320,4 @@ function sape_articles_custom_page_404($args = false)
 }
 
 
-### end file
+# end file

@@ -1,7 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 	
-	mso_cur_dir_lang('admin');
-	
 	$CI = & get_instance();
 	
 	# новый пользователь

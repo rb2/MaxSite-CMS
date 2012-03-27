@@ -6,14 +6,12 @@
  */
 
 
-mso_cur_dir_lang('templates');
-
 # подготовка данных
 
 $full_posts = mso_get_option('category_full_text', 'templates', '1'); // полные или короткие записи
 	
 // параметры для получения страниц
-$par = array( 'limit' => mso_get_option('limit_post', 'templates', '15'), 
+$par = array( 'limit' => mso_get_option('limit_post', 'templates', '7'), 
 			'cut' => mso_get_option('more', 'templates', 'Читать полностью »'),
 			'cat_order'=>'category_id_parent', 'cat_order_asc'=>'asc', 'type'=> false, 'content'=> $full_posts ); 
 

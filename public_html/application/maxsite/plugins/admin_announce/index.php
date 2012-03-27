@@ -9,12 +9,17 @@
 # функция автоподключения плагина
 function admin_announce_autoload($args = array())
 {
-	mso_create_allow('admin_announce_edit', t('Админ-доступ к административному анонсу'));
 	mso_hook_add( 'admin_init', 'admin_announce_admin_init'); # хук на админку
 	mso_hook_add( 'admin_home', 'admin_announce'); # хук на админ-анонс
 	mso_hook_add( 'admin_head', 'admin_announce_head');
 }
 
+# функция выполняется при активации (вкл) плагина
+function admin_announce_activate($args = array())
+{	
+	mso_create_allow('admin_announce_edit', t('Админ-доступ к административному анонсу'));
+	return $args;
+}
 
 # функция выполняется при деактивации (выкл) плагина
 function admin_announce_uninstall($args = array())
@@ -289,4 +294,4 @@ function admin_announce($args = array())
 }
 
 
-?>
+# end file

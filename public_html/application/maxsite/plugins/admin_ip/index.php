@@ -9,11 +9,15 @@
 # функция автоподключения плагина
 function admin_ip_autoload($args = array())
 {
-	mso_create_allow('admin_ip_edit', t('Админ-доступ к редактированию разрешенных IP'));
 	mso_hook_add( 'admin_init', 'admin_ip_admin_init'); # хук на админку
 }
 
-
+# функция выполняется при активации (вкл) плагина
+function admin_ip_activate($args = array())
+{	
+	mso_create_allow('admin_ip_edit', t('Админ-доступ к редактированию разрешенных IP'));
+	return $args;
+}
 
 # функция выполняется при деинстяляции плагина
 function admin_ip_uninstall($args = array())

@@ -26,4 +26,4 @@ function smiles_custom($content)
 	
 }
 
-?>
+# end file

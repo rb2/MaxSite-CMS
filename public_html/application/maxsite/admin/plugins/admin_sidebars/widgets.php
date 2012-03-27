@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 	
-	mso_cur_dir_lang('admin');
-	
 	$CI = & get_instance();
 	
 	// проверяем входящие данные
@@ -113,7 +111,7 @@
 					if ($num) $form .= '<h3>' . $a_js . $MSO->widgets[$widget] . ' (' . $num_orig . ')</a></h3>';
 						else $form .= '<h3>' . $a_js . $MSO->widgets[$widget] . '</a></h3>';
 					
-					$form .= '<div id="' . $d_id . '" style="display: none;" >';
+					$form .= '<div class="admin_widgets" id="' . $d_id . '" style="display: none;" >';
 					
 					$res = $func($num);
 					
@@ -139,7 +137,7 @@
 	if (!$error)
 	{
 		// добавляем форму, а также текущую сессию
-		echo '<form action="" method="post">' . mso_form_session('f_session_id');
+		echo '<form method="post" class="fform admin_widgets">' . mso_form_session('f_session_id');
 		echo $form;
 		echo '<p class="br"><input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '"></p>';
 		echo '</form>';

@@ -3,7 +3,7 @@
 # функция автоподключения плагина
 function picasa_autoload($args = array())
 {
-	mso_register_widget('picasa_widget', 'Picasa'); 
+	mso_register_widget('picasa_widget', t('Веб-альбомы Picasa')); 
 }
 
 # функция выполняется при деинстяляции плагина
@@ -45,24 +45,21 @@ function picasa_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<div class="t150">' . t('Заголовок:') . '</div><p>'. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<div class="t150">' . t('Логин пользователя:') . '</div><p>'. form_input( array( 'name'=>$widget . 'url', 'value'=>$options['url'] ) ) ;
-	$form .= '<div class="t150">&nbsp;</div><p>http://picasaweb.google.com/<b>логин</b></p>';
+	$form .= mso_widget_create_form(t('Логин пользователя'), form_input( array( 'name'=>$widget . 'url', 'value'=>$options['url'] ) ), 'http://picasaweb.google.com/<b>' . t('логин') . '</b>');
 	
-	$form .= '<div class="t150">' . t('Показывать:') . '</div>'. form_dropdown($widget . 'show_type', 
+	$form .= mso_widget_create_form(t('Показывать'), form_dropdown($widget . 'show_type', 
 								array( '1'=>t('Только названия альбомов'),
 										'2'=>t('Обложки альбомов'),
 										'3'=>t('Фотографии из альбома')), 
-								$options['show_type'] );
+								$options['show_type'] ), '');
 	
-	$form .= '<p></p><div class="t150">' . t('Количество:') . '</div>'. form_input( array( 'name'=>$widget . 'albums_count', 'value'=>$options['albums_count'] ) );
-	$form .= '<p></p><div class="t150">&nbsp;</div><p>Количество выводимых названий альбомов/обложек/фотографий</p>';
+	$form .= mso_widget_create_form(t('Количество'), form_input( array( 'name'=>$widget . 'albums_count', 'value'=>$options['albums_count'] ) ), t('Количество выводимых названий альбомов/обложек/фотографий'));
 	
-	$form .= '<p></p><div class="t150">' . t('Название альбома:') . '</div>'. form_input( array( 'name'=>$widget . 'album_name', 'value'=>$options['album_name'] ) );
-	$form .= '<p></p><div class="t150">&nbsp;</div><p>Для «Фотографии из альбома» http://picasaweb.google.com/логин/<b>название_альбома</b></p>';
+	$form .= mso_widget_create_form(t('Название альбома'), form_input( array( 'name'=>$widget . 'album_name', 'value'=>$options['album_name'] ) ), t('Для «Фотографии из альбома» http://picasaweb.google.com/логин/<b>название_альбома</b>'));
 	
-	$form .= '<p></p><div class="t150">' . t('Размер изображений:') . '</div>'. form_dropdown($widget . 'img_size', 
+	$form .= mso_widget_create_form(t('Размер изображений'), form_dropdown($widget . 'img_size', 
 								array( '32'=>t('32px'), 
 										'48'=>t('48px'), 
 										'64'=>t('64px'), 
@@ -74,7 +71,7 @@ function picasa_widget_form($num = 1)
 										'320'=>t('320px — только для фотографий'),
 										'400'=>t('400px — только для фотографий'),
 										'512'=>t('512px — только для фотографий')), 
-								$options['img_size'] );
+								$options['img_size'] ), '');
 	
 	return $form;
 }

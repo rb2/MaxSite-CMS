@@ -2,7 +2,7 @@
 
 
 $info = array(
-	'name' => 'Lightbox',
+	'name' => t('Lightbox'),
 	'description' => t('Подключение LightBox к вашему сайту. Делает красивый вывод картинок, а также небольших галерей'),
 	'version' => '1.1',
 	'author' => 'Максим',

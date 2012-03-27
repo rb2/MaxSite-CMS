@@ -88,36 +88,38 @@ function tagclouds3d_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">Заголовок:</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<p><div class="t150">Скорость вращения :</div> '. form_input( array( 'name'=>$widget . 'speed', 'value'=>$options['speed'] ) ) ;
-	$form .= '<p><div class="t150">Ширина (px):</div> '. form_input( array( 'name'=>$widget . 'width', 'value'=>$options['width'] ) ) ;
-	$form .= '<p><div class="t150">Высота (px):</div> '. form_input( array( 'name'=>$widget . 'height', 'value'=>$options['height'] ) ) ;
+	$form .= mso_widget_create_form(t('Скорость вращения'), form_input( array( 'name'=>$widget . 'speed', 'value'=>$options['speed'] ) ), '');
 	
-	/* === */
-	$form .= '<p><div class="t150">Background Color:#</div> '. form_input( array( 'name'=>$widget . 'bgcolor', 'value'=>$options['bgcolor'] ) ) ;
+	$form .= mso_widget_create_form(t('Ширина (px)'), form_input( array( 'name'=>$widget . 'width', 'value'=>$options['width'] ) ), '');
 	
-	$form .= '<p><div class="t150">Цвет текста:#</div> '. form_input( array( 'name'=>$widget . 'text_color', 'value'=>$options['text_color'] ) ) ;
+	$form .= mso_widget_create_form(t('Высота (px)'), form_input( array( 'name'=>$widget . 'height', 'value'=>$options['height'] ) ), '');
 	
-	$form .= '<p><div class="t150">Цвет текста 2:#</div> '. form_input( array( 'name'=>$widget . 'text_color2', 'value'=>$options['text_color2'] ) ) ;
+	$form .= mso_widget_create_form(t('Background Color #'), form_input( array( 'name'=>$widget . 'bgcolor', 'value'=>$options['bgcolor'] ) ), t('Все цвета указывайте без символа #'));
 	
-	$form .= '<p><div class="t150">Цвет "hover":#</div> '. form_input( array( 'name'=>$widget . 'hover_color', 'value'=>$options['hover_color'] ) ) ;
+	$form .= mso_widget_create_form(t('Цвет текста #'), form_input( array( 'name'=>$widget . 'text_color', 'value'=>$options['text_color'] ) ), '');
 	
-	/* === */
-	$form .= '<p><div class="t150">Мин. размер (%):</div> '. form_input( array( 'name'=>$widget . 'min_size', 'value'=>$options['min_size'] ) ) ;
-	$form .= '<p><div class="t150">Макс. размер (%):</div> '. form_input( array( 'name'=>$widget . 'max_size', 'value'=>$options['max_size'] ) ) ;
+	$form .= mso_widget_create_form(t('Цвет текста 2 #'), form_input( array( 'name'=>$widget . 'text_color2', 'value'=>$options['text_color2'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Цвет «hover» #'), form_input( array( 'name'=>$widget . 'hover_color', 'value'=>$options['hover_color'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Мин. размер (%)'), form_input( array( 'name'=>$widget . 'min_size', 'value'=>$options['min_size'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Макс. размер (%)'), form_input( array( 'name'=>$widget . 'max_size', 'value'=>$options['max_size'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Макс. меток'),form_input( array( 'name'=>$widget . 'max_num', 'value'=>$options['max_num'] ) ) , '');
+	
+	$form .= mso_widget_create_form(t('Миним. меток'), form_input( array( 'name'=>$widget . 'min_count', 'value'=>$options['min_count'] ) ), t('Отображать только метки, которых более указанного количества (0 - без ограничений)'));
+	
+	$form .= mso_widget_create_form(t('Начало блока'), form_input( array( 'name'=>$widget . 'block_start', 'value'=>$options['block_start'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Конец блока'), form_input( array( 'name'=>$widget . 'block_end', 'value'=>$options['block_end'] ) ), '');
+	
+	$form .= mso_widget_create_form(t('Сортировка'), form_dropdown($widget . 'sort', 
+								array( '0'=>t('По количеству записей (обратно)'), '1'=>t('По количеству записей'), 
+									   '2'=>t('По алфавиту'), '3'=>t('По алфавиту (обратно)')), $options['sort'] ), '');
 
-	$form .= '<p><div class="t150">Макс. меток:</div> '. form_input( array( 'name'=>$widget . 'max_num', 'value'=>$options['max_num'] ) ) ;
-	
-	$form .= '<p><div class="t150">Миним. меток:</div> '. form_input( array( 'name'=>$widget . 'min_count', 'value'=>$options['min_count'] ) ) ;
-	$form .= '<p><div class="t150">&nbsp;</div>Отображать только метки, которых более указанного количества. (0 - без ограничений)';
-
-	$form .= '<p><div class="t150">Начало блока:</div> '. form_input( array( 'name'=>$widget . 'block_start', 'value'=>$options['block_start'] ) ) ;
-	$form .= '<p><div class="t150">Конец блока:</div> '. form_input( array( 'name'=>$widget . 'block_end', 'value'=>$options['block_end'] ) ) ;
-	
-	$form .= '<p><div class="t150">Сортировка:</div> '. form_dropdown($widget . 'sort', 
-								array( '0'=>'По количеству записей (обратно)', '1'=>'По количеству записей', 
-									   '2'=>'По алфавиту', '3'=>'По алфавиту (обратно)'), $options['sort'] ) ;
 	
 	return $form;
 }
@@ -287,4 +289,4 @@ function tagclouds3d_widget_custom($options = array(), $num = 1)
 	return $out;
 }
 
-	
+# end file

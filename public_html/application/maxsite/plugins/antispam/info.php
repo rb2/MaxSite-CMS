@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Антиспам',
-	'description' => 'Отлавливает спам. Можно задать черные списки IP и запретных слов. Ведется лог.',
+	'name' => t('Антиспам'),
+	'description' => t('Отлавливает спам. Можно задать черные списки IP и запретных слов'),
 	'version' => '1.2',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',

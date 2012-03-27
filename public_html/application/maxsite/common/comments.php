@@ -1723,7 +1723,7 @@ function mso_comuser_auth($data)
 			mso_add_to_cookie($name_cookies, $value, $expire, $redirect); // в куку для всего сайта
 		}
 	}
-	elseif ($data['allow_create_new_comuser']) // только если разрешено создавать новых комюзеров
+	elseif ($allow_create_new_comuser) // только если разрешено создавать новых комюзеров
 	{
 		// нет такого email, нужно регистрировать комюзера
 		

@@ -1,8 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
-
-mso_cur_dir_lang('admin');
-
-?>
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
 <h1><?= t('Редактирование страницы') ?></h1>
 <p class="ret-to-pages"><a href="<?= $MSO->config['site_admin_url'] . 'page' ?>"><?= t('Вернуться к списку страниц') ?></a>
@@ -361,7 +357,7 @@ mso_cur_dir_lang('admin');
 				'max_num' => isset($editor_options['tags_count']) ? $editor_options['tags_count'] : 20,
 				'max_size' => '180',
 				'sort' => isset($editor_options['tags_sort']) ? $editor_options['tags_sort'] : 0, 
-				'block_start' => '<p id="f_all_tags_max_num"><br>',
+				'block_start' => '<p id="f_all_tags_max_num">',
 				'block_end' => ' <a title="' . t('Показать все метки') . '" href="#" onClick="shtags(1); return false;">&gt;&gt;&gt;</a></p>',
 				'format' => '<span style="font-size: %SIZE%%"><a href="#" onClick="addTag(\'%TAG%\'); return false;">%TAG%</a><sub style="font-size: 7pt;">%COUNT%</sub></span>'
 			));
@@ -371,7 +367,7 @@ mso_cur_dir_lang('admin');
 				'max_num' => 9999,
 				'max_size' => '180',
 				'sort' => isset($editor_options['tags_sort']) ? $editor_options['tags_sort'] : 0, 
-				'block_start' => '<p id="f_all_tags_all" style="display: none;"><br>',
+				'block_start' => '<p id="f_all_tags_all" style="display: none;">',
 				'block_end' => ' <a title="' . t('Показать только самые популярные метки') . '" href="#" onClick="shtags(2); return false;">&lt;&lt;&lt;</a></p>',
 				'format' => '<span style="font-size: %SIZE%%"><a href="#" onClick="addTag(\'%TAG%\'); return false;">%TAG%</a><sub style="font-size: 7pt;">%COUNT%</sub></span>'
 			));
@@ -406,7 +402,7 @@ mso_cur_dir_lang('admin');
 	
 		
 		// получаем все рубрики чекбоксы
-		$all_cat = mso_cat_ul('<label><input name="f_cat[]" type="checkbox" %CHECKED% value="%ID%" title="id = %ID%"> %NAME%</label>', true, $f_cat, array());
+		$all_cat = mso_cat_ul('<label><input name="f_cat[]" type="checkbox" %CHECKED% value="%ID%" title="id = %ID%"> %NAME%</label>', true, $f_cat, $f_cat);
 
 		
 		if ($f_comment_allow) $f_comment_allow = 'checked="checked"';

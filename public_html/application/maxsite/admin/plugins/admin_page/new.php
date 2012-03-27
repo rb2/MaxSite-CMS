@@ -1,7 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
-	mso_cur_dir_lang('admin');	
-	
 	$CI = & get_instance();
 	
 	$id = 0;
@@ -279,7 +277,7 @@
 			
 			'sort' => isset($editor_options['tags_sort']) ? $editor_options['tags_sort'] : 0, 
 			
-			'block_start' => '<p id="f_all_tags_max_num"><br>',
+			'block_start' => '<p id="f_all_tags_max_num">',
 			'block_end' => ' <a title="' . t('Показать все метки') . '" href="#" onClick="shtags(1); return false;">&gt;&gt;&gt;</a></p>',
 			'format' => '<span style="font-size: %SIZE%%"><a href="#" onClick="addTag(\'%TAG%\'); return false;">%TAG%</a><sub style="font-size: 7pt;">%COUNT%</sub></span>'
 		));
@@ -291,7 +289,7 @@
 			
 			'sort' => isset($editor_options['tags_sort']) ? $editor_options['tags_sort'] : 0, 
 			
-			'block_start' => '<p id="f_all_tags_all" style="display: none;"><br>',
+			'block_start' => '<p id="f_all_tags_all" style="display: none;">',
 			'block_end' => ' <a title="' . t('Показать только самые популярные метки') . '" href="#" onClick="shtags(2); return false;">&lt;&lt;&lt;</a></p>',
 			'format' => '<span style="font-size: %SIZE%%"><a href="#" onClick="addTag(\'%TAG%\'); return false;">%TAG%</a><sub style="font-size: 7pt;">%COUNT%</sub></span>'
 		));
@@ -327,7 +325,7 @@
 	require_once( $MSO->config['common_dir'] . 'category.php' );
 	// $all_cat = mso_cat('<input name="f_cat[]" type="checkbox" %CHECKED% value="%ID%"> %NAME%', $f_cat);
 	
-	$all_cat = mso_cat_ul('<label><input name="f_cat[]" type="checkbox" %CHECKED% value="%ID%" title="id = %ID%"> %NAME%</label>', true, $f_cat, array());
+	$all_cat = mso_cat_ul('<label><input name="f_cat[]" type="checkbox" %CHECKED% value="%ID%" title="id = %ID%"> %NAME%</label>', true, $f_cat, $f_cat);
 
 
 	// опция по-умолчанию разрешение комментирования отмечать или нет

@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => t('PopUp'),
+	'name' => t('Всплывающее окно'),
 	'description' => t('Плагин выводит на сайте всплывающее popup-окно'),
 	'version' => '1.0',
 	'author' => 'Юрий, Максим',

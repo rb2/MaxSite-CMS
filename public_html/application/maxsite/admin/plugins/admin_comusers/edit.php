@@ -1,8 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
-
-mso_cur_dir_lang('admin');
-
-?>
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
 <h1><?= t('Редактирование комментатора') ?></h1>
 <p><a href="<?= $MSO->config['site_admin_url'] . 'comusers' ?>"><?= t('Вернуться к списку комментаторов') ?></a></p>

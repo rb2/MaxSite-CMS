@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Page parent',
-	'description' => 'Виджет выводит список дочерних/родительских элементов одной страницы',
+	'name' => t('Связанные страницы'),
+	'description' => t('Виджет выводит список дочерних/родительских страниц'),
 	'version' => '1.0',
 	'author' => 'Максим',
 	'plugin_url' => 'http://max-3000.com/',
@@ -10,4 +10,4 @@ $info = array(
 	'group' => 'template'
 );
 
-?>
+# end file

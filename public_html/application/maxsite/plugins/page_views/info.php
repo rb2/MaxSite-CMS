@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Page views',
+	'name' => t('Самое читаемое'),
 	'description' => t('Виджет «Самое читаемое»'),
 	'version' => '1.2',
 	'author' => 'Максим',

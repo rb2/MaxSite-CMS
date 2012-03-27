@@ -8,11 +8,16 @@
 # функция автоподключения плагина
 function perelinks_autoload($args = array())
 {
-	mso_create_allow('perelinks_edit', t('Доступ к настройкам «perelinks»'));
 	mso_hook_add( 'content_content', 'perelinks_custom'); # хук на админку
 	mso_hook_add( 'admin_init', 'perelinks_admin_init'); # хук на админку
 }
 
+# функция выполняется при активации (вкл) плагина
+function perelinks_activate($args = array())
+{	
+	mso_create_allow('perelinks_edit', t('Доступ к настройкам «perelinks»'));
+	return $args;
+}
 
 function perelinks_uninstall($args = array())
 {

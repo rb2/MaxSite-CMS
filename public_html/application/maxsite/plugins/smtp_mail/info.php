@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => t('SMTP mail'),
+	'name' => t('Почта чере SMTP mail'),
 	'description' => t('Плагин позволяет отправлять почту через SMTP сервер.'),
 	'version' => '0.7.2',
 	'author' => 'Wave',
@@ -10,4 +10,4 @@ $info = array(
 	'group' => 'template'
 );
 
-?>
+# end file

@@ -49,14 +49,10 @@ function favorites_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Ссылки:') . '</div> '. form_textarea( array( 'name'=>$widget . 'favorites', 'value'=>$options['favorites'] ) ) ;
-	
-	$form .= '<br><div class="t150">&nbsp;</div>' . t('Указывайте по одной ссылке в каждом абзаце в формате: <strong>тип/ссылка | название</strong>') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>тип/ссылка</strong> - указывается от адреса сайта, например') . ' <strong>page/about</strong>, <strong>category/news</strong>
-			  <br><div class="t150">&nbsp;</div>' . t('Для главной страницы укажите: <strong> / | Главная</strong>') . '
-			  ';
+	$form .= mso_widget_create_form(t('Ссылки'), form_textarea( array( 'name'=>$widget . 'favorites', 'value'=>$options['favorites'] ) ), t('Указывайте по одной ссылке в каждом абзаце в формате: <strong>тип/ссылка | название</strong><br><strong>тип/ссылка</strong> - указывается от адреса сайта, например<br><strong>page/about</strong>, <strong>category/news</strong><br>Для главной страницы укажите: <strong> / | Главная</strong>'));
+
 
 	return $form;
 }
@@ -82,11 +78,6 @@ function favorites_widget_update($num = 1)
 # функции плагина
 function favorites_widget_custom($options = array(), $num = 1)
 {
-	// кэш  - здесь не нужен
-	//$cache_key = mso_md5('favorites_widget_custom'. implode('', $options) . $num);
-	//$k = mso_get_cache($cache_key);
-	//if ($k) return $k; // да есть в кэше
-	
 	$out = '';
 	
 	$siteurl = getinfo('siteurl'); // адрес сайта
@@ -111,8 +102,6 @@ function favorites_widget_custom($options = array(), $num = 1)
 				$href = trim( str_replace('/', ' ', $href) );
 				$href = str_replace(' ', '/', $href);
 				
-				
-				
 				if ( isset($ar[1]) and trim($ar[1]) ) // если есть название
 				{
 					$title = trim($ar[1]); // название
@@ -129,9 +118,7 @@ function favorites_widget_custom($options = array(), $num = 1)
 	
 	if ($out) $out = $options['header'] . NR . '<ul class="is_link favorites">' . $out . NR . '</ul>' .NR ;
 	
-	// mso_add_cache($cache_key, $out); // сразу в кэш добавим
-	
 	return $out;
 }
 
-?>
+# end file

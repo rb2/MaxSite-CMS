@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-mso_cur_dir_lang('templates');
-
 // параметры для получения страниц
 $par = array( 'limit' => mso_get_option('limit_post', 'templates', '7'), 
 			'cut' => mso_get_option('more', 'templates', t('Читать полностью »')),

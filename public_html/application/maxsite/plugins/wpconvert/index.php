@@ -8,8 +8,14 @@
 # функция автоподключения плагина
 function wpconvert_autoload($args = array())
 {
-	mso_create_allow('wpconvert_edit', t('Админ-доступ к wpconvert'));
 	mso_hook_add( 'admin_init', 'wpconvert_admin_init'); # хук на админку
+}
+
+# функция выполняется при активации (вкл) плагина
+function wpconvert_activate($args = array())
+{	
+	mso_create_allow('wpconvert_edit', t('Админ-доступ к wpconvert'));
+	return $args;
 }
 
 # функция выполняется при указаном хуке admin_init
@@ -55,4 +61,4 @@ function wpconvert_admin_page($args = array())
 }
 
 
-?>
+# end file

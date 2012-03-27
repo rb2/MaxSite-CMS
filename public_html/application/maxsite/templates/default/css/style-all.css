@@ -142,7 +142,6 @@ h6 {
   line-height: 1.4em;
 }
 p,
-code,
 pre,
 blockquote,
 ul,
@@ -216,8 +215,7 @@ dt {
 dd {
   margin-left: 15px;
 }
-pre,
-code {
+pre {
   background: #F4F4F4;
   border: 1px solid #CCC;
   padding: 7px;
@@ -225,6 +223,11 @@ code {
   overflow: auto;
   font-family: "Courier New", monospace;
   line-height: 1.5em;
+}
+code {
+  background: #F4F4F4;
+  border: 1px solid #CCC;
+  padding: 0 5px;
 }
 blockquote {
   padding: 0 4px 0 20px;
@@ -382,7 +385,12 @@ form.fform p span.fhint,
 form.fform p label.fhint {
   font-size: .9em;
   color: #606060;
+  padding-top: 0;
   padding-bottom: 5px;
+}
+form.fform p span.fheader,
+form.fform p label.fheader {
+  font-weight: bold;
 }
 form.fform p span.nocell,
 form.fform p label.nocell {
@@ -391,7 +399,7 @@ form.fform p label.nocell {
   padding: 0;
 }
 form.fform p.nop {
-  padding: 0;
+  padding-top: 0;
 }
 /* ссылки */
 a.current_url {
@@ -579,6 +587,11 @@ div.page_only {
 }
 /* отступ на одиночной не нужен */
 div.type_page div.page_only {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+div.type_contact div.page_only {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
@@ -1313,9 +1326,17 @@ div.tabs-box {
   margin-top: 0;
   margin-bottom: 0;
 }
+.margin-tb10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .margin-lr0 {
   margin-left: 0;
   margin-right: 0;
+}
+.margin-lr10 {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 /* paddings */
 .padding0 {

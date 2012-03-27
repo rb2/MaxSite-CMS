@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Download count',
+	'name' => t('Счетчик переходов'),
 	'description' => t('Подсчет количества переходов по ссылке. Обрамите нужную ссылку в [dc]...[/dc]'),
 	'version' => '1.1',
 	'author' => 'Максим, Wave',

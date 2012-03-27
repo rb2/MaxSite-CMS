@@ -1578,6 +1578,7 @@ function mso_page_content($page_content = '', $use_password = true, $message = '
 
 			if ($f_page_id == $page['page_id'] and $f_password == $page['page_password'])
 			{ 	// верный пароль
+				$page['page_password_ok'] = true;
 				echo mso_hook('content_content', $page_content);
 			}
 			else // ошибка в пароле

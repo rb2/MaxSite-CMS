@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => t('Theme switch'),
+	'name' => t('Шаблоны сайта'),
 	'description' => t('Переключение тем оформления сайта посетителями'),
 	'version' => '1.3',
 	'author' => 'Максим',

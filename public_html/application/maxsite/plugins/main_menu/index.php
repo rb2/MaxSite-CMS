@@ -9,12 +9,17 @@
 # функция автоподключения плагина
 function main_menu_autoload()
 {
-	mso_create_allow('main_menu_edit', t('Админ-доступ к редактированию MainMenu'));
 	mso_hook_add( 'main_menu', 'main_menu_custom');
 	mso_hook_add( 'head', 'main_menu_head');
 	mso_hook_add( 'admin_init', 'main_menu_admin_init'); # хук на админку
 }
 
+# функция выполняется при активации (вкл) плагина
+function main_menu_activate($args = array())
+{	
+	mso_create_allow('main_menu_edit', t('Админ-доступ к редактированию MainMenu'));
+	return $args;
+}
 
 # функция выполняется при деинсталяции плагина
 function main_menu_uninstall($args = array())

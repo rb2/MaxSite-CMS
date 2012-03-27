@@ -13,7 +13,7 @@
 	-webkit-border-radius: @arguments;
 	-moz-border-radius: @arguments;
 	border-radius: @arguments;
-	// behavior: url(/PIE.php);
+	behavior: url(/PIE.php);
 }
 
 .border_radius(@radius)
@@ -21,7 +21,7 @@
 	-webkit-border-radius: @radius;
 	-moz-border-radius: @radius;
 	border-radius: @radius;
-	// behavior: url(/PIE.php);
+	behavior: url(/PIE.php);
 }
 
 .box_shadow(none) 
@@ -61,15 +61,39 @@
 	margin: @top auto @bottom auto;
 }
 
+
+// border
 .border(@color: #C0C0C0, @width: 1px, @type: solid)
 {
 	border: @arguments;
 }
 
+.border(top, @color: #C0C0C0, @width: 1px, @type: solid)
+{
+	border-top: @color @width @type;
+}
+
+.border(right, @color: #C0C0C0, @width: 1px, @type: solid)
+{
+	border-right: @color @width @type;
+}
+
+.border(bottom, @color: #C0C0C0, @width: 1px, @type: solid)
+{
+	border-bottom: @color @width @type;
+}
+
+.border(left, @color: #C0C0C0, @width: 1px, @type: solid)
+{
+	border-left: @color @width @type;
+}
+
+
 
 // (c) bootstrap
 
-.background_gradient (@startColor: #555, @endColor: #333) {
+.background_gradient (@startColor: #555, @endColor: #333) 
+{
     background-color: @endColor;
     background-repeat: repeat-x;
     background-image: -khtml-gradient(linear, left top, left bottom, from(@startColor), to(@endColor)); // Konqueror
@@ -82,7 +106,8 @@
     filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor)); // IE9 and down
 }
 
-.background_gradient_horizontal (@startColor: #555, @endColor: #333) {
+.background_gradient_horizontal (@startColor: #555, @endColor: #333) 
+{
 	background-color: @endColor;
 	background-repeat: repeat-x;
 	background-image: -khtml-gradient(linear, left top, right top, from(@startColor), to(@endColor)); // Konqueror
@@ -95,7 +120,8 @@
 	filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",@startColor,@endColor)); // IE9 and down
  }
 
-.background_gradient_directional (@startColor: #555, @endColor: #333, @deg: 45deg) {
+.background_gradient_directional (@startColor: #555, @endColor: #333, @deg: 45deg) 
+{
     background-color: @endColor;
     background-repeat: repeat-x;
     background-image: -moz-linear-gradient(@deg, @startColor, @endColor); // FF 3.6+
@@ -105,7 +131,8 @@
     background-image: linear-gradient(@deg, @startColor, @endColor); // The standard
 }
 
-.background_gradient_vertical_three_colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
+.background_gradient_vertical_three_colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) 
+{
     background-color: @endColor;
     background-repeat: no-repeat;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), color-stop(@colorStop, @midColor), to(@endColor));
@@ -117,7 +144,8 @@
     filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor)); // IE9 and down, gets no color-stop at all for proper fallback
 }
  
-.opacity(@opacity: 100) {
+.opacity(@opacity: 100) 
+{
   filter: e(%("alpha(opacity=%d)", @opacity));
   -khtml-opacity: @opacity / 100;
     -moz-opacity: @opacity / 100;

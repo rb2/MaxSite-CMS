@@ -54,18 +54,17 @@ function search_form_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'])));
 	
-	$form .= '<p><div class="t150">' . t('Текст подсказки:') . '</div> '. form_input( array( 'name'=>$widget . 'text', 'value'=>$options['text'] ) ) ;
+	$form .= mso_widget_create_form(t('Текст подсказки'), form_input( array( 'name'=>$widget . 'text', 'value'=>$options['text'])));
 	
-	$form .= '<p><div class="t150">' . t('Текст на кнопке:') . '</div> '. form_input( array( 'name'=>$widget . 'submit', 'value'=>$options['submit'] ) ) ;
+	$form .= mso_widget_create_form(t('Текст на кнопке'), form_input( array( 'name'=>$widget . 'submit', 'value'=>$options['submit'])));
 	
-	$form .= '<p><div class="t150">' . t('CSS-стиль текста:') . '</div> '. form_input( array( 'name'=>$widget . 'style_text', 'value'=>$options['style_text'] ) ) ;
+	$form .= mso_widget_create_form(t('CSS-стиль текста'), form_input( array( 'name'=>$widget . 'style_text', 'value'=>$options['style_text'])));
 	
-	$form .= '<p><div class="t150">' . t('CSS-стиль кнопки:') . '</div> '. form_input( array( 'name'=>$widget . 'style_submit', 'value'=>$options['style_submit'] ) ) ;
+	$form .= mso_widget_create_form(t('CSS-стиль кнопки'), form_input( array( 'name'=>$widget . 'style_submit', 'value'=>$options['style_submit'])));
 	
-	$form .= '<p><div class="t150">' . t('Текст внизу:') . '</div> '. form_textarea( array( 'name'=>$widget . 'text_posle', 'value'=>$options['text_posle'], 'rows' => '3' ) ) ;
-	
+	$form .= mso_widget_create_form(t('Текст внизу'), form_textarea( array( 'name'=>$widget . 'text_posle', 'value'=>$options['text_posle'], 'rows' => '3')));
 	
 	
 	return $form;

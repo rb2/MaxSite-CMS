@@ -2673,7 +2673,7 @@ function mso_load_jquery($plugin = '', $path = '')
 		{
 			$jquery_type = mso_get_option('jquery_type', 'general', 'self');
 			
-			$version = '1.7.1';
+			$version = '1.7.2';
 			
 			if ($jquery_type == 'google') $url = 'http://ajax.googleapis.com/ajax/libs/jquery/' . $version . '/jquery.min.js'; // Google Ajax API CDN 
 			elseif ($jquery_type == 'microsoft') $url = 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-' . $version . '.min.js'; // Microsoft CDN
@@ -3059,6 +3059,7 @@ function mso_create_list($a = array(), $options = array(), $child = false)
 
 # устанавливаем $MSO->current_lang_dir в которой хранится
 # текущий каталог языка. Это второй параметр функции t()
+# в связи с изменением алгоритма перевода, функция считается устаревшей
 function mso_cur_dir_lang($dir = false)
 {
 	global $MSO;
@@ -3089,6 +3090,19 @@ function t($w = '', $file = false)
 	
 	static $langs = array(); // общий массив перевода
 	static $file_langs = array(); // список уже подключенных файлов
+	
+	
+	// только для получения переводимых фраз
+	// ОПИСАНИЕ см. в common/language/readme.txt
+	if (defined('MSO__PLEASE__RETURN__LANGS'))
+	{
+		static $all_w = array();
+		
+		if ($w === '__please__return__langs__') return $langs; 
+		if ($w === '__please__return__w__') return array_unique ($all_w);
+		
+		if ($w) $all_w[] = $w;
+	}
 	
 	if (!isset($MSO->language)) return $w; // язык вообще не существует, выходим
 	if (!($current_language = $MSO->language)) return $w; // есть, но не указан язык, выходим
@@ -3846,6 +3860,23 @@ function mso_link_rel($rel = 'canonical', $add = '')
 		}
 	}
 	
+}
+
+# функция для виджетов формирует поля формы для form.fform с необходимой html-разметкой
+# каждый вызов функции - одна строчка + если есть $hint - вторая
+# $form = mso_widget_create_form('Название', поле формы, 'Подсказка');
+function mso_widget_create_form($name = '', $input = '', $hint = '')
+{
+	$out = '<p><span class="ffirst ftitle ftop">' . $name . '</span><label>'
+			. $input . '</label></p>';
+
+	if ($hint)
+	{
+		$out .= '<p class="nop"><span class="ffirst"></span><span class="fhint">'
+				. $hint . '</span></p>';
+	}
+	
+	return $out;
 }
 
 # end file

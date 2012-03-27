@@ -31,4 +31,4 @@ function auth_content_parse($text)
 	return $text;
 }
 
-?>
+# end file

@@ -1,8 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
-mso_cur_dir_lang('admin');
-
-?>
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <h1><?= t('Редактирование комментария') ?></h1>
 <p><a href="<?= getinfo('site_admin_url') . 'comments' ?>"><?= t('К списку комментариев') ?></a></p>

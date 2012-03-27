@@ -8,9 +8,15 @@
 # функция автоподключения плагина
 function feedburner_autoload($args = array())
 {
-	mso_create_allow('feedburner_edit', t('Админ-доступ к feedburner'));
 	mso_hook_add( 'admin_init', 'feedburner_admin_init'); # хук на админку
 	mso_hook_add( 'init', 'feedburner_init'); # хук на init
+}
+
+# функция выполняется при активации (вкл) плагина
+function feedburner_activate($args = array())
+{	
+	mso_create_allow('feedburner_edit', t('Админ-доступ к feedburner'));
+	return $args;
 }
 
 # функция выполняется при деинстяляции плагина
@@ -88,4 +94,4 @@ function feedburner_init($args = array())
 
 
 
-?>
+# end file

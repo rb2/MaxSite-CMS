@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-mso_cur_dir_lang('templates');
-
 if ($f = mso_page_foreach('home-cat-block-head-meta')) require($f);
 
 // нужно выводить рубрики блоками 

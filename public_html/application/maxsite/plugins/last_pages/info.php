@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Last pages',
+	'name' => t('Последние записи'),
 	'description' => t('Вывод последних записей'),
 	'version' => '1.5',
 	'author' => 'Максим',

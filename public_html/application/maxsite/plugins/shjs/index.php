@@ -160,9 +160,20 @@ function shjs_content($text = '')
 		$text = str_replace('[pre lang=html]', '[pre class="sh_html"]', $text);
 		$text = str_replace('<pre lang=html>', '<pre class="sh_html">', $text);
 		
+		
+		$text = preg_replace_callback('~<pre(.*?)>(.*?)<\/pre>~si', 'shjs_pre_callback', $text);
+		
 		return $text;
 	}
 
+}
+
+function shjs_pre_callback($matches)
+{
+	$m = str_replace("\t", '    ', $matches[2]);
+	$m = '<pre' . $matches[1] . '>' . $m . '</pre>';
+
+	return $m;
 }
 
 

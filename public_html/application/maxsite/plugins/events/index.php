@@ -50,24 +50,12 @@ function events_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> ' . 
-			form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
-			
-	$form .= '<p><div class="t150">' . t('Формат даты:') . '</div> '. 
-			form_input( array( 'name'=>$widget . 'format_date', 'value'=>$options['format_date'] ) );
-			
-	$form .= '<br><div class="t150">&nbsp;</div>' . t('Как это <a href="http://ru.php.net/date" target="_blank">принято в PHP</a>');
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
+	$form .= mso_widget_create_form(t('Формат даты'), form_input( array( 'name'=>$widget . 'format_date', 'value'=>$options['format_date'] ) ), t('Как это <a href="http://ru.php.net/date" target="_blank">принято в PHP</a>'));
 	
-	$form .= '<p><div class="t150">' . t('События:') . '</div> '. form_textarea( array( 'name'=>$widget . 'events', 'value'=>$options['events'] ) ) ;
-	$form .= '<br><div class="t150">&nbsp;</div>' . t('Указывайте по одному событию в каждом абзаце в формате:') . ' 
-			  <br><div class="t150">&nbsp;</div><strong>' . t('дата | до | после | текст события') . '</strong>, ' . t('где') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>дата</strong> в формате yyyy-mm-dd') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>до</strong> - выводить событие до наступления N-дней') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>после</strong> - выводить событие после прошествия N-дней') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>В тексте события</strong> можно использовать HTML') . '
-			  <br><div class="t150">&nbsp;</div>' . t('<strong>ПРИМЕР:</strong> 2008-09-01 | 3 | 1 | Пора в школу!') . '
-			  ';
+	$form .= mso_widget_create_form(t('События'), form_textarea( array( 'name'=>$widget . 'events', 'value'=>$options['events'] ) ), t('Указывайте по одному событию в каждом абзаце в формате:<br><strong>дата | до | после | текст события</strong><br><strong>дата</strong> в формате yyyy-mm-dd<br><strong>до</strong> - выводить событие до наступления N-дней<br><strong>после</strong> - выводить событие после прошествия N-дней<br><strong>В тексте события</strong> можно использовать HTML<br><strong>ПРИМЕР:</strong> 2008-09-01 | 3 | 1 | Пора в школу!'));
+	
 	return $form;
 }
 
@@ -169,4 +157,4 @@ function events_widget_custom($options = array(), $num = 1)
 	return $out;	
 }
 
-?>
+# end file

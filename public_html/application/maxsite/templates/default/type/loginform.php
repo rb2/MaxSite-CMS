@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-	mso_cur_dir_lang('templates');
-
 	mso_remove_hook( 'body_start', 'demo_body_start');
 	mso_remove_hook( 'body_end', 'demo_body_end');
 

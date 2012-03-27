@@ -5,8 +5,6 @@
  * (c) http://max-3000.com/
  */
 
-	mso_cur_dir_lang('templates');
-	
 	require(getinfo('template_dir') . 'main-start.php');
 	echo NR . '<div class="type type_sitemap">' . NR;
 	

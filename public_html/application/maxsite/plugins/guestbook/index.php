@@ -9,7 +9,6 @@
 # функция автоподключения плагина
 function guestbook_autoload($args = array())
 {
-	mso_create_allow('guestbook_edit', t('Админ-доступ к гостевой книге'));
 	mso_hook_add('admin_init', 'guestbook_admin_init'); # хук на админку
 	mso_hook_add('custom_page_404', 'guestbook_custom_page_404'); # хук для подключения к шаблону
 }
@@ -17,6 +16,8 @@ function guestbook_autoload($args = array())
 # функция выполняется при активации (вкл) плагина
 function guestbook_activate($args = array())
 {	
+	mso_create_allow('guestbook_edit', t('Админ-доступ к гостевой книге'));
+	
 	$CI = & get_instance();	
 
 	if ( !$CI->db->table_exists('guestbook')) // нет таблицы guestbook

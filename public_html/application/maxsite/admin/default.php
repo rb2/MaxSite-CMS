@@ -47,7 +47,7 @@ function mso_admin_footer_default($args = '')
 	$ver = $MSO->version;
 	$out = '<p>' . t('Страница создавалась {elapsed_time} секунд. Потребление памяти: {memory_usage}. Запросов MySQL:') . ' '
 	. $query_count . '. '
-	. t('Работает на <a href="http://max-3000.com/" style="color: white;">MaxSite CMS</a>.'). ' ' 
+	. t('Работает на <a href="http://max-3000.com/">MaxSite CMS</a>.'). ' ' 
 	. t('Версия') . ' '
 	. $ver . ' [<a href="' . $MSO->config['site_url'] . 'logout'.'">' . t('выйти') . '</a>]</p>';
 	

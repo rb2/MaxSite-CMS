@@ -17,7 +17,7 @@ function %%%_autoload()
 # функция выполняется при активации (вкл) плагина
 function %%%_activate($args = array())
 {	
-	//mso_create_allow('%%%_edit', t('Админ-доступ к настройкам') . ' ' . t('%%%'));
+	mso_create_allow('%%%_edit', t('Админ-доступ к настройкам %%%'));
 	return $args;
 }
 
@@ -31,8 +31,8 @@ function %%%_deactivate($args = array())
 # функция выполняется при деинсталяции плагина
 function %%%_uninstall($args = array())
 {	
-	// mso_delete_option('plugin_%%%', 'plugins' ); // удалим созданные опции
-	// mso_remove_allow('%%%_edit'); // удалим созданные разрешения
+	mso_delete_option('plugin_%%%', 'plugins' ); // удалим созданные опции
+	mso_remove_allow('%%%_edit'); // удалим созданные разрешения
 	return $args;
 }
 
@@ -40,13 +40,11 @@ function %%%_uninstall($args = array())
 # если не нужна, удалите целиком
 function %%%_mso_options() 
 {
-	/*
 	if ( !mso_check_allow('%%%_edit') ) 
 	{
 		echo t('Доступ запрещен');
 		return;
 	}
-	*/
 	
 	# ключ, тип, ключи массива
 	mso_admin_plugin_options('plugin_%%%', 'plugins', 

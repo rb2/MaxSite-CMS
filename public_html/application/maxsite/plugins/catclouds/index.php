@@ -66,27 +66,28 @@ function catclouds_widget_form($num = 1)
 	$CI = & get_instance();
 	$CI->load->helper('form');
 	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
 	
-	$form .= '<p><div class="t150">' . t('Формат:') . '</div> '. form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ) ;
-	$form .= '<br><div class="t150">&nbsp;</div> %SIZE% %URL% %CAT% %COUNT%';
+	$form = mso_widget_create_form(t('Заголовок'), form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Мин. размер') . ' (%):</div> '. form_input( array( 'name'=>$widget . 'min_size', 'value'=>$options['min_size'] ) ) ;
+	$form .= mso_widget_create_form(t('Формат'), form_input( array( 'name'=>$widget . 'format', 'value'=>$options['format'] ) ), '%SIZE% %URL% %CAT% %COUNT%');
 	
-	$form .= '<p><div class="t150">' . t('Макс. размер') . ' (%):</div> '. form_input( array( 'name'=>$widget . 'max_size', 'value'=>$options['max_size'] ) ) ;
+	$form .= mso_widget_create_form(t('Мин. размер (%)'), form_input( array( 'name'=>$widget . 'min_size', 'value'=>$options['min_size'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Номер рубрики:') . '</div> '. form_input( array( 'name'=>$widget . 'cat_id', 'value'=>$options['cat_id'] ) ) ;
+	$form .= mso_widget_create_form(t('Макс. размер (%)'), form_input( array( 'name'=>$widget . 'max_size', 'value'=>$options['max_size'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Начало блока:') . '</div> '. form_input( array( 'name'=>$widget . 'block_start', 'value'=>$options['block_start'] ) ) ;
+	$form .= mso_widget_create_form(t('Номер рубрики'), form_input( array( 'name'=>$widget . 'cat_id', 'value'=>$options['cat_id'] ) ), '');
+		
+	$form .= mso_widget_create_form(t('Начало блока'), form_input( array( 'name'=>$widget . 'block_start', 'value'=>$options['block_start'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Конец блока:') . '</div> '. form_input( array( 'name'=>$widget . 'block_end', 'value'=>$options['block_end'] ) ) ;
+	$form .= mso_widget_create_form(t('Конец блока'), form_input( array( 'name'=>$widget . 'block_end', 'value'=>$options['block_end'] ) ), '');
 	
-	$form .= '<p><div class="t150">' . t('Сортировка:') . '</div> '. form_dropdown($widget . 'sort', 
+	$form .= mso_widget_create_form(t('Сортировка'), form_dropdown($widget . 'sort', 
 								array( '0'=>t('По количеству записей (обратно)'), 
 										'1'=>t('По количеству записей'), 
 									   '2'=>t('По алфавиту'), 
 									   '3'=>t('По алфавиту (обратно)')), 
-									   $options['sort'] ) ;
+									   $options['sort'] ), '');
+	
 	
 	return $form;
 }
@@ -210,4 +211,4 @@ function catclouds_widget_custom($options = array(), $num = 1)
 	return $out;
 }
 
-?>
+# end file

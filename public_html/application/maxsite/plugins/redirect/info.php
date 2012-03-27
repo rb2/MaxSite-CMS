@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $info = array(
-	'name' => t('Редирект'),
-	'description' => 'Редирект любого адреса сайта',
+	'name' => t('Редиректы'),
+	'description' => t('Редиректы для любого адреса сайта'),
 	'version' => '1.3',
 	'author' => 'Максим, Андрей Бусел',
 	'plugin_url' => 'http://max-3000.com/',

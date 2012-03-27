@@ -6,8 +6,6 @@
  */
 
 
-	mso_cur_dir_lang('templates');
-	
 	$title_contact = mso_get_option('title_contact', 'templates', t('Обратная связь'));
 	
 	mso_head_meta('title', $title_contact); //  meta title страницы
@@ -25,7 +23,7 @@
 	if ($f = mso_page_foreach('contact-do')) require($f); // подключаем кастомный вывод
 
 	$form_def = '[form]
-[subject=Обратная связь]
+[subject=Пожелания по сайту # Нашел ошибку на сайте # Подскажите, пожалуйста]
 
 [field]
 require = 0
@@ -46,18 +44,10 @@ placeholder = Введите свой телефонный номер
 
 [field]
 require = 1
-type = select
-description = Тема
-values = Пожелания по сайту # Нашел ошибку на сайте # Подскажите, пожалуйста
-default = ожелания по сайту
-tip = Выберите тему письма
-[/field]
-
-[field]
-require = 1
 type = textarea
 description = Ваш вопрос
 placeholder = О чем вы хотите написать?
+attr = style="height: 200px"
 [/field]
 
 [/form]';

@@ -1,7 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
-mso_cur_dir_lang('templates');
-
 mso_head_meta('title', t('Гостевая книга') ); // meta title страницы
 
 // стили свои подключим

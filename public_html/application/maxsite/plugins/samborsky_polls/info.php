@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'samborsky_polls',
+	'name' => t('Голосования'),
 	'description' => t('Голосования от Евгения Самборского'),
 	'version' => '2.01',
 	'author' => t('Евгений Самборский'),

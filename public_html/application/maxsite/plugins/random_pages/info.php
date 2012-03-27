@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
 
 $info = array(
-	'name' => 'Random pages',
+	'name' => t('Случайные статьи'),
 	'description' => t('Виджет «Случайные статьи»'),
 	'version' => '1.1',
 	'author' => 'Максим',
@@ -10,4 +10,4 @@ $info = array(
 	'group' => 'template'
 );
 
-# End of file
+# end file

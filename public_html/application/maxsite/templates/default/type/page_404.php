@@ -7,8 +7,6 @@
 	
 	if ( mso_get_option('page_404_http_not_found', 'templates', 1) ) header('HTTP/1.0 404 Not Found');
 	
-	mso_cur_dir_lang('templates');
-	
 	require(getinfo('template_dir') . 'main-start.php');
 	
 	echo NR . '<div class="type type_page_404">' . NR;
