@@ -257,13 +257,13 @@ function tagclouds3d_widget_custom($options = array(), $num = 1)
 		if ( $max_num != 0 and $i == $max_num ) break;
     }
 	
-    $out .= '<script type="text/javascript" src="' . getinfo('plugins_url') . 'tagclouds3d/swfobject.js"></script>
+    $out .= '<script src="' . getinfo('plugins_url') . 'tagclouds3d/swfobject.js"></script>
 	
 			<div id="tag3dcontent">';
 	
 		$out .= $links_noscript;
 	
-	$out .= '<script type="text/javascript">
+	$out .= '<script>
 				//<![CDATA[
 						var rnumber = Math.floor(Math.random()*9999999);
 						var widget_so = new SWFObject("' . getinfo('plugins_url') . 'tagclouds3d/tagcloud.swf?r="+rnumber, "tagcloudflash", "'.$width.'", "'.$height.'", "9", "#'.$bgcolor.'");

@@ -59,12 +59,12 @@ function colorbox_head($args = array())
 	if ( !isset($options['height']) ) $options['height'] = '75%';
 	if ( !isset($options['slideshowspeed']) ) $options['slideshowspeed'] = '2500';
 	
-	echo '<link type="text/css" rel="stylesheet" href="'.$url.'style/'.$options['style'].'/colorbox.css" media="screen">';
+	echo '<link rel="stylesheet" href="'.$url.'style/'.$options['style'].'/colorbox.css" media="screen">';
 	
 	$size = '';
 	if ($options['size'] == '1') $size = ',width:"'.$options['width'].'",height:"'.$options['height'].'"';
-	echo '<script type="text/javascript" src="'.$url.'js/jquery.colorbox-min.js"></script>
-<script type="text/javascript">
+	echo '<script src="'.$url.'js/jquery.colorbox-min.js"></script>
+<script>
 $(document).ready(function(){
 	$(".gallery,.slideshow").find("a[href$=\'.jpg\'],a[href$=\'.jpeg\'],a[href$=\'.png\'],a[href$=\'.gif\'],a[href$=\'.bmp\']").attr("rel","cb");
 	$("div.gallery a[rel=cb]").colorbox({rel:"true",transition:"'.$options['effect'].'"'.$size.',photo:"true"});

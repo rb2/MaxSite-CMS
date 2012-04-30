@@ -8,9 +8,9 @@
 	if ( (string) $auto_id != (string) $auto_id1 ) $auto_id = 0; // ошибочный id
 ?>
 
-	<script type="text/javascript" src="<?= $editor_config['url'] ?>jw/jquery.wysiwyg.js"></script>
-	<script type="text/javascript" src="<?= $editor_config['url'] ?>jw/jquery.timers.js"></script>
-	<script type="text/javascript">
+	<script src="<?= $editor_config['url'] ?>jw/jquery.wysiwyg.js"></script>
+	<script src="<?= $editor_config['url'] ?>jw/jquery.timers.js"></script>
+	<script>
 		$(function()
 		{
 		  autosavetime = 60000; // = 60 sec

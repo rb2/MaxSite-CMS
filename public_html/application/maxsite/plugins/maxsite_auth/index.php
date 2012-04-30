@@ -112,7 +112,7 @@ function maxsite_auth_custom($args = array())
 			<form method="post" action="' . getinfo('site_url'). 'maxsite-auth-form-post">
 				<input type="hidden" name="redirect_url" value="' . urlencode($redirect_url) . '">
 				Укажите адрес сайта (с http://): <input type="text" name="url" value="" size="80">
-				<input type="submit" value="Перейти к сайту">
+				<button type="submit">' . tf('Перейти к сайту') . '</button>
 			</form>
 		</body></html>';
 		
@@ -152,9 +152,9 @@ function maxsite_auth_custom($args = array())
 		<title>Авторизация</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		</head><body>
-			<div class="loginform">Для авторизации необходимо войти на сайт<br>';
+			<div class="loginform">' . tf('Для авторизации необходимо войти на сайт') . '<br>';
 			
-			mso_login_form(array( 'login'=>t('Логин:') . ' ', 'password'=>t('Пароль:') . ' ', 'submit'=>''), getinfo('siteurl') . mso_current_url());
+			mso_login_form(array( 'login'=>tf('Логин:') . ' ', 'password'=>tf('Пароль:') . ' ', 'submit'=>''), getinfo('siteurl') . mso_current_url());
 			
 			echo '</div></body></html>';
 			
@@ -163,15 +163,15 @@ function maxsite_auth_custom($args = array())
 		else // вход есть
 		{
 			//проверяем разрешения группы
-			if ( !mso_check_allow('maxsite_auth_edit') ) die(t('Доступ к авторизации запрещен'));
+			if ( !mso_check_allow('maxsite_auth_edit') ) die(tf('Доступ к авторизации запрещен'));
 			
 			$options = mso_get_option('plugin_maxsite_auth', 'plugins', array());
-			if (!isset($options['email']) or !$options['email']) die(t('Не задан ответный email')); 
-			if (!isset($options['password']) or !$options['password']) die(t('Не задан ответный пароль'));
+			if (!isset($options['email']) or !$options['email']) die(tf('Не задан ответный email')); 
+			if (!isset($options['password']) or !$options['password']) die(tf('Не задан ответный пароль'));
 			
 			// смотрятся входные get-данные (расшифровка из base64) адрес-сайт1
 			$data64 = mso_segment(2);
-			if (!$data64) die(t('Нет данных'));
+			if (!$data64) die(tf('Нет данных'));
 			
 			// отладка
 			//	echo (getinfo('siteurl') . '##'. 'page/about' . '##' . substr(mso_md5(getinfo('siteurl')), 1, 5));
@@ -180,7 +180,7 @@ function maxsite_auth_custom($args = array())
 			
 			// распаковываем данные
 			$data = @base64_decode($data64);
-			if (!$data) die(t('Ошибочные данные'));
+			if (!$data) die(tf('Ошибочные данные'));
 			
 			
 			//	адрес-сайт1##адрес текущей страницы1##открытый ключ
@@ -194,7 +194,7 @@ function maxsite_auth_custom($args = array())
 			}
 			
 			// должно быть 3 элемента
-			if (count($data_1) != 3) die(t('Неверное количество данных'));
+			if (count($data_1) != 3) die(tf('Неверное количество данных'));
 			
 			// pr($data_1);
 			
@@ -237,7 +237,7 @@ function maxsite_auth_custom($args = array())
 		</head><body>
 			<form method="post" action="' . $data_siteurl . 'maxsite-auth-reply">
 				<input type="hidden" name="data" value="' . base64_encode($data) . '">
-				<input type="submit" value="Подтвердить авторизацию">
+				<button type="submit">' . tf('Подтвердить авторизацию') . '</button>
 			</form>
 			</body></html>';
 
@@ -315,13 +315,13 @@ function maxsite_auth_custom($args = array())
 			$email_pass = explode('##', $my_email_pass);
 			
 			
-			if (count($email_pass) != 2) die(t('Неверные данные email-пароль'));
+			if (count($email_pass) != 2) die(tf('Неверные данные email-пароль'));
 			
 			$email = $email_pass[0]; // email
 			$pass = $email_pass[1]; // пароль
 			
 			if (!mso_valid_email($email)) die(t('Неверный email'));
-			if (strlen($pass) < 6) die(t('Короткий пароль')); 
+			if (strlen($pass) < 6) die(tf('Короткий пароль')); 
 			
 			// pr($email . ' ' . $pass);
 			

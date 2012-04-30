@@ -10,7 +10,7 @@
 	
 	# до 
 	$do = '
-	<script type="text/javascript">
+	<script>
 	
 		function shsh()
 		{

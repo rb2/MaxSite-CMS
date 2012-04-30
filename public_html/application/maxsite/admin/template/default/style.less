@@ -23,7 +23,9 @@
 }
 
 
-body {background: #F0F0F0;}
+body {
+	background: #F0F0F0;
+}
 
 a {
 	color: #0063B7;
@@ -126,7 +128,9 @@ div.admin-menu {
 	width: 190px;
 	float: left;
 	
-	div.r {padding-left: 10px;}
+	div.r {
+		padding-left: 10px;
+	}
 }
 
 div.admin-content {
@@ -310,7 +314,6 @@ div.admin-h-menu {
 p.nav {
 	color: white;
 	font-size: 0;
-	//height: 25px;
 	line-height: 25px;
 	margin: 0;
 	
@@ -426,11 +429,15 @@ table.new_or_edit {
 			.border(#3C769D);
 		}
 		
-		
 		div.page_meta {
 			
-			h3 {margin: 25px 0 0 0;}
-			p {margin: 0;}
+			h3 {
+				margin: 25px 0 0 0;
+			}
+			
+			p {
+				margin: 0;
+			}
 			
 			div {
 				background: #F0F0F0;
@@ -514,9 +521,6 @@ table.new_or_edit {
 				li label:hover {
 					background: #C7C7C7;
 					.border_radius(5px);
-	
-				//	margin-left: -3px;
-				//	padding-left: 3px;
 				}
 				
 				
@@ -533,7 +537,9 @@ textarea.admin_sidebars {
 table.widgets-allow {
 	width: auto;
 	
-	td {border: none;}
+	td {
+		border: none;
+	}
 }
 
 // виджеты
@@ -556,11 +562,12 @@ div.admin-edit-widgets-form {
 		a {
 			color: #41535C;
 			margin-left: 5px;
-			//.text_shadow(1px, 1px, 1px, #AAA);		
 		}
 	}
 	
-	p {margin: 0;}
+	p {
+		margin: 0;
+	}
 	
 	div.admin_widgets {
 		
@@ -606,10 +613,24 @@ form.admin_widgets {
 		@first: 200px; // размер первой ячейки или отступ (+5 на padding)
 		
 		span, label {
-			&.ffirst {width: @first;} // ширина первой ячейки
-			&.ffirst.ftitle {width: @first - 5px;} // корректировка для двойного класса ffirst.ftitle
-			&.ftitle {font-weight: bold;}
-			&.ftop {padding-top: 1px;}
+
+			// ширина первой ячейки
+			&.ffirst {
+				width: @first;
+			} 
+			
+			// корректировка для двойного класса ffirst.ftitle
+			&.ffirst.ftitle {
+				width: @first - 5px;
+			} 
+			
+			&.ftitle {
+				font-weight: bold;
+			}
+			
+			&.ftop {
+				padding-top: 1px;
+			}
 		}
 	}
 }
@@ -622,21 +643,15 @@ div.float-parent {
 		margin: 0 20px 15px 0;
 		min-height: 165px;
 		width: 200px;
-		
-		//.border(1px, #DDD);
-		//.border_radius(5px);
-		// .box_shadow(0px, 0px);
 		text-align: center;
 		
 		div.wrap {
-			// margin: 5px;
 			overflow: hidden;
 			
 			label {
 				font-weight: bold;
 				white-space: nowrap;
 				font-size: .8em;
-				
 			}
 			
 			em { // описание 
@@ -658,7 +673,8 @@ div.float-parent {
 				}
 			}
 			
-			p { // ссылки для копирования
+			// ссылки для копирования
+			p { 
 				margin: 5px 0 0 0;
 			}
 		}
@@ -672,15 +688,10 @@ div.float-parent {
 		margin: 0 35px 15px 0;
 		min-height: 165px;
 		width: 250px;
-		
-		//.border_radius(5px);
-		//.box_shadow(0px, 0px);
 		text-align: center;
 		
 		img {
 			.border(1px, #DDD);
-			//.box_shadow(0px, 0px);
-			//.border_radius(5px);
 		}
 	}
 }
@@ -688,8 +699,8 @@ div.float-parent {
 // загрузки форма
 form.admin_uploads_form {
 	input {
+	
 	}
-
 }
 
 // шаблон текущий
@@ -700,13 +711,11 @@ img.template_current {
 
 // блок выбора шаблона
 div.options_templates {
-
 	margin-top: 40px;
 }
 
 // ушки
 div.ushki {
-
 	margin: 0 0 10px 0;
 	padding: 10px 10px 1px 10px;
 	background: #BAC6CC;
@@ -725,7 +734,9 @@ div.ushki {
 // таблица неактивных плагинов
 table.inactive-plugins {
 	color: gray;
-	a {color: gray;}
+	a {
+		color: gray;
+	}
 
 }
 
@@ -794,13 +805,6 @@ div.update {
 	background: #C7F3A6; 
 	margin: 5px 0;
 	.border_radius(10px);
-	
-	/*
-	&:hover {
-		background: none;
-		-moz-transition: background 2s ease 0s;
-	}
-	*/
 }
 
 div.error {
@@ -824,7 +828,6 @@ p.admin_page_filtr {
 		background: #E7ECEF;
 		.border_radius(3px);
 		padding: 3px 5px;
-		//margin-right: 5px;
 		white-space: nowrap;
 		
 		&:hover, &.current {
@@ -882,8 +885,6 @@ div.pagination {
 	}
 	
 }
-
-
 
 
 // маленькое меню

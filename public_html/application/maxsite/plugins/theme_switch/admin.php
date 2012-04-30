@@ -42,7 +42,7 @@
 ?>
 <!-- (c) http://prootime.ru/demos/vspl/index.html -->
 
-<script type="text/javascript">
+<script>
 $(document).ready(function(){
 
 $('[rel=tooltip]').bind('mouseover', function(){
@@ -146,7 +146,7 @@ $(this).bind('mousemove', function(e){
 			}
 		}
 
-		echo '<form action="" method="post">' . mso_form_session('f_session_id');
+		echo '<form method="post">' . mso_form_session('f_session_id');
 		echo $form;
 		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 		echo '</form>';

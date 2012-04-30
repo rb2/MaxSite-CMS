@@ -218,7 +218,7 @@ function theme_switch_widget_custom($options = array(), $num = 1)
 			. $options['header'] 
 			. '<form action="" method="post">' 
 			. mso_form_session('f_session_id') . $out 
-			. '<p><input type="submit" name="f_theme_switch_submit" class="submit" value="' . $options['submit'] . '"></p></form></div>';
+			. '<p><button type="submit" name="f_theme_switch_submit" class="submit">' . $options['submit'] . '</button></p></form></div>';
 	
 	return $out;	
 }
@@ -298,7 +298,7 @@ function theme_switch_body_start($args = '')
 		</div></div><!-- div class=theme_switch_panel -->
 	</div><!-- div class=theme_switch_panel_main -->
 	
-	<script type="text/javascript">
+	<script>
 		$("div.theme_switch_panel").scrollTo("a.current img", 500);
 		$("div.theme_switch_panel").scrollTo("a.img' . $i_go . ' img", 800);
 	</script>

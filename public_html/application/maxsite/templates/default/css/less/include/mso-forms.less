@@ -4,7 +4,9 @@
 // readme-forms.txt
 
 
-label {cursor: pointer;}
+label {
+	cursor: pointer;
+}
 
 fieldset {
 	padding: 5px 10px; 
@@ -13,13 +15,22 @@ fieldset {
 	.border_radius(5px);
 }
 
-legend {padding: 0 5px;}
+legend {
+	padding: 0 5px;
+}
 
-input, select, button {vertical-align: middle;}
+input, 
+select, 
+button {
+	vertical-align: middle;
+}
 
-textarea {overflow: auto;}
+textarea {
+	overflow: auto;
+}
 
-input[type="radio"], input[type="checkbox"] {
+input[type="radio"], 
+input[type="checkbox"] {
 	margin: 0; 
 	padding: 0; 
 	position: relative; 
@@ -28,15 +39,15 @@ input[type="radio"], input[type="checkbox"] {
 	vertical-align: baseline;
 } 
 
-// ie7
-*+html input[type="submit"], 
-*+html input[type="reset"], 
-*+html input[type="button"] {overflow: visible;}
-
 
 input, textarea, button {
-	&::-webkit-input-placeholder {color: #999;}
-	&:-moz-placeholder {color: #999;}
+	&::-webkit-input-placeholder {
+		color: #999;
+	}
+	
+	&:-moz-placeholder {
+		color: #999;
+	}
 }
 
 
@@ -66,7 +77,9 @@ form.fform {
 			textarea,
 			select
 			{
-				-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+				-moz-box-sizing: border-box; 
+				-webkit-box-sizing: border-box; 
+				box-sizing: border-box;
 				width: 100%;
 				*width: auto; // ie7
 			}
@@ -76,25 +89,44 @@ form.fform {
 				padding-right: 5px;
 			}
 			
-			&.ffirst {width: @first;} // ширина первой ячейки
-			&.ffirst.ftitle {width: @first - 5px;} // корректировка для двойного класса ffirst.ftitle
+			&.ffirst {
+				width: @first; // ширина первой ячейки
+			} 
+			
+			&.ffirst.ftitle {
+				width: @first - 5px; // корректировка для двойного класса ffirst.ftitle
+			
+			} 
 			
 			&.fbutton { // ячейка для кнопки
 				width: @width_button;
 			
-				button, input {min-width: @width_button;}
+				button, input {
+					min-width: @width_button;
+				}
 			}
 			
 			&.fsubmit {// ячейка для кнопки submit
 				text-align: right;
 				width: @width_submit;
 				
-				button, input {width: @width_submit - 5px;}
+				button, input {
+					width: @width_submit - 5px;
+				}
 			} 
 			
-			&.ftop {vertical-align: top;}
-			&.fcenter {text-align: center;}
-			&.fempty {width: 10px;} // пустая ячейка
+			&.ftop {
+				vertical-align: top;
+			}
+			
+			&.fcenter {
+				text-align: center;
+			}
+			
+			// пустая ячейка
+			&.fempty {
+				width: 5px;
+			} 
 			
 			// текстовая подсказка
 			&.fhint {
@@ -105,7 +137,10 @@ form.fform {
 				padding-bottom: 5px;
 			}
 
-			&.fheader {font-weight: bold;} // текстовая подсказка-заголовок
+			// текстовая подсказка-заголовок
+			&.fheader {
+				font-weight: bold;
+			} 
 			
 			// отмена ячейки - обычный span и label
 			&.nocell {
@@ -123,8 +158,14 @@ form.fform {
 				width: 100%;
 			}
 		
-		&.nop {padding-top: 0;} // если нужен нулевой отступ padding
-		&.hr {margin-top: 10px;} // визуальный отступ для строки - для отбивки ряда кнопок
+		// если нужен нулевой отступ padding
+		&.nop {
+			padding-top: 0;
+		} 
+		
+		// визуальный отступ для строки - для отбивки ряда кнопок
+		&.hr {
+			margin-top: 10px;
+		} 
 	}
-	
 }

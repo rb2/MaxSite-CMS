@@ -26,8 +26,8 @@ function lightbox_head($args = array())
 	// http://leandrovieira.com/projects/jquery/lightbox/
 	echo <<<EOF
 	
-	<script type="text/javascript" src="{$url}js/jquery.lightbox.js"></script>
-	<script type="text/javascript">
+	<script src="{$url}js/jquery.lightbox.js"></script>
+	<script>
 		$(function(){
 			lburl = '{$url}images/';
 			$('div.gallery a').lightBox({
@@ -51,7 +51,7 @@ function lightbox_head($args = array())
 			});
 		});
 	</script>
-	<link rel="stylesheet" href="{$url}css/jquery.lightbox-0.5.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="{$url}css/jquery.lightbox-0.5.css">
 	
 EOF;
 
@@ -71,7 +71,7 @@ function lightbox_content($text = '')
 		'~<p>\[gallery(.*?)\](\s)*~si' => '[gallery$1]',
 		'~\[\/gallery\](\s)*</p>~si' => '[/gallery]',
 		
-		'~\[gallery=(.*?)\](.*?)\[\/gallery\]~si' => '<div class="gallery$1">$2</div><script type="text/javascript">\$(function() { lburl = \'' . $url . '\'; \$(\'div.gallery$1 a\').lightBox({imageLoading: lburl+\'lightbox-ico-loading.gif\', imageBtnClose: lburl+\'lightbox-btn-close.gif\', imageBtnPrev: lburl+\'lightbox-btn-prev.gif\', imageBtnNext: lburl+\'lightbox-btn-next.gif\'});});</script>
+		'~\[gallery=(.*?)\](.*?)\[\/gallery\]~si' => '<div class="gallery$1">$2</div><script>\$(function() { lburl = \'' . $url . '\'; \$(\'div.gallery$1 a\').lightBox({imageLoading: lburl+\'lightbox-ico-loading.gif\', imageBtnClose: lburl+\'lightbox-btn-close.gif\', imageBtnPrev: lburl+\'lightbox-btn-prev.gif\', imageBtnNext: lburl+\'lightbox-btn-next.gif\'});});</script>
 		',
 		
 		'~\[gallery\](.*?)\[\/gallery\]~si' => '<div class="gallery">$1</div>',

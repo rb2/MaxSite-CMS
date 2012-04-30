@@ -1,12 +1,12 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<script type="text/javascript">
+<script>
 <?php require('bb.js.php') ?>
 </script>
 
-<?php echo '<script type="text/javascript" src="'. getinfo('plugins_url') . 'editor_markitup/jquery.markitup.js"></script>'; ?>
-<?php echo '<link rel="stylesheet" type="text/css" href="'. getinfo('plugins_url') . 'editor_markitup/style.css">'; ?>
-<?php echo '<link rel="stylesheet" type="text/css" href="'. getinfo('plugins_url') . 'editor_markitup/bb.style.css">'; ?>
+<?php echo '<script src="'. getinfo('plugins_url') . 'editor_markitup/jquery.markitup.js"></script>'; ?>
+<?php echo '<link rel="stylesheet" href="'. getinfo('plugins_url') . 'editor_markitup/style.css">'; ?>
+<?php echo '<link rel="stylesheet" href="'. getinfo('plugins_url') . 'editor_markitup/bb.style.css">'; ?>
 
 <?php
 	$auto_id = mso_segment(3); // номер страницы по сегменту url

@@ -3,36 +3,98 @@
 // mso-default.less
 
  
-body {font-family: Verdana, Arial, sans-serif; font-size: 10pt; background: #E0E0E0;}
+body {
+	font-family: Verdana, Arial, sans-serif; 
+	font-size: 10pt; 
+	background: #E0E0E0;
+}
 
-body, div, ul, ol, li, td, p, blockquote, code, pre, h1, h2, h3, h4, h5, h6 {line-height: 1.4em;}
+body, div, ul, ol, li, td, p, blockquote, code, pre, h1, h2, h3, h4, h5, h6 {
+	line-height: 1.4em;
+}
 
-p, pre, blockquote, ul, ol, table, dl {margin: 4px 0 7px 0;}
-ol, ul {margin-left: 15px;}
-sup, sub {vertical-align: baseline; position: relative; font-size: .8em}
-sup {top: -0.4em;}
-sub {bottom: -0.3em;}
-small {font-size: .8em}
-strong, b {font-weight: bold;}
-em, i {font-style: italic;}
+p, pre, blockquote, ul, ol, table, dl {
+	margin: 4px 0 7px 0;
+}
 
-hr {color: #CCC; background-color: #CCC; height: 1px; border-width: 0;}
+ol, ul {
+	margin-left: 15px;
+}
 
-table {width: 100%;}
-table th, table td {border: 1px solid #CCC; padding: 2px 3px; vertical-align: top;}
-table th {background: #EEE; font-weight: bold;}
+sup, sub {
+	vertical-align: baseline; 
+	position: relative; 
+	font-size: .8em;
+}
 
-table.no-border, table.no-border td {border: none; padding: 0;}
+sup {
+	top: -0.4em;
+}
 
-table.zebra {
-	tr:nth-child(odd) td, tr:nth-child(odd) th {background-color: #f0f0f0;}
-	tr:hover {
-		td, th {background-color: #f6f6f6;}
+sub {
+	bottom: -0.3em;
+}
+
+small {
+	font-size: .8em;
+}
+
+strong, b {
+	font-weight: bold;
+}
+
+em, i {
+	font-style: italic;
+}
+
+hr {
+	color: #CCC; 
+	background-color: #CCC; 
+	height: 1px; 
+	border-width: 0;
+}
+
+table {
+	width: 100%;
+
+	th, td {
+		border: 1px solid #CCC; 
+		padding: 2px 3px; 
+		vertical-align: top;
+	}
+	
+	th {
+		background: #EEE; 
+		font-weight: bold;
+	}
+	
+	&.no-border, 
+	&.no-border td {
+		border: none; 
+		padding: 0;
+	}
+
+	&.zebra {
+		tr:nth-child(odd) td, 
+		tr:nth-child(odd) th {
+			background-color: #f0f0f0;
+		}
+		
+		tr:hover {
+			td, th {
+				background-color: #f6f6f6;
+			}
+		}
 	}
 }
 
-dt {font-weight: bold;}
-dd {margin-left: 15px;}
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin-left: 15px;
+}
 
 pre {
 	background: #F4F4F4; 
@@ -56,12 +118,31 @@ blockquote {
 	border-left: 4px solid #DDD; 
 	color: #444;
 	
-	cite {color: #888; display: inline-block; margin-top: 10px;}
+	cite {
+		color: #888; 
+		display: inline-block; 
+		margin-top: 10px;
+	}
 }
 
-abbr, acronym {cursor: help; border-bottom: 1px dashed #000;}
+abbr, acronym {
+	cursor: help; 
+	border-bottom: 1px dashed #000;
+}
 
-img {vertical-align: middle;}
+img {
+	vertical-align: middle;
+}
 
-.break {clear: both;}
-.clearfix:after {content: '.'; display: block; clear: both; visibility: hidden; height: 0; line-height: 0;}
+.break {
+	clear: both;
+}
+
+.clearfix:after {
+	content: '.'; 
+	display: block; 
+	clear: both; 
+	visibility: hidden; 
+	height: 0; 
+	line-height: 0;
+}

@@ -158,7 +158,7 @@ sup,
 sub {
   vertical-align: baseline;
   position: relative;
-  font-size: 0.8em;
+  font-size: .8em;
 }
 sup {
   top: -0.4em;
@@ -167,7 +167,7 @@ sub {
   bottom: -0.3em;
 }
 small {
-  font-size: 0.8em;
+  font-size: .8em;
 }
 strong,
 b {
@@ -290,11 +290,6 @@ input[type="checkbox"] {
   cursor: pointer;
   vertical-align: baseline;
 }
-* + html input[type="submit"],
-* + html input[type="reset"],
-* + html input[type="button"] {
-  overflow: visible;
-}
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder,
 button::-webkit-input-placeholder {
@@ -382,7 +377,7 @@ form.fform p label.fcenter {
 }
 form.fform p span.fempty,
 form.fform p label.fempty {
-  width: 10px;
+  width: 5px;
 }
 form.fform p span.fhint,
 form.fform p label.fhint {
@@ -412,7 +407,6 @@ form.fform p.nop {
 form.fform p.hr {
   margin-top: 10px;
 }
-/* ссылки */
 a.current_url {
   font-weight: bold;
 }
@@ -425,7 +419,6 @@ li.current_url li a {
 li.current-page {
   font-weight: bold;
 }
-/* база заголовков */
 h1 {
   font-size: 2.1em;
   margin: 0 0 5px 0;
@@ -485,7 +478,6 @@ h6 {
 h6.first {
   margin: 5px 0;
 }
-/* компоненты шапки */
 div.logo-links {
   margin: 0 10px 10px 10px;
 }
@@ -502,7 +494,6 @@ div.social {
 div.social img {
   margin: 0 0 0 5px;
 }
-/* рубрика если для главной вывод блоками рубрик */
 div.type_home_cat_block {
   margin-top: 15px;
 }
@@ -528,27 +519,22 @@ div.type_home_cat_block div.description-cat {
   font-weight: bold;
   margin: 5px;
 }
-/* верхняя запись на главной */
 div.home_top h1 {
   margin-top: 0;
 }
-/* последняя запись на главной */
 div.home_page_last h1 {
   margin-top: 0;
 }
-/* описание рубрики на странице рубрики */
 div.category_desc {
   margin: 0 0 20px 0;
   font-weight: bold;
 }
-/* виджеты */
 h2.box,
 div.widget_header {
   font-size: 1.5em;
   line-height: 1.1em;
   margin-bottom: 5px;
 }
-/* заголовок виджета */
 div.widget {
   margin-bottom: 25px;
   font-size: 0.9em;
@@ -561,7 +547,6 @@ div.widget table td {
   border: none;
   vertical-align: bottom;
 }
-/* списки в виджетах */
 ul.is_link {
   margin: 0 0 4px 0;
   list-style-type: none;
@@ -586,17 +571,14 @@ ul.links div {
   margin: 0 0 5px 0;
   font-style: italic;
   color: gray;
-  line-height: 1.0em;
-  font-size: 0.9em;
+  line-height: 1em;
+  font-size: .9em;
 }
-/* --- только для pages --- */
-/* отступы между записями на главной */
 div.page_only {
   margin-bottom: 15px;
   padding-bottom: 15px;
   border-bottom: 1px silver dotted;
 }
-/* отступ на одиночной не нужен */
 div.type_page div.page_only {
   margin-bottom: 0;
   padding-bottom: 0;
@@ -607,7 +589,6 @@ div.type_contact div.page_only {
   padding-bottom: 0;
   border-bottom: none;
 }
-/* инфо блок*/
 div.info {
   font-size: 0.8em;
   color: gray;
@@ -616,32 +597,24 @@ div.info {
 div.info span {
   font-weight: bold;
 }
-/* верхняя запись на главной */
 div.home_top {
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 10px;
 }
-/* верхний блок на главной */
-/* для текста */
 div.page_content ul,
 div.page_content ol {
   margin-left: 40px;
 }
-/* списки в тексте */
 div.comments-link {
   margin: 10px 0 0 0;
   text-align: right;
 }
-/* обсудить */
-/* записи по теме */
 div.page_other_pages {
   margin: 20px 0 20px 0;
 }
 div.page_other_pages ul {
   list-style-type: square;
 }
-/* --- дефолтные pages MaxSite CMS --- */
-/* форма логина */
 div.type_loginform div.loginform {
   margin: 10px auto;
   background: #fcfcff;
@@ -672,7 +645,6 @@ div.type_loginform div.form-end {
   text-align: right;
   font-size: .9em;
 }
-/* плагин форма логина */
 div.widget form.flogin input.flogin_user,
 div.widget form.flogin input.flogin_password {
   width: 95%;
@@ -680,14 +652,12 @@ div.widget form.flogin input.flogin_password {
 div.widget form.flogin input.flogin_submit {
   margin-top: 7px;
 }
-/* форма поиска */
 input.s {
   cursor: pointer;
 }
 input.submit {
   cursor: pointer;
 }
-/* COMMENT FORM */
 div.comment-form {
   margin: 10px 0;
   padding: 10px;
@@ -709,7 +679,6 @@ div.comment-form div.comments-auth {
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-/* СООБЩЕНИЯ О КОММЕНТАРИИ */
 div.comment-ok {
   background: #40A040;
   margin: 10px 0;
@@ -732,7 +701,6 @@ div.comment-error {
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
-/* комментарии */
 div.comments {
   margin: 20px 0 0 0;
 }
@@ -758,7 +726,6 @@ div.comments blockquote {
   padding: 10px;
   border-left: 2px gray solid;
 }
-/* comusers*/
 form.comusers-form h3 {
   text-align: center;
   font-size: 1.3em;
@@ -786,7 +753,6 @@ form.comusers-form p label.ftitle {
 form.comusers-form p span.submit {
   padding-top: 20px;
 }
-/* меню выпадающее */
 div.MainMenu {
   height: 35px;
   line-height: 35px;
@@ -803,10 +769,6 @@ ul.menu {
   z-index: 7;
   float: left;
   width: 100%;
-  /* верхние пункты */
-
-  /* подпункты */
-
 }
 ul.menu li {
   float: left;
@@ -841,14 +803,12 @@ ul.menu li:hover > ul {
 }
 ul.menu li a {
   display: block;
-}
-ul.menu li a span {
-  display: block;
-}
-ul.menu li a {
   text-decoration: none;
   padding: 0 5px;
   font-weight: bold;
+}
+ul.menu li a span {
+  display: block;
 }
 ul.menu li.group a span {
   padding-right: 15px;
@@ -872,8 +832,6 @@ ul.menu li.group ul li a:hover {
 ul.menu li.group ul li a span {
   background: none;
 }
-/* plugins MaxSite CMS */
-/* plugin Pagination */
 div.pagination {
   margin: 25px 0 10px 0;
   font-size: .9em;
@@ -885,7 +843,6 @@ div.pagination a {
   padding: 3px;
   line-height: 1.8em;
 }
-/* plugin TagClouds */
 div.tagclouds {
   text-align: center;
   line-height: 1.6em;
@@ -894,18 +851,15 @@ div.tagclouds {
 div.tagclouds span {
   line-height: 1.6em;
 }
-/* plugin CatClouds */
 div.catclouds {
   text-align: center;
 }
 div.catclouds span {
   line-height: 1.4em;
 }
-/* plugin RATER */
 #rater ul {
   margin: 10px 0;
 }
-/* plugin LastComment */
 div.comments ul.last_comment li {
   margin: 5px 0;
 }
@@ -921,7 +875,6 @@ h2.last_comment {
   font-size: 1.1em;
   font-weight: bold;
 }
-/* plugin Twitter */
 div.twitter p {
   border-bottom: 1px solid gray;
   padding: 0 0 10px 0;
@@ -929,14 +882,12 @@ div.twitter p {
 div.twitter a {
   font-weight: bold;
 }
-/* plugin AddZakl */
 div.addzakl {
   margin: 15px 0 0 0;
 }
 div.addzakl img {
   vertical-align: top;
 }
-/* plugin LAST-PAGES */
 div.last-pages ul.is_link li.current_url_allcat {
   display: block;
 }
@@ -946,7 +897,6 @@ div.last-pages ul.is_link li.current_url_cat {
 div.last-pages ul.is_link li.current_url_page {
   display: block;
 }
-/* plugin CALENDAR */
 div.calendar table {
   width: 100%;
 }
@@ -968,16 +918,14 @@ div.calendar div.today-content {
 div.calendar td a {
   text-decoration: underline;
 }
-/* plugin SITEMAP */
 div.sitemap h3 {
   margin: 15px 0 5px 0;
 }
 h2.sitemap {
   margin: 25px 0 0 0;
-  background: #DDDDDD;
+  background: #DDD;
   padding: 3px;
 }
-/* plugin PRE to OL */
 div.pre {
   background: #F0F0F0;
   padding: 5px;
@@ -1000,7 +948,6 @@ ol.pre li.odd {
 ol.pre span.php-comment {
   color: gray;
 }
-/* plugin FORMS */
 form.plugin_forms p span.ffirst,
 form.plugin_forms p label.ffirst {
   width: 180px;
@@ -1025,16 +972,13 @@ div.forms-post h2 {
   font-size: 18pt;
   margin: 20px 0;
 }
-/* plugin random_gal_widget */
 div.random_gal_widget {
   overflow: hidden;
 }
-/* plugin samborsky_polls */
 table.sp_polls th,
 table.sp_polls td {
   border: none;
 }
-/* галерея lightbox */
 div.gallery {
   font-size: 0;
 }
@@ -1046,11 +990,9 @@ div.gallery img {
 div.gallery img:hover {
   background: silver;
 }
-/* plugin theme_switch */
 div.theme_switch div.widget-content {
   margin-left: 5px;
 }
-/* plugin tabs */
 div.tabs {
   width: 100%;
 }
@@ -1093,8 +1035,6 @@ div.tabs-box {
   -moz-border-radius: 0 5px 0 0;
   border-radius: 0 5px 0 0;
 }
-/* HELPERS */
-/* messages */
 .message {
   border: 1px solid #DBDBDB;
   margin: 4px 0 7px 0;
@@ -1186,7 +1126,6 @@ div.tabs-box {
   background-position: 5px 2px;
   background-repeat: no-repeat;
 }
-/* text colors */
 .red {
   color: red;
 }
@@ -1208,7 +1147,6 @@ div.tabs-box {
 .yellow {
   color: yellow;
 }
-/* text-style */
 .normal {
   font-weight: normal;
   font-style: normal;
@@ -1229,7 +1167,6 @@ div.tabs-box {
 .strike {
   text-decoration: line-through;
 }
-/* background colors */
 .bg-red {
   background-color: red;
 }
@@ -1251,7 +1188,6 @@ div.tabs-box {
 .bg-yellow {
   background-color: yellow;
 }
-/* align */
 .left {
   float: left;
 }
@@ -1270,7 +1206,6 @@ div.tabs-box {
 .text-justify {
   text-align: justify;
 }
-/* width */
 .w100 {
   width: 100%;
 }
@@ -1298,7 +1233,6 @@ div.tabs-box {
 .w25 {
   width: 25%;
 }
-/* margins */
 .margin0 {
   margin: 0;
 }
@@ -1349,7 +1283,6 @@ div.tabs-box {
   margin-left: 10px;
   margin-right: 10px;
 }
-/* paddings */
 .padding0 {
   padding: 0;
 }
@@ -1376,7 +1309,6 @@ div.tabs-box {
   padding-left: 0;
   padding-right: 0;
 }
-/* display */
 .d-none {
   display: none;
 }
@@ -1392,7 +1324,6 @@ div.tabs-box {
 .over-hidden {
   overflow: hidden;
 }
-/* border-radius */
 .radius5 {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -1417,7 +1348,6 @@ div.no-border-radius,
 .no-border {
   border: none!important;
 }
-/* box-shadow */
 .box-shadow {
   box-shadow: 0 0 7px #bbbbbb;
   -o-box-shadow: 0 0 7px #bbbbbb;
@@ -1430,7 +1360,6 @@ div.no-border-radius,
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 }
-/* fonts */
 .arial {
   font-family: Arial, Verdana, sans-serif;
 }
@@ -1449,7 +1378,6 @@ div.no-border-radius,
 .courier {
   font-family: "Courier New", monospace;
 }
-/* img */
 img.smiley {
   vertical-align: middle;
 }

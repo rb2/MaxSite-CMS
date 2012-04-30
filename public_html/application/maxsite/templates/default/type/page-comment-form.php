@@ -88,7 +88,9 @@
 								<span class="fempty"></span>
 								
 								<span class="fbutton"><button type="button" class="comments_copy" title="<?= tf('Использовать email как пароль') ?>" onclick="document.getElementById('comments_reg_2').checked = 'checked'; document.getElementById('comments_password').value=document.getElementById('comments_email').value; ">&gt;</button></span>
-										
+								
+								<span class="fempty"></span>
+								
 								<label for="comments_password" class="ftitle"><?= tf('Пароль') ?></label>
 								<span><input type="password" name="comments_password" class="comments_password" id="comments_password" onfocus="document.getElementById('comments_reg_2').checked = 'checked';"></span>
 								

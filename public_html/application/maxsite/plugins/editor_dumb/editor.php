@@ -1,6 +1,6 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php echo '<script type="text/javascript" src="'. getinfo('plugins_url') . 'editor_dumb/editor_zero.js"></script>'; ?>
+<?php echo '<script src="'. getinfo('plugins_url') . 'editor_dumb/editor_zero.js"></script>'; ?>
 
 <form method="post" <?= $editor_config['action'] ?> enctype="multipart/form-data">
 <?= $editor_config['do'] ?>

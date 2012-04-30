@@ -19,7 +19,7 @@ function audioplayer_head($arg = array())
 	static $audioplayer_js = false;
 	
 	if (!$audioplayer_js)
-		echo '	<script type="text/javascript" src="' . getinfo('plugins_url') . 'audioplayer/audio-player.js"></script>';
+		echo '	<script src="' . getinfo('plugins_url') . 'audioplayer/audio-player.js"></script>';
 	
 	$audioplayer_js = true;
 	
@@ -33,7 +33,7 @@ function audioplayer_content_callback($matches)
 	$id = md5($url);
 	
 	$out = '<p id="' . $id 
-			. '" class="audioplayer"></p><script type="text/javascript">AudioPlayer.setup("' . getinfo('plugins_url') 
+			. '" class="audioplayer"></p><script>AudioPlayer.setup("' . getinfo('plugins_url') 
 			. 'audioplayer/player.swf", {width: 350}); AudioPlayer.embed("' . $id 
 			. '", {soundFile: "' . $url . '"}); </script>';
 
@@ -47,7 +47,7 @@ function audioplayer_content($text = '')
 
 	/*
 	<p id="audioplayer_1">Alternative content</p>
- 	<script type="text/javascript">
+ 	<script>
 	AudioPlayer.setup("http://localhost/player.swf", {width: 290});
 	AudioPlayer.embed("audioplayer_1", { 
 	soundFile: "http://localhost/22.mp3", 

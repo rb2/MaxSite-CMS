@@ -463,9 +463,9 @@ function addzakl_content_end($args = array())
 		}
 			
 		$out .= $sep . '
-		<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+		<script src="https://apis.google.com/js/plusone.js"></script>
 		<div class="g-plusone" data-size="' . $sg . '" data-count="true"></div>
-		<script type="text/javascript"> gapi.plusone.render("g-plusone", {"size": "' . $sg . '", "count": "true"}); </script>
+		<script> gapi.plusone.render("g-plusone", {"size": "' . $sg . '", "count": "true"}); </script>
 		';
 	}
 

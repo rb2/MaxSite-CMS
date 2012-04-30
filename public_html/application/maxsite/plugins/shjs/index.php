@@ -119,9 +119,9 @@ function shjs_head($arg = array())
 
 	echo '
 	
-	<script type="text/javascript" src="' . getinfo('plugins_url') . 'shjs/sh_main.min.js"></script>
-	<link rel="stylesheet" href="' . getinfo('plugins_url') . 'shjs/css/' . $options['css'] . '.min.css" type="text/css" media="screen">
-	<script type="text/javascript">
+	<script src="' . getinfo('plugins_url') . 'shjs/sh_main.min.js"></script>
+	<link rel="stylesheet" href="' . getinfo('plugins_url') . 'shjs/css/' . $options['css'] . '.min.css">
+	<script>
 	$(document).ready(function() { 
 		sh_highlightDocument("' . getinfo('plugins_url') . 'shjs/lang/", ".min.js");
     });

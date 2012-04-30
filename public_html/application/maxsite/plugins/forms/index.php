@@ -48,7 +48,7 @@ function forms_content_callback($matches)
 	if ($r)
 		$subject = trim(implode(' ', $all[1]));
 	else
-		$subject = t('Обратная связь');
+		$subject = tf('Обратная связь');
 	
 	
 	// куда редиректить после отправки
@@ -108,7 +108,7 @@ function forms_content_callback($matches)
 			// формируем массив для формы
 			$subject_f['require'] = 1;
 			$subject_f['type'] = 'select';
-			$subject_f['description'] = t('Тема письма');
+			$subject_f['description'] = tf('Тема письма');
 			//$subject_f['tip'] = t('Выберите тему письма');
 			$subject_f['values'] = $subject;
 			$subject_f['default'] = '';
@@ -172,7 +172,7 @@ function forms_content_callback($matches)
 			// верный email?
 			if (!$ok = mso_valid_email($post['forms_email']))
 			{
-				$out .= '<div class="message error small">' . t('Неверный email!') . '</div>';
+				$out .= '<div class="message error small">' . tf('Неверный email!') . '</div>';
 			}
 			
 			// антиспам 
@@ -185,7 +185,7 @@ function forms_content_callback($matches)
 				if ( ($antispam1s/984 + $antispam2s/765) != $antispam3s )
 				{ // неверный код
 					$ok = false;
-					$out .= '<div class="message error small">' . t('Неверная сумма антиспама') . '</div>';
+					$out .= '<div class="message error small">' . tf('Неверная сумма антиспама') . '</div>';
 				}
 			}
 			
@@ -198,7 +198,7 @@ function forms_content_callback($matches)
 						if (!isset($post['forms_fields'][$key]) or !$post['forms_fields'][$key]) 
 						{
 							$ok = false;
-							$out .= '<div class="message error small">' . t('Заполните все необходимые поля!') . '</div>';
+							$out .= '<div class="message error small">' . tf('Заполните все необходимые поля!') . '</div>';
 						}
 					}
 					if (!$ok) break;
@@ -238,9 +238,9 @@ function forms_content_callback($matches)
 				
 				if ($_SERVER['REMOTE_ADDR'] and $_SERVER['HTTP_REFERER'] and $_SERVER['HTTP_USER_AGENT']) 
 				{
-					$message .= "\n" . t('IP-адрес: ') . $_SERVER['REMOTE_ADDR'] . "\n";
-					$message .= t('Отправлено со страницы: ') . $_SERVER['HTTP_REFERER'] . "\n";
-					$message .= t('Браузер: ') . $_SERVER['HTTP_USER_AGENT'] . "\n";
+					$message .= "\n" . tf('IP-адрес: ') . $_SERVER['REMOTE_ADDR'] . "\n";
+					$message .= tf('Отправлено со страницы: ') . $_SERVER['HTTP_REFERER'] . "\n";
+					$message .= tf('Браузер: ') . $_SERVER['HTTP_USER_AGENT'] . "\n";
 				}
 				
 				// pr($message);
@@ -248,10 +248,10 @@ function forms_content_callback($matches)
 				$form_hide = mso_mail($email, $subject, $message, $post['forms_email']);
 				
 				if ( $forms_subscribe and isset($post['forms_subscribe']) ) 
-					mso_mail($post['forms_email'], t('Вами отправлено сообщение:') . ' ' . $subject, $message);
+					mso_mail($post['forms_email'], tf('Вами отправлено сообщение:') . ' ' . $subject, $message);
 				
 				
-				$out .= '<div class="message ok small">' . t('Ваше сообщение отправлено!') . '</div><p>' 
+				$out .= '<div class="message ok small">' . tf('Ваше сообщение отправлено!') . '</div><p>' 
 						. str_replace("\n", '<br>', htmlspecialchars($subject. "\n" . $message)) 
 						. '</p>';
 				
@@ -295,7 +295,7 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 		// формируем массив для формы
 		$subject_f['require'] = 1;
 		$subject_f['type'] = 'select';
-		$subject_f['description'] = t('Тема письма');
+		$subject_f['description'] = tf('Тема письма');
 		//$subject_f['tip'] = t('Выберите тему письма');
 		$subject_f['values'] = $subject;
 		$subject_f['default'] = '';
@@ -312,9 +312,9 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 	$out .= '<input type="hidden" name="forms_antispam2" value="' . $antispam2 * 765 . '">';
 	
 	// обязательные поля
-	$out .= '<p><label class="ffirst ftitle" title="' . t('Обязательное поле') . '" for="id-' . ++$id . '">' . t('Ваше имя*') . '</label><span><input name="forms_name" type="text" value="" placeholder="' . t('Ваше имя') . '" required id="id-' . $id . '"></span></p>';
+	$out .= '<p><label class="ffirst ftitle" title="' . tf('Обязательное поле') . '" for="id-' . ++$id . '">' . t('Ваше имя*') . '</label><span><input name="forms_name" type="text" value="" placeholder="' . t('Ваше имя') . '" required id="id-' . $id . '"></span></p>';
 	
-	$out .= '<p><label class="ffirst ftitle" title="' . t('Обязательное поле') . '" for="id-' . ++$id . '">' . t('Ваш email*') . '</label><span><input name="forms_email" type="email" value="" placeholder="' . t('Ваш email') . '" required id="id-' . $id . '"></span></p>';
+	$out .= '<p><label class="ffirst ftitle" title="' . tf('Обязательное поле') . '" for="id-' . ++$id . '">' . t('Ваш email*') . '</label><span><input name="forms_email" type="email" value="" placeholder="' . t('Ваш email') . '" required id="id-' . $id . '"></span></p>';
 	
 	
 	// тут указанные поля в $f
@@ -330,7 +330,7 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 		if (isset($val['require']) and  trim($val['require']) == 1) 
 		{
 			$require = '*';
-			$require_title = ' title="' . t('Обязательное поле') . '"';
+			$require_title = ' title="' . tf('Обязательное поле') . '"';
 			$required = ' required';
 		}		
 		else 
@@ -343,10 +343,10 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 		if (isset($val['attr']) and  trim($val['attr'])) $attr = ' ' . trim($val['attr']);
 			else $attr = '';
 		
-		if (isset($val['value']) and  trim($val['value'])) $pole_value = htmlspecialchars(t(trim($val['value'])));
+		if (isset($val['value']) and  trim($val['value'])) $pole_value = htmlspecialchars(tf(trim($val['value'])));
 			else $pole_value = '';
 			
-		if (isset($val['placeholder']) and  trim($val['placeholder'])) $placeholder = ' placeholder="' . htmlspecialchars(t(trim($val['placeholder']))) . '"';
+		if (isset($val['placeholder']) and  trim($val['placeholder'])) $placeholder = ' placeholder="' . htmlspecialchars(tf(trim($val['placeholder']))) . '"';
 			else $placeholder = '';	
 			
 		$description = t(trim($val['description']));
@@ -378,7 +378,7 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 				if ($value == $default) $checked = ' selected="selected"';
 					else $checked = '';
 				
-				$out .= '<option' . $checked . '>' . htmlspecialchars(t($value)) . '</option>';
+				$out .= '<option' . $checked . '>' . htmlspecialchars(tf($value)) . '</option>';
 			}
 			
 			$out .= '</select></span></p>' . $tip;
@@ -396,11 +396,11 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 	$out .= '<span><input name="forms_antispam" type="text" required maxlength="3" value="" placeholder="' . t('Укажите свой ответ') . '" id="id-' . $id . '"></span><p>';
 	
 	if ($forms_subscribe)
-		$out .= NR . '<p><span class="ffirst"></span><label><input name="forms_subscribe" value="" type="checkbox"  class="forms_checkbox"> ' . t('Отправить копию письма на ваш e-mail') . '</label></p>';
+		$out .= NR . '<p><span class="ffirst"></span><label><input name="forms_subscribe" value="" type="checkbox"  class="forms_checkbox"> ' . tf('Отправить копию письма на ваш e-mail') . '</label></p>';
 	
-	$out .= NR . '<p><span class="ffirst"></span><span class="submit"><input name="forms_submit" type="submit" class="forms_submit" value="' . t('Отправить') . '">';
+	$out .= NR . '<p><span class="ffirst"></span><span class="submit"><button name="forms_submit" type="submit" class="forms_submit">' . tf('Отправить') . '</button>';
 	
-	if ($reset) $out .= ' <input name="forms_clear" type="reset" class="forms_reset" value="' . t('Очистить форму') . '">';
+	if ($reset) $out .= ' <button name="forms_clear" type="reset" class="forms_reset">' . tf('Очистить форму') . '</button>';
 	
 	$out .= '</span></p>';
 	

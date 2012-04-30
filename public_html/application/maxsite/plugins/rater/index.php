@@ -23,8 +23,8 @@ function rater_head($args = array())
 	mso_load_jquery();
 	
 	$path = getinfo('plugins_url') . 'rater/';
-	echo '<script type="text/javascript" src="' . $path . 'jquery.rater.js"></script>' . NR;
-	echo '	<link rel="stylesheet" href="' . $path . 'rater.css" type="text/css" media="screen">' . NR;
+	echo '<script src="' . $path . 'jquery.rater.js"></script>' . NR;
+	echo '	<link rel="stylesheet" href="' . $path . 'rater.css">' . NR;
 }
 
 function rater_content_end($arg = array())
@@ -51,7 +51,7 @@ function rater_content_end($arg = array())
 	echo '
 	<div id="rater" title="' . t('Текущая оценка:') . ' ' . $curvalue . '. ' 
 		. t('Голосов:') . ' ' . $page['page_rating_count'] 
-		. '"><script type="text/javascript">
+		. '"><script>
 		$(\'#rater\').rater(\'' . $path 
 		. '\', {maxvalue:10, style:\'basic\', curvalue:' . $curvalue . ', slug:\''. $page_id . '\'});
 	</script></div>

@@ -283,7 +283,7 @@
 		if (function_exists('tagclouds_widget_custom')) 
 		{
 			$f_all_tags = '
-			<script type="text/javascript">
+			<script>
 				function addTag(t)
 				{
 					var elem = document.getElementById("f_tags");

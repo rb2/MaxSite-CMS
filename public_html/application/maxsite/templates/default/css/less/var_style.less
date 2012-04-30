@@ -16,20 +16,38 @@ a {
 	color: #0E5FBF; 
 	text-decoration: underline;
 
-	&:hover {color: red;}
+	&:hover {
+		color: red;
+	}
 	
-	div.widget & {text-decoration: none;} 
-	div.sitemap & {text-decoration: none;} 
-	div.type_comments & {text-decoration: none;} 
-	div.page_other_pages & {text-decoration: none;} 
+	div.widget & {
+		text-decoration: none;
+	} 
+	
+	div.sitemap & {
+		text-decoration: none;
+	} 
+	
+	div.type_comments & {
+		text-decoration: none;
+	} 
+	
+	div.page_other_pages & {
+		text-decoration: none;
+	} 
 }
 
 // ЗАГОЛОВКИ H1
 h1 {
 	color: #101010;
 	
-	a {color: #101010;}
-	a:hover {color: red;}
+	a {
+		color: #101010;
+
+		&:hover {
+			color: red;
+		}
+	}
 	
 	&.category {
 		font-size: 2.0em; 

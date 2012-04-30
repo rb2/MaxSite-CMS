@@ -32,7 +32,7 @@ function admin_announce_uninstall($args = array())
 
 function admin_announce_head($args = array()) 
 {
-	echo NR . '<link rel="stylesheet" href="' . getinfo('plugins_url') . 'admin_announce/tabs.css" type="text/css" media="screen">' . NR;
+	echo NR . '<link rel="stylesheet" href="' . getinfo('plugins_url') . 'admin_announce/tabs.css">' . NR;
 
 	return $args;
 }
@@ -278,7 +278,7 @@ function admin_announce($args = array())
 	# КОНФЛИКТ по tablesorter!!!
 	echo mso_load_jquery('jquery.tablesorter.js');
 	echo '
-		<script type="text/javascript">
+		<script>
 			$(function() {
 				$("#tabs-widget > ul").tabs({ fx: { height: "toggle", opacity: "toggle", duration: "fast" } });
 				

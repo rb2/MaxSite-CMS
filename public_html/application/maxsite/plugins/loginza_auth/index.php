@@ -138,7 +138,7 @@ function loginza_auth_mso_options()
 function loginza_auth_head($args = array())
 {
 	if (!is_login() and !is_login_comuser())
-		echo '<script src="http://loginza.ru/js/widget.js" type="text/javascript"></script>';
+		echo '<script src="http://loginza.ru/js/widget.js"></script>';
 
 	return $args;
 }
@@ -216,7 +216,7 @@ function loginza_auth_page_comment_form($args = array())
 		echo '<span><a rel="nofollow" href="' .  $auth_url . '" class="loginza loginza_auth">';
 		echo '<img src="http://loginza.ru/img/sign_in_button_gray.gif" alt="Войти через loginza"/></a></span>';
 	} else {
-	    echo '<script src="http://s1.loginza.ru/js/widget.js" type="text/javascript"></script>';
+	    echo '<script src="http://s1.loginza.ru/js/widget.js"></script>';
 		echo '<span><a rel="nofollow" href="' .  $auth_url . '" class="loginza_auth">' . $auth_title . '</a></span>';
 	}
 	return $args;

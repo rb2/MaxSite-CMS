@@ -134,13 +134,13 @@ if ($pages) // есть страницы
 					echo '</div>';
 				}
 				
-				if ($f = mso_page_foreach('page-content')) 
+				if ($f = mso_page_foreach('page-content-category')) 
 				{
 					require($f); // подключаем кастомный вывод
 				}
 				else
 				{
-					echo '<div class="page_content">';
+					echo '<div class="page_content type_' . getinfo('type'). '">';
 						mso_page_content($page_content);
 						if ($f = mso_page_foreach('info-bottom')) require($f); // подключаем кастомный вывод
 						mso_page_content_end();
@@ -155,6 +155,7 @@ if ($pages) // есть страницы
 							'posle' => '</span></div>',
 							'page_count_comments' => $page_count_comments
 						 ));
+						 
 					echo '</div>';
 				}
 			

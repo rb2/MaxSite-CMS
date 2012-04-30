@@ -277,7 +277,7 @@ if (!function_exists('mso_default_head_section'))
 				}
 			}
 			
-		echo '" type="text/css" media="screen">';
+		echo '">';
 		
 		
 		// подключение var_style.css
@@ -298,10 +298,10 @@ if (!function_exists('mso_default_head_section'))
 			
 			// если var_style.css нулевой длины, то не подключаем его
 			if (filesize(getinfo('templates_dir') . $var_file))
-				echo NT . '<link rel="stylesheet" href="' . getinfo('templates_url') . $var_file . '" type="text/css" media="screen">';	
+				echo NT . '<link rel="stylesheet" href="' . getinfo('templates_url') . $var_file . '">';	
 		}
 		
-		echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . 'css/print.css" type="text/css" media="print">';
+		echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . 'css/print.css" media="print">';
 		
 		out_component_css();
 			
@@ -320,7 +320,7 @@ if (!function_exists('mso_default_head_section'))
 		if (function_exists('ushka')) echo ushka('head');
 		
 		if (file_exists(getinfo('template_dir') . 'js/my.js')) 
-			echo '	<script type="text/javascript" src="' . getinfo('template_url') . 'js/my.js"></script>';
+			echo '	<script src="' . getinfo('template_url') . 'js/my.js"></script>';
 		
 		if ($my_style = mso_get_option('my_style', 'templates', '')) echo NR . '<!-- custom css-my_style -->' . NR . '<style>' . NR . $my_style . '</style>';
 		
@@ -481,7 +481,7 @@ if (!function_exists('mso_add_file'))
 		{
 			$ext = substr(strrchr($fn, '.'), 1);// расширение файла
 			if ($ext == 'js') echo NT . '<script src="' . getinfo('template_url') . $fn . '"></script>';
-			elseif ($ext == 'css') echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . $fn . '" type="text/css">';
+			elseif ($ext == 'css') echo NT . '<link rel="stylesheet" href="' . getinfo('template_url') . $fn . '">';
 			elseif ($ext == 'less') echo NT . '<link rel="stylesheet/less" href="' . getinfo('template_url') . $fn . '" type="text/css">';
 			
 		}

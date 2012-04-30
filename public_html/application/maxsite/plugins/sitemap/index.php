@@ -30,7 +30,7 @@ function sitemap_content($text = '')
 # оюработка текста на предмет в нем [sitemap]
 function sitemap404($text = '')
 {
-	return  '<h2 class="sitemap">' . t('Воспользуйтесь картой сайта') . '</h2>' . sitemap();
+	return  '<h2 class="sitemap">' . tf('Воспользуйтесь картой сайта') . '</h2>' . sitemap();
 }
 
 # явный вызов функции - отдается карта сайта
@@ -71,7 +71,7 @@ function sitemap($arg = '')
 	{
 		$out .= '<div class="sitemap">' . NR . mso_hook('sitemap_do');
 		
-		$out .= '<div class="sitemap-link"><a href="' . getinfo('siteurl') . 'sitemap/cat">' . t('Группировка по рубрикам') . '</a>' . NR . '</div>';
+		$out .= '<div class="sitemap-link"><a href="' . getinfo('siteurl') . 'sitemap/cat">' . tf('Группировка по рубрикам') . '</a>' . NR . '</div>';
 		
 		$first = true;
 		foreach ($pages as $page)
@@ -156,7 +156,7 @@ function sitemap_cat($arg = '')
 	
 	$out .= '<div class="page_content sitemap">' . NR . mso_hook('sitemap_do');
 		
-	$out .= '<div class="sitemap-link"><a href="' . getinfo('siteurl') . 'sitemap">' . t('Группировка по датам') . '</a>' . NR . '</div>';
+	$out .= '<div class="sitemap-link"><a href="' . getinfo('siteurl') . 'sitemap">' . tf('Группировка по датам') . '</a>' . NR . '</div>';
 	
 	$all = mso_cat_array('page', 0, 'category_name', 'asc', 'category_name', 'asc', array(), array(), 0, 0, true);
 

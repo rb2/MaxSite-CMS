@@ -97,7 +97,7 @@
 	{ // есть виджеты
 	
 		$form .= '
-		<script type="text/javascript">
+		<script>
 			function addText(t, tarea)
 			{
 				var elem = document.getElementById(tarea);

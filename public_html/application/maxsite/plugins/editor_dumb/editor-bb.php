@@ -3,7 +3,7 @@
 # http://forum.max-3000.com/viewtopic.php?f=6&t=930
 # Автор: Delete (http://www.finiks.ru/)
 
-echo '<script type="text/javascript" src="'. getinfo('plugins_url') . 'editor_dumb/editor_zero.js"></script>'; 
+echo '<script src="'. getinfo('plugins_url') . 'editor_dumb/editor_zero.js"></script>'; 
 
 ?>
 

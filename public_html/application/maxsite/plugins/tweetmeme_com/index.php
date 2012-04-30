@@ -157,12 +157,12 @@ function tweetmeme_com_content($text = '')
 			$js2 = '';
 			
 		if ($js1 or $js2)
-			$js = '<script type="text/javascript">' . $js1 . $js2 . '</script>';
+			$js = '<script>' . $js1 . $js2 . '</script>';
 		else
 			$js = '';
 		
-		// $text = '<span style="display: none"><![CDATA[<noindex>]]></span><div class="tweetmeme_com"' . $style . '>' . $js . '<script type="text/javascript" src="' . getinfo('plugins_url'). 'tweetmeme_com/button.js"></script></div><span style="display: none"><![CDATA[</noindex>]]></span>' . $text;
-		$text = '<div class="tweetmeme_com"' . $style . '>' . $js . '<script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script></div>' . $text;
+		// $text = '<span style="display: none"><![CDATA[<noindex>]]></span><div class="tweetmeme_com"' . $style . '>' . $js . '<script src="' . getinfo('plugins_url'). 'tweetmeme_com/button.js"></script></div><span style="display: none"><![CDATA[</noindex>]]></span>' . $text;
+		$text = '<div class="tweetmeme_com"' . $style . '>' . $js . '<script src="http://tweetmeme.com/i/scripts/button.js"></script></div>' . $text;
 	
 	}
 	else 
@@ -191,7 +191,7 @@ function tweetmeme_com_content($text = '')
 		. ' data-text="' . $page['page_title'] . '" '
 		. $options['twitter_data-via']
 		. '>Tweet</a>
-		<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>' 
+		<script src="http://platform.twitter.com/widgets.js"></script>' 
 		. '</div>' . $text;
 		
 	}

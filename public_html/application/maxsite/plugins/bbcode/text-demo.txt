@@ -38,20 +38,11 @@
 </pre>
 
 
-<h2>Текст CODE</h2>
+<h2>Код CODE в тексте</h2>
 
-<code>
-<br>&lt;html&gt;
-<br>	&lt;head&gt;
-<br>	&lt;/head&gt;
-<br>	&lt;body&gt;
-<br>		
-<br>	&lt;/body&gt;
-<br>&lt;/html&gt;
-</code>
+<p>When you call the <code>activate()</code> method on the <code>robotSnowman</code> object, the eyes glow.</p>
 
 <hr>
-
 
 <h2>Изображение в тексте IMG</h2>
 

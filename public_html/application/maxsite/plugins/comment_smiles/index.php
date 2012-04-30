@@ -18,12 +18,12 @@ function comment_smiles_autoload($args = array())
 function comment_smiles_head($arg = array())
 {
 	if (!is_type('home') and !is_type('category') and !is_type('tag') and !is_type('archive') and !is_type('comments') and !is_type('contact') and !is_type('search') and !is_type('users'))
-		echo '<script type="text/javascript" src="'. getinfo('plugins_url') . 'comment_smiles/comment_smiles.js"></script>' . NR;
+		echo '<script src="'. getinfo('plugins_url') . 'comment_smiles/comment_smiles.js"></script>' . NR;
 }
 
 function comment_smiles_head_admin_comment_edit($arg = array())
 {
-    echo '<script type="text/javascript" src="'. getinfo('plugins_url') . 'comment_smiles/comment_smiles.js"></script>' . NR;
+    echo '<script src="'. getinfo('plugins_url') . 'comment_smiles/comment_smiles.js"></script>' . NR;
 }
 
 # функции плагина

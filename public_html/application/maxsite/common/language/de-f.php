@@ -1,208 +1,214 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * MaxSite CMS
- * Language file
- * (c) http://max-3000.com/
- * Author: (c) Alexander Schilling
- * Author URL: http://alexanderschilling.net
- * Update URL: http://alexanderschilling.net
- * Core
- * Aktualisiert am: 21.03.2012
+ * Language for MaxSite CMS (c) http://max-3000.com/
  */
 
- 
- 
-# common.php
-$lang['Доступ запрещен'] = 'Zugriff verweigert';
-$lang['Сайдбар'] = 'Sidebar';
-$lang['Виджет'] = 'Widget';
-
-# inifile.php
-$lang['Сохранить'] = 'Speichern';
-$lang['Настройка'] = 'Einstellung';
-$lang['Значение'] = 'Wert';
-
-# page.php
-$lang['Далее'] = 'Weiter';
-$lang['(черновик)'] = '(Entwurf)';
-$lang['Редактировать'] = 'Bearbeiten';
-$lang['Подписаться'] = 'Abonnieren';
-$lang['Данная запись защищена паролем.'] = 'Dieser Beitrag ist mit Passwort geschützt.';
-$lang['<strong>Ошибочный пароль!</strong> Повторите ввод.'] = '<strong>Falsches Passwort!</strong> Bitte versuchen Sie noch einmal.';
-$lang['Обсудить'] = 'Kommentare';
-$lang['Посмотреть комментарии'] = 'Kommentare anzeigen';
-$lang['<span>Прочтений:</span> '] = '<span>Gelesen:</span> '; // пробел в конце!
-$lang['Пароль:'] = 'Passwort:';
-
-# comments.php
-$lang['Комментатор'] = 'Kommentator';
-$lang['анонимно'] = 'anonym';
-
-# template_options
-$lang['Шаблон для MaxSite CMS']='Template für MaxSite CMS';
-$lang['Вывод записей'] = 'Einträge';
-$lang['Оформление'] = 'Template';
-$lang['Прочее'] = 'Verschiedenes';
-$lang['Блок другие записи'] = 'Andere Einträge';
-$lang['Форма обратной связи'] = 'Kontakt Formular';
-
-$lang['Изображения']='Bilder';
-$lang['Иконка сайта']='Icon für Webseite';
-$lang['Выберите иконку сайта. Файлы находятся в каталоге шаблона «images/favicons».']='Wählen Sie ein Icon für die Webseite. Dateien befinden sich in Template-Ordner «images/favicons».';
-$lang['Логотип для шапки']='Logo für Kopfbereich';
-$lang['Выберите логотип. Файлы находятся в каталоге шаблона «images/logos.']='Wählen Sie ein Logo aus. Dateien befinden sich in Template-Ordner «images/logos.';
-$lang['Каталог изображений для шапки']='Odner für Kopfbereich Bilder';
-$lang['Каталог шаблона']='Template Ordner';
-$lang['Укажите каталог, где находятся изображения для шапки. Размер изображений по умолчанию 960x250px.']=
-'Geben Sie den Ordner ein, wo sich die Bilder für Kopfbreich befinden. Größe der Bilder als Standard 960x250px';
-
-$lang['Соц.сети']='Soziale Netzwerke';
-$lang['Адрес Twitter']='Twitter Link';
-$lang['Укажите свой адрес (с http://) в Twitter.']='Geben Sie Ihr Twitter Link ein (mit http://)';
-$lang['Адрес Facebook']='Facebook Link';
-$lang['Укажите свой адрес (с http://) в Facebook.']='Geben Sie Ihr Facebook Link ein (mit http://)';
-$lang['Адрес Skype']='Skype';
-$lang['Укажите свой адрес в Skype.']='Geben Sie Ihr Skype ein';
-$lang['Адрес в Контакте']='VK Link';
-$lang['Укажите свой адрес (с http://) в Контакте.']='Geben Sie Ihr VK Link ein (mit http://)';
-$lang['Адрес в Jabber']='Jabber';
-$lang['Укажите свой адрес в Jabber.']='Geben Sie Ihr Jabber ein';
-$lang['Адрес в Google plus']='Google Plus Link';
-$lang['Укажите свой адрес (с http://) в Google plus.']='Geben Sie Ihr Google Plus Link ein (mit http://)';
-
-$lang['Вывод на главной']='Startseite-Ausgabe';
-$lang['Выводить описание записей на главной']='Beschreibung der Beiträge auf Startseite anzeigen';
-$lang['Разрешить вывод описания записей для главной страницы, если выбраны рубрики для главной и отмечена опция «Блоки рубрик на главной». Описание записи берётся из дополнительного поля записи «Описание страницы (description)»']=
-'Ausgabe der Beschreibung der Beiträge auf der Startseite erlauben, wenn die Kategorien für Startseite ausgewählt ist und die Option «Block mit Kategorien auf Startseite». Beschreibung der Beiträge wird von dem Feld «Beschreibung der Webseite (Description)» genommen.';
-$lang['Выводить описание рубрик на главной']='Ausgabe der Beschreibung der Kategorien auf der Startseite';
-$lang['Разрешить вывод описания рубрик для главной страницы, если выбраны рубрики для главной и отмечена опция «Блоки рубрик на главной».']=
-'Ausgabe der Beschreibung der Kategorien auf der Startseite erlauben, wenn die Kategorien für Startseite ausgewählt sind und die Option «Block mit Kategorien auf Startseite» ausgewählt ist.';
-
-$lang['Профили оформления']='Template-Profile';
-$lang['Дополнительные профили']='Zusätzliche Profile';
-$lang['Отметьте дополнительные CSS-профили, которые вы хотите подключить к шаблону.']=
-'Wählen Sie zusätzliche CSS-Profile aus, welche Sie an die Template anbinden möchten';
-
-$lang['Персональные настройки'] = 'Persönliche Einstellungen';
-
-$lang['Настройка блоков'] = 'Blocks-Einstellungen';
-$lang['Первый блок шапки']='Erster Block im Kopfbereich';
-$lang['Выберите файл, который будет использоваться для вывода первого блока в шапке.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den ersten Block im Kopf-Bereich Anzuzeigen.';
+$lang['Войти']='Login';
+$lang['Вход через:']='Einloggen über:';
+$lang['Все новые записи']='Neue Beiträge';
+$lang['Все новые комментарии']='Neue Kommentare';
+$lang['Комментарии этой записи']='Kommentare zu diesem Beitrag';
+$lang['Записи этой рубрики']='Beiträge dieser Kategorie';
+$lang['Аноним']='Anonym';
+$lang['Комментатор']='Kommentator';
+$lang['Новый комментарий']='Neue Kommentare';
+$lang['Новый комментарий на']='Neue Kommentar';
+$lang['Комментарий требует модерации']='Kommentar muss überprüft werden';
+$lang['Пользователь']='Benutzer';
+$lang['Комюзер']='Komuser';
+$lang['Администрировать комментарий вы можете по ссылке']='Kommentare Verwalten können Sie unter folgenden link';
+$lang['Ошибка сессии! Обновите страницу']='Session fehler! Aktualisieren Sie die Seite';
+$lang['Ошибка!']='Fehler!';
+$lang['Ошибка! Неверно введены нижние символы!']='Fehler! Sie haben die unten stehende Symbole falsch eingegeben!';
+$lang['Обнаружена XSS-атака!']='XSS-Angriff wurde entdeckt!';
+$lang['Ошибка, нет текста!']='Fehler, es gibt kein Text!';
+$lang['Ошибка, нет полезного текста!']='Fehler, es gibt keinen nutzlichen Text!';
+$lang['Ваш комментарий определен как спам и удален.']='Ihr Kommentar wurde als Spam markiert und wurde gelöscht.';
+$lang['Похоже, вы уже отправили этот комментарий...']='Sie haben bereits diesen Kommentar gesendet...';
+$lang['Ошибка добавления комментария']='Fehler bei hinfügen von Kommentar';
+$lang['Error allow_comment_comusers']='';
+$lang['Нужно указать Email']='Geben Sie ein E-Mail ein';
+$lang['Нужно указать пароль']='Geben Sie ein Passwort ein';
+$lang['Ошибочный Email']='Ungültige Email';
+$lang['Слишком частые комментарии. Попробуйте позже.']='Sie versenden zu oft Kommentare. Bitte versuchen Sie später noch einmal.';
+$lang['Неверный пароль']='Ungültiges Passwort';
+$lang['Ошибка регистрации']='fehler bei Anmeldung';
+$lang['Error allow_comment_anonim']='';
+$lang['Ошибочный номер пользователя']='Ungültige Nummer des Benutzer.';
+$lang['Неверный (пустой) ключ']='Ungültige (leer) Schlüssel';
+$lang['Активация уже выполнена']='Aktivierung wurde bereits gemacht';
+$lang['Активация выполнена!']='Aktivierung erfolgreich!';
+$lang['Ошибка БД при добавления ключа активации']='DB fehler bei hinzufügen von Aktivierungsschlüssel';
+$lang['Ошибочный ключ активации']='Ungültige Aktivierungsschlüssel';
+$lang['Ошибочные данные пользователя']='Ungültige Daten von Benutzer';
+$lang['Необходимо указать email и пароль']='Geben Sie E-Mail und Passwort ein';
+$lang['Обновление выполнено!']='Aktualisiert!';
+$lang['Ошибка БД при обновлении']='DB Fehler bei Aktualisierung';
+$lang['Ошибочный email и пароль']='Ungültige E-Mail und Passwort';
+$lang['Ошибочный номер пользователя2']='';
+$lang['Нужно указать email']='Geben Sie ein E-Mail ein';
+$lang['Ошибочный email']='Ungültige E-Mail';
+$lang['Неверный email или номер пользователя']='Ungültige E-Mail oder Nummer des Benutzer';
+$lang['Код активации отправлен на ваш email']='Aktivierungscode wurde gesendet';
+$lang['Данный email не зарегистрирован или не активирован']='Diese E-Mail ist nicht angemeldet oder nicht aktiviert';
+$lang['Для установки нового пароля нужно заполнить все поля!']='Um Passwort zu ändern, muss man alle Felder ausfühlen!';
+$lang['Ошибка БД при смене пароля...']='DB Fehler bei Passwort ändern...';
+$lang['Данные указаны неверно!']='Daten Sie ungültig!';
+$lang['Новый комментарий к']='Neue Kommentar zu';
+$lang['Текст:']='Text:';
+$lang['Перейти к комментарию на сайте:']='Zu Kommentar auf der Seite:';
+$lang['Данный email уже используется на сайте админом или автором.']='Diese E-Mail wird bereits von Admin oder Autor verwendet.';
+$lang['Далее']='Weiter';
+$lang['(черновик)']='(entwurf)';
+$lang['Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье']='Mo Di Mi Do Fr Sa So';
+$lang['января февраля марта апреля мая июня июля августа сентября октября ноября декабря']='Jan Feb Mar Apr Mai Jun Jul Aug Sep Nov Dez';
+$lang['Пароль:']='Passwort:';
+$lang['<strong>Ошибочный пароль!</strong> Повторите ввод.']='<strong>Ungültige Passwort!</strong> Versuchen Sie nocheinmal.';
+$lang['Обсудить']='Kommentare';
+$lang['Посмотреть комментарии']='Kommentar Anzeigen';
+$lang['Еще записи по теме']='Ähnliche Beiträge';
 $lang['Отсутствует']='Fehlt';
-$lang['Второй блок шапки']='Zweiter Block im Kopfbereich';
-$lang['Выберите файл, который будет использоваться для вывода второго блока в шапке.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den zweiten Block im Kopf-Bereich Anzuzeigen.';
-$lang['Третий блок шапки']='Dritter Block im Kopfbereich';
-$lang['Выберите файл, который будет использоваться для вывода третьего блока в шапке.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den dritten Block im Kopf-Bereich Anzuzeigen.';
-$lang['Четвёртый блок шапки']='Vierte Block im Kopfbereich';
-$lang['Выберите файл, который будет использоваться для вывода четвёртого блока в шапке.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den vierten Block im Kopf-Bereich Anzuzeigen.';
-$lang['Пятый блок шапки']='Fünfte Block im Kopfbereich';
-$lang['Выберите файл, который будет использоваться для вывода пятого блока в шапке.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den fünften Block im Kopf-Bereich Anzuzeigen.';
-$lang['Первый блок подвала']='Erster Block im Footer';
-$lang['Выберите файл, который будет использоваться для вывода первого блока в подвале.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den ersten Block im Footer-Bereich Anzuzeigen';
-$lang['Второй блок подвала']='Zweiter Block im Footer';
-$lang['Выберите файл, который будет использоваться для вывода второго блока в подвале.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den zweiten Block im Footer-Bereich Anzuzeigen';
-$lang['Третий блок подвала']='Dritter Block im Footer';
-$lang['Выберите файл, который будет использоваться для вывода третьего блока в подвале.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den dritten Block im Footer-Bereich Anzuzeigen';
-$lang['Четвёртый блок подвала']='Vierter Block im Footer';
-$lang['Выберите файл, который будет использоваться для вывода четвёртого блока в подвале.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den vierten Block im Footer-Bereich Anzuzeigen';
-$lang['Пятый блок подвала']='Fünfter Block im Footer';
-$lang['Выберите файл, который будет использоваться для вывода пятого блока в подвале.']=
-'Wählen Sie ein Datei aus, die verwendet wird um den fünften Block im Footer-Bereich Anzuzeigen';
-
-$lang['Количество записей на главной'] = 'Anzahl der Einträge aus der Startseite';
-$lang['Укажите количество записей, которые будут выводиться на главной странице сайта.'] = 'Wieviel Einträge sollen auf der Startseite angezeigt werden?';
-$lang['Количество записей на остальных'] = 'Anzahl der Einträge auf andere Seiten';
-$lang['Укажите количество записей, которые будут выводиться на остальных страницах (рубрики, архивы и т.д.)'] = 'Wieviel Einträge sollen auf andere Seiten angezeigt werden? (Kategorien, Archiv etc...)';
-$lang['Количество записей в RSS'] = 'Anzahl der Einträge für RSS';
-$lang['Укажите количество записей, которые будут выводиться в rss-ленте'] = 'Wieviel Einträge sollen bei dem RSS Feed angezeigt werden?';
-$lang['Количество комментариев'] = 'Anzahl der Kommentare';
-$lang['Укажите количество записей, которые будут выводиться на странице комментариев.'] = 'Wieviel Kommentare sollen auf einer Seite angezeigt werden?';
-$lang['Полные записи в RSS'] = 'Ganze Einträge in RSS-Feed';
-$lang['Отметьте, если нужно отдавать в RSS полные записи. Если нет, то будет только до [cut].'] = 'Wählen Sie aus, wenn Sie den gesamten Eintrag in RSS-Feed ausgeben möchten. Wenn nicht, wird der Eintrag bist [cut] angezeigt.';
-$lang['Полные или короткие записи для главной'] = 'Gesamt oder Kurz Version der Einträge für Startseite';
-$lang['Полные записи']='Ganze Einträge';
-$lang['Только заголовки']='Nur Überschrift';
-$lang['Выберите тип отображения записей для главной страницы.'] = 'Wählen Sie ein Typ aus (für Startseite).';
-$lang['Полные или короткие записи для рубрик'] = 'Gesamt oder Kurz Version der Einträge für Kategorien';
-$lang['Выберите тип отображения записей для страницы рубрик.'] = 'Wählen Sie ein Typ aus (für Kategorien).';
-$lang['Полные или короткие записи для меток'] = 'Gesamt oder Kurz Version der Einträge für Schlagwörter';
-$lang['Выберите тип отображения записей для страницы меток.'] = 'Wählen Sie ein Typ aus (für Schlagwörter)';
-
-$lang['Номера записей для главной'] = 'Nummern der Einträge für Startseite';
-$lang['Укажите номера страниц, которые следует вывести на главной. Если указать «0», будут выведены все последние записи.'] = 'Geben Sie die Nummern der Seiten, die auf der Startseite Angezeigt werden sollen. Bei «0», werden alle Einträge Angezeigt.';
-$lang['Номера рубрик для главной'] = 'Nummern der Kategorien für Startseite';
-$lang['Укажите номера рубрик, которые следует выводить на главной. Если указать «0», будут выведены все.'] = 'Geben Sie die Nummern der Kategorien, die auf der Startseite Angezeigt werden sollen. Bei «0», werden alle Einträge aus alle Kategorien Angezeigt.';
-$lang['Номер top-записи для главной'] = 'Nummer des Top-Eintrags für Startseite';
-$lang['Укажите номер страницы, которую следует вывести на главной перед всеми записями. Если указать «0», то ничего не выводится.'] = 'Geben Sie die Nummer der Seiten an, die auf der Startseite (am Anfang) Angezeigt werden sollen. Bei «0», wird nichts Angezeigt.';
-$lang['Текст для главной перед всеми записями'] = 'Text für Startseite, vor allen Einträge';
-$lang['Текст будет отображен перед всеми записями. Можно использовать HTML-тэги. Если ничего выводить не нужно, оставьте это поле пустым.'] = 'Text wird vor allen Einträge Angezeigt. Man kann HTML-Tag benutzen. Wenn Sie nichts anzeigen möchten, lassen Sie dieses Feld frei.';
-$lang['Блоки рубрик на главной'] = 'Kategorien Block für Startseite';
-$lang['Отметьте, если нужно выводить записи блоками по отдельной указанной (в «Номера рубрик для главной») рубрике на главной.'] = 'Wählen Sie aus, wenn Sie die Einträge in Blocks ausgeben möchten.';
-$lang['Последняя запись на главной'] = 'Letzter Eintrag auf Startseite';
-$lang['Отметьте, если нужно выводить перед блоками (при включеннм «Блоки рубрик на главной») последнюю запись блога.'] = 'Wählen Sie aus, wenn Sie den letzten Eintrag vor allen anderen Einträge anzeigen möchten. («Kategorien Block für Startseite» muss angeschaltet sein).';
-$lang['Свои CSS-стили'] = 'Eigenes CSS-Style';
-$lang['Вы можете указать произвольные css-стили'] = 'Hier können Sie ein beliebiges CSS-Style eingeben';
-$lang['Текст для «Далее»'] = 'Text für «Weiterlesen»';
-$lang['Далее...']='Weiter...';
-$lang['Использование canonical для записей']='Canonical für Einträge verwenden';
-$lang['Разрешить указывать для страниц meta-тэг canonical. Поисковики могут учитывать этот параметр для определения основного адреса страницы, если она доступна по нескольким адресам одновременно. Это позволяет избежать дублей страниц при индексировании.'] = 'Cononical für Seiten in Meta-Tags erlauben. Suchmaschinen können diese Option nutzen, um die Haupt Web-Adresse zu bestimmen, wenn die Seite unter mehreren Web-Adressen gleichzeitig vorhanden ist. Hilft um Wiederholungen bei Indizierung zu vermeiden.';
-
-$lang['Этот текст будет выводится в ссылке на полный текст страницы.'] = 'Text für Link «Weiterlesen».';
-$lang['Текст для «Оставьте комментарий»'] = 'Text für «Hinterlasse ein Kommentar!»';
-$lang['Этот текст будет выводится как призыв оставить комментарий.'] = 'Dieser Text wird als Aufruf sein, um einen Kommentar zu schreiben.';
-$lang['Граватарка по-умолчанию'] = 'Gravatar als Standart';
-$lang['стандарт']='Standard';
-$lang['Силуэт']='Schattenbild';
-$lang['Геометрический рисунок']='Geometrische Muster';
-$lang['Монстрики']='Monsters';
-$lang['Смешные лица']='Lustige Gesichter';
-$lang['8-битное лицо']='8-Bit-Gesichter';
-$lang['Выберите тип граватарки, которая будет отображаться для незарегистрированных email'] = 'Wählen Sie ein Typ des Gravatar aus, die für nicht registrierte Benutzer verwendet wird.';
-$lang['Размер граватарки'] = 'Größe des Gravatars';
-$lang['Укажите размер изображения граватарки от 1px до 512px'] = 'Geben Sie die Größe des Gravatars von 1px bis 512px';
-$lang['Главное меню'] = 'Hauptmenü';
-
-$lang['Подсчет количества просмотров']='Anzahl der Besuche zählen';
-$lang['Нужно ли считать количество просмотров страниц.']='Anzahl der Seitenaufrufe zählen?';
-$lang['Включить подсчет с помощью cookies']='Zählen mit Hilfe von Cookies';
-$lang['Включить подсчет с помощью session']='Zählen mit Hilfe von Session';
-$lang['Включить подсчет неуникальных просмотров']='Alle Zählen';
-$lang['Не вести счет']='Nicht Zählen';
-
-$lang['404 http-заголовок']='404 http-Überschrift';
-$lang['Отметьте, если нужно отправлять 404-ошибку, при ненайденных страницах.']='Wählen Sie aus, wenn eine Fehlermeldung angezeigt werden soll, wenn die Webseite nicht gefunden wurde.';
-$lang['Глобальное кэширование']='Globale Caching';
-$lang['Можно ли кэшировать страницы целиком? Если вы включите эту опцию, то в кэш будет добавляться полностью сгенерированные страницы, что значительно ускоряет работу сайта. Рекомендуется для сайтов с большой посещаемостью. Данный кэш занимает много места на диске. Работает, только если установлен плагин глобального кэширования.']='Darf man die ganze Webseite in Cache ablegen? Wenn Sie diese Option einschalten, dann werden in Cache die generierte Seiten abgelegt, dadurch wird die Geschwindigkeit der Webseite erhöht. Wird empfohlen für Seiten, mit viele Besucher. Cache braucht ziemlich viel platz. Funktioniert nur, wenn der Plugin Global-Caching aktiv ist.';
-
-$lang['Блок ссылок на другие записи этой рубрики']='Block mit Links auf andere Einträge in einer Kategorie';
-$lang['Выводить ли этот блок ссылок под текстом записи (только одиночной страницы)? Если не нужно выводить, то оставьте поле пустым. Иначе укажите заголовок блока.']='Soll man den Block mit Links nach dem Textbereich anzeigen (nur bei einzige Seiten)? Wenn ja, geben Sie ein Titel ein. Wenn nicht, das lassen Sie den Feld frei.';
-$lang['Количество ссылок на другие записи этой рубрики']='Anzahl der Links auf andere Beiträge in gleicher Kategorie';
-$lang['Если вы отметили отображать ссылки на другие записи этой рубрики, то можно указать количество ссылок.']='Geben Sie hier die Anzahl der Links ein, die Angezeigt werden sollen.';
-
-$lang['Критерий сортировки для ссылок на другие записи этой рубрики']='Kriterium für Sortierung der Links für andere Beiträge gleicher Kategorie. ';
-$lang['По дате публикации']='Nach Datum';
-$lang['По id рубрики']='Nach ID der Kategorien';
-$lang['По названию записи']='Nach Überschrift der Beiträge';
-
-$lang['Порядок сортировки для ссылок на другие записи этой рубрики']='Reihenfolge der Sortierung der Link auf andere Beiträge gleicher Kategorie';
-$lang['Случайно'] = 'Zufällig';
-$lang['Если вы отметили отображать ссылки на другие записи этой рубрики, то можно указать порядок сортировки.']='Hier können Sie die Reihenfolge für Sortierung der Links eingeben.';
-$lang['Учёт рубрики при выводе']='Kategorie bei Ausgabe beachten';
-$lang['Из всех отмеченных рубрик']='Alle ausgewählte Kategorien';
-$lang['Только из подрубрики, исключая родительскую']='Nur von unter Ordner, ohne Übergeordnete Ordner';
-$lang['Какие записи будут выводиться в блоке']='Welche Einträge werden in dem Block angezeigt';
-
-$lang['Работает на <a href="http://max-3000.com/" style="color: white;">MaxSite CMS</a>.'] = 'Danke, dass Sie <a href="http://max-3000.com/" style="color: white;">MaxSite CMS</a> benutzen.';
-
-
-# End of file
+$lang['Каталог шаблона']='Plugins Katalog';
+$lang['Первый сайдбар']='Erster Sidebar';
+$lang['j F Y г.']='j F Y';
+$lang['Дата публикации']='Veröffentlichungsdatum';
+$lang['Автор']='Autor';
+$lang['Просмотры записи']='Anzahl der Aufrufe von dem Beitrag';
+$lang['Просмотров']='Aufrufe';
+$lang['RSS']='RSS';
+$lang['Подписка на RSS']='RSS Feed abonnieren';
+$lang['Комментарии']='Kommentare';
+$lang['Рубрики']='Kategorien';
+$lang['Метки']='Tags';
+$lang['My Template']='Meine Theme';
+$lang['Работает на <a href="http://max-3000.com/">MaxSite CMS</a> | Время: {elapsed_time} | SQL: %s | Память: {memory_usage}']='Powered by <a href="http://max-3000.com/">MaxSite CMS</a> | Zeit: {elapsed_time} | SQL: %s | Memory: {memory_usage}';
+$lang['Управление']='Steuerung';
+$lang['Выйти']='Logout';
+$lang['Вход']='Login';
+$lang['/ | Главная_NR_about | О сайте_NR_comments | Комментарии_NR_contact | Контакты_NR_sitemap | Архив_NR_feed | RSS']='/ | Startseite_NR_about |Über uns_NR_comments | Kommentare_NR_contact | Kontakt_NR_sitemap | Arhiv_NR_feed | RSS';
+$lang['404 - несуществующая страница']='404 - Seite nicht gefunden';
+$lang['Извините по вашему запросу ничего не найдено!']='Es konnte nichts gefunden werden!';
+$lang['404. Ничего не найдено...']='404. Nichts gefunden...';
+$lang['Извините, ничего не найдено']='Es konnte nichts gefunden werden.';
+$lang['Последние комментарии']='Letze Kommentar';
+$lang['Подписаться по RSS']='RSS Abonnieren';
+$lang['Список комментаторов']='Kommentare Liste';
+$lang['Восстановление пароля']='Passwort Wiederhestellen';
+$lang['Форма редактирования комментатора']='Formbearbeitung Kommentator';
+$lang['Ожидает модерации']='Wird überprüft';
+$lang['Рубрика']='Kategorie';
+$lang['Дата']='Datum';
+$lang['Читать комментарии']='Kommentar lesen';
+$lang['Не регистрировать/аноним']='Nicht anmelden/anonym';
+$lang['Ваше имя']='Name';
+$lang['Используйте нормальные имена. Ваш комментарий будет опубликован после проверки.']='Benutzen Sie echte Namen. Ihr Kommentar wird nacht überprüfung veröffentlicht.';
+$lang['Используйте нормальные имена.']='Benutzen Sie echte Namen.';
+$lang['Если вы уже зарегистрированы как комментатор или хотите зарегистрироваться, укажите пароль и свой действующий email. <br><em>(При регистрации на указанный адрес придет письмо с кодом активации и ссылкой на ваш персональный аккаунт, где вы сможете изменить свои данные, включая адрес сайта, ник, описание, контакты и т.д.)</em>']='Wennn Sie bereits als Kommentator angemeldet sind oder sich anmelden möchten, geben Sie ein Passwort und eine gültige E-Mail ein.<br><em>(Bei Anmeldung wird an diese E-Mail ein E-Mail gesendet, mit Aktivierungscode und link zu Ihren persönlichen Bereich, wo Sie ihre Daten ändern können.)</em>';
+$lang['E-mail']='E-Mail';
+$lang['Пароль']='Passwort';
+$lang['Привет!']='Hallo!';
+$lang['Привет,']='Hallo,';
+$lang['Привет']='Hallo';
+$lang['Ваш комментарий']='Ihre Kommentar';
+$lang['Отправить']='Senden';
+$lang['Оставьте комментарий!']='Hinterlassen Sie ein Kommentar!';
+$lang['Восстановление пароля комментатора']='Passwort von Kommentator wiederherstellen';
+$lang['Если у вас сохранился код активации, то вы можете сразу заполнить все поля. Если код активации утерян, то вначале введите только email и нажмите кнопку «Готово». На указанный email вы получите код активации. После этого вы можете вернуться на эту страницу и заполнить все поля.']='Wenn Sie den Aktivierungscode haben, können Sie alle Felder ausfühlen. Wenn Sie keinen Aktivierungscode haben, dann geben Sie nur ein gültige E-Mail ein und drücken Sie den Button "Fertig". Auf diese E-Mail wird die Aktivierungscode versendet. Danach können Sie wieder auf diese Seite zurück gehen und alle Felder ausfühlen.';
+$lang['Ваш email']='E-Mail';
+$lang['Ваш код активации']='Aktivierungscode';
+$lang['Новый пароль']='Neues Passwort';
+$lang['Готово']='Fertig';
+$lang['Персональная страница']='Eigene Seite';
+$lang['Выход']='Logout';
+$lang['Введите ключ активации']='Geben Sie den Aktivierugnscode ein';
+$lang['В случае проблем с активацией (не пришел ключ, указали ошибочный email), обращайтесь к администратору по email:']='Bei Problemen mit Aktivierung (Aktivierungscode nicht erhalten, E-mail ist ungültig), wenden Sie sich an den Administrator per E-Mail)';
+$lang['Для редактирования введите свой email и пароль']='Um zu ändern, geben Sie ihr E-Mail und Passwort ein';
+$lang['Ваш пароль']='Ihr Passwort';
+$lang['Я забыл пароль']='Passwort vergessen';
+$lang['Укажите свои данные']='Geben Sie Ihre Daten ein';
+$lang['Отображаемый ник']='Nickname';
+$lang['Сайт (с http://)']='Webseite (mit http://)';
+$lang['Аватарка (с http://, размер 80x80px)']='Benutzerbild (mit http://, Größe 80x80px)';
+$lang['ICQ']='ICQ';
+$lang['Twitter']='Twitter';
+$lang['Jabber']='Jabber';
+$lang['Дата рождения']='Geburtsdatum';
+$lang['Уведомления']='Benachtichtigung';
+$lang['Без уведомлений']='Ohne Benachrichtigung';
+$lang['Подписаться']='Abbonieren';
+$lang['новые комментарии, где я участвую']='neue Kommentare, wo ich teilnehme';
+$lang['новые комментарии, где я не участвую']='neue Kommentare, wo ich nicht teilnehme';
+$lang['новые записи сайта']='neue Beiträge der Seite';
+$lang['рассылка администратора']='Administrator Letter';
+$lang['О себе']='Über mich';
+$lang['HTML удаляется']='HTML wird gelöscht';
+$lang['Настроение']='Stimmung';
+$lang['В колонках звучит']='In Lautsprächer läuft zurzeit';
+$lang['Комментаторы']='Kommentatoren';
+$lang['Комментариев']='Kommentare';
+$lang['Подписаться на эту метку по RSS']='Nach diesem Tag per RSS Abbonieren';
+$lang['комментарии по RSS']='Kommentare per RSS';
+$lang['Подписаться на']='Abbonieren zu';
+$lang['Подписаться на эту рубрику по RSS']='Abbonieren auf diese Kategorie per RSS';
+$lang['Активация не завершена.']='Aktivierung wurde nocht nicht gemacht.';
+$lang['Завершить']='Beeenden';
+$lang['Дата регистрации']='Anmeldungsdatum';
+$lang['Ник']='Nickname';
+$lang['Сайт']='Webseite';
+$lang['Примечание админа']='Administrator Notizen';
+$lang['Редактировать персональные данные']='Persönliche Daten ändern';
+$lang['Его последние комментарии']='Seine letze Kommentare';
+$lang['к']='zu';
+$lang['Сайт комментатора']='Webseite des Kommentators';
+$lang['Комментарий будет опубликован после проверки']='Kommentar wird nach überprüfung veröffentlicht';
+$lang['Используйте нормальные имена']='Verwenden Sie echte Namen';
+$lang['Вход/регистрация']='Login/Anmeldung';
+$lang['(войти без комментирования)']='(Login ohne Kommentar)';
+$lang['Использовать email как пароль']='Verwenden Sie E-Mail als Passwort';
+$lang['Имя и сайт используются только при регистрации']='Name und Webseite wird nur bei Anmeldung verwendet';
+$lang['Авторизация']='Anmeldung';
+$lang['Читать полностью']='Mehr lesen';
+$lang['комментарии к странице']='Kommentare zu Seite';
+$lang['Карта сайта (архив)']='Sitemap (Arhiv)';
+$lang['Сменить пароль']='Passwort ändern';
+$lang['Аватарка (с http://, 80x80px)']='Benutzerbild (mit http://, 80x80px)';
+$lang['Skype']='Skype';
+$lang['Извините, пользователь с указанным номером не найден.']='Entschuldegung, Benutzer mit diesen Nr. nicht gefunden.';
+$lang['Забыли кто вы?']='Haben Sie vergessen, wer Sie sind?';
+$lang['Можно восстановить пароль.']='Sie können Ihr Passwort wiederherstellen.';
+$lang['Неверный логин/пароль']='Ungültige Login/Passwort';
+$lang['Введите свой логин и пароль']='Geben Sie Ihr Login und Passwort ein';
+$lang['Логин']='Login';
+$lang['Вернуться к сайту']='Zu Webseite';
+$lang['выйти']='Logout';
+$lang['Читать полностью »']='Mehr lesen »';
+$lang['Обратная связь']='Kontakt';
+$lang['Поиск']='Suche';
+$lang['Результаты поиска по запросу']='Suchergebniss';
+$lang['Рубрики:']='Kategorie:';
+$lang['Метки:']='Tags:';
+$lang['Записи:']='Beiträge:';
+$lang['Совпадений']='Treffer';
+$lang['Поисковая фраза должна быть не менее']='Suchanfrage muss größer als';
+$lang['Попробуйте повторить поиск.']='Versuchen Sie nocheinmal.';
+$lang['что искать?']='Was suchen Sie?';
+$lang['Архивы']='Arhiv';
+$lang['Перейти к сайту']='Zu Webseite';
+$lang['Для авторизации необходимо войти на сайт']='Logen Sie sich ein';
+$lang['Логин:']='Login:';
+$lang['Доступ к авторизации запрещен']='Zugriff verweigert';
+$lang['Не задан ответный email']='E-Mail fehlt';
+$lang['Не задан ответный пароль']='Passwort fehlt';
+$lang['Нет данных']='Keine Daten';
+$lang['Ошибочные данные']='Ungültige Daten';
+$lang['Неверное количество данных']='Ungültige Daten';
+$lang['Подтвердить авторизацию']='Anmeldung bestätigen';
+$lang['Неверные данные email-пароль']='Ungültige Daten E-Mail-Passwort';
+$lang['Короткий пароль']='Passwort zu kurz';
+$lang['Полужирный']='Fett';
+$lang['Курсив']='Kursiv';
+$lang['Подчеркнутый']='Unterstrichen';
+$lang['Зачеркнутый']='Durchgestrichen';
+$lang['Цитата']='Zitat';
+$lang['Код или преформатированный текст']='Code oder vorformatierter Text';

@@ -33,8 +33,8 @@ function samborsky_polls_head($args = array()){
 	
 	echo <<<EOFS
 		
-	<script type="text/javascript" src="{$path}js/kernel.js"></script>
-	<link rel="stylesheet" href="{$path}css/style.css" type="text/css" media="screen">
+	<script src="{$path}js/kernel.js"></script>
+	<link rel="stylesheet" href="{$path}css/style.css">
 	
 EOFS;
 }

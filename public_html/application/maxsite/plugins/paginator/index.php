@@ -20,9 +20,9 @@ function paginator_head()
 	
 	$options = mso_get_option('paginator', 'plugins', array() );
 	if ( !isset($options['css']) ) $options['css'] = '1';
-	if ( $options['css'] == '1' ) echo '<link rel="stylesheet" type="text/css" href="'.$url.'paginator.css" />'.NR;
+	if ( $options['css'] == '1' ) echo '<link rel="stylesheet" href="'.$url.'paginator.css">'.NR;
 	
-	echo '<script type="text/javascript" src="'.$url.'paginator.js"></script>'.NR;
+	echo '<script src="'.$url.'paginator.js"></script>'.NR;
 }
 
 function paginator_mso_options()
@@ -129,7 +129,7 @@ function paginator_go($r = array())
 	$returnOrder = ( $options['returnOrder'] == '1' ) ? 'true' : 'false';
 	$id = mt_rand(1,999);
 
-	echo '<script type="text/javascript">$(document).ready(function() {$("#pag'.$id.'").paginator({pagesTotal:'.$r['maxcount'].', pagesSpan:'.$options['page_count'].', pageCurrent:'.$current_paged.', baseUrl:"'.$cur_url.'/next/", returnOrder:'.$returnOrder.', lang: {next:"'.$options['lang_next'].'", last:"'.$options['lang_last'].'", prior:"'.$options['lang_prior'].'", first:"'.$options['lang_first'].'", arrowRight:String.fromCharCode(8594), arrowLeft:String.fromCharCode(8592)}});})</script>'.NR.'<div id="pag'.$id.'" class="paginator"></div>'.NR;
+	echo '<script>$(document).ready(function() {$("#pag'.$id.'").paginator({pagesTotal:'.$r['maxcount'].', pagesSpan:'.$options['page_count'].', pageCurrent:'.$current_paged.', baseUrl:"'.$cur_url.'/next/", returnOrder:'.$returnOrder.', lang: {next:"'.$options['lang_next'].'", last:"'.$options['lang_last'].'", prior:"'.$options['lang_prior'].'", first:"'.$options['lang_first'].'", arrowRight:String.fromCharCode(8594), arrowLeft:String.fromCharCode(8592)}});})</script>'.NR.'<div id="pag'.$id.'" class="paginator"></div>'.NR;
 
 	return $r_orig;
 }

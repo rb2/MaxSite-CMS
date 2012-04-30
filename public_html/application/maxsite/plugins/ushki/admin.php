@@ -87,7 +87,7 @@
 		
 		echo '<form method="post">' . mso_form_session('f_session_id') . '
 		<p><strong>' . t('Новая ушка:') . '</strong> ' . ' <input name="f_ushka_new" type="text" value="">
-		<input type="submit" name="f_submit_new" value="' . t('Добавить новую ушку') . '"></p>
+		<button type="submit" name="f_submit_new">' . t('Добавить новую ушку') . '</button></p>
 		</form>';
 		
 		$form = '';
@@ -116,7 +116,7 @@
 		{
 			echo '<h2>' . t('Ушки') . '</h2><form method="post">' . mso_form_session('f_session_id');
 			echo $form;
-			echo '<p class="br"><input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '">';
+			echo '<p class="br"><button type="submit" name="f_submit">' . t('Сохранить изменения') . '</button>';
 			echo '</form>';
 		}
 

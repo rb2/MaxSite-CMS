@@ -204,7 +204,7 @@ function mso_admin_plugin_options($key, $type, $ar, $title = '', $info = '', $te
 				if (isset($val['itype'])) $itype = $val['itype'];
 					else $itype = 'text';
 				
-				if ($itype = 'hidden')
+				if ($itype == 'hidden')
 				{
 					$form .= $group_start . '<p><b>' 
 							. $val['name'] . '</b>'

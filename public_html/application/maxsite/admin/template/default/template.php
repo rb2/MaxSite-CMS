@@ -43,7 +43,7 @@
 			
 			foreach ($admin_css_profile_s as $css)
 			{
-				$admin_css_profile .= '<link rel="stylesheet" href="' . getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/profiles/' . $css . '" type="text/css" media="screen">';
+				$admin_css_profile .= '<link rel="stylesheet" href="' . getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/profiles/' . $css . '">';
 			}
 	}
 	
@@ -52,13 +52,13 @@
 	
 ?><!DOCTYPE HTML>
 <html><head>
-	<meta charset="UTF-8">
-	<title><?= $admin_title ?></title>
-	<link rel="shortcut icon" href="<?= getinfo('siteurl') ?>favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="<?= $admin_css ?>" type="text/css" media="screen">
-	<?= $admin_css_profile ?>
-	<?= mso_load_jquery() ?>
-	<?php mso_hook('admin_head') ?>
+<meta charset="UTF-8">
+<title><?= $admin_title ?></title>
+<link rel="shortcut icon" href="<?= getinfo('template_url') . 'images/favicons/' . mso_get_option('default_favicon', 'templates', 'favicon1.png') ?>" type="image/x-icon">
+<link rel="stylesheet" href="<?= $admin_css ?>">
+<?= $admin_css_profile ?>
+<?= mso_load_jquery() ?>
+<?php mso_hook('admin_head') ?>
 </head>
 <body>
 <div id="container">

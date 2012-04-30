@@ -158,7 +158,7 @@ if ($pages) // есть страницы
 					echo '</div>';
 				}
 				
-				if ($f = mso_page_foreach('page-content')) 
+				if ($f = mso_page_foreach('page-content-home')) 
 				{
 					require($f); // подключаем кастомный вывод
 				}

@@ -634,7 +634,7 @@
 		$save_button = t('Сохранить');
 
 		echo <<<EOF
-<script type="text/javascript">
+<script>
 function toggleAll() {
 	var allCheckboxes = $("input.f_check_files:enabled");
 	var notChecked = allCheckboxes.not(':checked');

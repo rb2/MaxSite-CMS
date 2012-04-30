@@ -90,8 +90,10 @@ function spoiler_custom($text)
 				$hidetext = $options['hide'];			
 			}
 			  
-			$html .= '<a class="spoiler_link_show" href="javascript:void(0)" onclick="SpoilerToggle(\'' . $id . '\', this, \'' . $showtext.'\', \'' . $hidetext . '\')">' . $showtext . '</a></p>';
+			$html .= '<p class="spoiler"><a class="spoiler_link_show" href="javascript:void(0)" onclick="SpoilerToggle(\'' . $id . '\', this, \'' . $showtext.'\', \'' . $hidetext . '\')">' . $showtext . '</a></p>';
+
 			$html .= '<div class="spoiler_div" id="' . $id . '" style="display:none"><p>' . $matches[3][$i] . '</p></div>';
+
 			//$text = str_replace($matches[0][$i], $html, $text);
 			
 			$text = preg_replace($pattern, $html, $text, 1);
@@ -111,11 +113,11 @@ function spoiler_head($args = array())
 	if ($options['style'] != '')
 	{
 		echo '
-		<link rel="stylesheet" href="' . getinfo('plugins_url') . 'spoiler/style/'.$options['style']. '" type="text/css" media="screen">';
+		<link rel="stylesheet" href="' . getinfo('plugins_url') . 'spoiler/style/'.$options['style']. '">';
 	}	
 	
 	echo '	
-	<script type="text/javascript">
+	<script>
 	
 	function SpoilerToggle(id, link, showtext, hidetext)
 	{

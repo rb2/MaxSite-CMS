@@ -383,7 +383,7 @@ function random_gal_widget_custom($options = array(), $num = 1)
 		if($options['type'] == 'slider') 
 		{
 			$out .= '</div><!-- id="random_gal_slider" -->
-			<script type="text/javascript">
+			<script>
 				$(window).load(function() {
 					$("#random_gal_slider").nivoSlider({controlNav:false, pauseTime:3000, directionNav:false});
 				});

@@ -48,7 +48,7 @@ function mkj_sc_head($args = array())
 
 	// Если произвольные таблицы стилей пусты, грузим стандартный стиль.
 	if(!$options['css'])
-		echo '<link rel="stylesheet" href="'. getinfo('plugins_url') . 'mkj_sc/mkj_sc.css" type="text/css" media="screen">', NR;
+		echo '<link rel="stylesheet" href="'. getinfo('plugins_url') . 'mkj_sc/mkj_sc.css">', NR;
 	if(!$options['type'] or $options['css'])
 	{
 		echo '<style>', NR;
@@ -135,7 +135,7 @@ function mkj_sc_show($args = array())
 <!-- Простая капча. Начало. -->
 <div class="mkj_sc_box">
 <p class="title"><?= $options['text'] ?></p>
-<?php if(!$options['type']) { echo '<p>' . t('При нажатии на картинку, Ваш комментарий будет добавлен.') . '</p>'; } ?>
+<?php if(!$options['type']) { echo '<p>' . tf('При нажатии на картинку, Ваш комментарий будет добавлен.') . '</p>'; } ?>
 
 <?php
 	if(!$options['type'])
@@ -147,7 +147,7 @@ function mkj_sc_show($args = array())
 	else
 	{
 		// JS.
-		echo('<script type="text/javascript">
+		echo('<script>
 ');
 ?>
 function mkj_sc_check(i)

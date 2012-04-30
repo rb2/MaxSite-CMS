@@ -2,27 +2,42 @@
 // Copyright http://max-3000.com/
 // mso-style.less
 
-/* ссылки */
+// ссылки
 a.current_url {font-weight: bold;}
 
 li.current_url {
-	a {font-weight: bold;}
-	li a {font-weight: bold;}
+	a {
+		font-weight: bold;
+	}
+	
+	li a {
+		font-weight: bold;
+	}
 }
 
-li.current-page {font-weight: bold;}
+li.current-page {
+	font-weight: bold;
+}
 
 
-/* база заголовков */
+// база заголовков
 h1 {
 	font-size: 2.1em; 
 	margin: 0 0 5px 0; 
 	font-weight: normal; 
 	line-height: 1.2em;
 	
-	&.first {margin: 10px 0 5px 0;}
-	a {text-decoration: none;}
-	a:hover {text-decoration: underline;}
+	&.first {
+		margin: 10px 0 5px 0;
+	}
+
+	a {
+		text-decoration: none;
+		
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }
 
 h2 {
@@ -31,8 +46,13 @@ h2 {
 	font-weight: normal; 
 	line-height: 1.1em;
 
-	&.first {margin: 5px 0;}
-	div.page_only & {margin-top: 30px;}
+	&.first {
+		margin: 5px 0;
+	}
+	
+	div.page_only & {
+		margin-top: 30px;
+	}
 }
 
 h3 {
@@ -40,7 +60,9 @@ h3 {
 	margin: 15px 0 5px 0; 
 	font-weight: bold;
 	
-	&.first {margin: 5px 0;}
+	&.first {
+		margin: 5px 0;
+	}
 }
 
 h4 {
@@ -48,7 +70,9 @@ h4 {
 	margin: 15px 0 5px 0; 
 	font-weight: bold;
 	
-	&.first {margin: 5px 0;}
+	&.first {
+		margin: 5px 0;
+	}
 }
 
 h5 {
@@ -56,7 +80,9 @@ h5 {
 	margin: 15px 0 5px 0; 
 	font-weight: bold;
 	
-	&.first {margin: 5px 0;}
+	&.first {
+		margin: 5px 0;
+	}
 }
 
 h6 {
@@ -64,98 +90,204 @@ h6 {
 	margin: 15px 0 5px 0; 
 	font-weight: bold;
 	
-	&.first {margin: 5px 0;}
+	&.first {
+		margin: 5px 0;
+	}
 }
 
-/* компоненты шапки */
-div.logo-links {margin: 0 10px 10px 10px;}
-div.name_site {margin: 15px 0 0 0; font-size: 1.7em;}
-div.description_site {font-style: italic;}
-div.social {margin: 15px 0 0 0;}
-div.social img {margin: 0 0 0 5px;}
+// компоненты шапки
+div.logo-links {
+	margin: 0 10px 10px 10px;
+}
 
-/* рубрика если для главной вывод блоками рубрик */
+div.name_site {
+	margin: 15px 0 0 0; 
+	font-size: 1.7em;
+}
+
+div.description_site {
+	font-style: italic;
+}
+
+div.social {
+	margin: 15px 0 0 0;
+	
+	img {
+		margin: 0 0 0 5px;
+	}
+}
+
+// рубрика если для главной вывод блоками рубрик
 div.type_home_cat_block {
 	margin-top: 15px;
 	
-	div.header_home_cat {font-size: 1.5em; margin: 0; padding: 5px 10px; background: #EEE;} 
-	div.header_home_cat a {text-decoration: none;} 
-	ul.home-cat-block {margin: 5px 0 20px 30px;}
-	div.description {font-size: 0.9em; font-style: italic; margin-bottom: 5px;}
-	div.description-cat {font-size: 0.9em; font-weight: bold; margin: 5px;}
+	div.header_home_cat {
+		font-size: 1.5em; 
+		margin: 0; 
+		padding: 5px 10px; 
+		background: #EEE;
+		
+		a {
+			text-decoration: none;
+		} 
+	} 
+	
+	ul.home-cat-block {
+		margin: 5px 0 20px 30px;
+	}
+	
+	div.description {
+		font-size: 0.9em; 
+		font-style: italic; 
+		margin-bottom: 5px;
+	}
+	
+	div.description-cat {
+		font-size: 0.9em; 
+		font-weight: bold; 
+		margin: 5px;
+	}
 }
 
 
-/* верхняя запись на главной */
+// верхняя запись на главной
 div.home_top h1 {margin-top: 0;}
 
-/* последняя запись на главной */
+// последняя запись на главной
 div.home_page_last h1 {margin-top: 0;}
 
-/* описание рубрики на странице рубрики */
-div.category_desc {margin: 0 0 20px 0; font-weight: bold;}
+// описание рубрики на странице рубрики
+div.category_desc {
+	margin: 0 0 20px 0; 
+	font-weight: bold;
+}
 
 
-/* виджеты */
-h2.box, div.widget_header {font-size: 1.5em; line-height: 1.1em; margin-bottom: 5px;} /* заголовок виджета */
+// виджеты
+
+// заголовок виджета
+h2.box,
+div.widget_header {
+	font-size: 1.5em; 
+	line-height: 1.1em; 
+	margin-bottom: 5px;
+}
 
 div.widget {
 	margin-bottom: 25px; 
 	font-size: 0.9em;
 	
-	a:hover {text-decoration: none;}
-	table th, table td {border: none; vertical-align: bottom;} 
+	a:hover {
+		text-decoration: none;
+	}
+	
+	table th, 
+	table td {
+		border: none; 
+		vertical-align: bottom;
+	} 
 }
 
-/* списки в виджетах */
+// списки в виджетах
 ul.is_link {
-	margin: 0 0 4px 0; list-style-type: none;
+	margin: 0 0 4px 0; 
+	list-style-type: none;
 	
-	ul {margin: 0; list-style-type: none;}
-	li {margin: 0; background: ~'url("../images/li1.png")' no-repeat 0 5px; padding: 0 0 0 14px;}
-	li li {margin-left: 10px; background: ~'url("../images/li2.png")' no-repeat 0 6px;}
+	ul {
+		margin: 0; 
+		list-style-type: none;
+	}
+	
+	li {
+		margin: 0; 
+		background: ~'url("../images/li1.png")' no-repeat 0 5px; 
+		padding: 0 0 0 14px;
+	}
+	
+	li li {
+		margin-left: 10px; 
+		background: ~'url("../images/li2.png")' no-repeat 0 6px;
+	}
 }
 
 ul.category {color: gray;}
-ul.links div {margin: 0 0 5px 0; font-style: italic; color: gray; line-height: 1.0em; font-size: 0.9em;}
+ul.links div {
+	margin: 0 0 5px 0; 
+	font-style: italic; 
+	color: gray; 
+	line-height: 1em; 
+	font-size: .9em;
+}
 
-/* --- только для pages --- */
+// --- только для pages ---
 
-/* отступы между записями на главной */
-div.page_only {margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px silver dotted;} 
+// отступы между записями на главной
+div.page_only {
+	margin-bottom: 15px; 
+	padding-bottom: 15px; 
+	border-bottom: 1px silver dotted;
+} 
 
-/* отступ на одиночной не нужен */
-div.type_page div.page_only {margin-bottom: 0; padding-bottom: 0; border-bottom: none;} 
-div.type_contact div.page_only {margin-bottom: 0; padding-bottom: 0; border-bottom: none;} 
+// отступ на одиночной не нужен
+div.type_page div.page_only {
+	margin-bottom: 0; 
+	padding-bottom: 0; 
+	border-bottom: none;
+} 
+
+div.type_contact div.page_only {
+	margin-bottom: 0; 
+	padding-bottom: 0; 
+	border-bottom: none;
+} 
 
 
-/* инфо блок*/
+// инфо блок
 div.info {
 	font-size: 0.8em; 
 	color: gray; 
 	margin: 0 0 15px 0;
 	
-	span {font-weight: bold;}
+	span {
+		font-weight: bold;
+	}
 }
 
-/* верхняя запись на главной */
-div.home_top {border-bottom: 1px solid #cccccc; margin-bottom: 10px;} /* верхний блок на главной */
+// верхняя запись на главной
 
-/* для текста */
-div.page_content ul, div.page_content ol {margin-left: 40px;} /* списки в тексте */
-div.comments-link {margin: 10px 0 0 0; text-align: right;} /* обсудить */
+// верхний блок на главной
+div.home_top {
+	border-bottom: 1px solid #ccc; 
+	margin-bottom: 10px;
+} 
 
-/* записи по теме */
+// для текста
+
+// списки в тексте
+div.page_content ul, 
+div.page_content ol {
+	margin-left: 40px;
+} 
+
+// обсудить
+div.comments-link {
+	margin: 10px 0 0 0; 
+	text-align: right;
+} 
+
+// записи по теме
 div.page_other_pages {
 	margin: 20px 0 20px 0;
 
-	ul {list-style-type: square;}
+	ul {
+		list-style-type: square;
+	}
 }
 
 
-/* --- дефолтные pages MaxSite CMS --- */
+// --- дефолтные pages MaxSite CMS ---
 
-/* форма логина */
+// форма логина
 div.type_loginform {
 	div.loginform {
 		margin: 10px auto; 
@@ -188,19 +320,32 @@ div.type_loginform {
 	}
 }
 
-/* плагин форма логина */
+// плагин форма логина
 div.widget form.flogin {
-	input.flogin_user, input.flogin_password {width: 95%;}
-	input.flogin_submit {margin-top: 7px;}
+	
+	input.flogin_user, 
+	input.flogin_password {
+		width: 95%;
+	}
+	
+	input.flogin_submit {
+		margin-top: 7px;
+	}
 }
 
 
-/* форма поиска */
-input.s {cursor: pointer;}
-input.submit {cursor: pointer; }	
+// форма поиска
+input {
+	&.s {
+		cursor: pointer;
+	}
+	
+	&.submit {
+		cursor: pointer;
+	}
+}
 
-
-/* COMMENT FORM */
+// COMMENT FORM
 div.comment-form {
 	margin: 10px 0; 
 	padding: 10px; 
@@ -208,7 +353,11 @@ div.comment-form {
 	.border(#DDD); 
 	.border_radius(8px);
 	
-	textarea {width: 100%; margin: 5px 0;}
+	textarea {
+		width: 100%; 
+		margin: 5px 0;
+	}
+	
 	div.comments-auth {
 		margin: 10px 0; 
 		padding: 10px;
@@ -217,7 +366,7 @@ div.comment-form {
 	}
 }
 
-/* СООБЩЕНИЯ О КОММЕНТАРИИ */
+// СООБЩЕНИЯ О КОММЕНТАРИИ
 div.comment-ok {
 	background: #40A040; 
 	margin: 10px 0; 
@@ -239,18 +388,37 @@ div.comment-error {
 }
 
 
-/* комментарии */
+// комментарии
 div.comments {
 	margin: 20px 0 0 0;
 	
-	ul, div.comments ol {margin: 10px 0 20px 0;}
-	li { margin: 0 0 20px 30px;}
-	li span {font-style: italic;}
-	div.comment-info {background: #F0F0F0; padding: 3px 8px; .border_radius(5px);}
-	blockquote {margin-left: 0; padding: 10px; border-left: 2px gray solid;}
+	ul, 
+	div.comments ol {
+		margin: 10px 0 20px 0;
+	}
+	
+	li {
+		margin: 0 0 20px 30px;
+
+		span {
+			font-style: italic;
+		}
+	}
+	
+	div.comment-info {
+		background: #F0F0F0; 
+		padding: 3px 8px; 
+		.border_radius(5px);
+	}
+	
+	blockquote {
+		margin-left: 0; 
+		padding: 10px; 
+		border-left: 2px gray solid;
+	}
 }
 
-/* comusers*/
+// comusers
 form.comusers-form {
 	
 	h3 {
@@ -266,16 +434,25 @@ form.comusers-form {
 	p {
 		@first_width: 220px;
 	
-		span.ffirst, label.ffirst {width: @first_width;}
-		span.ffirst.ftitle, label.ffirst.ftitle {width: @first_width - 5px;}
+		span.ffirst, 
+		label.ffirst {
+			width: @first_width;
+		}
 		
+		span.ffirst.ftitle, 
+		label.ffirst.ftitle {
+			width: @first_width - 5px;
+		}
 		
-		span.ftitle, label.ftitle {font-weight: bold; font-size: 0.9em;}
+		span.ftitle, 
+		label.ftitle {
+			font-weight: bold; 
+			font-size: 0.9em;
+		}
 		
-		span.submit {padding-top: 20px;}
+		span.submit {
+			padding-top: 20px;
+		}
 	}
-	
-	// p.info {background: none; color: #B00000; margin: 0 0 15px 0; border: 1px solid #B00000; padding: 3px; text-align: center;}
-
 }
 

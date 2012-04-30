@@ -143,7 +143,7 @@ function admin_page_hide_blocks($arg = array())
 	if (mso_segment(2)== 'page_edit')
 	{
 		echo '
-		<script type="text/javascript">
+		<script>
 			$(function(){
 				$("li.admin-menu-page").addClass("admin-menu-selected");
 			});

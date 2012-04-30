@@ -118,8 +118,9 @@ function search_form_widget_custom($options = array(), $num = 1)
 	<span>
 	<input type="text" name="s"' . $options['style_text'] . ' class="search_text" onfocus="if (this.value == \'' . $options['text'] . '\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'' . $options['text'] . '\';}" value="' . $options['text'] . '">
 	</span>
+	<span class="fempty"></span>
 	<span>
-	<input type="submit" name="Submit" value="' . $options['submit'] . '" style="' . $options['style_submit'] . '" class="search_submit">
+	<button type="submit" name="Submit" style="' . $options['style_submit'] . '" class="search_submit">' . $options['submit'] . '</button>
 	</span>
 	</p>'
 	. $options['text_posle']

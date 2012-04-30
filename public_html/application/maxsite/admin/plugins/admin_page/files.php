@@ -164,7 +164,7 @@
 		$mess = t('Предварительно нужно выделить файлы для галереи');
 		
 		echo <<<EOF
-		<script type="text/javascript">
+		<script>
 			$(function()
 			{
 				$('#gallerycodeclick').click(function()

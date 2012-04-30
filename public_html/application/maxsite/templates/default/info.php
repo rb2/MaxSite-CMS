@@ -5,12 +5,10 @@
  * (c) http://max-3000.com/
  */
 
-# в этом файле нужно указать основную информацию о шаблоне
-
 $info = array(
 	'name' => 'Default',
-	'description' => t('Шаблон для MaxSite CMS', __FILE__),
-	'version' => '3.3',
+	'description' => t('Шаблон для MaxSite CMS'),
+	'version' => '3.4',
 	'author' => 'Максим',
 	'template_url' => 'http://max-3000.com/',
 	'author_url' => 'http://maxsite.org/'

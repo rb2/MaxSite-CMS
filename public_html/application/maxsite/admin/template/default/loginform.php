@@ -11,7 +11,7 @@
 <meta name="generator" content="MaxSite CMS">
 <title><?= 'MaxSite CMS &ndash; ' . t('Вход в админ-панель') ?></title>
 <link rel="shortcut icon" href="<?= getinfo('template_url') . 'images/favicons/' . mso_get_option('default_favicon', 'templates', 'favicon1.png') ?>" type="image/x-icon">
-<link rel="stylesheet" href="<?=  getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/loginform.css'; ?>" type="text/css" media="screen">
+<link rel="stylesheet" href="<?=  getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/loginform.css'; ?>">
 </head>
 
 <body>

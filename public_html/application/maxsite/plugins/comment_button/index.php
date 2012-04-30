@@ -17,13 +17,13 @@ function comment_button_autoload($args = array())
 function comment_button_head($arg = array())
 {
 	if (is_type('page')) 
-		echo '<script type="text/javascript" src="'. getinfo('plugins_url') . 'comment_button/comment_button.js"></script>' . NR;
+		echo '<script src="'. getinfo('plugins_url') . 'comment_button/comment_button.js"></script>' . NR;
 }
 
 # подключаем JS в head
 function comment_button_head_admin_comment_edit($arg = array())
 {
-	echo '<script type="text/javascript" src="'. getinfo('plugins_url') . 'comment_button/comment_button.js"></script>' . NR;
+	echo '<script src="'. getinfo('plugins_url') . 'comment_button/comment_button.js"></script>' . NR;
 }
 
 
