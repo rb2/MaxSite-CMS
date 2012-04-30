@@ -33,7 +33,7 @@ else $time_zone = '+00.00';
 $time_zone = str_replace('.', '', $time_zone);
 
 $limit = mso_get_option('limit_post_rss', 'templates', 7); 
-$cut = mso_get_option('full_rss', 'templates', 0) ? false : t('Читать полностью'). ' »'; 
+$cut = mso_get_option('full_rss', 'templates', 0) ? false : tf('Читать полностью'). ' »'; 
 
 $feed_name = mso_head_meta('title');
 $description = mso_head_meta('description');
@@ -73,7 +73,7 @@ else $pubdate = date('D, d M Y H:i:s ' . $time_zone, strtotime(mso_date_convert(
 			<guid><?= getinfo('siteurl') . 'page/' . mso_slug($page_slug) ?></guid>
 			<pubDate><?= date('D, d M Y H:i:s '. $time_zone, strtotime(mso_date_convert('Y-m-d H:i:s', $page_date_publish))) ?></pubDate>
 			<?= mso_page_cat_link($page_categories, "\n", '<category><![CDATA[', ']]></category>' . "\n", false, 'category', false) ?>
-			<description><![CDATA[<?= mso_page_content($page_content) . mso_page_comments_link($page_comment_allow, $page_slug, ' '. t('Обсудить'), '', '', false) ?>]]></description>
+			<description><![CDATA[<?= mso_page_content($page_content) . mso_page_comments_link($page_comment_allow, $page_slug, ' '. tf('Обсудить'), '', '', false) ?>]]></description>
 		</item>
 		<?php endforeach; ?>
 	</channel>

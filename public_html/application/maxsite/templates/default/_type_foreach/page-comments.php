@@ -13,7 +13,7 @@
 		
 		if ($edit_link) echo ' | <a href="' . $edit_link . $comments_id . '">edit</a>';
 		
-		if (!$comments_approved) echo ' | '. t('Ожидает модерации');
+		if (!$comments_approved) echo ' | '. tf('Ожидает модерации');
 		
 		echo '</div>';
 		

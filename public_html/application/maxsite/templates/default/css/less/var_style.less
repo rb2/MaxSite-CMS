@@ -71,7 +71,9 @@ div.content {
 	float: left;
 }
 
-div.content-wrap {margin: 20px 30px 10px 20px;}
+div.content-wrap {
+	margin: 20px 30px 10px 20px;
+}
 
 div.sidebar {
 	width: @sidebar_width; 
@@ -79,7 +81,9 @@ div.sidebar {
 	margin: 20px 0 0 -@sidebar_width;
 }
 
-div.sidebar1-wrap {margin-right: 10px;}
+div.sidebar1-wrap {
+	margin-right: 10px;
+}
 
 div.footer {
 	width: 100%; 
@@ -88,13 +92,18 @@ div.footer {
 	font-size: 0.9em; 
 	color: white;
 	
-	a {color: white;}
+	a {
+		color: white;
+	}
 }
 
-div.footer-wrap {padding: 10px; margin: 0 auto;}
+div.footer-wrap {
+	padding: 10px; 
+	margin: 0 auto;
+}
 
 
-// МЕНЮ ВЫПАДАЮЩЕЕ
+// МЕНЮ ВЫПАДАЮЩЕЕ (только обрамляющий блок)
 div.MainMenu {
 	font-size: 10pt; 
 	padding-left: 10px; 
@@ -103,10 +112,21 @@ div.MainMenu {
 
 // верхние пункты меню
 ul.menu li { 
-	a {margin-right: 8px; color: white;}
-	a:hover {background: #3A4356; color: white;}
-	&.selected a {background: #374973;}
+	a {
+		margin-right: 8px; 
+		color: white;
+	}
+	
+	a:hover {
+		background: #3A4356; 
+		color: white;
+	}
+	
+	&.selected a {
+		background: #374973;
+	}
 }
+
 
 // ЗАПИСИ ПО ТЕМЕ И КОЛ-ВО КОММЕНТАРИЕВ 
 // ОСТАВЬТЕ КОММЕНТАРИЙ!
@@ -130,11 +150,22 @@ div.pagination strong {
 
 // ПЛАГИН ТАБЫ 
 ul.tabs-nav li {
-	&.elem {background: #EEE; color: #888;}
-	&.elem:hover, &.tabs-current {color: #3F454B; background: #BFC0CD;}
+	&.elem {
+		background: #EEE; 
+		color: #888;
+	}
+	
+	&.elem:hover, 
+	&.tabs-current {
+		color: #3F454B; 
+		background: #BFC0CD;
+	}
 }
 
 // вывод рубрик на главной
 div.type_home_cat_block {
-	div.header_home_cat {.border_radius(10px);}
+	
+	div.header_home_cat {
+		.border_radius(10px);
+	}
 }

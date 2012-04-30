@@ -118,7 +118,7 @@ function mso_view_ini($all = false)
 	$CI->load->library('table');
 
 	$tmpl = array (
-                    'table_open'          => '<table class="page" border="0" width="99%"><colgroup style="width: 25%;">',
+                    'table_open'          => '<table class="page"><colgroup style="width: 25%;">',
                     'row_alt_start'		  => '<tr class="alt">',
 					'cell_alt_start'	  => '<td class="alt">',
               );
@@ -339,20 +339,26 @@ function mso_view_ini($all = false)
 			
 			$CI->table->clear(); // очистим, если были старые данные
 			
-			$tmpl['table_open'] = NR . '<table class="page section_' . mso_slug($row['section']) . '" border="0" width="99%"><colgroup style="width: 25%;">';
+			$tmpl['table_open'] = NR . '<table class="page section_' . mso_slug($row['section']) . '"><colgroup style="width: 25%;">';
                     
 			$CI->table->set_template($tmpl); // шаблон таблицы
 		
 		
 			if (isset($row['section_description']))
 			{
-			//	$CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section">' . t($row['section_description']) . '<div style="width: 30px; float: right;"><a href="#atop">&#x25B2;</a> <a href="#abottom">&#x25BC;</a></div></div>');
-				$CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section">' . t($row['section_description']) . '</div>');
+				$CI->table->add_row(
+					
+					array('class'=>'section', 'colspan' => 2, 
+						'data' => '<a id="a-' . mso_slug($row['section']) . '"></a><h2 class="section">' . t($row['section']) . '</h2><p>' . t($row['section_description']) . '</p')
+					);
 			}
 			else
 			{
-				// $CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section"><div style="text-align: right;"><a href="#atop">&#x25B2;</a> <a href="#abottom">&#x25BC;</a></div></div>');
-				$CI->table->add_row('<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>', '<div class="section"> </div>');
+				$CI->table->add_row(
+					array('class'=>'section', 'colspan' => 2,
+					
+					'data' => '<a id="a-' . mso_slug($row['section']) . '"></a><div class="section"><h2>' . t($row['section']) . '</h2></div>') 
+					);
 			}
 			
 			$nav .= '<a href="#a-' . mso_slug($row['section']) . '" id="' . mso_slug($row['section']) . '">' . t($row['section']) . '</a>    ';
@@ -368,7 +374,6 @@ function mso_view_ini($all = false)
 	$out .= '<a id="atop"></a><input type="hidden" value="1" name="f_ini">'; // доп. поле - индикатор, что это ini-форма
 	if ($nav) $out .= '<p class="nav">' . str_replace('    ', ' | ', trim($nav)) . '</p>';
 	
-	//$out .= $CI->table->generate(); // вывод подготовленной таблицы
 	$out .= $table; // вывод подготовленной таблицы
 	
 	$out .= NR . '<p class="br"><a id="abottom"></a><input type="submit" name="f_submit" value="' . t('Сохранить') . '"></p>';
@@ -386,19 +391,19 @@ function mso_view_ini($all = false)
 		if (cookieIndex != null && $('table').is('.section_'+cookieIndex)) // есть кука и есть соответсвующая ей таблица
 		{
 			$('table.section_'+cookieIndex).show();
-			$('#'+cookieIndex).css({'color': 'red', 'font-weight': 'bold'});
+			$('#'+cookieIndex).addClass('current');
 		}
 		else // если нет куки или соответвующей таблицы
 		{
 			$('table.page:first').show(); // показывем только первую таблицу
-			$('p.nav a:first').css({'color': 'red', 'font-weight': 'bold'}); // и подсвечиваем только первый пункт навигации
+			$('p.nav a:first').addClass('current'); // к первому пункту навигации добавляем класс
 		}
 
 		$('p.nav a').click(function(){
 			var id = $(this).attr('id');
 			$('table.page').hide();
 
-			$(this).css({'color': 'red', 'font-weight': 'bold'}).siblings().css({'color': '', 'font-weight': ''}); // подсвечиваем кликнутый пункт, а у всех соседних сбрасывем оформление
+			$(this).addClass('current').siblings().removeClass(); // добавляем класс на кликнутый пункт, а у всех соседних удаляем
 			$('table.section_'+id).show();
 			$.cookie(NameCookie, id, {expires: 30, path: '/'});
 			return false;
@@ -468,4 +473,4 @@ function mso_find_options_key($metas = array(), $key = '')
 	return $out;
 }
 
-?>
+# end file

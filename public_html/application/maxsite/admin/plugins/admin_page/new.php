@@ -23,9 +23,6 @@
 		}
 			
 		// глюк FireFox исправлем замену абсолютного пути src на абсолютный
-		// $f_content = str_replace('src="../../application/', 'src="' . $MSO->config['application_url'], $f_content);
-		// $f_content = str_replace('src="../application/', 'src="' . $MSO->config['application_url'], $f_content);
-
 		$f_content = str_replace('src="../../', 'src="' . $MSO->config['site_url'], $f_content);
 		$f_content = str_replace('src="../', 'src="' . $MSO->config['site_url'], $f_content);
 		
@@ -104,8 +101,6 @@
 			$page_date_publish = false;
 		
 		
-			
-		// тут нужно будет изменить логику
 		// если автор указан, то нужно проверять есть разрешение на указание другого
 		// если есть разрешение, то все нормуль
 		// если нет, то автор остается текущим
@@ -118,9 +113,8 @@
 		
 	
 		// получаем номер опции id из fo_edit_submit[]
-		// $f_id = mso_array_get_key($post['f_edit_submit']);
 		
-		// подготавливаем данные для xmlrpc
+		// подготавливаем данные
 		$data = array(
 			'user_login' => $MSO->data['session']['users_login'],
 			'password' => $MSO->data['session']['users_password'],
@@ -145,14 +139,6 @@
 		
 		if ($page_date_publish) $data['page_date_publish'] = $page_date_publish;
 		
-		// pr($data);
-		// pr($post);
-		//pr($f_tags);
-		//pr(mso_explode($f_tags, false, false));
-		
-		// выполняем запрос и получаем результат
-		// $result = mso_xmlrpc_send('NewPage', mso_xmlrpc_this($data));
-		
 		require_once( getinfo('common_dir') . 'functions-edit.php' ); // функции редактирования
 		$result = mso_new_page($data);
 			
@@ -171,8 +157,6 @@
 			else $url = '';
 
 			echo '<div class="update">' . t('Страница добавлена!') . ' ' . $url . '</div>'; // . $result['description'];
-			
-			# mso_flush_cache(); // сбросим кэш - перенес в mso_new_page
 			
 			if ($url and isset($post['f_return'])) // редирект на edit?
 			{
@@ -233,14 +217,11 @@
 	echo '<h1 class="content">' . t('Создать страницу') . '</h1>';
 	
 	
-	// $input_style = 'class="f_header"'; 
-	// 'style="width: 99%; border: 1px solid #3B619C; margin: 5px auto 5px auto; background: #E3FAFF; color: #333399; padding: 2px; font-size: 18pt;"';
-	
 	$f_header = mso_text_to_html($f_header);
 	$f_tags = mso_text_to_html($f_tags);
 	
 	$f_all_tags = ''; // все метки
-	// $all_tags_page = mso_get_all_tags_page(); // это массив
+
 	if (function_exists('tagclouds_widget_custom')) 
 	{
 		$f_all_tags = '
@@ -375,17 +356,9 @@
 	$name_submit = 'f_submit';
 	
 	// дата публикации
-	// $f_date_change = 'checked="checked"';
 	$f_date_change = ''; // сменить дату не нужно - будет время автоматом поставлено текущее
-	
-	// $date_time = date('Y-m-d H:i:s');
-	// $date_cur = strtotime($page_date_publish);
-	// $date_time = 'Сейчас: ' . $page_date_publish;
-	
-	//$date_time = 'Сейчас: ' . date('Y-m-d H:i:s');
-		
+			
 	$date_time = t('Тек. время:') . ' ' . date('Y-m-d H:i:s');
-	
 		
 	$date_cur_y = date('Y');
 	$date_cur_m = date('m');
@@ -393,7 +366,6 @@
 	$tyme_cur_h = date('H');
 	$tyme_cur_m = date('i');
 	$tyme_cur_s = date('s');
-	
 	
 	$date_all_y = array();
 	for ($i=2005; $i<2021; $i++) $date_all_y[$i] = $i;
@@ -422,7 +394,6 @@
 
 
 	// получаем все страницы, для того чтобы отобразить их в паренте
-
 
 	$all_pages = NR . '<select name="f_page_parent"  style="margin-top: 5px; width: 99%;" >' . NR;
 	$all_pages .= NR . '<option value="0">' . t('Нет') . '</option>';
@@ -480,4 +451,4 @@
 	
 	
 	
-?>
+# end file

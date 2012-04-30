@@ -24,7 +24,7 @@
 	// параметры для получения страниц
 	if (!$search or ( $search_len = (strlen(mso_slug($search)) < $min_search_chars) ) ) // нет запроса или он короткий
 	{
-		$search = t('Поиск');
+		$search = tf('Поиск');
 		$pages = false; // нет страниц
 		$categories = false; // нет рубрик
 		$tags = false; // нет меток
@@ -82,15 +82,15 @@ else
 {	
 	if ($pages or $categories or $tags) // есть страницы рубрики или метки
 	{
-		echo '<h1>' . t('Поиск') . '</h1>';
-		echo '<p>' . t('Результаты поиска по запросу') . ' <strong>«' . $search . '»</strong></p>';
+		echo '<h1>' . tf('Поиск') . '</h1>';
+		echo '<p>' . tf('Результаты поиска по запросу') . ' <strong>«' . $search . '»</strong></p>';
 	}
 }
 
 
 if ($categories) // есть рубрики
 {
-	echo '<h2>' . t('Рубрики:') . '</h2><ul class="search-res">';
+	echo '<h2>' . tf('Рубрики:') . '</h2><ul class="search-res">';
 	foreach ($categories as $key => $val)
 	{
 		echo '<li><a href="' . getinfo('siteurl') . 'category/' . $key . '">' . $val . '</a></li>';
@@ -100,7 +100,7 @@ if ($categories) // есть рубрики
 
 if ($tags) // есть метки
 {
-	echo '<h2>' . t('Метки:') . '</h2><ul class="search-res">';
+	echo '<h2>' . tf('Метки:') . '</h2><ul class="search-res">';
 	foreach ($tags as $tag)
 	{
 		echo '<li><a href="' . getinfo('siteurl') . 'tag/' . urlencode($tag) . '">' . $tag . '</a></li>';
@@ -114,7 +114,7 @@ if ($pages) // есть страницы
 	$max_word_count_do = 3; // колво слов до
 	$max_word_count_posle = 7; // колво слов после
 	
-	echo '<h2>' . t('Записи:') . '</h2>';
+	echo '<h2>' . tf('Записи:') . '</h2>';
 	
 	// вывод найденных страниц
 	echo '<ul class="search-res">';
@@ -173,7 +173,7 @@ if ($pages) // есть страницы
 		$cou = count($all_key) + substr_count(mb_strtolower($page_title, 'UTF8'), $searh_to_text);
 		
 		// кол-во совпадений
-		echo  '<p><em>' . t('Совпадений') . ': ' . $cou . '</em></p>';
+		echo  '<p><em>' . tf('Совпадений') . ': ' . $cou . '</em></p>';
 		echo '<p>' . $page_content . '</p>';
 
 		echo '</li>';
@@ -193,14 +193,14 @@ if (!$pages and !$categories and !$tags)
 	}
 	else // стандартный вывод
 	{
-		echo '<h1>'. t('404. Ничего не найдено...'). '</h1>';
+		echo '<h1>'. tf('404. Ничего не найдено...'). '</h1>';
 		
-		if ($search_len) echo '<p>'. t('Поисковая фраза должна быть не менее ' . $min_search_chars . ' символов.') . '</p>';
+		if ($search_len) echo '<p>'. tf('Поисковая фраза должна быть не менее ' . $min_search_chars . ' символов.') . '</p>';
 		
-		echo '<p>'. t('Попробуйте повторить поиск.') . '</p>';
+		echo '<p>'. tf('Попробуйте повторить поиск.') . '</p>';
 
 		echo '
-		<p><form name="f_search" action="" method="get" onsubmit="location.href=\'' . getinfo('siteurl') . 'search/\' + encodeURIComponent(this.s.value).replace(/%20/g, \'+\'); return false;">	<input type="text" class="text" name="s" size="20" onfocus="if (this.value == \''. t('что искать?'). '\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \''. t('что искать?'). '\';}" value="'. t('что искать?'). '">&nbsp;<input type="submit" class="submit" name="Submit" value="  '. t('Поиск'). '  "></form></p>';
+		<p><form name="f_search" action="" method="get" onsubmit="location.href=\'' . getinfo('siteurl') . 'search/\' + encodeURIComponent(this.s.value).replace(/%20/g, \'+\'); return false;">	<input type="text" class="text" name="s" size="20" onfocus="if (this.value == \''. tf('что искать?'). '\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \''. tf('что искать?'). '\';}" value="'. tf('что искать?'). '">&nbsp;<input type="submit" class="submit" name="Submit" value="  '. tf('Поиск'). '  "></form></p>';
 		
 		echo mso_hook('page_404');
 	}

@@ -28,7 +28,7 @@ function admin_cat_admin_init($args = array())
 		# Третий - название ссылки	
 		# четвертый номер по порядку
 		
-		mso_admin_menu_add('options', $this_plugin_url, t('Рубрики'));
+		mso_admin_menu_add('page', $this_plugin_url, t('Рубрики'), 4);
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 
@@ -55,10 +55,10 @@ function admin_cat_admin($args = array())
 	
 	// хук на заголовок в админке
 	// функцию создаем динамически
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . t("Настройка рубрик", "admin"); ' );
-	mso_hook_add_dinamic( 'admin_title', ' return t("Настройка рубрик", "admin") . " - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . t("Настройка рубрик"); ' );
+	mso_hook_add_dinamic( 'admin_title', ' return t("Настройка рубрик") . " - " . $args; ' );
 
 	require($MSO->config['admin_plugins_dir'] . 'admin_cat/admin.php');
 }
 
-?>
+# end file

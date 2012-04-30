@@ -2,12 +2,11 @@
 
 	if (!mso_hook_present('main_menu')) // для отладки убрать ! в условии
 	{ ?>
-		<div id="MainMenu" class="MainMenu">
-			<div class="mainmenu-wrap">
+		<div id="MainMenu" class="MainMenu"><div class="wrap">
 			<ul class="menu">
 				<?php
 
-					$menu = mso_get_option('top_menu', 'templates', t('/ | Главная_NR_about | О сайте_NR_comments | Комментарии_NR_contact | Контакты_NR_sitemap | Архив_NR_feed | RSS', 'templates'));
+					$menu = mso_get_option('top_menu', 'templates', tf('/ | Главная_NR_about | О сайте_NR_comments | Комментарии_NR_contact | Контакты_NR_sitemap | Архив_NR_feed | RSS'));
 					
 					if (is_login())
 					{
@@ -50,7 +49,7 @@
 					if ($menu) echo mso_menu_build($menu, 'selected', false);
 				?>
 			</ul>
-	</div></div><!-- div id="MainMenu" -->
+	</div><!-- div class=wrap --></div><!-- div id="MainMenu" -->
 	<?php 
 	} 
 	else 

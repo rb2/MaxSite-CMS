@@ -60,7 +60,7 @@ function mso_get_all_tags_page($options = array())
 }
 
 # получение данных из таблицы mso_meta
-# если указать id, то позвращается meta_value для указанного meta_id_obj
+# если указать id, то возвращается meta_value для указанного meta_id_obj
 # если не указано, то возвращаются все meta_value ключа
 function mso_get_meta($meta_key = '', $meta_table = '', $id = 0)
 {
@@ -134,4 +134,4 @@ function mso_add_meta($meta_key = '', $meta_id_obj = '', $meta_table = '', $meta
 }
 
 
-?>
+# end file

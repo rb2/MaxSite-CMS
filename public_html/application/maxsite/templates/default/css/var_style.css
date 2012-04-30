@@ -45,7 +45,6 @@ div.all-wrap {
   -o-box-shadow: 0 0 7px #606060;
   -webkit-box-shadow: 0 0 7px #606060;
   -moz-box-shadow: 0 0 7px #606060;
-  behavior: url(/PIE.php);
 }
 div.header {
   width: 960px;

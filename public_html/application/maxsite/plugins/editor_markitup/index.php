@@ -9,6 +9,7 @@
 function editor_markitup_autoload($args = array())
 {
 	mso_hook_add('editor_custom', 'editor_markitup'); # хук на подключение своего редактора
+	//mso_hook_add('admin_page_form_q_files', 'editor_markitup_q_files'); # форма быстрой загрузки файлов
 }
 
 # функция выполняется при деинсталяции плагина
@@ -114,36 +115,46 @@ function editor_markitup_mso_options()
 			*/
 			'preview' => array(
 							'type' => 'radio', 
-							'name' => 'Режим предпросмотра текста', 
+							'name' => t('Режим предпросмотра текста'), 
 							'description' => '',
-							'values' => 'aftertext||На странице редактора # win||В отдельном окне', 
+							'values' => t('aftertext||На странице редактора # win||В отдельном окне'), 
 							'default' => 'aftertext',
 							'delimer' => '&nbsp;&nbsp;&nbsp;&nbsp;',
 						),
 						
 			'previewPosition' => array(
 							'type' => 'radio', 
-							'name' => 'Окно предпросмотра до или после текста', 
-							'description' => 'Будет работать только если используется предпросмотр в окне редактора',
-							'values' => 'after||Под текстовым редактором # before||Перед текстовым редактором', 
+							'name' => t('Окно предпросмотра до или после текста'), 
+							'description' => t('Будет работать только если используется предпросмотр в окне редактора'),
+							'values' => t('after||Под текстовым редактором # before||Перед текстовым редактором'), 
 							'default' => 'after',
 							'delimer' => '&nbsp;&nbsp;&nbsp;&nbsp;',
 						),
 						
 			'previewautorefresh' => array(
 							'type' => 'radio', 
-							'name' => 'Обновление предпросмотра', 
-							'values' => 'no||Обновлять предпросмотр вручную # yes||Использовать автообновление предпросмотра', 
+							'name' => t('Обновление предпросмотра'), 
+							'values' => t('no||Обновлять предпросмотр вручную # yes||Использовать автообновление предпросмотра'), 
 							'default' => 'no',
 							'delimer' => '&nbsp;&nbsp;&nbsp;&nbsp;',
 							'description' => '',
 						),	
 			
 			),
-			'Настройки текстового редактора markItUp', // титул
-			'Укажите необходимые опции.'   // инфо
+			t('Настройки текстового редактора markItUp'), // титул
+			t('Укажите необходимые опции.')   // инфо
 	);
 
+}
+
+// форма быстрой загрузки файлов
+function editor_markitup_q_files($out = '')
+{
+	$out = '';
+	
+	
+	
+	return $out;
 }
 
 # end file

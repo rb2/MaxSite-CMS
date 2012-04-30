@@ -19,7 +19,7 @@ function admin_comusers_admin_init($args = array())
 	$this_plugin_url = 'comusers'; // url и hook
 	
 	if ( mso_check_allow('admin_comusers') ) 
-		mso_admin_menu_add('users', $this_plugin_url, t('Комментаторы'), 10);
+		mso_admin_menu_add('users', $this_plugin_url, t('Комментаторы'), 2);
 
 	mso_admin_url_hook ($this_plugin_url, 'admin_comusers_admin');
 

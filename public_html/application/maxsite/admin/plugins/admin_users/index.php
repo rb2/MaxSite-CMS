@@ -20,19 +20,19 @@ function admin_users_admin_init($args = array())
 	$this_plugin_url = 'users'; // url и hook
 	
 	if ( mso_check_allow('admin_users_users') ) 
-		mso_admin_menu_add('users', $this_plugin_url, t('Список пользователей'), 1);
+		mso_admin_menu_add('users', $this_plugin_url, t('Авторы'), 3);
 
 	mso_admin_url_hook ($this_plugin_url, 'admin_users_admin');
 	
 	if ( mso_check_allow('admin_users_group') ) 
 	{
 		$this_plugin_url = 'users_group'; // url и hook
-		mso_admin_menu_add('users', $this_plugin_url, t('Группы и разрешения'), 2);
+		mso_admin_menu_add('users', $this_plugin_url, t('Разрешения'), 4);
 		mso_admin_url_hook ($this_plugin_url, 'admin_users_group');	
 	}
 
 	$this_plugin_url = 'users_my_profile'; // url и hook
-	mso_admin_menu_add('users', $this_plugin_url, t('Мой профиль'), 3);
+	mso_admin_menu_add('users', $this_plugin_url, t('Мой профиль'), 5);
 	mso_admin_url_hook ($this_plugin_url, 'admin_users_my_profile');	
 	
 	

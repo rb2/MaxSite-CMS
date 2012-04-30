@@ -423,7 +423,7 @@
 
 					echo $out . '<br><div class="update">' . t('Готово! Конвертирование выполнено!') . '</div>';
 					
-					echo '<p><b>Готовые редиректы</b></p><br><textarea rows="10">' . $all_link_redirect . '</textarea><br><br>';
+					echo '<p><b>Готовые редиректы</b></p><br><textarea rows="10" class="w100">' . $all_link_redirect . '</textarea><br><br>';
 					
 				}
 				else

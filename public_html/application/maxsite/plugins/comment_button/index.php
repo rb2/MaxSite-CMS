@@ -31,13 +31,13 @@ function comment_button_head_admin_comment_edit($arg = array())
 function comment_button_custom($arg = array())
 {
 	echo '<p class="comment_button">
-	<input type="button" value="B" title="' . t('Полужирный') . '" onClick="addText(\'<b>\', \'</b>\') ">
-	<input type="button" value="I" title="' . t('Курсив') . '" onClick="addText(\'<i>\', \'</i>\') ">
-	<input type="button" value="U" title="' . t('Подчеркнутый') . '" onClick="addText(\'<u>\', \'</u>\') ">
-	<input type="button" value="S" title="' . t('Зачеркнутый') . '" onClick="addText(\'<s>\', \'</s>\') ">
-	<input type="button" value="' . t('Цитата') . '" title="' . t('Цитата') . '" onClick="addText(\'<blockquote>\', \'</blockquote>\') ">
-	<input type="button" value="' . t('Код') . '" title="' . t('Код или преформатированный текст') . '" onclick="addText(\'<pre>\', \'</pre>\') ">
+	<button type="button" class="comment_button_b" title="' . tf('Полужирный') . '" onClick="addText(\'<b>\', \'</b>\') ">B</button>
+	<button type="button" class="comment_button_i" title="' . tf('Курсив') . '" onClick="addText(\'<i>\', \'</i>\') ">I</button>
+	<button type="button" class="comment_button_u" title="' . tf('Подчеркнутый') . '" onClick="addText(\'<u>\', \'</u>\') ">U</button>
+	<button type="button" class="comment_button_s" title="' . tf('Зачеркнутый') . '" onClick="addText(\'<s>\', \'</s>\') ">S</button>
+	<button type="button" class="comment_button_blockquote" title="' . tf('Цитата') . '" onClick="addText(\'<blockquote>\', \'</blockquote>\') ">' . t('Цитата') . '</button>
+	<button type="button" class="comment_button_pre" title="' . tf('Код или преформатированный текст') . '" onclick="addText(\'<pre>\', \'</pre>\') ">' . t('Код') . '</button>
 	</p>';
 }
 
-?>
+# end file

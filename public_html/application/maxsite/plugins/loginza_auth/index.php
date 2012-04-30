@@ -30,7 +30,7 @@ function loginza_auth_autoload()
 # функция выполняется при активации (вкл) плагина
 function loginza_auth_activate($args = array())
 {	
-	mso_create_allow('loginza_auth_edit', t('Админ-доступ к настройкам Loginza') . ' ' . t('loginza_auth'));
+	mso_create_allow('loginza_auth_edit', t('Админ-доступ к настройкам Loginza'));
 	return $args;
 }
 
@@ -74,51 +74,51 @@ function loginza_auth_mso_options()
 		array(
 				'widget_type' => array(
 						'type' => 'select', 
-						'name' => 'Ссылка авторизации для формы комментариев в виде:', 
-						'description' => 'Отображение ссылки авторизации для формы комментариев в виде строки, либо в виде виджета <img src="' . getinfo('plugins_url'). '/loginza_auth/sign_in_button_gray.gif">',
-						'values' => '0||виджет # 1||текстовая строка',
+						'name' => t('Ссылка авторизации для формы комментариев в виде:'), 
+						'description' => t('Отображение ссылки авторизации для формы комментариев в виде строки, либо в виде виджета <img src="') . getinfo('plugins_url'). '/loginza_auth/sign_in_button_gray.gif">',
+						'values' => t('0||виджет # 1||текстовая строка'),
 						'default' => '1'
 					),	
 				'auth_title' => array(
 						'type' => 'text', 
-						'name' => 'Текст ссылки авторизации для формы комментариев:', 
-						'description' => 'Укажите текст ссылки авторизации для формы комментариев.<br>Работает html',
+						'name' => t('Текст ссылки авторизации для формы комментариев:'), 
+						'description' => t('Укажите текст ссылки авторизации для формы комментариев. Работает html'),
 						'default' => 'Loginza'
 					),					
 				'widget_fcomments_priority' => array(
 						'type' => 'text', 
-						'name' => 'Приоритет ссылки авторизации для формы комментариев:', 
-						'description' => 'Укажите приоритет ссылки авторизации для формы логина. Чем меньше приоритет, тем дальше от начала будет ссылка. Чем больше - тем первее. Например, 10 - самый конец, 99 - самое начало',
+						'name' => t('Приоритет ссылки авторизации для формы комментариев:'), 
+						'description' => t('Укажите приоритет ссылки авторизации для формы логина. Чем меньше приоритет, тем дальше от начала будет ссылка. Чем больше - тем первее. Например, 10 - самый конец, 99 - самое начало'),
 						'default' => '10'
 					),	
 					
 				'widget_type_flogin' => array(
 						'type' => 'select', 
-						'name' => 'Ссылка авторизации для формы логина в виде:', 
-						'description' => 'Отображение ссылки авторизации для формы логина в виде строки, либо в виде виджета <img src="' . getinfo('plugins_url'). '/loginza_auth/sign_in_button_gray.gif"><br>' . 
-						' либо в виде большого виджета <img src="' . getinfo('plugins_url'). '/loginza_auth/sign_in_big_buttons.png">',
-						'values' => '0||виджет # 1||текстовая строка # 2||Большой виджет',
+						'name' => t('Ссылка авторизации для формы логина в виде:'), 
+						'description' => t('Отображение ссылки авторизации для формы логина в виде строки, либо в виде виджета <img src="') . getinfo('plugins_url'). '/loginza_auth/sign_in_button_gray.gif"><br>' . 
+						t(' либо в виде большого виджета <img src="') . getinfo('plugins_url'). '/loginza_auth/sign_in_big_buttons.png">',
+						'values' => t('0||виджет # 1||текстовая строка # 2||Большой виджет'),
 						'default' => '1'
 					),	
 					
 				'auth_title_flogin' => array(
 						'type' => 'text', 
-						'name' => 'Текст ссылки авторизации для формы логина:', 
-						'description' => 'Укажите текст ссылки авторизации для формы логина.<br>Работает html',
+						'name' => t('Текст ссылки авторизации для формы логина:'), 
+						'description' => t('Укажите текст ссылки авторизации для формы логина. Работает html'),
 						'default' => 'Loginza'
 					),		
 					
 				'widget_flogin_priority' => array(
 						'type' => 'text', 
-						'name' => 'Приоритет ссылки авторизации для формы логина:', 
-						'description' => 'Укажите приоритет ссылки авторизации для формы логина. Чем меньше приоритет, тем дальше от начала будет ссылка. Чем больше - тем первее. Например, 10 - самый конец, 99 - самое начало',
+						'name' => t('Приоритет ссылки авторизации для формы логина:'), 
+						'description' => t('Укажите приоритет ссылки авторизации для формы логина. Чем меньше приоритет, тем дальше от начала будет ссылка. Чем больше - тем первее. Например, 10 - самый конец, 99 - самое начало'),
 						'default' => '10'
 					),	
 					
 				'providers_set' => array(
 						'type' => 'text', 
-						'name' => 'Доступные провайдеры:', 
-						'description' => 'Укажите через запятую доступных провайдеров.<br>Оставьте поле пустым, если желаете отображать всех доступных провайдеров.<br>Вы можете использовать следующие провайдеры:<br>' .
+						'name' => t('Доступные провайдеры:'), 
+						'description' => t('Укажите через запятую доступных провайдеров. Оставьте поле пустым, если желаете отображать всех доступных провайдеров. Вы можете использовать следующих провайдеров:<br>') .
 						// оставим на будущее
 						//google, yandex, mailruapi, mailru, vkontakte, facebook, twitter, loginza, myopenid, webmoney, rambler, flickr, lastfm, verisign, aol, steam, openid', 
 						'google, yandex, facebook, twitter, loginza, myopenid, webmoney, openid', 
@@ -126,10 +126,10 @@ function loginza_auth_mso_options()
 					),
 					
 			),
-		'Настройки плагина Loginza Auth', // титул
-		'Авторизация на сайте через сервис <a href="http://loginza.ru">Loginza</a><br><br>'
+		t('Настройки плагина Loginza Auth'), // титул
+		t('Авторизация на сайте через сервис <a href="http://loginza.ru">Loginza</a>')
 		. $curl
-		.'<b>Авторизация будет работать только в том случае, если выбранный провайдер будет возвращать e-mail адрес!!!</b>'   // инфо
+		. t('<br><b>Авторизация будет работать только в том случае, если выбранный провайдер будет возвращать e-mail адрес!!!</b>')   // инфо
 	);	
 	
 }
@@ -282,10 +282,10 @@ function loginza_auth_init($arg = array())
 			} else {
 				// ссылка на главную или на предыдущую
 				// pr( $profile );
-				$txt = 'Не удалось авторизоваться с помощью выбранного сервиса.<br>Возможно это связано с тем, что в ответ на запрос 
-				     сервис не возратил Ваш e-mail<br>';
-				$txt .= 'Вернуться на <a href="' . getinfo('site_url') . $curpage. '">предыдущую страницу</a><br>'; 	 
-				$txt .= 'Вернуться на <a href="' . getinfo('site_url') . '">главную страницу</a><br>';
+				$txt = t('Не удалось авторизоваться с помощью выбранного сервиса.<br>Возможно это связано с тем, что в ответ на запрос 
+				     сервис не возратил Ваш e-mail') . '<br>';
+				$txt .= t('Вернуться на') . ' <a href="' . getinfo('site_url') . $curpage. '">' . t('предыдущую страницу') . '</a><br>'; 	 
+				$txt .= t('Вернуться на') . ' <a href="' . getinfo('site_url') . '">' . t('главную страницу') . '</a><br>';
 				die( $txt );
 			}			
 			die();
@@ -295,190 +295,5 @@ function loginza_auth_init($arg = array())
 	return $arg;
 }
 
-/**************** widget ***********************/
-/* пока что отключим виджет */
-/*
-function loginza_auth_widget($num = 1) 
-{
-	$out = '';
-	$widget = 'loginza_auth_widget_' . $num; // имя для опций = виджет + номер
-	$options = mso_get_option($widget, 'plugins', array() ); // получаем опции
-	//pr( $options  );
-	if (is_login())
-	{
-	
-	} elseif ($comuser = is_login_comuser())
-	{
-	} else {
-		// тут вывод формы авторизации логинзы
-		$after_form = (isset($options['after_form'])) ? $options['after_form'] : '';
-		
-		if ( !isset($options['widget_type']) ) $options['widget_type'] = '1';
-		$widget_type = $options['widget_type'];
-		
-		$curpage = getinfo('siteurl') . mso_current_url();
-		$current_url = getinfo('siteurl') . 'maxsite-loginza-auth?' . $curpage;
-		
-		$providers_set = '';
-		
-		if ( isset($options['provider_google']) && !empty($options['provider_google']) ) 		$providers_set .= 'google,';
-		if ( isset($options['provider_yandex']) && !empty($options['provider_yandex']) ) 		$providers_set .= 'yandex,';
-		//if ( isset($options['provider_mailruapi']) && !empty($options['provider_mailruapi']) ) 	$providers_set .= 'mailruapi,';
-		//if ( isset($options['provider_mailru']) && !empty($options['provider_mailru']) ) 		$providers_set .= 'mailru,';
-		//if ( isset($options['provider_vkontakte']) && !empty($options['provider_vkontakte']) ) 	$providers_set .= 'vkontakte,'; 
-		if ( isset($options['provider_facebook']) && !empty($options['provider_facebook']) )		$providers_set .= 'facebook,';
-		if ( isset($options['provider_twitter']) && !empty($options['provider_twitter']) ) 		$providers_set .= 'twitter,';
-		if ( isset($options['provider_loginza']) && !empty($options['provider_loginza']) ) 		$providers_set .= 'loginza,';
-		if ( isset($options['provider_myopenid']) && !empty($options['provider_myopenid']) ) 	$providers_set .= 'myopenid,';
-		if ( isset($options['provider_webmoney']) && !empty($options['provider_webmoney']) ) 	$providers_set .= 'webmoney,';
-		//if ( isset($options['provider_rambler']) && !empty($options['provider_rambler']) ) 		$providers_set .= 'rambler,';
-		//if ( isset($options['provider_flickr']) && !empty($options['provider_flickr']) ) 		$providers_set .= 'flickr,';
-		//if ( isset($options['provider_steam']) && !empty($options['provider_steam']) ) 		$providers_set .= 'steam,';
-		//if ( isset($options['provider_lastfm']) && !empty($options['provider_lastfm']) ) 		$providers_set .= 'lastfm,';
-		//if ( isset($options['provider_verisign']) && !empty($options['provider_verisign']) )     $providers_set .= 'verisign,';
-		//if ( isset($options['provider_aol']) && !empty($options['provider_aol']) ) 			$providers_set .= 'aol,';
-		if ( isset($options['provider_openid']) && !empty($options['provider_openid']) ) 		$providers_set .= 'openid,';
-	
-		$last = $providers_set{strlen($providers_set)-1};
-		if ( $last == ',' ) $providers_set = substr($providers_set, 0, strlen($providers_set)-1);
-		
-		
-		$auth_url = "https://loginza.ru/api/widget?token_url=" .  urlencode( $current_url );
-		if ( !empty($providers_set) ) {
-			$providers_set = str_replace(' ', '', $providers_set);
-			$auth_url .= '&providers_set=' . $providers_set;
-		}	
-		
-		if ( $widget_type == 0) 
-		{
-			// widget
-			$out .= '<span><a href="' .  $auth_url . '" class="loginza">';
-			$out .= '<img src="http://loginza.ru/img/sign_in_button_gray.gif" alt="Войти через loginza"/></span><br><br>
-			</a>';
-		
-		} else {
-		   // строка 
-			echo '<script src="http://s1.loginza.ru/js/widget.js" type="text/javascript"></script>';
-			$out .= '<span><a href="' .  $auth_url . '">Авторизация через Loginza</a></span><br> ';
-			   
-		}
-	
-    }
-
-	if ($out)
-	{	
-		if ( isset($options['header']) and $options['header'] ) $out = '<h2 class="box"><span>' . $options['header'] . '</span></h2>' . $out;	
-	}
-	
-	return $out;
-}
-
-# форма настройки виджета 
-# имя функции = виджет_form
-function loginza_auth_widget_form($num = 1) 
-{
-	$widget = 'loginza_auth_widget_' . $num; // имя для формы и опций = виджет + номер
-	
-	// получаем опции 
-	$options = mso_get_option($widget, 'plugins', array());
-	
-	if ( !isset($options['header']) ) $options['header'] = '';
-	if ( !isset($options['after_form']) ) $options['after_form'] = '';
-	if ( !isset($options['widget_type']) ) $options['widget_type'] = '1';
-	
-	if ( !isset($options['provider_google']) ) $options['provider_google'] = TRUE;
-	if ( !isset($options['provider_yandex']) ) $options['provider_yandex'] = TRUE;
-	//if ( !isset($options['provider_mailruapi']) ) $options['provider_mailruapi'] = TRUE;
-	//if ( !isset($options['provider_mailru']) ) $options['provider_mailru'] = TRUE;
-	//if ( !isset($options['provider_vkontakte']) ) $options['provider_vkontakte'] = TRUE;
-	if ( !isset($options['provider_facebook']) ) $options['provider_facebook'] = TRUE;
-	if ( !isset($options['provider_twitter']) ) $options['provider_twitter'] = TRUE;
-	if ( !isset($options['provider_loginza']) ) $options['provider_loginza'] = TRUE;
-	if ( !isset($options['provider_myopenid']) ) $options['provider_myopenid'] = TRUE;
-	if ( !isset($options['provider_webmoney']) ) $options['provider_webmoney'] = TRUE;
-	//if ( !isset($options['provider_rambler']) ) $options['provider_rambler'] = TRUE;
-	//if ( !isset($options['provider_flickr']) ) $options['provider_flickr'] = TRUE;
-	//if ( !isset($options['provider_steam']) ) $options['provider_steam'] = TRUE;
-	//if ( !isset($options['provider_lastfm']) ) $options['provider_lastfm'] = TRUE;
-	//if ( !isset($options['provider_verisign']) ) $options['provider_verisign'] = TRUE;
-	//if ( !isset($options['provider_aol']) ) $options['provider_aol'] = TRUE;
-	if ( !isset($options['provider_openid']) ) $options['provider_openid'] = TRUE;
-	
-					
-	// вывод самой формы
-	$CI = & get_instance();
-	$CI->load->helper('form');
-	
-	$form = '<p><div class="t150">' . t('Заголовок:') . '</div> '. form_input( array( 'name'=>$widget . 'header', 'value'=>$options['header'] ) ) ;
-	
-	$form .= '<p><div class="t150">' . t('Текст после формы:') . '</div> '. form_input( array( 'name'=>$widget . 'after_form', 'value'=>$options['after_form'] ) ) ;
-	
-	$form .= '<p><div class="t150">&nbsp;</div> '. t('Например, ссылка на регистрацию') ;
-	
-	$dropdown_items = array( 0 => 'виджет', 1 => 'текстовая строка');
-	
-	$form .= '<p><div class="t150">' . t('Ссылка авторизации в виде:') . '</div> '. form_dropdown(  $widget . 'widget_type', $dropdown_items, $options['widget_type'] ) ;
-	
-	$form .= '<p><div class="t150">&nbsp;</div> '. t('<b>Доступные провайдеры:</b>') ;
-		
-    $form .= '<p><div class="t150">&nbsp;Google</div> '. form_checkbox(array( 'name'=>$widget . 'provider_google', 'value'=>'provider_google', 'checked'=>$options['provider_google'])) ;	
-	
-    $form .= '<p><div class="t150">&nbsp;Yandex</div> '. form_checkbox(array( 'name'=>$widget . 'provider_yandex', 'value'=>'provider_yandex', 'checked'=>$options['provider_yandex'])) ;		
-    //$form .= '<p><div class="t150">&nbsp;mailruapi</div> '. form_checkbox(array( 'name'=>$widget . 'provider_mailruapi', 'value'=>'provider_mailruapi', 'checked'=>$options['provider_mailruapi'])) ;		
-    //$form .= '<p><div class="t150">&nbsp;Mail.ru</div> '. form_checkbox(array( 'name'=>$widget . 'provider_mailru', 'value'=>'provider_mailru', 'checked'=>$options['provider_mailru'])) ;		
-    //$form .= '<p><div class="t150">&nbsp;Вконтакте</div> '. form_checkbox(array( 'name'=>$widget . 'provider_vkontakte', 'value'=>'provider_vkontakte', 'checked'=>$options['provider_vkontakte'])) ;	
-	$form .= '<p><div class="t150">&nbsp;FaceBook</div> '. form_checkbox(array( 'name'=>$widget . 'provider_facebook', 'value'=>'provider_facebook', 'checked'=>$options['provider_facebook'])) ;	
-	$form .= '<p><div class="t150">&nbsp;Twitter</div> '. form_checkbox(array( 'name'=>$widget . 'provider_twitter', 'value'=>'provider_twitter', 'checked'=>$options['provider_twitter'])) ;	
-	$form .= '<p><div class="t150">&nbsp;Loginza</div> '. form_checkbox(array( 'name'=>$widget . 'provider_loginza', 'value'=>'provider_loginza', 'checked'=>$options['provider_loginza'])) ;	
-	$form .= '<p><div class="t150">&nbsp;MyOpenID</div> '. form_checkbox(array( 'name'=>$widget . 'provider_myopenid', 'value'=>'provider_myopenid', 'checked'=>$options['provider_myopenid'])) ;	
-	$form .= '<p><div class="t150">&nbsp;Webmoney</div> '. form_checkbox(array( 'name'=>$widget . 'provider_webmoney', 'value'=>'provider_webmoney', 'checked'=>$options['provider_webmoney'])) ;		
-	//$form .= '<p><div class="t150">&nbsp;Rambler</div> '. form_checkbox(array( 'name'=>$widget . 'provider_rambler', 'value'=>'provider_rambler', 'checked'=>$options['provider_rambler'])) ;		
-	//$form .= '<p><div class="t150">&nbsp;Flickr</div> '. form_checkbox(array( 'name'=>$widget . 'provider_flickr', 'value'=>'provider_flickr', 'checked'=>$options['provider_flickr'])) ;		
-	//$form .= '<p><div class="t150">&nbsp;Last.fm</div> '. form_checkbox(array( 'name'=>$widget . 'provider_lastfm', 'value'=>'provider_lastfm', 'checked'=>$options['provider_lastfm'])) ;		
-	//$form .= '<p><div class="t150">&nbsp;VeriSign</div> '. form_checkbox(array( 'name'=>$widget . 'provider_verisign', 'value'=>'provider_verisign', 'checked'=>$options['provider_verisign'])) ;		
-	//$form .= '<p><div class="t150">&nbsp;AOL</div> '. form_checkbox(array( 'name'=>$widget . 'provider_aol', 'value'=>'provider_aol', 'checked'=>$options['provider_aol'])) ;		
-	//$form .= '<p><div class="t150">&nbsp;Steam</div> '. form_checkbox(array( 'name'=>$widget . 'provider_steam', 'provider_steam', 'checked'=>$options['provider_steam'])) ;		
-	$form .= '<p><div class="t150">&nbsp;OpenID</div> '. form_checkbox(array( 'name'=>$widget . 'provider_openid', 'value'=>'provider_openid', 'checked'=>$options['provider_openid'])) ;		
-	
-	
-	return $form;
-}
-
-# сюда приходят POST из формы настройки виджета
-# имя функции = виджет_update
-function loginza_auth_widget_update($num = 1) 
-{
-	$widget = 'loginza_auth_widget_' . $num; // имя для опций = виджет + номер
-	
-	// получаем опции
-	$options = $newoptions = mso_get_option($widget, 'plugins', array());
-	
-	# обрабатываем POST
-	$newoptions['header'] = mso_widget_get_post($widget . 'header');
-	$newoptions['after_form'] = mso_widget_get_post($widget . 'after_form');
-	
-	$newoptions['widget_type'] = mso_widget_get_post($widget . 'widget_type');
-	$newoptions['provider_google'] = mso_widget_get_post($widget . 'provider_google');
-	$newoptions['provider_yandex'] = mso_widget_get_post($widget . 'provider_yandex');
-	//$newoptions['provider_mailruapi'] = mso_widget_get_post($widget . 'provider_mailruapi');
-	//$newoptions['provider_mailru'] = mso_widget_get_post($widget . 'provider_mailru');
-	//$newoptions['provider_vkontakte'] = mso_widget_get_post($widget . 'provider_vkontakte');
-	$newoptions['provider_facebook'] = mso_widget_get_post($widget . 'provider_facebook');
-	$newoptions['provider_twitter'] = mso_widget_get_post($widget . 'provider_twitter');
-	$newoptions['provider_loginza'] = mso_widget_get_post($widget . 'provider_loginza');
-	$newoptions['provider_myopenid'] = mso_widget_get_post($widget . 'provider_myopenid');
-	$newoptions['provider_webmoney'] = mso_widget_get_post($widget . 'provider_webmoney');
-	//$newoptions['provider_rambler'] = mso_widget_get_post($widget . 'provider_rambler');
-	//$newoptions['provider_flickr'] = mso_widget_get_post($widget . 'provider_flickr');
-	//$newoptions['provider_steam'] = mso_widget_get_post($widget . 'provider_steam');
-	//$newoptions['provider_lastfm'] = mso_widget_get_post($widget . 'provider_lastfm');
-	//$newoptions['provider_verisign'] = mso_widget_get_post($widget . 'provider_verisign');
-	//$newoptions['provider_aol'] = mso_widget_get_post($widget . 'provider_aol');	
-	$newoptions['provider_openid'] = mso_widget_get_post($widget . 'provider_openid');
-	
-	if ( $options != $newoptions ) 
-		mso_add_option($widget, $newoptions, 'plugins' );
-}
-*/
 
 # end file

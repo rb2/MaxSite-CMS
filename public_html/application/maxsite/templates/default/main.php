@@ -35,15 +35,18 @@ elseif (function_exists('mso_default_head_section')) mso_default_head_section();
 					
 					if (function_exists('ushka')) echo ushka('header-start');
 
-					if ($fn = get_component_fn('default_header_component1', 'logo-links.php')) require($fn);
-
-					if ($fn = get_component_fn('default_header_component2', 'menu.php')) require($fn);
-
-					if ($fn = get_component_fn('default_header_component3', 'image-slider.php')) require($fn);
-					
-					if ($fn = get_component_fn('default_header_component4')) require($fn);
-					
-					if ($fn = get_component_fn('default_header_component5')) require($fn);
+					if (file_exists(getinfo('template_dir') . 'custom/header_components.php'))
+					{
+						require(getinfo('template_dir') . 'custom/header_components.php'); 
+					}
+					else
+					{
+						if ($fn = get_component_fn('default_header_component1', 'logo-links.php')) require($fn);
+						if ($fn = get_component_fn('default_header_component2', 'menu.php')) require($fn);
+						if ($fn = get_component_fn('default_header_component3', 'image-slider.php')) require($fn);
+						if ($fn = get_component_fn('default_header_component4')) require($fn);
+						if ($fn = get_component_fn('default_header_component5')) require($fn);
+					}
 					
 					if (function_exists('ushka')) echo ushka('header-end');
 					
@@ -120,15 +123,18 @@ elseif (function_exists('mso_default_head_section')) mso_default_head_section();
 				
 				if (function_exists('ushka')) echo ushka('footer-start');
 				
-				if ($fn = get_component_fn('default_footer_component1', 'footer-copyright.php')) require($fn);
-
-				if ($fn = get_component_fn('default_footer_component2', 'footer-statistic.php')) require($fn);
-
-				if ($fn = get_component_fn('default_footer_component3')) require($fn);
-
-				if ($fn = get_component_fn('default_footer_component4')) require($fn);
-
-				if ($fn = get_component_fn('default_footer_component5')) require($fn); 
+				if (file_exists(getinfo('template_dir') . 'custom/footer_components.php'))
+				{
+					require(getinfo('template_dir') . 'custom/footer_components.php'); 
+				}
+				else
+				{
+					if ($fn = get_component_fn('default_footer_component1', 'footer-copyright.php')) require($fn);
+					if ($fn = get_component_fn('default_footer_component2', 'footer-statistic.php')) require($fn);
+					if ($fn = get_component_fn('default_footer_component3')) require($fn);
+					if ($fn = get_component_fn('default_footer_component4')) require($fn);
+					if ($fn = get_component_fn('default_footer_component5')) require($fn); 
+				}
 				
 				if (function_exists('ushka')) echo ushka('footer-end');
 				

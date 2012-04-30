@@ -6,7 +6,7 @@
  */
 
 
-	$title_contact = mso_get_option('title_contact', 'templates', t('Обратная связь'));
+	$title_contact = mso_get_option('title_contact', 'templates', tf('Обратная связь'));
 	
 	mso_head_meta('title', $title_contact); //  meta title страницы
 

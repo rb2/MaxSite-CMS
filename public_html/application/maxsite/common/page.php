@@ -29,7 +29,7 @@ function mso_get_pages($r = array(), &$pag)
 		if (!$r['limit']) $r['limit'] = 7; // что-то не то, заменяем на дефолт=7
 	}
 
-	if ( !isset($r['cut']) )			$r['cut'] = t('Далее'); // ссылка на [cut]
+	if ( !isset($r['cut']) )			$r['cut'] = tf('Далее'); // ссылка на [cut]
 	if ( !isset($r['xcut']) )			$r['xcut'] = true; // для тех у кого нет cut, но есть xcut выводить после xcut
 	
 	if ( !isset($r['show_cut']) )		$r['show_cut'] = true; // отображать ссылку «далее» для [cut] ? 
@@ -242,7 +242,7 @@ function mso_get_pages($r = array(), &$pag)
 					if ( $pages[0]['page_id_autor'] <> $MSO->data['session']['users_id'] ) return array();
 					else
 					{
-						if ($page_status == 'draft') $pages[0]['page_title'] .= ' ' . t('(черновик)');
+						if ($page_status == 'draft') $pages[0]['page_title'] .= ' ' . tf('(черновик)');
 						// else $pages[0]['page_title'] .= ' (личное)';
 					}
 
@@ -622,7 +622,7 @@ function _mso_sql_build_home($r, &$pag)
 	if ($exclude_page_id)
 			$CI->db->where_not_in('page.page_id', $r['exclude_page_id']);
 
-	// блядское экранирование CodeIgniter! Они там что мухоморов объелись?! Приходится делать свои замены! 
+	// экранирование CodeIgniter! Они там что мухоморов объелись?! Приходится делать свои замены! 
 	if ($r['page_id']) $CI->db->order_by('FIELD(page_id_MSO_ZAP_' . implode('_MSO_ZAP_', $r['page_id']) . ')');
 			else $CI->db->order_by($r['order'], $r['order_asc']);
 	
@@ -1392,9 +1392,9 @@ function mso_page_edit_link($id = 0, $title = 'Редактировать', $do 
 	if (is_login())
 	{
 		if ($echo)
-			echo $do . '<a href="' . $MSO->config['site_admin_url'] . 'page_edit/' . $id . '">' . t($title) . '</a>' . $posle;
+			echo $do . '<a href="' . $MSO->config['site_admin_url'] . 'page_edit/' . $id . '">' . tf($title) . '</a>' . $posle;
 		else
-			return $do . '<a href="' . $MSO->config['site_admin_url'] . 'page_edit/' . $id . '">' . t($title) . '</a>' . $posle;
+			return $do . '<a href="' . $MSO->config['site_admin_url'] . 'page_edit/' . $id . '">' . tf($title) . '</a>' . $posle;
 	}
 }
 
@@ -1481,10 +1481,10 @@ function mso_page_date($date = 0, $format = 'Y-m-d H:i:s', $do = '', $posle = ''
 			else $df = 'D, j F Y г.';
 
 		if (isset($format['days'])) $dd = $format['days'];
-			else $dd = t('Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье');
+			else $dd = tf('Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье');
 
 		if (isset($format['month'])) $dm = $format['month'];
-			else $dm = t('января февраля марта апреля мая июня июля августа сентября октября ноября декабря');
+			else $dm = tf('января февраля марта апреля мая июня июля августа сентября октября ноября декабря');
 	}
 	else
 	{
@@ -1542,7 +1542,7 @@ function mso_page_feed($page_slug = '', $page_title = 'Подписаться', 
 	if ($link)
 	{
 		if ($type) $type .= '/';
-		$out = '<a href="' . $MSO->config['site_url'] . $type . $page_slug . '/feed">' . t($page_title) . '</a>';
+		$out = '<a href="' . $MSO->config['site_url'] . $type . $page_slug . '/feed">' . tf($page_title) . '</a>';
 	}
 	else
 		$out = $page_title;
@@ -1561,10 +1561,10 @@ function mso_page_content($page_content = '', $use_password = true, $message = '
 	if ($use_password and $page['page_password']) // есть пароль
 	{
 
-		$form ='<p><strong>' . t($message) . '</strong></p>';
+		$form ='<p><strong>' . tf($message) . '</strong></p>';
 		$form .= '<form action="' . getinfo('siteurl') . 'page/' . $page['page_slug'] . '" method="post">' . mso_form_session('f_session_id');
 		$form .= '<input type="hidden" name="f_page_id" value="' . $page['page_id'] . '">';
-		$form .= '<p>' . t('Пароль:') . ' <input type="text" name="f_password" value=""> ';
+		$form .= '<p>' . tf('Пароль:') . ' <input type="text" name="f_password" value=""> ';
 		$form .= '<input type="submit" name="f_submit" value="ОК"></p>';
 		$form .= '</form>';
 
@@ -1583,7 +1583,7 @@ function mso_page_content($page_content = '', $use_password = true, $message = '
 			}
 			else // ошибка в пароле
 			{
-				echo '<p style="color: red;">' . t('<strong>Ошибочный пароль!</strong> Повторите ввод.') . '</p>'. $form;
+				echo '<p style="color: red;">' . tf('<strong>Ошибочный пароль!</strong> Повторите ввод.') . '</p>'. $form;
 			}
 		}
 		else // нет post, выводим форму
@@ -1638,9 +1638,9 @@ function mso_page_comments_link($page_comment_allow = true, $page_slug = '', $ti
 		$def = array(
 			'page_comment_allow' => true, // разрешены комментарии?
 			'page_slug' => '', // короткая ссылка страницы
-			'title' => t('Обсудить'), // титул, если есть ссылка
-			'title_no_link' => t('Посмотреть комментарии'), // титул если ссылки нет
-			'title_no_comments' => t('Обсудить'), // титул если еще нет комментариев
+			'title' => tf('Обсудить'), // титул, если есть ссылка
+			'title_no_link' => tf('Посмотреть комментарии'), // титул если ссылки нет
+			'title_no_comments' => tf('Обсудить'), // титул если еще нет комментариев
 			'do' => '', // текст ДО
 			'posle' => '', // текст ПОСЛЕ
 			'echo' => true, // выводить?
@@ -1675,12 +1675,12 @@ function mso_page_comments_link($page_comment_allow = true, $page_slug = '', $ti
 				if (mso_get_option('allow_comment_comusers', 'general', '1') or mso_get_option('allow_comment_anonim', 'general', '1') ) 
 				{
 					$out = $r['do'] . '<a href="' . $MSO->config['site_url'] . $type
-						. $r['page_slug'] . '#comments">' . t($r['title_no_comments']) . '</a>' . $r['posle'];
+						. $r['page_slug'] . '#comments">' . tf($r['title_no_comments']) . '</a>' . $r['posle'];
 				}
 			}
 			else
 				$out = $r['do'] . '<a href="' . $MSO->config['site_url'] . $type 
-						. $r['page_slug'] . '#comments">' . t($r['title']) . '</a>' . $r['posle'];			
+						. $r['page_slug'] . '#comments">' . tf($r['title']) . '</a>' . $r['posle'];			
 		}
 		
 		
@@ -1692,7 +1692,7 @@ function mso_page_comments_link($page_comment_allow = true, $page_slug = '', $ti
 		if (!$page_slug) return '';
 		if (!$page_comment_allow) return '';
 
-		$out = $do . '<a href="' . $MSO->config['site_url'] . $type . $page_slug . '#comments">' . t($title) . '</a>' . $posle;
+		$out = $do . '<a href="' . $MSO->config['site_url'] . $type . $page_slug . '#comments">' . tf($title) . '</a>' . $posle;
 		if ($echo) echo $out;
 			else return $out;
 	}
@@ -1821,8 +1821,8 @@ function mso_page_view_count($page_view_count = 0, $do = '<span>Прочтени
 	// если в опции включено не вести подсчет, то блок не выводим
 	if (mso_get_option('page_view_enable', 'templates', 0) == 0) return '';
 
-	if ($echo) echo t($do) . $page_view_count . $posle;
-		else return t($do) . $page_view_count . $posle;
+	if ($echo) echo tf($do) . $page_view_count . $posle;
+		else return tf($do) . $page_view_count . $posle;
 }
 
 
@@ -1928,7 +1928,7 @@ function _mso_page_map_get_child($page_id = 0, $cur_id = 0)
 # блок "Еще записи этой рубрики"
 function mso_page_other_pages($page_id = 0, $page_categories = array())
 {
-	if ($bl_title = mso_get_option('page_other_pages', 'templates', t('Еще записи по теме')))
+	if ($bl_title = mso_get_option('page_other_pages', 'templates', tf('Еще записи по теме')))
 	{
 		// алгоритм получения записей
 		$algoritm = mso_get_option('page_other_pages_algoritm', 'templates', 'all');

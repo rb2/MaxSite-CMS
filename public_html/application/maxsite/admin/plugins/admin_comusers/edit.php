@@ -170,7 +170,7 @@
 				
 			}
 			
-			echo '<form action="" method="post">' . mso_form_session('f_session_id');
+			echo '<form method="post">' . mso_form_session('f_session_id');
 			echo $CI->table->generate();
 			echo '<p class="br"><input type="submit" name="f_submit[' . $id . ']" value="' . t('Изменить') . '"></p>';
 			echo '</form>';

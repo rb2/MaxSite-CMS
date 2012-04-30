@@ -155,7 +155,7 @@
 	{
 	
 		// добавляем форму, а также текущую сессию
-		//echo '<form action="" method="post">' . mso_form_session('f_session_id');
+		//echo '<form method="post">' . mso_form_session('f_session_id');
 		echo $CI->table->generate(); // вывод подготовленной таблицы
 		//echo '</form>';
 		

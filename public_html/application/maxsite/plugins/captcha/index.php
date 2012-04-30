@@ -9,7 +9,6 @@
 # функция автоподключения плагина
 function captcha_autoload($args = array())
 {	
-	//if ( !is_login() )
 	if ( !is_login() and !is_login_comuser() ) // если нужно отключить капчу для комюзеров
 	{
 		mso_hook_add( 'comments_content_end', 'captcha_go'); # хук на отображение картинки

@@ -85,7 +85,7 @@
 		*/
 		// pr($ushki);
 		
-		echo '<form action="" method="post">' . mso_form_session('f_session_id') . '
+		echo '<form method="post">' . mso_form_session('f_session_id') . '
 		<p><strong>' . t('Новая ушка:') . '</strong> ' . ' <input name="f_ushka_new" type="text" value="">
 		<input type="submit" name="f_submit_new" value="' . t('Добавить новую ушку') . '"></p>
 		</form>';
@@ -102,21 +102,21 @@
 				else $sel_html = ' selected="selected" ';
 			
 			
-			$form .= '<p><input name="f_ushka['.$id.'][name]" type="text" value="'. $us['name'] . '"  style="width: 400px;">
+			$form .= '<p class="ushki_title"><input name="f_ushka['.$id.'][name]" type="text" value="'. $us['name'] . '"  style="width: 400px;">
 				<select style="width: 150px;" name="f_ushka[' . $id . '][type]"><option value="html"' . $sel_html . '/>TEXT/HTML</option><option value="php"' . $sel_php . '>PHP</option></select>
 				<label><input name="f_ushka[' . $id . '][delete]" type="checkbox"> ' . t('Удалить') . '</label>
 			</p>';
 			
-			$form .= '<p><textarea name="f_ushka[' . $id . '][text]" style="width: 99%; height: 220px;">' . htmlspecialchars($us['text']) . '</textarea>';
+			$form .= '<p><textarea name="f_ushka[' . $id . '][text]">' . htmlspecialchars($us['text']) . '</textarea>';
 			
 			$form .= '</div>';
 		}
 		
 		if ($form)
 		{
-			echo '<h2>' . t('Ушки') . '</h2><form action="" method="post">' . mso_form_session('f_session_id');
+			echo '<h2>' . t('Ушки') . '</h2><form method="post">' . mso_form_session('f_session_id');
 			echo $form;
-			echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
+			echo '<p class="br"><input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '">';
 			echo '</form>';
 		}
 

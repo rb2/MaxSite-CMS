@@ -2,9 +2,12 @@
 	
 	$CI = & get_instance();
 	
+//	if ($_POST) _pr($_POST);
+	
 	if ( $post = mso_check_post(array('f_session_id')) )
 	{
 		mso_checkreferer();
+		
 		
 		// есть ли выбранные пункты?
 		if (isset($post['f_check_submit']))
@@ -17,7 +20,7 @@
 			
 			if ($act)
 			{
-				$out = '' . t('Выполнено:') . ' ';
+				$out = t('Выполнено:') . ' ';
 				foreach ($post['f_check_submit'] as $f_name=>$val)
 				{
 					if ($act == 'activate') mso_plugin_activate($f_name); # активация плагина
@@ -26,8 +29,6 @@
 					$out .= ' &#149; ' . $f_name;
 				}
 				mso_redirect('admin/plugins');
-				// mso_admin_menu();
-				// echo '<div class="update">' . $out . ' &#149;</div>';
 			}
 			else
 				echo '<div class="error">' . t('Ошибка обновления') . '</div>';
@@ -49,10 +50,6 @@
 					'table_open'		  => '<table class="page tablesorter" border="0" width="99%" id="pagetable">',
 					'row_alt_start'		  => '<tr class="alt">',
 					'cell_alt_start'	  => '<td class="alt">',
-					'heading_row_start'    => NR . '<thead><tr>',
-					'heading_row_end'       => '</tr></thead>' . NR,
-					'heading_cell_start'   => '<th style="cursor: pointer;">',
-					'heading_cell_end'      => '</th>',
 			  );
 
 	$CI->table->set_template($tmpl); // шаблон таблицы
@@ -84,6 +81,8 @@
 		# $MSO->active_plugins оказались вверху
 		
 		$dirs = array_unique(array_merge($MSO->active_plugins, $dirs));
+		
+		$flag_present_plugins = false; // признак, что пустая таблица
 		
 		foreach ($dirs as $dir)
 		{
@@ -127,6 +126,7 @@
 					
 					$act = '<input type="checkbox" name="f_check_submit[' . $dir . ']" id="f_check_submit_' . $dir . '">';
 					
+					$dir0 = $dir;
 					
 					
 					if (in_array($dir, $MSO->active_plugins)) 
@@ -149,7 +149,15 @@
 						
 						$dir = '<label for="f_check_submit_' . $dir . '">' . $dir . '</label>';
 						
-						$status = '<span class="gray">' . t('откл') . '</span>';
+						// формируем ссылку для включения плагина
+						$status = '<span class="gray"><a href="" onclick="' . "
+							$('#f_check_submit_" . $dir0 . "').attr('checked', 'checked'); 
+							$('form').prepend('<input type=hidden name=f_activate_submit value=1>');
+							$('form').submit(); 
+							return false;
+						" . '">' . t('включить') . '</a></span>';
+						
+						
 						$description = '<span class="gray">' . $description . '</span>';
 						$dir = '<span class="gray">' . $dir . '</span>';
 						$version = '<span class="gray">' . $version . '</span>';
@@ -161,58 +169,62 @@
 					if ($help) $status .= ' <a href="' . $help . '" target="_blank" title="' . t('Помощь по плагину') . '">(?)</a>';
 					
 					$CI->table->add_row($act, $dir, $status, $name, $version, $author, $description);
+					$flag_present_plugins = true;
 				}
 			}
 		}
+		
+		return $flag_present_plugins;
 	}
 	
 	$CI->table->set_caption('<h2>'.t('Активные плагины') . '</h2>');
-	_create_table(true);
+	$flag_present_plugins = _create_table(true);
 	
-	$table1 = $CI->table->generate(); // вывод подготовленной таблицы
+	if ($flag_present_plugins) 
+	{
+		$table1 = $CI->table->generate(); // вывод подготовленной таблицы
 	
-	# добавим строчку для дополнительного действия
-	$table1 .= '<p>
-				<input type="submit" name="f_deactivate_submit" value="&nbsp;- &nbsp;&nbsp;' . t('Выключить') . '">
-				<input type="submit" name="f_uninstall_submit" value="&nbsp;x&nbsp;&nbsp;' . t('Деинсталировать') . '">
-				</p>';
+		# добавим строчку для дополнительного действия
+		$table1 .= '<p>
+					<input type="submit" name="f_deactivate_submit" value="&nbsp;- &nbsp;&nbsp;' . t('Выключить') . '">
+					<input type="submit" name="f_uninstall_submit" value="&nbsp;x&nbsp;&nbsp;' . t('Деинсталировать') . '">
+					</p>';
 	
+	}
+	else $table1 = '';
 	
 	// вторая таблица
 	$tmpl = array (
-					'table_open'		  => '<table class="page tablesorter" border="0" width="99%" id="pagetable2">',
+					'table_open'		  => '<table class="page tablesorter inactive-plugins" id="pagetable2">',
 					'row_alt_start'		  => '<tr class="alt">',
 					'cell_alt_start'	  => '<td class="alt">',
-					'heading_row_start'    => NR . '<thead><tr>',
-					'heading_row_end'       => '</tr></thead>' . NR,
-					'heading_cell_start'   => '<th style="cursor: pointer;">',
-					'heading_cell_end'      => '</th>',
 			  );
-
+			  
+	$CI->table->clear();
 	$CI->table->set_template($tmpl); // шаблон таблицы
-	$CI->table->set_caption('<h2>'.t('Неактивные плагины') . '</h2>');
+	$CI->table->set_caption('<h2>' . t('Неактивные плагины') . '</h2>');
 	
 	// заголовки
 	$CI->table->set_heading(' ', t('Каталог'), ' ', t('Название'), t('Версия'), t('Автор'), t('Описание'));
-	_create_table(false);
+	$flag_present_plugins = _create_table(false);
 	
-	$table2 = $CI->table->generate(); // вывод подготовленной таблицы
+	if ($flag_present_plugins) 
+	{
+		$table2 = $CI->table->generate(); // вывод подготовленной таблицы
 	
-	# добавим строчку для дополнительного действия
-	$table2 .= '<p><input type="submit" name="f_activate_submit" value="&nbsp;+ &nbsp;&nbsp;' . t('Включить') . '">	</p>';
+		# добавим строчку для дополнительного действия
+		$table2 .= '<p><input type="submit" name="f_activate_submit" value="&nbsp;+ &nbsp;&nbsp;' . t('Включить') . '"></p>';
+	}
+	else $table2 = '';
+		
 	
-	
-	echo mso_load_jquery('jquery.tablesorter.js');
-	echo '
-	<script type="text/javascript">
-	$(function() {
-	  $("table.tablesorter th").animate({opacity: 0.7});
-	  $("table.tablesorter th").hover(function(){ $(this).animate({opacity: 1}); }, function(){ $(this).animate({opacity: 0.7}); });
-	  $("#pagetable").tablesorter();
-	  $("#pagetable2").tablesorter();
-	});   
-	</script>
-	';
+	echo mso_load_jquery('jquery.tablesorter.js') . '
+		<script>
+		$(function() {
+			$("table.tablesorter").tablesorter( {headers: { 0: {sorter: false}, 2: {sorter: false} }});
+		});
+		</script>';
+		
 	// добавляем форму, а также текущую сессию
 	echo '<form method="post">' . mso_form_session('f_session_id');
 	echo $table1 . $table2; // вывод таблиц

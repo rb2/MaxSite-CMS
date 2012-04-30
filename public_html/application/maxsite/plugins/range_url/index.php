@@ -90,8 +90,7 @@ function range_url_mso_options()
 							'name' => t('Включить определение главного зеркала сайта'), 
 							'description' => '', 
 							'default' => '0',
-							'group_start' => 1,
-							'group_end' => 0,
+							'group_start' => '<hr>',
 						),
 						
 			'siteurl' => array(
@@ -99,9 +98,7 @@ function range_url_mso_options()
 							'name' => t('Укажите адрес главного зеркала сайта'), 
 							'description' => t('Если входящий адрес не будет принадлежать указанному, то будет осуществлён редирект на главное зеркало сайта. Адрес следует указывать в полном формате, например: <b>http://site.com/</b> или <b>http://www.site.com/</b>'), 
 							'default' => getinfo('siteurl'),
-							'group_start' => 0,
-							'group_end' => 1,
-							
+							'group_end' => '<hr>',
 						),
 			),
 		t('Настройки плагина Range URL'), // титул

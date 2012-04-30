@@ -23,7 +23,7 @@ function fbauth_autoload()
 # функция выполняется при активации (вкл) плагина
 function fbauth_activate($args = array())
 {	
-	mso_create_allow('fbauth_edit', t('Админ-доступ к настройкам Facebook Auth') . ' ' . t('fbauth'));
+	mso_create_allow('fbauth_edit', t('Админ-доступ к настройкам Facebook Auth'));
 	return $args;
 }
 
@@ -79,7 +79,7 @@ function fbauth_mso_options()
 
 	
 			),
-		'Настройки плагина Facebook Auth', // титул
+		t('Настройки плагина Facebook Auth'), // титул
 		'С помощью этого плагина вы можете разрешить авторизацию/регистрацию комментаторов на своём сайте с помощью facebook.com. Перед началом работы вам необходимо получить «ID приложения» и «Секрет приложения» на facebook.com. Для этого следует с <a href="http://www.facebook.com/developers/createapp.php?version=new">cоздать новое приложение</a>. 
 		
 		<img src="' . getinfo('plugins_url') . '/fbauth/images/step1.png">

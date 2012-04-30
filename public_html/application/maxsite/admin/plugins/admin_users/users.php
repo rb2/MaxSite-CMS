@@ -2,7 +2,7 @@
 	
 	$CI = & get_instance();
 	
-	# новый пользователь
+	# новый автор
 	if ( $post = mso_check_post(array('f_session_id', 'f_submit', 'f_user_login', 
 			'f_user_email', 'f_user_password', 'f_user_group')) )
 	{
@@ -26,7 +26,7 @@
 		if (isset($result['result'])) 
 		{
 			if ($result['result'] == 1)
-				echo '<div class="update">' . t('Пользователь создан!') . '</div>'; // . $result['description'];
+				echo '<div class="update">' . t('Автор создан!') . '</div>'; // . $result['description'];
 			else 
 				echo '<div class="error">' . t('Произошла ошибка') . '<p>' . $result['description'] . '</p></div>';
 		}
@@ -56,7 +56,7 @@
 		if (isset($result['result'])) 
 		{
 			if ($result['result'] == 1)
-				echo '<div class="update">' . t('Пользователь удален!') . '</div>'; // . $result['description'];
+				echo '<div class="update">' . t('Автор удален!') . '</div>'; // . $result['description'];
 			else 
 				echo '<div class="error">' . t('Произошла ошибка') . '<p>' . $result['description'] . '</p></div>';
 		}
@@ -65,20 +65,16 @@
 	}
 
 ?>
-<h1><?= t('Пользователи') ?></h1>
-<p class="info"><?= t('Список пользователей сайта') ?></p>
+<h1><?= t('Авторы сайта') ?></h1>
+<p class="info"><?= t('Список авторов сайта') ?></p>
 
 <?php
 	$CI->load->library('table');
 	
 	$tmpl = array (
-					'table_open'          => '<table class="page tablesorter" border="0" width="99%" id="pagetable">',
+					'table_open'          => '<table class="page tablesorter">',
 					'row_alt_start'          => '<tr class="alt">',
 					'cell_alt_start'      => '<td class="alt">',
-					'heading_row_start'     => NR . '<thead><tr>',
-					'heading_row_end'         => '</tr></thead>' . NR,
-					'heading_cell_start'    => '<th style="cursor: pointer;">',
-					'heading_cell_end'        => '</th>',
 				);
 		  
 	$CI->table->set_template($tmpl); // шаблон таблицы
@@ -107,7 +103,7 @@
 		
 		$groups_name = $row['groups_name'];
 		
-		$act = '<a href="'.$this_url.'/edit/' . $id . '">' . t('Изменить') . '</a>';
+		$act = '<a href="' . $this_url.'/edit/' . $id . '">' . t('Изменить') . '</a>';
 		
 		# админа (1) удалять нельзя
 		if ($id > 1) $all_users[$id] = $id . ' - ' . $nik . ' - ' . $email;
@@ -115,16 +111,12 @@
 		$CI->table->add_row($id, $login, $nik, $email, $url, $groups_name, $act);
 	}
 
-	echo mso_load_jquery('jquery.tablesorter.js');
-	echo '
-	<script type="text/javascript">
-	$(function() {
-		$("table.tablesorter th").animate({opacity: 0.7});
-		$("table.tablesorter th").hover(function(){ $(this).animate({opacity: 1}); }, function(){ $(this).animate({opacity: 0.7}); });
-		$("#pagetable").tablesorter();
-	});    
-	</script>
-	';
+	echo mso_load_jquery('jquery.tablesorter.js') . '
+		<script>
+		$(function() {
+			$("table.tablesorter").tablesorter( {headers: { 6: {sorter: false} }});
+		});
+		</script>';
 
 	// добавляем форму, а также текущую сессию
 	echo $CI->table->generate(); // вывод подготовленной таблицы
@@ -141,45 +133,64 @@
 		$new_user_password = '';
 		$new_user_group = '';
 		
-		$form = '';
-		$CI->load->helper('form');
-		
-		$form .= '<p class="input"><strong>' . t('Логин') . ' </strong>'. form_input( array( 'name'=>'f_user_login' ) ) .'</p>';
-		$form .= '<p class="input"><strong>E-mail </strong>'. form_input( array( 'name'=>'f_user_email' ) ) .'</p>';
-		$form .= '<p class="input"><strong>' . t('Пароль') . ' </strong>'. form_input( array( 'name'=>'f_user_password' ) ) .'</p>';
-		
 		$CI->db->select('groups_id, groups_name');
 		$q = $CI->db->get('groups');
 		$groups = array();
+		
 		foreach ($q->result_array() as $rw)
+		{
 			$groups[$rw['groups_id']] = $rw['groups_name'];
-
-		$form .= '<p class="input"><strong>' . t('Группа') . ' </strong>'. form_dropdown('f_user_group', $groups, '');	
-		$form .=  '<p class="input_submit"><input type="submit" name="f_submit" value="' . t('Создать пользователя') . '"></p>';
+		}
+		
+		$form = '';
+		
+		$CI->load->helper('form');
 		
 		echo '<div class="item new_user">';
-		echo '<form action="" method="post">' . mso_form_session('f_session_id');
-		echo '<h2 class="br">' . t('Создать нового пользователя') . '</h2>';
-		echo '<p>' . t('Если данные некорректны, то пользователь создан не будет. Для нового пользователя-админа нужно обновить разрешения.') . '</p>';
+
+		echo '<h2 class="br">' . t('Создать нового автора') . '</h2>';
+		
+		echo '<form method="post" class="fform admin_users">' . mso_form_session('f_session_id');
+		
+		echo '<p>' . t('Если данные некорректны, то пользователь создан не будет. Для нового пользователя-админа нужно обновить разрешения.') . '</p>';		
+		
+		$form .= '<p><label class="fwrap"><span class="ftitle">' . t('Логин') . ' </span><span>' . form_input( array('name'=>'f_user_login')) . '</span></label></p>';
+		
+		$form .= '<p><label class="fwrap"><span class="ftitle">E-mail</span><span>'. form_input( array( 'name'=>'f_user_email' ) ) . '</span></label></p>';
+		
+		$form .= '<p><label class="fwrap"><span class="ftitle">' . t('Пароль') . ' </span><span>'. form_input( array( 'name'=>'f_user_password' ) ) . '</span></label></p>';
+		
+		$form .= '<p><label class="fwrap"><span class="ftitle">' . t('Группа') . ' </span><span>' . form_dropdown('f_user_group', $groups, '') . '</span></label></p>';	
+		
+		$form .=  '<p class="hr"><span class="ftitle"></span><span><input type="submit" name="f_submit" value="' . t('Создать автора') . '"></span></p>';
+		
 		echo $form;
+		
 		echo '</form>';
+		
 		echo '</div>';
 	}
 
-	if ( mso_check_allow('edit_delete_users') ) // если разрешено удалять юзеров
+	if ($all_users and mso_check_allow('edit_delete_users') ) // если разрешено удалять юзеров
 	{
 		$CI->load->helper('form');
 		
 		echo '<div class="item delete_user">';
-		echo '<form action="" method="post">' . mso_form_session('f_session_id');
-		echo '<h2 class="br">' . t('Удалить пользователя') . '</h2>';
-		echo '<p class="input"><strong>' . t('Удалить') . ' </strong>';
-		echo form_dropdown('f_user_delete', $all_users, '', '');
-		echo '</p>';
-		echo '<p class="checkbox"><label><input type="checkbox" name="f_delete_user_comments"> ' . t('Удалить все комментарии пользователя. Иначе комментарии отметятся как анонимные.') . '</label></p>';
-		echo '<p class="checkbox"><label><input type="checkbox" name="f_delete_user_pages"> ' . t('Удалить все страницы пользователя. Иначе у страниц автором станет администратор.') . '</label></p>';
-		echo '<p class="input_submit"><input type="submit" name="f_delete_submit" value="' . t('Удалить пользователя') . '" onClick="if(confirm(\'' . t('Удалить пользователя?') . '\')) {return true;} else {return false;}"></p>';
+		
+		echo '<h2 class="br">' . t('Удалить автора') . '</h2>';
+		
+		echo '<form method="post" class="fform admin_users">' . mso_form_session('f_session_id');
+		
+		echo '<p><label class="fwrap"><span class="ftitle">' . t('Удалить') . '</span><span>' . form_dropdown('f_user_delete', $all_users, '', '') . '</span></label></p>';
+		
+		echo '<p><span class="ftitle"></span><label><input type="checkbox" name="f_delete_user_comments"> ' . t('Удалить все комментарии автора. Иначе комментарии отметятся как анонимные.') . '</label></p>';
+		
+		echo '<p><span class="ftitle"></span><label><input type="checkbox" name="f_delete_user_pages"> ' . t('Удалить все страницы автора. Иначе у страниц автором станет администратор.') . '</label></p>';
+		
+		echo '<p class="hr"><span class="ftitle"></span><span><input type="submit" name="f_delete_submit" value="' . t('Удалить автора') . '" onClick="if(confirm(\'' . t('Удалить автора сайта?') . '\')) {return true;} else {return false;}"></span></p>';
+		
 		echo '</form>';
+		
 		echo '</div>';
 	}
 

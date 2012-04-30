@@ -70,15 +70,15 @@ if ($pages) // есть страницы
 					
 					mso_page_date($page_date_publish, 
 									array(	'format' => 'D, j F Y г.', // 'd/m/Y H:i:s'
-											'days' => t('Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье'),
-											'month' => t('января февраля марта апреля мая июня июля августа сентября октября ноября декабря')), 
+											'days' => tf('Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье'),
+											'month' => tf('января февраля марта апреля мая июня июля августа сентября октября ноября декабря')), 
 									'<span>', '</span>');
-					mso_page_cat_link($page_categories, ' -&gt; ', '<br><span>' . t('Рубрика') . ':</span> ', '');
-					mso_page_tag_link($page_tags, ' | ', '<br><span>' . t('Метки') . ':</span> ', '');
-					mso_page_view_count($page_view_count, '<br><span>' . t('Просмотров') . ':</span> ', '');
-					mso_page_meta('nastr', $page_meta, '<br><span>' . t('Настроение') . ':</span> ', '');
-					mso_page_meta('music', $page_meta, '<br><span>' . t('В колонках звучит') . ':</span> ', '');
-					if ($page_comment_allow) mso_page_feed($page_slug, t('комментарии по RSS'), '<br><span>' . t('Подписаться на').'</span> ', '', true);
+					mso_page_cat_link($page_categories, ' -&gt; ', '<br><span>' . tf('Рубрика') . ':</span> ', '');
+					mso_page_tag_link($page_tags, ' | ', '<br><span>' . tf('Метки') . ':</span> ', '');
+					mso_page_view_count($page_view_count, '<br><span>' . tf('Просмотров') . ':</span> ', '');
+					mso_page_meta('nastr', $page_meta, '<br><span>' . tf('Настроение') . ':</span> ', '');
+					mso_page_meta('music', $page_meta, '<br><span>' . tf('В колонках звучит') . ':</span> ', '');
+					if ($page_comment_allow) mso_page_feed($page_slug, tf('комментарии по RSS'), '<br><span>' . tf('Подписаться на').'</span> ', '', true);
 					mso_page_edit_link($page_id, 'Edit page', '<br>[', ']');
 				echo '</div>';
 			}
@@ -129,8 +129,8 @@ else
 	}
 	else // стандартный вывод
 	{
-		echo '<h1>' . t('404. Ничего не найдено...') . '</h1>';
-		echo '<p>' . t('Извините, ничего не найдено') . '</p>';
+		echo '<h1>' . tf('404. Ничего не найдено...') . '</h1>';
+		echo '<p>' . tf('Извините, ничего не найдено') . '</p>';
 		echo mso_hook('page_404');
 	}
 } // endif $pages

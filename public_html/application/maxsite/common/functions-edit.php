@@ -1131,6 +1131,9 @@
 				$CI->db->where( array('page_id'=>$page_id) );
 				$CI->db->delete('page');
 				
+				$CI->db->where( array('comments_page_id'=>$page_id) );
+				$CI->db->delete('comments');
+				
 				mso_flush_cache(); // сбросим кэш
 
 				return array( 'result' => 1, 'description' => 'Page deleted');

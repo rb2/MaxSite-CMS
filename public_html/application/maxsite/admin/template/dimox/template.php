@@ -31,12 +31,12 @@
 		$admin_footer = '<div class="templateBy">Оформление админ-интерфейса - <a href="http://dimox.name/">Dimox</a></div>'.$admin_footer;
 	ob_end_clean();
 	
-	if (!$admin_header) $admin_header = t('Админ-панель', 'admin');
+	if (!$admin_header) $admin_header = t('Админ-панель');
 	
 	$admin_css = getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/style.css';
 	$admin_scripts = getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/scripts.js';
 	$admin_css = mso_hook('admin_css', $admin_css);
-	$admin_title = t('Админ-панель', 'admin') . ' - ' . mso_hook('admin_title', mso_head_meta('title'));
+	$admin_title = t('Админ-панель') . ' - ' . mso_hook('admin_title', mso_head_meta('title'));
 		
 	
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -53,7 +53,7 @@
 <div id="container">
 
 	<div class="admin-header"><div class="r">
-		<div id="logout"><?= t('Пользователь:', 'admin') ?> <strong><a href="<?= getinfo('siteurl') ?>admin/users_my_profile"><?= getinfo('users_nik') ?></a></strong> <span><a href="<?= getinfo('siteurl') ?>logout"><?= t('выйти', 'admin') ?></a></span></div>
+		<div id="logout"><?= t('Пользователь:') ?> <strong><a href="<?= getinfo('siteurl') ?>admin/users_my_profile"><?= getinfo('users_nik') ?></a></strong> <span><a href="<?= getinfo('siteurl') ?>logout"><?= t('выйти') ?></a></span></div>
 		<h1><a href="<?= getinfo('siteurl') ?>"><span><?= mso_get_option('name_site', 'general') ?></span></a> &rarr; <?= $admin_header ?></h1>
 	</div></div><!-- div class=admin-header -->
 	

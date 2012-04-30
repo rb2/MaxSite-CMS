@@ -13,7 +13,7 @@ if ( function_exists('last_comments_widget_custom') )
 	if ($f = mso_page_foreach('comments-head-meta')) require($f);
 	else
 	{ 
-		mso_head_meta('title', t('Последние комментарии') . '. ' . getinfo('title') ); //  meta title страницы
+		mso_head_meta('title', tf('Последние комментарии') . '. ' . getinfo('title') ); //  meta title страницы
 	}
 	
 	require(getinfo('template_dir') . 'main-start.php');
@@ -22,9 +22,9 @@ if ( function_exists('last_comments_widget_custom') )
 	if ($f = mso_page_foreach('comments-do-last-comments-widget')) require($f); // подключаем кастомный вывод
 	else
 	{
-		echo '<h1 class="comments">'. t('Последние комментарии') .'</h1>';
-		echo '<p class="info"><a href="' . getinfo('siteurl') . 'comments/feed">'. t('Подписаться по RSS') .'</a>';
-		echo '<br><a href="' . getinfo('siteurl') . 'users">'. t('Список комментаторов') .'</a></p>';
+		echo '<h1 class="comments">'. tf('Последние комментарии') .'</h1>';
+		echo '<p class="info"><a href="' . getinfo('siteurl') . 'comments/feed">'. tf('Подписаться по RSS') .'</a>';
+		echo '<br><a href="' . getinfo('siteurl') . 'users">'. tf('Список комментаторов') .'</a></p>';
 		
 		echo '<div class="comments">';
 		echo last_comments_widget_custom(array(
@@ -42,7 +42,7 @@ else
 	// получаем список комментариев текущей страницы
 	$comments = mso_get_comments(false, array('limit' => mso_get_option('comments_count', 'templates', '10'), 'order'=>'desc'));
 
-	mso_head_meta('title', t('Последние комментарии').' — ' . getinfo('title') ); //  meta title страницы
+	mso_head_meta('title', tf('Последние комментарии').' — ' . getinfo('title') ); //  meta title страницы
 
 	require(getinfo('template_dir') . 'main-start.php');
 	
@@ -51,9 +51,9 @@ else
 	if ($f = mso_page_foreach('comments-do')) require($f); // подключаем кастомный вывод
 	else 
 	{
-		echo '<h1 class="comments">'. t('Последние комментарии'). '</h1>';
-		echo '<p class="info"><a href="' . getinfo('siteurl') . 'comments/feed">'. t('Подписаться по RSS'). '</a>';
-		echo '<br><a href="' . getinfo('siteurl') . 'users">'. t('Список комментаторов'). '</a></p>';
+		echo '<h1 class="comments">'. tf('Последние комментарии'). '</h1>';
+		echo '<p class="info"><a href="' . getinfo('siteurl') . 'comments/feed">'. tf('Подписаться по RSS'). '</a>';
+		echo '<br><a href="' . getinfo('siteurl') . 'users">'. tf('Список комментаторов'). '</a></p>';
 	}
 	
 	echo '<div class="comments">';

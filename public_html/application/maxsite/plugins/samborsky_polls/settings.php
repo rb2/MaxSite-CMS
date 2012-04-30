@@ -27,8 +27,8 @@ $default = array(
 		'show_results_link' => 1,
 		'close_after_hour' => 0,
 		'admin_number_records' => 10,
-		'len_polls' => t('1 неделя','plugins'),
-		'secur_polls' => t('Защита по Coookie','plugins')
+		'len_polls' => t('1 неделя'),
+		'secur_polls' => t('Защита по Coookie')
 );
 
 // Экспорт настроек из прошлых версий плагина.
@@ -67,65 +67,65 @@ mso_admin_plugin_options('plugin_samborsky_polls', 'plugins',
 	array(
 		'archive_url' => Array
 		(
-			'name' => t('Ссылка на архив голосований','plugins'),
+			'name' => t('Ссылка на архив голосований'),
 			'type' => 'text',
-			'description' => t('Например «polls-archive»','plugins'),
+			'description' => t('Например «polls-archive»'),
 			'default' => $default['archive_url']
 		),
 
 		'show_archives_link' => Array
 		(
-			'name' => t('Показывать ссылку на архив голосований','plugins'),
+			'name' => t('Показывать ссылку на архив голосований'),
 			'type' => 'checkbox',
-			'description' => t('Поставьте отметку если надо показывать ссылку на архив голосований','plugins'),
+			'description' => t('Поставьте отметку если надо показывать ссылку на архив голосований'),
 			'default' => $default['show_archives_link']
 		),
 
 		'show_results_link' => Array
 		(
-			'name' => t('Показывать ссылку на результаты голосования','plugins'),
+			'name' => t('Показывать ссылку на результаты голосования'),
 			'type' => 'checkbox',
-			'description' => t('Поставьте отметку если надо показывать ссылку на результаты голосования','plugins'),
+			'description' => t('Поставьте отметку если надо показывать ссылку на результаты голосования'),
 			'default' => $default['show_results_link']
 		),
 
 		'close_after_hour' => Array
 		(
-			'name' => t('Закрыть голосование через ... часов после окончания срока','plugins'),
+			'name' => t('Закрыть голосование через ... часов после окончания срока'),
 			'type' => 'text',
-			'description' => t('Введите число (можно отрицательное)','plugins'),
+			'description' => t('Введите число (можно отрицательное)'),
 			'default' => $default['close_after_hour']
 		),
 
 		'admin_number_records' => Array
 		(
-			'name' => t('Количество голосований на странице управления голосованиями','plugins'),
+			'name' => t('Количество голосований на странице управления голосованиями'),
 			'type' => 'text',
-			'description' => t('Введите число (0 - все)','plugins'),
+			'description' => t('Введите число (0 - все)'),
 			'default' => $default['admin_number_records']
 		),
 
 		'len_polls' => Array
 		(
-			'name' => t('Длительность голосования по-умолчанию','plugins'),
+			'name' => t('Длительность голосования по-умолчанию'),
 			'type' => 'select',
-			'description' => t('Выберете длительность голосования по-умолчанию','plugins'),
-			'values' => t('1 день','plugins').' # '.t('1 неделя','plugins').' # '.t('2 недели','plugins').' # '.t('1 месяц','plugins').' # '.t('3 месяца','plugins').' # '.t('6 месяцев','plugins').' # '.t('Год','plugins').' # '.t('Бессрочное','plugins'),
+			'description' => t('Выберете длительность голосования по-умолчанию'),
+			'values' => t('1 день').' # '.t('1 неделя').' # '.t('2 недели').' # '.t('1 месяц').' # '.t('3 месяца').' # '.t('6 месяцев').' # '.t('Год').' # '.t('Бессрочное'),
 			'default' => $default['len_polls']
 		),
 
 		'secur_polls' => Array
 		(
-			'name' => t('Защита от накрутки по-умолчанию','plugins'),
+			'name' => t('Защита от накрутки по-умолчанию'),
 			'type' => 'select',
-			'description' => t('Выберете защиту от накрутки по-умолчанию','plugins'),
-			'values' => t('Только для зарегистрированых (users)','plugins').' # '.t('Защита по Coookie','plugins').' # '.t('Без защиты, один пользователь может голосовать много раз','plugins'),
+			'description' => t('Выберете защиту от накрутки по-умолчанию'),
+			'values' => t('Только для зарегистрированых (users)').' # '.t('Защита по Coookie').' # '.t('Без защиты, один пользователь может голосовать много раз'),
 			'default' => $default['secur_polls']
 		)
 	),
 
-	t('Настройки плагина "Голосования"','plugins'),
-	t('Укажите необходимые опции.','plugins'),
+	t('Настройки плагина "Голосования"'),
+	t('Укажите необходимые опции.'),
 	''
 );
 

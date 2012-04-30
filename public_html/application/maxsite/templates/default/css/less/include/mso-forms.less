@@ -15,7 +15,7 @@ fieldset {
 
 legend {padding: 0 5px;}
 
-input, select {vertical-align: middle;}
+input, select, button {vertical-align: middle;}
 
 textarea {overflow: auto;}
 
@@ -34,11 +34,10 @@ input[type="radio"], input[type="checkbox"] {
 *+html input[type="button"] {overflow: visible;}
 
 
-input, textarea {
+input, textarea, button {
 	&::-webkit-input-placeholder {color: #999;}
 	&:-moz-placeholder {color: #999;}
 }
-
 
 
 form.fform {
@@ -97,9 +96,16 @@ form.fform {
 			&.fcenter {text-align: center;}
 			&.fempty {width: 10px;} // пустая ячейка
 			
-			&.fhint {font-size: .9em; color: #606060; padding-top: 0; padding-bottom: 5px;} // текстовая подсказка
+			// текстовая подсказка
+			&.fhint {
+				font-size: .9em; 
+				font-style: italic; 
+				color: #606060; 
+				padding-top: 0; 
+				padding-bottom: 5px;
+			}
+
 			&.fheader {font-weight: bold;} // текстовая подсказка-заголовок
-			
 			
 			// отмена ячейки - обычный span и label
 			&.nocell {
@@ -109,7 +115,16 @@ form.fform {
 			}
 		}
 		
+		
+		// обрамляющий label-блок для ячеек из span
+		// <p><label class="fwrap"><span> titul </span><span> input </span></label></p>
+		label.fwrap {
+				display: table;
+				width: 100%;
+			}
+		
 		&.nop {padding-top: 0;} // если нужен нулевой отступ padding
+		&.hr {margin-top: 10px;} // визуальный отступ для строки - для отбивки ряда кнопок
 	}
 	
 }

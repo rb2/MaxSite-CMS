@@ -12,7 +12,7 @@ $comusers = mso_get_comusers_all(); // получим всех комюзеро�
 if ($f = mso_page_foreach('users-all-head-meta')) require($f);
 else
 {
-	mso_head_meta('title', t('Комментаторы') . '. ' . getinfo('title')); // meta title страницы
+	mso_head_meta('title', tf('Комментаторы') . '. ' . getinfo('title')); // meta title страницы
 }
 
 
@@ -29,7 +29,7 @@ if ($comusers)
 {
 	if ($f = mso_page_foreach('users-all-do')) require($f); // подключаем кастомный вывод
 	else 
-		echo '<h1>'. t('Комментаторы'). '</h1><p>' . t('Забыли кто вы?') . ' <a href="' . getinfo('siteurl') . 'password-recovery">'. t('Можно восстановить пароль.'). '</a></p><ul class="users-all">';
+		echo '<h1>'. tf('Комментаторы'). '</h1><p>' . tf('Забыли кто вы?') . ' <a href="' . getinfo('siteurl') . 'password-recovery">'. tf('Можно восстановить пароль.'). '</a></p><ul class="users-all">';
 	
 	// pr($comusers);
 	foreach ($comusers as $comuser)
@@ -40,7 +40,7 @@ if ($comusers)
 			continue; // следующая итерация
 		}
 		
-		if (!$comuser['comusers_nik']) $comuser['comusers_nik'] = t('Комментатор'). ' ' . $comuser['comusers_id'];
+		if (!$comuser['comusers_nik']) $comuser['comusers_nik'] = tf('Комментатор'). ' ' . $comuser['comusers_id'];
 		echo '<li><a href="' . getinfo('siteurl') . 'users/' . $comuser['comusers_id'] . '">' . $comuser['comusers_nik'] . '</a></li>';
 	}
 	
@@ -55,8 +55,8 @@ else
 	}
 	else // стандартный вывод
 	{
-		echo '<h1>' . t('404. Ничего не найдено...') . '</h1>';
-		echo '<p>' . t('Извините, ничего не найдено') . '</p>';
+		echo '<h1>' . tf('404. Ничего не найдено...') . '</h1>';
+		echo '<p>' . tf('Извините, ничего не найдено') . '</p>';
 		echo mso_hook('page_404');
 	}
 }

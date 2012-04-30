@@ -80,4 +80,4 @@ if ( !function_exists('mb_stripos') )
 }
 
 
-?>
+# end file

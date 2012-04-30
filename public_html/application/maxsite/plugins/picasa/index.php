@@ -107,8 +107,11 @@ function picasa_widget_custom($arg, $num)
 	if ( !isset($arg['img_size']) ) $arg['img_size'] = 32;
 
 	# оформление виджета
-	if ( !isset($arg['header']) ) $arg['header'] = '<h2 class="box"><span>Мой веб-альбом Picasa</span></h2>';
+	if ( !isset($arg['header']) ) 
+		$arg['header'] = '<h2 class="box"><span>' . t('Мой веб-альбом Picasa') . '</span></h2>';
+		
 	if ( !isset($arg['block_start']) ) $arg['block_start'] = '<div class="picasa">';
+	
 	if ( !isset($arg['block_end']) ) $arg['block_end'] = '</div>';
 
 	$rss = @picasa_go($arg['url'], $arg['show_type'], $arg['albums_count'], $arg['album_name'], $arg['img_size']);
@@ -124,28 +127,44 @@ function picasa_go($url = false, $show_type = 1, $albums_count = 10, $album_name
 	
 	# проверим кеш, может уже есть в нем все данные
 	$cache_key = 'rss/' . 'picasa_' . $url . $show_type . (int) $albums_count . $album_name . $img_size;
+	
 	$k = mso_get_cache($cache_key, true);
+	
 	if ($k) return $k; // да есть в кэше
 	
 	if (!defined('MAGPIE_CACHE_AGE'))	define('MAGPIE_CACHE_AGE', 3600); // время кэширования MAGPIE
+	
 	require_once(getinfo('common_dir') . 'magpierss/rss_fetch.inc');
 	
-	if ($show_type == 1) {
+	if ($show_type == 1) 
+	{
+	
 		$rss = fetch_rss("http://picasaweb.google.com/data/feed/base/user/".$url."?alt=rss&kind=album&hl=ru&access=public");
+		
 		$rss = array_slice($rss->items, 0, $albums_count);
+		
 		$result = '';
-		foreach ( $rss as $item ) { 	
+		
+		foreach ( $rss as $item ) 
+		{ 	
 			$title = $item['title'];
 			$title = str_replace("'","",$title);
 			$title = str_replace('"',"",$title);
 			$result .= "<p><a href='".$item['link']."' target='_blank' rel='nofollow'>".$title."</a></p>";	
 		}
 	};
-	if ($show_type == 2) {
+	
+	if ($show_type == 2) 
+	{
+		
 		$rss = fetch_rss("http://picasaweb.google.com/data/feed/base/user/".$url."?alt=rss&kind=album&hl=ru&access=public");
+		
 		$rss = array_slice($rss->items, 0, $albums_count);
+		
 		$result = '';
-		foreach ( $rss as $item ) { 	
+		
+		foreach ( $rss as $item ) 
+		{ 	
 			$title = $item['title'];
 			$title = str_replace("'","",$title);
 			$title = str_replace('"',"",$title);
@@ -155,21 +174,32 @@ function picasa_go($url = false, $show_type = 1, $albums_count = 10, $album_name
 			$result .= "<a href='".$item['link']."' target='_blank' rel='nofollow'><img src='".$path."' class='picasa-photo' alt='' title='".$title."' width='".$img_size."' height='".$img_size."'></a>";	
 		}
 	};
-	if ($show_type == 3) {
-		$rss = fetch_rss("http://picasaweb.google.com/data/feed/base/user/".$url."/album/".$album_name."?alt=rss&kind=photo&hl=ru&access=public");
+	
+	if ($show_type == 3) 
+	{
+		
+		$rss = fetch_rss("http://picasaweb.google.com/data/feed/base/user/" . $url . "/album/" . $album_name ."?alt=rss&kind=photo&hl=ru&access=public");
+		
 		$rss = array_slice($rss->items, 0, $albums_count);
+		
 		$result = '';
-		foreach ( $rss as $item ) { 	
+		
+		foreach ( $rss as $item ) 
+		{ 	
 			$title = $item['title'];
-			$title = str_replace("'","",$title);
-			$title = str_replace('"',"",$title);
-			preg_match('/.*src="(.*?)".*/',$item['description'],$img_src);
+			$title = str_replace("'", "", $title);
+			$title = str_replace('"', "", $title);
+			preg_match('/.*src="(.*?)".*/', $item['description'], $img_src);
 			$path = $img_src[1];
-			$path = str_replace("s288","s".$img_size,$path);
-			$result .= "<a href='".$item['link']."' target='_blank' rel='nofollow'><img src='".$path."' class='picasa-photo' alt='' title='".$title."'></a>";	
+			$path = str_replace("s288", "s" . $img_size,$path);
+			$result .= "<a href='" . $item['link'] . "' target='_blank' rel='nofollow'><img src='" . $path . "' class='picasa-photo' alt='' title='" . $title . "'></a>";	
 		}
 	};
+	
 	mso_add_cache($cache_key, $result, 300, true);
+	
 	return $result;
 }
-?>
+
+
+# end file

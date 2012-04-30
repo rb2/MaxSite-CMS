@@ -1,16 +1,22 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <h1><?= t('Добро пожаловать в MaxSite CMS!') ?></h1>
+
 <br>
+
 <ul>
 	<li><a href="http://max-3000.com/"><?= t('Официальный сайт') ?></a></li>
-	<li><a href="http://max-3000.com/help"><?= t('Центр помощи') ?></a></li>
 	<li><a href="http://max-3000.com/page/faq"><?= t('ЧАВО по MaxSite CMS для новичков') ?></a></li>
-	<li><a href="http://wiki.max-3000.com/"><?= t('Wiki MaxSite CMS') ?></a></li>
 	<li><a href="http://forum.max-3000.com/"><?= t('Форум поддержки') ?></a></li>
+	<li><a href="http://wiki.max-3000.com/"><?= t('Wiki MaxSite CMS') ?></a></li>
+	<li><a href="http://max-3000.com/help"><?= t('Центр помощи') ?></a></li>
+	<li><a href="http://alexanderschilling.net/plugins"><?= t('Каталог плагинов') ?></a></li>
+	<li><a href="http://templates.max-3000.com/"><?= t('Каталог шаблонов') ?></a></li>
+	
 </ul>
-<br>
+
 <p><?= t('Ваша версия <strong>MaxSite CMS</strong>') ?>: <?= getinfo('version') ?></p>
+
 <?php
 
 	if (mso_check_allow('admin_home')) // если есть разрешение на доступ
@@ -105,8 +111,8 @@
 				
 				if (!isset($item['category'])) $item['category'] = '-';
 				
-				echo '<h3 style="background: #CCC; padding: 3px;"><a href="' . $item['link'] . '">' . $item['title'] 
-						. '</a> | ' . $item['category'] . ' | ' . date('Y-m-d , H:i:s', $item['date_timestamp']) . '</h2>';
+				echo '<h4 class="admin_home_maxrss"><a href="' . $item['link'] . '">' . $item['title'] 
+						. '</a> | ' . $item['category'] . ' | ' . date('Y-m-d , H:i:s', $item['date_timestamp']) . '</h4>';
 				
 				echo '<div>' . $item['description'] . '</div>';
 				echo '</div>';

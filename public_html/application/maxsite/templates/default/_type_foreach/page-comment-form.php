@@ -13,18 +13,18 @@
 					<div class="comments-noreg">
 						
 						<?php if (mso_get_option('allow_comment_comusers', 'general', '1')) { ?>
-						<label><input type="radio" name="comments_reg" id="comments_reg_1" value="noreg"  checked="checked" class="no-margin"> <span class="black"><?=t('Не регистрировать/аноним')?></span></label> <br>
+						<label><input type="radio" name="comments_reg" id="comments_reg_1" value="noreg"  checked="checked" class="no-margin"> <span class="black"><?=tf('Не регистрировать/аноним')?></span></label> <br>
 						<?php } else { ?>
 						<input type="hidden" name="comments_reg" value="noreg">
 						<?php } ?>
 						
-						<label for="comments_author" class="comments_author"><?=t('Ваше имя')?></label>
+						<label for="comments_author" class="comments_author"><?=tf('Ваше имя')?></label>
 						<input type="text" name="comments_author" id="comments_author" class="text" onfocus="document.getElementById('comments_reg_1').checked = 'checked';">
 						<p style="margin: 10px 0 0 0;"><span><?php
 							if (mso_get_option('new_comment_anonim_moderate', 'general', '1') )
-								echo t('Используйте нормальные имена. Ваш комментарий будет опубликован после проверки.');
+								echo tf('Используйте нормальные имена. Ваш комментарий будет опубликован после проверки.');
 							else
-								echo t('Используйте нормальные имена.');
+								echo tf('Используйте нормальные имена.');
 								
 						?></span></p>
 					</div>		
@@ -40,14 +40,14 @@
 				<?php } ?>
 				
 			
-					<span class="black"><?=t('Если вы уже зарегистрированы как комментатор или хотите зарегистрироваться, укажите пароль и свой действующий email. <br><em>(При регистрации на указанный адрес придет письмо с кодом активации и ссылкой на ваш персональный аккаунт, где вы сможете изменить свои данные, включая адрес сайта, ник, описание, контакты и т.д.)</em>')?></span></label><br>
+					<span class="black"><?=tf('Если вы уже зарегистрированы как комментатор или хотите зарегистрироваться, укажите пароль и свой действующий email. <br><em>(При регистрации на указанный адрес придет письмо с кодом активации и ссылкой на ваш персональный аккаунт, где вы сможете изменить свои данные, включая адрес сайта, ник, описание, контакты и т.д.)</em>')?></span></label><br>
 					
 					<?php mso_hook('page-comment-form') ?>
 					
-				<label for="comments_email" class="comments_email"><?= t('E-mail') ?></label>
+				<label for="comments_email" class="comments_email"><?= tf('E-mail') ?></label>
 				<input type="text" name="comments_email" id="comments_email" value="" class="text" onfocus="document.getElementById('comments_reg_2').checked = 'checked';"><br>
 
-				<label for="comments_password" class="comments_password"><?= t('Пароль') ?></label>
+				<label for="comments_password" class="comments_password"><?= tf('Пароль') ?></label>
 				<input type="password" name="comments_password" id="comments_password" value="" class="text" onfocus="document.getElementById('comments_reg_2').checked = 'checked';"><br>
 				
 				
@@ -63,9 +63,9 @@
 				
 				<div class="comments-user comments-comuser">
 					<?php
-						if (!$comuser['comusers_nik']) echo t('Привет!');
-							else echo t('Привет,') . ' ' . $comuser['comusers_nik'] . '!';
-					?> <a href="<?= getinfo('siteurl') ?>logout"><?=t('Выйти')?></a>
+						if (!$comuser['comusers_nik']) echo tf('Привет!');
+							else echo tf('Привет,') . ' ' . $comuser['comusers_nik'] . '!';
+					?> <a href="<?= getinfo('siteurl') ?>logout"><?=tf('Выйти')?></a>
 				</div>
 			
 			<?php  } ?>
@@ -74,20 +74,20 @@
 			<input type="hidden" name="comments_user_id" value="<?= getinfo('users_id') ?>">
 		
 			<div class="comments-user">
-				<?=t('Привет')?>, <?= getinfo('users_nik') ?>! <a href="<?= getinfo('siteurl') ?>logout"><?=t('Выйти')?></a>
+				<?=tf('Привет')?>, <?= getinfo('users_nik') ?>! <a href="<?= getinfo('siteurl') ?>logout"><?=tf('Выйти')?></a>
 			</div>
 		
 		<?php  } ?>
 		
 		<div class="comments-textarea">
 			
-			<label for="comments_content"><?=t('Ваш комментарий')?></label>
+			<label for="comments_content"><?=tf('Ваш комментарий')?></label>
 			<?php mso_hook('comments_content_start')  ?>
 			<textarea name="comments_content" id="comments_content" rows="10" cols="80"></textarea>
 
 			<?php mso_hook('comments_content_end')  ?>
 			
-			<div><input name="comments_submit" type="submit" value="<?=t('Отправить')?>" class="comments_submit"></div>
+			<div><input name="comments_submit" type="submit" value="<?=tf('Отправить')?>" class="comments_submit"></div>
 		</div>
 		
 	</form>

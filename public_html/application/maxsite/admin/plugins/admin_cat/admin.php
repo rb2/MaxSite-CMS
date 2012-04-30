@@ -120,13 +120,12 @@
 	<colgroup style="width: 150px;">
 	<colgroup style="width: 50px">
 	<colgroup style="width: 80px">
-	<colgroup style="width: 80px">
 	
 	<tr>
 	
 	<td class="alt"><strong title="' 
 	. t('Номер рубрики. Записей в этой рубрике: [COUNT]')
-	. '">[ID]</strong><sub>[COUNT]</sub></td>
+	. '">[ID]</strong><sub><a href="' . getinfo('site_admin_url') . 'page/category/[ID]">[COUNT]</a></sub></td>
 	
 	<td><input title="' . t('Номер родителя') 
 	. '" name="f_category_id_parent[[ID]]" value="[ID_PARENT]" maxlength="50" type="text"></td>
@@ -139,9 +138,9 @@
 	
 	<td><input title="' . t('Порядок') . '" name="f_category_menu_order[[ID]]" value="[MENU_ORDER]" maxlength="500" type="text"></td>
 	
-	<td><input type="submit" name="f_edit_submit[[ID]]" value="' . t('Изменить') . '"></td>
+	<td><input type="submit" name="f_edit_submit[[ID]]" value="' . t('Изменить') . '">
 	
-	<td><input type="submit" name="f_delete_submit[[ID]]" value="' . t('Удалить') . '" onClick="if(confirm(\'' . t('Удалить рубрику?') . '\')) {return true;} else {return false;}" ></td>
+	<br><input type="submit" name="f_delete_submit[[ID]]" value="' . t('Удалить') . '" onClick="if(confirm(\'' . t('Удалить рубрику?') . '\')) {return true;} else {return false;}" ></td>
 	
 	</tr></table>
 	
@@ -172,7 +171,7 @@
 			) );
 	
 	// добавляем форму, а также текущую сессию
-	echo '<form action="" method="post">' . mso_form_session('f_session_id') .
+	echo '<form method="post">' . mso_form_session('f_session_id') .
 			'<table class="page cats">
 			<colgroup style="width: 30px">
 			<colgroup style="width: 50px">
@@ -181,7 +180,6 @@
 			<colgroup style="width: 150px">
 			<colgroup style="width: 50px">
 			<colgroup style="width: 80px">
-			<colgroup style="width: 80px">
 			<tr>
 			<th>ID</th>
 			<th>' . t('Род.') . '</th>
@@ -189,7 +187,6 @@
 			<th>' . t('Описание') . '</th>
 			<th>' . t('Ссылка') . '</th>
 			<th>' . t('Пор.') . '</th>
-			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 			</tr></table>' ;
 	

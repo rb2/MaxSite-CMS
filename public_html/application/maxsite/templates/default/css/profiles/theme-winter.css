@@ -58,7 +58,6 @@ div.type_home_cat_block div.header_home_cat {background: <?= $color2 ?>;}
 div.type_home_cat_block div.header_home_cat a {color: <?= $color3 ?>;}
 div.footer {background: <?= $color1 ?>; color: <?= $color7 ?>;}
 h2.sitemap {background: <?= $color2 ?>; color: <?= $color7 ?>;}
-textarea, select, input[type="text"], input[type="password"] {background: #E5EDED; border: 1px solid #96AABE;}
 div.leave_a_comment {background: <?= $color11 ?>; border-color: <?= $color11 ?>; color: <?= $color3 ?>;}
 div.page_comments_count {background: <?= $color11 ?>; border-color: <?= $color11 ?>; color: <?= $color3 ?>;}
 div.comment-info {background: <?= $color7 ?>; color: <?= $color2 ?>;}
@@ -67,7 +66,7 @@ div.comments div.comments_content {background: <?= $color7 ?>; color: <?= $color
 div.comment-form {background: #CDD8D8; color: #3E5455;}
 
 div.page_other_pages_header {background: <?= $color11 ?>; border-color: <?= $color11 ?>; color: <?= $color3 ?>;}
-code, pre, blockquote {background: <?= $color5 ?>; color: <?= $color10 ?>; border: 1px solid <?= $color5 ?>;}
+code, pre, blockquote {background: <?= $color5 ?>; color: <?= $color10 ?>; border: 1px solid <?= $color5 ?>; padding: 10px;}
 dt {background: <?= $color5 ?>;}
 dd {background: <?= $color6 ?>;}
 table th {background: <?= $color5 ?>;}

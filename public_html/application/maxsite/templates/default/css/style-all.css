@@ -274,7 +274,8 @@ legend {
   padding: 0 5px;
 }
 input,
-select {
+select,
+button {
   vertical-align: middle;
 }
 textarea {
@@ -295,11 +296,13 @@ input[type="checkbox"] {
   overflow: visible;
 }
 input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
+textarea::-webkit-input-placeholder,
+button::-webkit-input-placeholder {
   color: #999;
 }
 input:-moz-placeholder,
-textarea:-moz-placeholder {
+textarea:-moz-placeholder,
+button:-moz-placeholder {
   color: #999;
 }
 form.fform p {
@@ -384,6 +387,7 @@ form.fform p label.fempty {
 form.fform p span.fhint,
 form.fform p label.fhint {
   font-size: .9em;
+  font-style: italic;
   color: #606060;
   padding-top: 0;
   padding-bottom: 5px;
@@ -398,8 +402,15 @@ form.fform p label.nocell {
   width: auto;
   padding: 0;
 }
+form.fform p label.fwrap {
+  display: table;
+  width: 100%;
+}
 form.fform p.nop {
   padding-top: 0;
+}
+form.fform p.hr {
+  margin-top: 10px;
 }
 /* ссылки */
 a.current_url {
@@ -561,12 +572,12 @@ ul.is_link ul {
 }
 ul.is_link li {
   margin: 0;
-  background: url("../images/li1.png") no-repeat 0 7px;
+  background: url("../images/li1.png") no-repeat 0 5px;
   padding: 0 0 0 14px;
 }
 ul.is_link li li {
   margin-left: 10px;
-  background: url("../images/li2.png") no-repeat 0 7px;
+  background: url("../images/li2.png") no-repeat 0 6px;
 }
 ul.category {
   color: gray;
@@ -1412,7 +1423,6 @@ div.no-border-radius,
   -o-box-shadow: 0 0 7px #bbbbbb;
   -webkit-box-shadow: 0 0 7px #bbbbbb;
   -moz-box-shadow: 0 0 7px #bbbbbb;
-  behavior: url(/PIE.php);
 }
 .box-shadow-none {
   box-shadow: none;

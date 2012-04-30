@@ -518,3 +518,11 @@ td.editor_and_meta > div > p label {margin-right: 10px}
 
 div.float-parent div.cornerz div.wrap {overflow: auto;}
 div.admin_files_nav strong {font-size: 1.5em;}
+
+p.nav{color:white;font-size:0;line-height:25px;margin:0;}
+p.nav a{background:#EEE;padding:5px 5px;margin:0 3px;font-size:10pt;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;white-space:nowrap;}
+p.nav a:hover{background:#999;text-decoration:none;color:#333;}
+p.nav a.current{background:#666;color:#fff;}
+p.nav a.current:hover{background:#999;}
+
+

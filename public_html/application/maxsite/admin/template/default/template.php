@@ -30,11 +30,24 @@
 		$admin_footer = ob_get_contents() . $admin_footer_hook;
 	ob_end_clean();
 	
-	if (!$admin_header) $admin_header = t('Админ-панель', 'admin');
+	if (!$admin_header) $admin_header = t('Админ-панель');
 	
 	$admin_css = getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/style.css';
 	$admin_css = mso_hook('admin_css', $admin_css);
-	$admin_title = t('Админ-панель', 'admin') . ' - ' . mso_hook('admin_title', mso_head_meta('title'));
+	
+	$admin_css_profile = ''; // дополнительные css-файлы
+	
+	if ($admin_css_profile_s = mso_get_option('admin_template_profile', 'general', '')) 
+	{
+			$admin_css_profile_s = mso_explode($admin_css_profile_s, false);
+			
+			foreach ($admin_css_profile_s as $css)
+			{
+				$admin_css_profile .= '<link rel="stylesheet" href="' . getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/profiles/' . $css . '" type="text/css" media="screen">';
+			}
+	}
+	
+	$admin_title = t('Админ-панель') . ' - ' . mso_hook('admin_title', mso_head_meta('title'));
 		
 	
 ?><!DOCTYPE HTML>
@@ -43,6 +56,7 @@
 	<title><?= $admin_title ?></title>
 	<link rel="shortcut icon" href="<?= getinfo('siteurl') ?>favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="<?= $admin_css ?>" type="text/css" media="screen">
+	<?= $admin_css_profile ?>
 	<?= mso_load_jquery() ?>
 	<?php mso_hook('admin_head') ?>
 </head>
@@ -68,5 +82,6 @@
 	</div></div><!-- div class=admin-footer -->
 
 </div><!-- div id="#container" -->
+
 </body>
 </html>

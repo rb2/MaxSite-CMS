@@ -26,7 +26,7 @@ function admin_sidebars_admin_init($args = array())
 		#			можно использовать добавочный, например demo/edit = http://сайт/admin/demo/edit
 		# Третий - название ссылки
 		
-		mso_admin_menu_add('options', $this_plugin_url, t('Сайдбары и виджеты'));
+		mso_admin_menu_add('options', $this_plugin_url, t('Сайдбары и виджеты'), 3);
 
 		# прописываем для указаного admin_url_ + $this_plugin_url - (он будет в url) 
 		# связанную функцию именно она будет вызываться, когда 
@@ -48,9 +48,11 @@ function admin_sidebars_admin($args = array())
 		return $args;
 	}
 	
-	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . t("Сайдбары и виджеты", "admin"); ' );
-	mso_hook_add_dinamic( 'admin_title', ' return t("Сайдбары и виджеты", "admin") . " - " . $args; ' );
+	mso_hook_add_dinamic( 'mso_admin_header', ' return $args . t("Сайдбары и виджеты"); ' );
+	mso_hook_add_dinamic( 'admin_title', ' return t("Сайдбары и виджеты") . " - " . $args; ' );
 	
 	require($MSO->config['admin_plugins_dir'] . 'admin_sidebars/admin.php');
 }
-?>
+
+
+# end file

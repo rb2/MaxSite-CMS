@@ -7,13 +7,10 @@
 	
 	# Форма - работает совместно с edit и new
 	
-	$page_files = '';
-	$page_admin_files = '';
 	
 	# до 
 	$do = '
 	<script type="text/javascript">
-	//$(function(){
 	
 		function shsh()
 		{
@@ -156,21 +153,14 @@
 				<input type="submit" name="' . $name_submit . '" value="' . t('Готово') . '" class="wymupdate"> <span class="autosave-editor"></span>
 			</div>
 			
-			<div>
-				<div class="block_page page_meta">
+			<div>' 
+				. mso_hook('admin_page_form_q_files') 
+				. mso_hook('admin_page_form_pre_all_meta') 
+				. '<div class="block_page page_meta">
 					<h3>' . t('Дополнительные поля') . '</h3>
 					' . $all_meta . '
 					' . mso_hook('admin_page_form_add_all_meta') . '
 				</div>
-				<!--
-				<div class="block_page page_files">
-					<h3>' . t('Файлы') . '</h3>
-					' . $page_admin_files . '
-					<div class="frame">
-					' . $page_files . '
-					</div>
-				</div>
-				-->
 			</div>
 		</td>
 		

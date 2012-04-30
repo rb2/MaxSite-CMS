@@ -199,7 +199,7 @@ function popup_mso_options()
 							'type' => 'select', 
 							'name' => t('Точка отсчета для задания положения блока'), 
 							'description' => t(''), 
-							'values' => 'bottom||Низ страницы # top||Верх страницы',
+							'values' => t('bottom||Низ страницы # top||Верх страницы'),
 							'default' => 'bottom',
 						),
 			
@@ -242,7 +242,7 @@ function popup_mso_options()
 							'type' => 'select', 
 							'name' => t('Цвет кнопки закрытия'), 
 							'description' => t('Можно подстроить под дизайн своего сайта'), 
-							'values' => 'grey||Серый # red||Красный # orange||Оранжевый # green||Зеленый # blue||Синий',
+							'values' => t('grey||Серый # red||Красный # orange||Оранжевый # green||Зеленый # blue||Синий'),
 							'default' => 'grey',
 						),
 			

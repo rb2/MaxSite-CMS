@@ -51,8 +51,7 @@ function admin_menu_menu($args = array())
 	foreach ($admin_menu1 as $key => $value)
 	{
 		$out .= $nr . '<ul class="admin-menu">';
-		$out .= $nr . '<li class="admin-menu-top"><a href="#">' . _mso_del_menu_pod($value['']) . '</a>';
-		//$out .= $nr . '  <li class="admin-menu-top">' . _mso_del_menu_pod($value['']);
+		$out .= $nr . '<li class="admin-menu-top"><a href="#" class="admin-menu-section">' . _mso_del_menu_pod($value['']) . '</a>';
 
 		if (count($value)>1 )
 		{
@@ -61,10 +60,16 @@ function admin_menu_menu($args = array())
 			{
 				if ( $value[''] == $name ) continue;
 				
-				if ($url == $cur_url or $url == $cur_url2) $selected = ' class="admin-menu-selected"';
-					else  $selected = '';
-					
-				$out .= $nr . '      <li' . $selected . '><a href="' . $admin_url . $url . '">' . _mso_del_menu_pod($name) . '</a></li>';
+				if ($url == $cur_url or $url == $cur_url2) 
+				{
+					$selected = ' class="admin-menu-selected admin-menu-' . mso_slug($url) . '"';
+				}
+				else 
+				{
+					$selected = ' class="admin-menu-' . mso_slug($url) . '"';
+				}
+				
+				$out .= $nr . '      <li' . $selected . ' title="' . _mso_del_menu_pod($name) . '"><a href="' . $admin_url . $url . '">' . _mso_del_menu_pod($name) . '</a></li>';
 			}
 			$out .= $nr . '    </ul>';
 		}
@@ -75,5 +80,4 @@ function admin_menu_menu($args = array())
 }
 
 
-
-?>
+# end file

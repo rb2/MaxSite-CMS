@@ -42,28 +42,28 @@ function addzakl_mso_options()
 		array(
 			'size' => array(
 							'type' => 'select', 
-							'name' => 'Размеры иконок', 
-							'description' => 'Выберите размеры иконок',
+							'name' => t('Размеры иконок'), 
+							'description' => t('Выберите размеры иконок'),
 							'values' => '16 # 24',  // правила для select как в ini-файлах
 							'default' => '16'
 						),
 			'text-do' => array(
 							'type' => 'text', 
-							'name' => 'Текст перед иконками', 
-							'description' => 'Укажите произвольный текст перед иконками. Можно использовать HTML', 
+							'name' => t('Текст перед иконками'), 
+							'description' => t('Укажите произвольный текст перед иконками. Можно использовать HTML'), 
 							'default' => ''
 						),
 			'text-posle' => array(
 							'type' => 'text', 
-							'name' => 'Текст после иконками', 
-							'description' => 'Укажите произвольный текст после иконок', 
+							'name' => t('Текст после иконками'), 
+							'description' => t('Укажите произвольный текст после иконок'), 
 							'default' => ''
 						),	
 								
 			'priory' => array(
 							'type' => 'text', 
-							'name' => 'Приоритет блока', 
-							'description' => 'Позволяет расположить блок до или после аналогичных. Используйте значения от 1 до 90. Чем больше значение, тем выше блок. По умолчанию значение равно 10.', 
+							'name' => t('Приоритет блока'), 
+							'description' => t('Позволяет расположить блок до или после аналогичных. Используйте значения от 1 до 90. Чем больше значение, тем выше блок. По умолчанию значение равно 10.'), 
 							'default' => '10'
 						),
 			'temp' => array(
@@ -122,14 +122,7 @@ function addzakl_mso_options()
 							'description' => '', 
 							'default' => '1'
 						),
-			/*
-			'buzz' => array(
-							'type' => 'checkbox', 
-							'name' => ' <img width="24" height="24" align="absmiddle" src="' . getinfo('plugins_url') . 'addzakl/images24/buzz.png"> buzz', 
-							'description' => '', 
-							'default' => '1'
-						),		
-			*/		
+	
 			'technorati' => array(
 							'type' => 'checkbox', 
 							'name' => ' <img width="24" height="24" align="absmiddle" src="' . getinfo('plugins_url') . 'addzakl/images24/technorati.png"> technorati', 
@@ -232,8 +225,8 @@ function addzakl_mso_options()
 			
 										
 			),
-		'Закдадки на соц.сервисы', // титул
-		'Укажите необходимые опции.'   // инфо
+		t('Закдадки на соц.сервисы'), // титул
+		t('Укажите необходимые опции.')   // инфо
 	);
 }
 

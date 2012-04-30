@@ -33,24 +33,6 @@ function admin_announce_uninstall($args = array())
 function admin_announce_head($args = array()) 
 {
 	echo NR . '<link rel="stylesheet" href="' . getinfo('plugins_url') . 'admin_announce/tabs.css" type="text/css" media="screen">' . NR;
-	echo mso_load_jquery();
-	echo mso_load_jquery('ui/ui.core.packed.js');
-	echo mso_load_jquery('ui/ui.tabs.packed.js');
-
-	echo mso_load_jquery('jquery.tablesorter.js');
-	echo '
-		<script type="text/javascript">
-			$(function() {
-				$("#tabs-widget > ul").tabs({ fx: { height: "toggle", opacity: "toggle", duration: "fast" } });
-				$("table.tablesorter th").animate({opacity: 0.7});
-				$("table.tablesorter th").hover(function(){ $(this).animate({opacity: 1}); }, function(){ $(this).animate({opacity: 0.7}); });
-				$("#table-0").tablesorter();
-				$("#table-1").tablesorter();
-				$("#table-2").tablesorter();
-				$("#table-3").tablesorter();
-			});	
-			</script>
-	';
 
 	return $args;
 }
@@ -288,7 +270,30 @@ function admin_announce($args = array())
 			$out .= NR . '<div id="tabs-widget-fragment-' . $key . '" class="tabs-widget-fragment">' . $tab[1] . '</div>' . NR;
 		$out .= '</div>' . NR;
 	}
+	
+	echo mso_load_jquery();
+	echo mso_load_jquery('ui/ui.core.packed.js');
+	echo mso_load_jquery('ui/ui.tabs.packed.js');
 
+	# КОНФЛИКТ по tablesorter!!!
+	echo mso_load_jquery('jquery.tablesorter.js');
+	echo '
+		<script type="text/javascript">
+			$(function() {
+				$("#tabs-widget > ul").tabs({ fx: { height: "toggle", opacity: "toggle", duration: "fast" } });
+				
+			// 	$("table.tablesorter th").animate({opacity: 0.7});
+			// 	$("table.tablesorter th").hover(function(){ $(this).animate({opacity: 1}); }, function(){ $(this).animate({opacity: 0.7}); });
+			//	$("#table-0").tablesorter();
+			//	$("#table-1").tablesorter();
+			//	$("#table-2").tablesorter();
+			//	$("#table-3").tablesorter();
+			
+			});	
+			</script>
+	';
+	
+	
 	echo $out;
 	return $args;
 }

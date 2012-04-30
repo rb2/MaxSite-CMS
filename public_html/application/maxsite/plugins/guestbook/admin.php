@@ -134,7 +134,7 @@
 		$form .= '<br><p>' . t('Текст после цикла вывода отзывов. Можно использовать HTML.') .'</p>';
 		$form .= '<p><textarea name="f_end" style="width: 99%; height: 100px;">' . htmlspecialchars($options['end']) . '</textarea></p>';	
 				
-		echo '<form action="" method="post">' . mso_form_session('f_session_id');
+		echo '<form method="post">' . mso_form_session('f_session_id');
 		echo $form;
 		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 		echo '</form>';

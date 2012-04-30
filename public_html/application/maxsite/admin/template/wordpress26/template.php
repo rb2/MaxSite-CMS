@@ -28,16 +28,16 @@
 	ob_start();
 		$admin_footer_hook = mso_hook('mso_admin_footer', mso_admin_footer());
 		$admin_footer = ob_get_contents() . $admin_footer_hook;
-		$admin_footer = $admin_footer . '<p>' . t('Оформление админ-интерфейса - <a href="http://dimox.name/">Dimox</a>', 'admin') . '</p>';
+		$admin_footer = $admin_footer . '<p>' . t('Оформление админ-интерфейса - <a href="http://dimox.name/">Dimox</a>') . '</p>';
 	ob_end_clean();
 	
-	if (!$admin_header) $admin_header = t('Админ-панель', 'admin');
+	if (!$admin_header) $admin_header = t('Админ-панель');
 	
 	$admin_css = getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/style.css';
 	$admin_css_menu = getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/menu.css';
 	$admin_scripts = getinfo('admin_url') . 'template/' . mso_get_option('admin_template', 'general', 'default') . '/scripts.js';
 	$admin_css = mso_hook('admin_css', $admin_css);
-	$admin_title = t('Админ-панель', 'admin') . ' - ' . mso_hook('admin_title', mso_head_meta('title'));
+	$admin_title = t('Админ-панель') . ' - ' . mso_hook('admin_title', mso_head_meta('title'));
 	
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -70,7 +70,7 @@
 						<?= $admin_menu ?>
 					</div>
 				</div>
-        <div id="logout"><?= t('Привет,', 'admin') ?> <a href="<?= getinfo('siteurl') ?>admin/users_my_profile"><?= getinfo('users_nik') ?></a>! [<a href="<?= getinfo('siteurl') ?>logout"><?= t('выйти', 'admin') ?></a>]</div>
+        <div id="logout"><?= t('Привет,') ?> <a href="<?= getinfo('siteurl') ?>admin/users_my_profile"><?= getinfo('users_nik') ?></a>! [<a href="<?= getinfo('siteurl') ?>logout"><?= t('выйти') ?></a>]</div>
 			</div><!-- div class=admin-header -->
 			
 			<div class="admin-content">

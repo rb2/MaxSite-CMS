@@ -57,8 +57,8 @@ function editor_dumb_mso_options()
 		array(
 			'editor' => array(
 							'type' => 'select', 
-							'name' => 'Редактор', 
-							'description' => 'Выберите тип редактора',
+							'name' => t('Редактор'), 
+							'description' => t('Выберите тип редактора'),
 							'values' => 'HTML # BB-CODE', 
 							'default' => 'HTML'
 						),	
@@ -67,4 +67,4 @@ function editor_dumb_mso_options()
 
 }
 
-?>
+# end file

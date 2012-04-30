@@ -22,13 +22,13 @@ function mso_get_comments($page_id = 0, $r = array())
 	if ( !isset($r['tags_comusers']) )	$r['tags_comusers'] = '<a><p><img><strong><em><i><b><u><s><font><pre><code><blockquote>';
 	if ( !isset($r['anonim_comments']) )	$r['anonim_comments'] = array();
 	if ( !isset($r['anonim_title']) )	$r['anonim_title'] = '';// ' ('. t('анонимно'). ')'; // дописка к имени для анонимов
-	if ( !isset($r['anonim_no_name']) )	$r['anonim_no_name'] = t('Аноним');// Если не указано имя анонима
+	if ( !isset($r['anonim_no_name']) )	$r['anonim_no_name'] = tf('Аноним');// Если не указано имя анонима
 	
 	// если аноним указывает имя с @, то это страница в твиттере - делаем ссылку
 	if ( !isset($r['anonim_twitter']) )	$r['anonim_twitter'] = true; 
 
 	// дописка к имени для комментаторов без ника
-	if ( !isset($r['add_author_name']) )	$r['add_author_name'] = t('Комментатор');
+	if ( !isset($r['add_author_name']) )	$r['add_author_name'] = tf('Комментатор');
 
 
 	$CI = & get_instance();
@@ -245,16 +245,16 @@ function mso_email_message_new_comment($id = 0, $data = array(), $page_title = '
 	$CI = & get_instance();
 
 	if ($data['comments_approved'] == 0) // нужно промодерировать
-		$subject = '[' . getinfo('name_site') . '] ' . '(-) '. t('Новый комментарий'). ' (' . $id . ') "' . $page_title . '"';
+		$subject = '[' . getinfo('name_site') . '] ' . '(-) '. tf('Новый комментарий'). ' (' . $id . ') "' . $page_title . '"';
 	else
-		$subject = '[' . getinfo('name_site') . '] ' . t('Новый комментарий'). ' (' . $id . ') "' . $page_title . '"';
+		$subject = '[' . getinfo('name_site') . '] ' . tf('Новый комментарий'). ' (' . $id . ') "' . $page_title . '"';
 
-	$text = t('Новый комментарий на'). ' "' . $page_title . '"'. NR ;
+	$text = tf('Новый комментарий на'). ' "' . $page_title . '"'. NR ;
 	$text .= mso_get_permalink_page($data['comments_page_id'])  . '#comment-' . $id . NR . NR;
 
 	if ($data['comments_approved'] == 0) // нужно промодерировать
 	{
-		$text .= t('Комментарий требует модерации'). ': ' . NR
+		$text .= tf('Комментарий требует модерации'). ': ' . NR
 			. getinfo('site_admin_url') . 'comments/edit/' . $id . NR . NR;
 	}
 
@@ -262,10 +262,10 @@ function mso_email_message_new_comment($id = 0, $data = array(), $page_title = '
 	$text .= 'Referer: ' . $_SERVER['HTTP_REFERER'] . NR;
 	$text .= 'Дата: ' . $data['comments_date'] . NR;
 
-	if (isset($data['comments_users_id'])) $text .= t('Пользователь'). ': ' . $data['comments_users_id'] . NR;
+	if (isset($data['comments_users_id'])) $text .= tf('Пользователь'). ': ' . $data['comments_users_id'] . NR;
 	elseif (isset($data['comments_comusers_id']))
 	{
-		$text .= t('Комюзер'). ': id=' . $data['comments_comusers_id'];
+		$text .= tf('Комюзер'). ': id=' . $data['comments_comusers_id'];
 
 		
 		$CI->db->select('comusers_nik, comusers_email');
@@ -281,11 +281,11 @@ function mso_email_message_new_comment($id = 0, $data = array(), $page_title = '
 			$text .= 'Профиль: ' . getinfo('siteurl') . 'users/' . $data['comments_comusers_id'] . NR;
 		}
 	}
-	elseif (isset($data['comments_author_name'])) $text .= t('Аноним'). ': ' . $data['comments_author_name'] . NR;
+	elseif (isset($data['comments_author_name'])) $text .= tf('Аноним'). ': ' . $data['comments_author_name'] . NR;
 
 	$text .= NR . 'Текст: ' . NR . $data['comments_content'] . NR;
 
-	$text .= NR . t('Администрировать комментарий вы можете по ссылке'). ': ' . NR
+	$text .= NR . tf('Администрировать комментарий вы можете по ссылке'). ': ' . NR
 			. getinfo('site_admin_url') . 'comments/edit/' . $id . NR;
 
 	$data = array_merge($data, array('comment' => true));      //Чтобы плагин smtp_mail точно знал, что ему подсунули коммент, а не вычислял это по subject
@@ -367,15 +367,15 @@ function mso_get_new_comment($args = array())
 
 
 		if (!mso_checksession($post['comments_session']) )
-			return '<div class="' . $args['css_error']. '">'. t('Ошибка сессии! Обновите страницу'). '</div>';
+			return '<div class="' . $args['css_error']. '">'. tf('Ошибка сессии! Обновите страницу'). '</div>';
 
-		if (!$post['comments_page_id']) return '<div class="' . $args['css_error']. '">'. t('Ошибка!'). '</div>';
+		if (!$post['comments_page_id']) return '<div class="' . $args['css_error']. '">'. tf('Ошибка!'). '</div>';
 
 
 		$comments_page_id = $post['comments_page_id'];
 		$id = (int) $comments_page_id;
 		if ( (string) $comments_page_id != (string) $id ) $id = false; // $comments_page_id не число
-		if (!$id) return '<div class="' . $args['css_error']. '">'. t('Ошибка!'). '</div>';
+		if (!$id) return '<div class="' . $args['css_error']. '">' . tf('Ошибка!'). '</div>';
 
 
 		// капчу проверим
@@ -389,7 +389,7 @@ function mso_get_new_comment($args = array())
 			}
 			else
 			{
-				return '<div class="' . $args['css_error']. '">'. t('Ошибка! Неверно введены нижние символы!'). '</div>';
+				return '<div class="' . $args['css_error']. '">'. tf('Ошибка! Неверно введены нижние символы!'). '</div>';
 			}
 		}
 		
@@ -415,15 +415,15 @@ function mso_get_new_comment($args = array())
 		// если указано рубить коммент при обнаруженной xss-атаке 
 		if ($args['xss_clean_die'] and $mso_xss_clean($post['comments_content'], true, false) === true)
 		{
-			return '<div class="' . $args['css_error']. '">'. t('Обнаружена XSS-атака!'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Обнаружена XSS-атака!'). '</div>';
 		}
 			
 		if (!trim($post['comments_content'])) 
-			return '<div class="' . $args['css_error']. '">'. t('Ошибка, нет текста!'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Ошибка, нет текста!'). '</div>';
 
 		// возможно есть текст, но только из одних html - не пускаем
 		if ( !trim(strip_tags(trim($post['comments_content']))) )
-			return '<div class="' . $args['css_error']. '">'. t('Ошибка, нет полезного текста!'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Ошибка, нет полезного текста!'). '</div>';
 		
 		// вычищаем текст от xss
 		if ($args['xss_clean'])
@@ -476,7 +476,7 @@ function mso_get_new_comment($args = array())
 				if ( isset($comments_check_spam['message']) and $comments_check_spam['message'] )
 					return '<div class="' . $args['css_error']. '">' . $comments_check_spam['message'] . '</div>';
 				else
-					return '<div class="' . $args['css_error']. '">'. t('Ваш комментарий определен как спам и удален.'). '</div>';
+					return '<div class="' . $args['css_error']. '">' . tf('Ваш комментарий определен как спам и удален.'). '</div>';
 			}
 			else
 			{
@@ -499,7 +499,7 @@ function mso_get_new_comment($args = array())
 		$query = $CI->db->get('comments');
 		if ($query->num_rows()) // есть такой коммент
 		{
-			return '<div class="' . $args['css_error']. '">'. t('Похоже, вы уже отправили этот комментарий...'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Похоже, вы уже отправили этот комментарий...'). '</div>';
 		}
 		
 		
@@ -531,7 +531,7 @@ function mso_get_new_comment($args = array())
 				mso_redirect(mso_current_url() . '#comment-' . $id_comment_new);
 			}
 			else
-				return '<div class="' . $args['css_error']. '">'. t('Ошибка добавления комментария'). '</div>';
+				return '<div class="' . $args['css_error']. '">' . tf('Ошибка добавления комментария'). '</div>';
 		}
 		else
 		{
@@ -543,25 +543,25 @@ function mso_get_new_comment($args = array())
 					// проверим есть ли разршение на комментарии от комюзеров
 					// для случаев подделки post-запроса
 					if ( !mso_get_option('allow_comment_comusers', 'general', '1') )
-						return '<div class="' . $args['css_error']. '">'. t('Error allow_comment_comusers'). '</div>';
+						return '<div class="' . $args['css_error']. '">' . tf('Error allow_comment_comusers'). '</div>';
 						
 
 					if ( !isset($post['comments_email']) or !$post['comments_email'] )
-						return '<div class="' . $args['css_error']. '">'. t('Нужно указать Email'). '</div>';
+						return '<div class="' . $args['css_error']. '">' . tf('Нужно указать Email'). '</div>';
 
 					if ( !isset($post['comments_password']) or !$post['comments_password'] )
-						return '<div class="' . $args['css_error']. '">'. t('Нужно указать пароль'). '</div>';
+						return '<div class="' . $args['css_error']. '">' . tf('Нужно указать пароль'). '</div>';
 
 					$comments_email = mso_strip($post['comments_email']);
 					$comments_password = mso_strip($post['comments_password']);
 
 					if ( !mso_valid_email($comments_email) )
-						return '<div class="' . $args['css_error']. '">'. t('Ошибочный Email'). '</div>';
+						return '<div class="' . $args['css_error']. '">' . tf('Ошибочный Email'). '</div>';
 
 
 					// проверим время последнего комментария чтобы не очень часто
 					if (!mso_last_activity_comment()) 
-						return '<div class="' . $args['css_error']. '">'. t('Слишком частые комментарии. Попробуйте позже.'). '</div>';
+						return '<div class="' . $args['css_error']. '">' . tf('Слишком частые комментарии. Попробуйте позже.'). '</div>';
 					
 					// вначале нужно зарегистрировать comюзера - получить его id и только после этого добавить сам коммент
 					// но вначале есть смысл проверить есть ли такой ком-пользователь
@@ -579,12 +579,12 @@ function mso_get_new_comment($args = array())
 						if (isset($post['comments_password_md']) and $post['comments_password_md'])
 						{
 							if ($row['comusers_password'] != $comments_password) // пароль неверный
-								return '<div class="' . $args['css_error']. '">'. t('Неверный пароль'). '</div>';
+								return '<div class="' . $args['css_error']. '">' . tf('Неверный пароль'). '</div>';
 						}
 						else
 						{
 							if ($row['comusers_password'] != mso_md5($comments_password)) // пароль неверный
-								return '<div class="' . $args['css_error']. '">'. t('Неверный пароль'). '</div>';
+								return '<div class="' . $args['css_error']. '">' . tf('Неверный пароль'). '</div>';
 						}
 
 						$comusers_id = $row['comusers_id']; // получаем номер комюзера
@@ -663,7 +663,7 @@ function mso_get_new_comment($args = array())
 							
 						}
 						else
-							return '<div class="' . $args['css_error']. '">'. t('Ошибка регистрации'). '</div>';
+							return '<div class="' . $args['css_error']. '">' . tf('Ошибка регистрации'). '</div>';
 					}
 
 					if ($comusers_id)
@@ -713,7 +713,7 @@ function mso_get_new_comment($args = array())
 							
 						// проверим время последнего комментария чтобы не очень часто
 						if (!mso_last_activity_comment()) 
-							return '<div class="' . $args['css_error']. '">'. t('Слишком частые комментарии. Попробуйте позже.'). '</div>';
+							return '<div class="' . $args['css_error']. '">' . tf('Слишком частые комментарии. Попробуйте позже.'). '</div>';
 
 						$res = ($CI->db->insert('comments', $ins_data)) ? '1' : '0';
 						if ($res)
@@ -770,7 +770,7 @@ function mso_get_new_comment($args = array())
 							mso_redirect(mso_current_url() . '#comment-' . $id_comment_new);
 						}
 						else
-							return '<div class="' . $args['css_error']. '">'. t('Ошибка добавления комментария'). '</div>';
+							return '<div class="' . $args['css_error']. '">' . tf('Ошибка добавления комментария'). '</div>';
 					}
 				}
 				elseif  ($post['comments_reg'] == 'noreg')
@@ -780,18 +780,18 @@ function mso_get_new_comment($args = array())
 					// проверим есть ли разрешение на комментарии от анонимов
 					// для случаев подделки post-запроса
 					if ( !mso_get_option('allow_comment_anonim', 'general', '1') )
-						return '<div class="' . $args['css_error']. '">'. t('Error allow_comment_anonim'). '</div>';
+						return '<div class="' . $args['css_error']. '">' . tf('Error allow_comment_anonim'). '</div>';
 					
 					// проверим время последнего комментария чтобы не очень часто
 					if (!mso_last_activity_comment()) 
-						return '<div class="' . $args['css_error']. '">'. t('Слишком частые комментарии. Попробуйте позже.'). '</div>';
+						return '<div class="' . $args['css_error']. '">' . tf('Слишком частые комментарии. Попробуйте позже.'). '</div>';
 					
 					if ( isset($post['comments_author']) )
 					{
 						$comments_author_name = mso_strip($post['comments_author']);
 						$comments_author_name = str_replace($args['noword'], '', $comments_author_name);
 						$comments_author_name = htmlspecialchars(trim($comments_author_name));
-						if (!$comments_author_name) $comments_author_name = t('Аноним');
+						if (!$comments_author_name) $comments_author_name = tf('Аноним');
 					}
 					else $comments_author_name = 'Аноним';
 
@@ -839,7 +839,7 @@ function mso_get_new_comment($args = array())
 						mso_redirect(mso_current_url() . '#comment-' . $id_comment_new);
 					}
 					else
-						return '<div class="' . $args['css_error']. '">'. t('Ошибка добавления комментария'). '</div>';
+						return '<div class="' . $args['css_error']. '">' . tf('Ошибка добавления комментария'). '</div>';
 				}
 			}
 		}
@@ -1122,14 +1122,14 @@ function mso_comuser_edit($args = array())
 
 		// получаем номер юзера id из f_submit[]
 		$id = (int) mso_array_get_key($post['f_submit']);
-		if (!$id) return '<div class="' . $args['css_error']. '">'. t('Ошибочный номер пользователя'). '</div>';
+		if (!$id) return '<div class="' . $args['css_error']. '">' . tf('Ошибочный номер пользователя'). '</div>';
 
 		# проверяем id в сессии с сабмитом 
 		// if ($id != $id_session) 
 		//	return '<div class="' . $args['css_error']. '">'. t('Ошибочный номер пользователя'). '</div>';
 			
 		$f_comusers_activate_key = trim($post['f_comusers_activate_key']);
-		if (!$f_comusers_activate_key) return '<div class="' . $args['css_error']. '">'. t('Неверный (пустой) ключ'). '</div>';
+		if (!$f_comusers_activate_key) return '<div class="' . $args['css_error']. '">' . tf('Неверный (пустой) ключ'). '</div>';
 
 		// нужно проверить если у указанного комюзера не равные ключи
 		// если они равны, то ничего не делаем
@@ -1149,7 +1149,7 @@ function mso_comuser_edit($args = array())
 			if ($comuser[0]['comusers_activate_string'] == $comuser[0]['comusers_activate_key'])
 			{
 				// уже равны, активация не требуется
-				return '<div class="' . $args['css_ok']. '">'. t('Активация уже выполнена'). '</div>';
+				return '<div class="' . $args['css_ok']. '">' . tf('Активация уже выполнена'). '</div>';
 			}
 			else
 			{
@@ -1166,18 +1166,18 @@ function mso_comuser_edit($args = array())
 					$CI->db->cache_delete_all();
 
 					if ($res)
-						return '<div class="' . $args['css_ok']. '">'. t('Активация выполнена!'). '</div>';
+						return '<div class="' . $args['css_ok']. '">' . tf('Активация выполнена!'). '</div>';
 					else
-						return '<div class="' . $args['css_error']. '">'. t('Ошибка БД при добавления ключа активации'). '</div>';
+						return '<div class="' . $args['css_error']. '">' . tf('Ошибка БД при добавления ключа активации'). '</div>';
 				}
 				else
 				{
-					return '<div class="' . $args['css_error']. '">'. t('Ошибочный ключ активации'). '</div>';
+					return '<div class="' . $args['css_error']. '">' . tf('Ошибочный ключ активации'). '</div>';
 				}
 			}
 		}
 		else // вообще нет такого комюзера
-			return '<div class="' . $args['css_error']. '">'. t('Ошибочный номер пользователя'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Ошибочный номер пользователя'). '</div>';
 	}
 	elseif ( $post = mso_check_post(array('flogin_session_id', 'flogin_submit', 'flogin_user', 'flogin_password',
 					'flogin_redirect')) )
@@ -1193,7 +1193,7 @@ function mso_comuser_edit($args = array())
 					'f_comusers_date_birth',  'f_comusers_description', 'f_comusers_avatar_url')) ) // это обновление формы
 	{
 		if (!is_login_comuser())
-			return '<div class="' . $args['css_error']. '">'. t('Ошибочные данные пользователя'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Ошибочные данные пользователя'). '</div>';
 			
 		# защита рефера
 		mso_checkreferer();
@@ -1203,18 +1203,18 @@ function mso_comuser_edit($args = array())
 
 		// получаем номер юзера id из f_submit[]
 		$id = (int) mso_array_get_key($post['f_submit']);
-		if (!$id) return '<div class="' . $args['css_error']. '">'. t('Ошибочный номер пользователя'). '</div>';
+		if (!$id) return '<div class="' . $args['css_error']. '">' . tf('Ошибочный номер пользователя'). '</div>';
 
 		# проверяем id в сессии с сабмитом 
 		if ($id != $id_session) 
-			return '<div class="' . $args['css_error']. '">'. t('Ошибочный номер пользователя'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Ошибочный номер пользователя'). '</div>';
 		
 		
 		$f_comusers_email = trim($post['f_comusers_email']);
 		$f_comusers_password = trim($post['f_comusers_password']);
 
 		if (!$f_comusers_email or !$f_comusers_password)
-			return '<div class="' . $args['css_error']. '">'. t('Необходимо указать email и пароль'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Необходимо указать email и пароль'). '</div>';
 		
 		// проверим есть ли такой комюзер
 		$CI = & get_instance();
@@ -1246,6 +1246,9 @@ function mso_comuser_edit($args = array())
 			
 			if (!isset($post['f_comusers_notify'])) $post['f_comusers_notify'] = '0';
 			
+			if (!isset($post['f_comusers_skype'])) $post['f_comusers_skype'] = ''; // скайп
+			
+			
 			
 			$post = mso_clean_post(array(
 				'f_comusers_nik' => 'base',
@@ -1253,6 +1256,7 @@ function mso_comuser_edit($args = array())
 				'f_comusers_icq' => 'base',
 				'f_comusers_msn' => 'base',
 				'f_comusers_jaber' => 'base',
+				'f_comusers_skype' => 'base',
 				'f_comusers_date_birth' => 'base',
 				'f_comusers_description' => 'base',
 				'f_comusers_notify' => 'int',
@@ -1265,6 +1269,7 @@ function mso_comuser_edit($args = array())
 				'comusers_icq' =>	strip_tags($post['f_comusers_icq']),
 				'comusers_msn' =>	strip_tags($post['f_comusers_msn']),
 				'comusers_jaber' =>	strip_tags($post['f_comusers_jaber']),
+				'comusers_skype' =>	strip_tags($post['f_comusers_skype']),
 				'comusers_date_birth' =>	strip_tags($post['f_comusers_date_birth']),
 				'comusers_description' =>	strip_tags($post['f_comusers_description']),
 				'comusers_avatar_url' =>	$f_comusers_avatar_url,
@@ -1307,11 +1312,11 @@ function mso_comuser_edit($args = array())
 			// mso_flush_cache(); // сбросим кэш
 			
 			if ($res)
-				return '<div class="' . $args['css_ok']. '">'. t('Обновление выполнено!'). '</div>';
+				return '<div class="' . $args['css_ok']. '">' . tf('Обновление выполнено!'). '</div>';
 			else
-				return '<div class="' . $args['css_error']. '">'. t('Ошибка БД при обновлении'). '</div>';
+				return '<div class="' . $args['css_error']. '">' . tf('Ошибка БД при обновлении'). '</div>';
 		}
-		else return '<div class="' . $args['css_error']. '">'. t('Ошибочный email и пароль'). '</div>';
+		else return '<div class="' . $args['css_error']. '">' . tf('Ошибочный email и пароль'). '</div>';
 
 	} // обновление формы
 }
@@ -1349,17 +1354,17 @@ function mso_comuser_lost($args = array())
 		{
 			// получаем номер юзера id из f_submit[]
 			$id = (int) mso_array_get_key($post['f_submit']);
-			if (!$id) return '<div class="' . $args['css_error']. '">'. t('Ошибочный номер пользователя'). '!</div>';
+			if (!$id) return '<div class="' . $args['css_error']. '">' . tf('Ошибочный номер пользователя'). '!</div>';
 
 			# проверяем id в сессии с сабмитом 
 			if ($id_session and $id != $id_session) 
-				return '<div class="' . $args['css_error']. '">'. t('Ошибочный номер пользователя2'). '</div>';
+				return '<div class="' . $args['css_error']. '">' . tf('Ошибочный номер пользователя2'). '</div>';
 		}
 		
 		$comusers_email = trim($post['f_comusers_email']);
-		if (!$comusers_email) return '<div class="' . $args['css_error']. '">'. t('Нужно указать email'). '</div>';
+		if (!$comusers_email) return '<div class="' . $args['css_error']. '">' . tf('Нужно указать email'). '</div>';
 
-		if (!mso_valid_email($comusers_email)) return '<div class="' . $args['css_error']. '">'. t('Ошибочный email'). '</div>';
+		if (!mso_valid_email($comusers_email)) return '<div class="' . $args['css_error']. '">' . tf('Ошибочный email'). '</div>';
 
 		$CI = & get_instance();
 
@@ -1373,7 +1378,7 @@ function mso_comuser_lost($args = array())
 		$query = $CI->db->get('comusers');
 
 		if ($query->num_rows() == 0) // нет такого комментатора
-			return '<div class="' . $args['css_error']. '">'. t('Неверный email или номер пользователя'). '!</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Неверный email или номер пользователя'). '!</div>';
 		
 		if ($password_recovery) // получаем id из последнего запроса
 		{
@@ -1403,17 +1408,17 @@ function mso_comuser_lost($args = array())
 				mso_email_message_new_comuser($id,
 						array('comusers_email'=>$comusers_email, 'comusers_activate_key'=>$comuser[0]['comusers_activate_key']));
 
-				return '<div class="' . $args['css_ok']. '">'. t('Код активации отправлен на ваш email'). '!</div>';
+				return '<div class="' . $args['css_ok']. '">' . tf('Код активации отправлен на ваш email'). '!</div>';
 			}
 			else
 			{
-				return '<div class="' . $args['css_error']. '">'. t('Данный email не зарегистрирован или не активирован'). '</div>';
+				return '<div class="' . $args['css_error']. '">' . tf('Данный email не зарегистрирован или не активирован'). '</div>';
 			}
 		}
 		elseif ($comusers_email and $comusers_new_password and !$comusers_activate_key) // нет пароля, но есть код
-			return '<div class="' . $args['css_error']. '">'. t('Для установки нового пароля нужно заполнить все поля!'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Для установки нового пароля нужно заполнить все поля!'). '</div>';
 		elseif ($comusers_email and !$comusers_new_password and $comusers_activate_key) // нет пароля, но есть код
-			return '<div class="' . $args['css_error']. '">'. t('Для установки нового пароля нужно заполнить все поля!'). '</div>';
+			return '<div class="' . $args['css_error']. '">' . tf('Для установки нового пароля нужно заполнить все поля!'). '</div>';
 
 
 		// если указано поле активации и новый пароль, то сверяем код активации с базой + email + id и если все верно,
@@ -1452,10 +1457,10 @@ function mso_comuser_lost($args = array())
 				// return '<div class="' . $args['css_ok']. '">'. t('Новый пароль установлен!'). '</div>';
 			}
 			else
-				return '<div class="' . $args['css_error']. '">'. t('Ошибка БД при смене пароля...'). '</div>';
+				return '<div class="' . $args['css_error']. '">' . tf('Ошибка БД при смене пароля...'). '</div>';
 
 		}
-		else return '<div class="' . $args['css_error']. '">'. t('Данные указаны неверно!'). '</div>';
+		else return '<div class="' . $args['css_error']. '">' . tf('Данные указаны неверно!'). '</div>';
 
 	}
 }
@@ -1604,13 +1609,13 @@ function mso_email_message_new_comment_subscribe($data)
 	$from = mso_get_option('admin_email_server', 'general', '');
 	
 	
-	$subject = '[' . getinfo('name_site') . '] ' . t('Новый комментарий к') . ' "'. $data['page_title'] . '"';
+	$subject = '[' . getinfo('name_site') . '] ' . tf('Новый комментарий к') . ' "'. $data['page_title'] . '"';
 
-	$message = t('Новый комментарий к') . ' "' . $data['page_title'] . '"' . NR . NR;
+	$message = tf('Новый комментарий к') . ' "' . $data['page_title'] . '"' . NR . NR;
 	
-	$message .= t('Текст:') . NR . mso_xss_clean($data['comments_content']);
+	$message .= tf('Текст:') . NR . mso_xss_clean($data['comments_content']);
 	
-	$message .= NR . NR . t('Перейти к комментарию на сайте:') . NR .  mso_get_permalink_page($data['comments_page_id'])  . '#comment-' . $data['id'] . NR;
+	$message .= NR . NR . tf('Перейти к комментарию на сайте:') . NR .  mso_get_permalink_page($data['comments_page_id'])  . '#comment-' . $data['id'] . NR;
 	
 	foreach($comusers_all as $comuser)
 	{
@@ -1668,7 +1673,7 @@ function mso_comuser_auth($data)
 	$query = $CI->db->get('users');
 	if ($query->num_rows() > 0) # есть
 	{
-		die( t('Данный email уже используется на сайте админом или автором.'));
+		die( tf('Данный email уже используется на сайте админом или автором.'));
 	}
 
 		

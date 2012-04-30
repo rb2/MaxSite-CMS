@@ -20,7 +20,7 @@
 		$options['referer'] = isset( $post['f_referer']) ? 1 : 0;
 		$options['real_title'] = isset( $post['f_real_title']) ? 1 : 0;
 	
-		mso_add_option($options_key, $options, 'plugins' );
+		mso_add_option($options_key, $options, 'plugins');
 		
 		echo '<div class="update">' . t('Обновлено!') . '</div>';
 	}
@@ -32,6 +32,7 @@
 <?php
 		
 		$options = mso_get_option($options_key, 'plugins', array());
+		
 		if ( !isset($options['file']) ) $options['file'] = 'dc.dat'; // путь к файлу данных
 		if ( !isset($options['prefix']) ) $options['prefix'] = 'dc'; // префикса
 		if ( !isset($options['format']) ) $options['format'] = ' <sup title="' . t('Количество переходов') . '">%COUNT%</sup>'; // формат количества
@@ -56,48 +57,46 @@
 		$chk = $options['real_title'] ? ' checked="checked"  ' : '';
 		$form .= '<p><label><input name="f_real_title" type="checkbox" ' . $chk . '> <strong>' . t('Выводить в title реальный адрес') . '</strong></label></p>';
 		
-		echo '<form action="" method="post">' . mso_form_session('f_session_id');
+		echo '<form method="post">' . mso_form_session('f_session_id');
 		echo $form;
 		echo '<input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" style="margin: 25px 0 5px 0;">';
 		echo '</form>';
 		
 		// выведем ниже формы всю статистику
-		$fn = getinfo('uploads_dir') . $options['file'];
-		
-		$CI = & get_instance();
-		$CI->load->helper('file'); // хелпер для работы с файлами
-		
-		if (file_exists( $fn )) // файла нет, нужно его создать
-		{
-			// массив данных: url => array ( count=>77 )
-			$data = unserialize( read_file($fn) ); // получим из файла
-			
-			if ($data)
-			{
-				$CI->load->library('table');
-				$tmpl = array (
-						'table_open'		  => '<table class="page tablesorter" id="table-dc">',
-						'row_alt_start'		  => '<tr class="alt">',
-						'cell_alt_start'	  => '<td class="alt">',
-						'heading_row_start' 	=> NR . '<thead><tr>',
-						'heading_row_end' 		=> '</tr></thead>' . NR,
-						'heading_cell_start'	=> '<th style="cursor: pointer;">',
-						'heading_cell_end'		=> '</th>',
-							);
-				$CI->table->set_template($tmpl);
-				$CI->table->set_heading('URL', t('переходов'));
 
-				echo '<br><h2>' . t('Статистика переходов') . '</h2>';
-				foreach($data as $url => $aaa)
-				{
-					$CI->table->add_row(
-										'<strong>' . htmlspecialchars(mso_xss_clean($url)) . '</strong>',
-										$data[$url]['count']
-										);
-				}
-				echo $CI->table->generate();
+		// массив данных: url => array ( count=>77 )
+		$data = down_count_get_data();
+		
+		if ($data)
+		{
+			$CI->load->library('table');
+			$tmpl = array (
+					'table_open'		  => '<table class="page tablesorter">',
+					'row_alt_start'		  => '<tr class="alt">',
+					'cell_alt_start'	  => '<td class="alt">',
+					);
+			$CI->table->set_template($tmpl);
+			$CI->table->set_heading('URL', t('переходов'));
+
+			echo '<br><h2>' . t('Статистика переходов') . '</h2>';
+			foreach($data as $url => $aaa)
+			{
+				$CI->table->add_row(
+									htmlspecialchars(mso_xss_clean($url)),
+									$data[$url]['count']
+									);
 			}
-			// pr($data);
+			echo $CI->table->generate();
+			
+			
+			echo mso_load_jquery('jquery.tablesorter.js') . '
+			<script>
+			$(function() {
+				$("table.tablesorter").tablesorter();
+			});
+			</script>';				
+			
+			
 		}
 
 ?>

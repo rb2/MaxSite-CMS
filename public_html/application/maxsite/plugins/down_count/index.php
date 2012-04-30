@@ -9,10 +9,9 @@
 # функция автоподключения плагина
 function down_count_autoload($args = array())
 {
-	mso_hook_add( 'admin_init', 'down_count_admin_init'); # хук на админку
-	mso_hook_add( 'admin_head', 'down_count_head');
-	mso_hook_add( 'content', 'down_count_content'); # хук на обработку текста
-	mso_hook_add( 'init', 'down_count_init'); # хук на обработку входящего url
+	mso_hook_add('init', 'down_count_init'); # хук на обработку входящего url
+	mso_hook_add('content', 'down_count_content'); # хук на обработку текста
+	mso_hook_add('admin_init', 'down_count_admin_init'); # хук на админку
 }
 
 
@@ -43,25 +42,6 @@ function down_count_admin_init($args = array())
 }
 
 
-function down_count_head($args = array()) 
-{
-	if (mso_segment(2) == 'plugin_down_count')
-	{
-		echo mso_load_jquery();
-		echo mso_load_jquery('jquery.tablesorter.js');
-		echo '
-			<script type="text/javascript">
-				$(function() {
-					$("table.tablesorter th").animate({opacity: 0.7});
-					$("table.tablesorter th").hover(function(){ $(this).animate({opacity: 1}); }, function(){ $(this).animate({opacity: 0.7}); });
-					$("#table-dc").tablesorter();
-				});	
-				</script>
-		';
-	}
-	return $args;
-}
-
 # функция вызываемая при хуке, указанном в mso_admin_url_hook
 function down_count_admin_page($args = array()) 
 {
@@ -78,6 +58,8 @@ function down_count_admin_page($args = array())
 	require(getinfo('plugins_dir') . 'down_count/admin.php');
 }
 
+
+# получение массива данных их файла
 function down_count_get_data()
 {
 	// вспомогательная опция, которая получает массив из файла
@@ -87,34 +69,109 @@ function down_count_get_data()
 	static $data;
 	
 	if (!isset($data))
-	{
+	{	
+		$metka = 'DOWN COUNT' . NR; // метка в файле - первая строчка
+		
 		$options = mso_get_option('plugin_down_count', 'plugins', array());
-		if ( !isset($options['file']) ) $options['file'] = 'dc.dat';
+		if (!isset($options['file']) ) $options['file'] = 'dc.dat';
 
 		$fn = getinfo('uploads_dir') . $options['file'];
 		
 		$CI = & get_instance();
 		$CI->load->helper('file'); // хелпер для работы с файлами
 		
-		if (!file_exists( $fn )) // файла нет, нужно его создать
-			write_file($fn, serialize(array())); // записываем в него пустой массив
+		if (!file_exists($fn)) // файла нет, нужно его создать
+		{
+			write_file($fn, $metka); // записываем метку
+			$data = array($metka); // сразу формируем результирующий массив
+		}
+		else
+		{
+			$data = file($fn); // получим файл
+		}
 		
-		// массив данных
-		// url => array ( count=>77 )
-		$data = unserialize( read_file($fn) ); // поулчим из файла
+	
+		if (isset($data[0]) and $data[0] == $metka) // первая строчка - метка
+		{	
+			// если есть метка, то данные в массиве хранятся в виде обычных строк адрес || count
+			// нужно переделать в структуру массива [адрес]['count'] = 47746
+			
+			$data_new = array(); //сразу готовим массив данных
+			
+			foreach($data as $url)
+			{
+				$a = explode(' || ', $url);
+				
+				if (count($a) == 2)
+				{
+					$data_new[mso_xss_clean($a[0])]['count'] = trim($a[1]);
+				}
+			}
+			
+			$data = $data_new;
+		}
+		else
+		{
+			// это старый формат файла - серилизация
+			$data = unserialize(read_file($fn)); // получим из файла
+			
+			// нужно обновить формат файла
+			
+			$out = $metka;
+			
+			$data_new = array(); //сразу готовим обновленный массив
+			
+			foreach($data as $url => $aaa)
+			{
+				if (mso_xss_clean($url) and strpos($url, 'http://') === 0) // чистка
+				{
+					$out .= mso_xss_clean($url) . ' || ' . $aaa['count'] . NR;
+					
+					$data_new[mso_xss_clean($url)]['count'] = $aaa['count'];
+				}
+			}
+			
+			write_file($fn, $out); // записываем новый файл
+			
+			$data = $data_new;
+		}
 	}
-
+	
+	
 	return $data;
 }
 
+# запись массива в файл
+function down_count_save_data($data)
+{
+	$options = mso_get_option('plugin_down_count', 'plugins', array());
+	if (!isset($options['file']) ) $options['file'] = 'dc.dat';
+
+	$fn = getinfo('uploads_dir') . $options['file'];
+	
+	$CI = & get_instance();
+	$CI->load->helper('file'); // хелпер для работы с файлами
+	
+	// $data - массив
+	// нужно его переделать в набор строк адрес || count
+	
+	$out = 'DOWN COUNT' . NR;
+
+	foreach($data as $url => $aaa)
+	{
+		if (mso_xss_clean($url) and strpos($url, 'http://') === 0) 
+		{
+			$out .= mso_xss_clean($url) . ' || ' . $aaa['count'] . NR;
+		}
+	}
+	
+	write_file($fn, $out); // записываем новый файл
+	
+}
 
 # функции плагина
 function down_count_init($args = array())
 {
-	
-	$CI = & get_instance();
-	
-	
 	# опции плагина
 	$options = mso_get_option('plugin_down_count', 'plugins', array());
 	if ( !isset($options['prefix']) ) $options['prefix'] = 'dc';
@@ -143,37 +200,28 @@ function down_count_init($args = array())
 		
 		// проверяем входящий url 
 		// в нем может быть закодирована какая-то гадость
-		// $url_check = $CI->input->xss_clean($url);
 		
 		$url_check = mso_xss_clean($url);
 		if ($url_check != $url) die('<b><font color="red">Achtung! XSS attack!</font></b>');
 		
 		$url = $url_check;
 		
-		// все урлы хранятся в файле 
-		// в виде серилизованного массива
-		if ( !isset($options['file']) ) $options['file'] = 'dc.dat';
+		// получим данные
+		$data = down_count_get_data();
 		
-		$fn = getinfo('uploads_dir') . $options['file']; // имя файла
-		
-		$CI->load->helper('file'); // хелпер для работы с файлами
-		
-		if (!file_exists( $fn )) // файла нет, нужно его создать
-			write_file($fn, serialize(array())); // записываем в него пустой массив
-		
-		// массив данных: url => array ( count=>77 )
-		$data = unserialize( read_file($fn) ); // получим из файла
-		
+		// вноисм изменения
 		if (isset($data[$url])) // такой url уже есть
 			$data[$url]['count'] = $data[$url]['count'] + 1;
 		else // нет еще
 			$data[$url]['count'] = 1; // записываем один переход
 		
-		write_file($fn, serialize($data) ); // созраняем в файл
+		// сохраняем в файл 
+		down_count_save_data($data);
 
-		header("Location: $url"); // переход на файл
+		mso_redirect($url, true);
 		exit;
 	}
+	
 	return $args;
 }
 
@@ -245,5 +293,4 @@ function down_count_content($text = '')
 }
 
 
-
-?>
+# end file

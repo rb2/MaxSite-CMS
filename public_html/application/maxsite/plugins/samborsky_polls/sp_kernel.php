@@ -19,8 +19,8 @@
 					'show_results_link' => 1,
 					'close_after_hour' => 0,
 					'admin_number_records' => 10,
-					'len_polls' => t('1 неделя','plugins'),
-					'secur_polls' => t('Защита по Coookie','plugins')
+					'len_polls' => t('1 неделя'),
+					'secur_polls' => t('Защита по Coookie')
 			);
 		
 			$this->options = mso_get_option('plugin_samborsky_polls', 'plugins', $default);
@@ -67,7 +67,7 @@
 					{
 						$this->data->q_active = 0;
 						$this->update();
-						$CI->db->insert('sp_logs',array('l_qid'=>$this->id,'l_host'=>t('Закрыто','plugins'),'l_timestamp'=>mktime()));
+						$CI->db->insert('sp_logs',array('l_qid'=>$this->id,'l_host'=>t('Закрыто'),'l_timestamp'=>mktime()));
 					}
 				}
 				
@@ -118,10 +118,10 @@
 			
 			$total = number_format($this->data->q_totalvoters,0,' ',' ');
 
-			$CI->table->add_row("<strong>".t('Всего проголосовало:','plugins')."</strong> {$total} ".t('чел','plugins'));
+			$CI->table->add_row("<strong>".t('Всего проголосовало:')."</strong> {$total} ".t('чел'));
 			
 			if( $this->options['show_archives_link'] )
-				$CI->table->add_row('<div align="center"><a href="'.getinfo('siteurl').$this->options['archive_url'].'">'.t('Архивы голосований','plugins').'</a></div>');
+				$CI->table->add_row('<div align="center"><a href="'.getinfo('siteurl').$this->options['archive_url'].'">'.t('Архивы голосований').'</a></div>');
 		
 			$out = $CI->table->generate();
 			
@@ -158,21 +158,21 @@
 			// Куда отправлять POST
 			$ajax_path = getinfo('ajax') . base64_encode('plugins/samborsky_polls/ajax-ajax.php');
 			
-			$results_link = $this->options['show_results_link'] ? '&nbsp;&nbsp; <a href="javascript: void(0);" onclick="javascript:sp_polls_results('.$this->id.');" class="sp_polls_ajax_link">'.t('Результаты','plugins').'</a>' : '';
+			$results_link = $this->options['show_results_link'] ? '&nbsp;&nbsp; <a href="javascript: void(0);" onclick="javascript:sp_polls_results('.$this->id.');" class="sp_polls_ajax_link">'.t('Результаты').'</a>' : '';
 			
 			$CI->table->add_row(
 				'<input type="hidden" id="sp_ajax_path_'.$this->id.'" value="'.$ajax_path.'">'
-				. '<input type="button" value="'.t('Проголосовать','plugins').'" onclick="javascript:sp_polls_vote('.$this->id.');">' . $results_link
+				. '<input type="button" value="'.t('Проголосовать').'" onclick="javascript:sp_polls_vote('.$this->id.');">' . $results_link
 			);
 			
 			if( $this->options['show_archives_link'] )
-				$CI->table->add_row('<a href="'.getinfo('siteurl').$this->options['archive_url'].'">'.t('Архивы голосований','plugins').'</a>');
+				$CI->table->add_row('<a href="'.getinfo('siteurl').$this->options['archive_url'].'">'.t('Архивы голосований').'</a>');
 
 			// Генерируем таблицу и форму загрузки
 			$out = $CI->table->generate() . 
 			"<div class=\"sp_polls_loader\" id=\"sp_polls_loader_{$this->id}\">
-				<img src=\"". getinfo('plugins_url') . 'samborsky_polls/ajax-loader.gif' ."\" alt=\"".t('Идет загрузка…','plugins')."\">
-				<p>".t('Идет загрузка…','plugins')."</p>
+				<img src=\"". getinfo('plugins_url') . 'samborsky_polls/ajax-loader.gif' ."\" alt=\"".t('Идет загрузка…')."\">
+				<p>".t('Идет загрузка…')."</p>
 			</div>";
 			
 			return $out;
@@ -258,7 +258,7 @@
 					return TRUE;
 				}
 				else{
-					$this->last_error = t('Вы уже голосовали','plugins');
+					$this->last_error = t('Вы уже голосовали');
 				}
 			}
 			
@@ -278,14 +278,14 @@
 			
 					if( $query->num_rows() ){
 						
-						$this->last_error = t('Вы уже голосовали','plugins');
+						$this->last_error = t('Вы уже голосовали');
 						return FALSE;
 					}
 					
 					return TRUE;
 				}
 				else{
-					$this->last_error = t('Голосовать могут только зарегистрированые пользователи. Пройдите регистрацию.','plugins');
+					$this->last_error = t('Голосовать могут только зарегистрированые пользователи. Пройдите регистрацию.');
 				}
 			}
 
@@ -464,10 +464,10 @@
 					'table_open'  => '<table border="0" width="100%" class="samborspy_polls_archive">'
 				));
 				$CI->table->set_heading(
-					t('Название голосования','plugins'),
-					'<div align="right">'.t('Сумма голосов','plugins').'</div>',
-					'<div align="right">'.t('Проголосовало чел.','plugins').'</div>',
-					t('Статус','plugins'));
+					t('Название голосования'),
+					'<div align="right">'.t('Сумма голосов').'</div>',
+					'<div align="right">'.t('Проголосовало чел.').'</div>',
+					t('Статус'));
 	
 					
 				foreach( $query->result() as $row )
@@ -476,7 +476,7 @@
 						($row->q_active) ? '<a href="'. getinfo('siteurl') .$archive_url .'/'. $row->q_id .'">' . stripslashes($row->q_question) . '</a>' : stripslashes($row->q_question),
 						'<div align="right">' . number_format($row->q_totalvotes,0,' ',' ') . '</div>',
 						'<div align="right">' . number_format($row->q_totalvoters,0,' ',' ') . '</div>',
-						$row->q_active ? t('Активно','plugins') : t('Закрыто','plugins')
+						$row->q_active ? t('Активно') : t('Закрыто')
 					);
 				}
 

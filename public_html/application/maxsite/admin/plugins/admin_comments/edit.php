@@ -120,26 +120,38 @@
 		if ($query->num_rows() > 0)
 		{
 			$row = $query->row_array();
+			
+			//pr($row);
 
 			if ( $row['users_nik'] )
 			{
 				echo '<p><strong>' . t('Автор') . '</strong>: '
 				. '<a href="' . getinfo('site_admin_url') . 'users/edit/' . $row['users_id'] . '">'
 				. $row['users_nik']
-				. '</a></p>';
+				. '</a>'
+				. ' | ' . $row['comments_author_ip']
+				. '</p>';
 			}
-
-			if ( $row['comusers_nik'] )
+			elseif ( $row['comusers_nik'] )
 			{
 				echo '<p><strong>' . t('Автор') . '</strong>: '
 				. '<a href="' . getinfo('site_admin_url') . 'comusers/edit/' . $row['comments_comusers_id'] . '">'
 				. $row['comusers_nik']
-				. '</a>'
-				. ' | <a href="' . getinfo('site_url') . 'users/' . $row['comments_comusers_id'] . '">Персональная страница</a>'
-				.'</p>';
+				. '</a> (' . $row['comments_comusers_id'] . ')'
+				. ' | <a href="' . getinfo('site_url') . 'users/' . $row['comments_comusers_id'] . '">' . t('Персональная страница') . '</a>'
+				. ' | ' . $row['comments_author_ip']
+				. '</p>';
 			}
+			else 
+			{
+				echo '<p><strong>' . t('Автор') . '</strong>: '
+				. htmlspecialchars($row['comments_author_name'])
+				. ' | ' . $row['comments_author_ip']
+				. '</p>';
+			}
+		
 
-			echo '<form action="" method="post">' . mso_form_session('f_session_id');
+			echo '<form method="post" class="comment_edit">' . mso_form_session('f_session_id');
 			//echo '<h3>' . t('Текст') . '</h3>';
 
 			// хуки для текстового поля комментирования
@@ -150,8 +162,8 @@
 			$text = mso_xss_clean($row['comments_content']);
 			if ($text != $row['comments_content'])
 			{
-				echo '<div class="error">Внимание! Возможна XSS-атака! Полный текст комментария</div><textarea>'
-					. htmlspecialchars($row['comments_content']) . '</textarea><p>Исправленный текст комментария</p>';
+				echo '<div class="error">' . t('Внимание! Возможна XSS-атака! Полный текст комментария') . '</div><textarea>'
+					. htmlspecialchars($row['comments_content']) . '</textarea><p>' . t('Исправленный текст комментария') . '</p>';
 			}
 
 			echo '<p><textarea name="f_comments_content" id="comments_content">' . htmlspecialchars($text) . '</textarea></p>';
@@ -160,7 +172,11 @@
 				<p><input name="f_comments_date" type="text" value="' . htmlspecialchars($row['comments_date']) .'"></p>';
 
 			$comments_author_name = trim(htmlspecialchars($row['comments_author_name']));
-			if ( !($comments_author_name or $row['comments_users_id'] or $row['comments_comusers_id']) ) $comments_author_name = t('Аноним');
+			if ( !($comments_author_name or $row['comments_users_id'] or $row['comments_comusers_id']) ) 
+			{
+				$comments_author_name = t('Аноним');
+			}
+			
 			echo '<h3>' . t('Автор') . '</h3>';
 
 			$out  = '<p><input name="f_comments_author_name" type="text" value="' . $comments_author_name . '"><select name="f_comments_author">' . NR;
@@ -212,15 +228,13 @@
 				. '</p>';
 
 
-
 			echo '</form>';
 
 			echo '<p><a href="' . getinfo('siteurl') . 'page/' . $row['page_slug'] . '#comment-' . $id . '">'
-				. t('Вернуться к комментарию на сайте') . '</a>'
+				. t('Комментарий на сайте') . '</a>'
 
 				. ' | <a href="' . getinfo('site_admin_url') . 'page_edit/' . $row['page_id'] . '">'
 				. t('Редактировать запись') . '</a>'
-
 
 				. '</p>';
 
@@ -232,4 +246,6 @@
 	{
 		echo '<div class="error">' . t('Ошибочный запрос') . '</div>'; // id - ошибочный
 	}
+	
+	
 ?>

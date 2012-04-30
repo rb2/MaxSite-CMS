@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 	
-echo '<div class="logo-links">';
+echo '<div class="logo-links"><div class="wrap">';
 
 	echo '<div class="left w75">';
 	
@@ -46,4 +46,4 @@ echo '<div class="logo-links">';
 	
 	echo '<div class="clearfix"></div>';
 	
-echo '</div><!-- class="logo-links" -->';
+echo '</div><!-- div class=wrap --></div><!-- class="logo-links" -->';

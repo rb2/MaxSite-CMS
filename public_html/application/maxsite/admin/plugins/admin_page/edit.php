@@ -1,25 +1,19 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
 <h1><?= t('Редактирование страницы') ?></h1>
-<p class="ret-to-pages"><a href="<?= $MSO->config['site_admin_url'] . 'page' ?>"><?= t('Вернуться к списку страниц') ?></a>
+<p class="ret-to-pages"><a href="<?= $MSO->config['site_admin_url'] . 'page' ?>"><?= t('Cписок записей') ?></a>
 
 <?php
 	
 	$id = mso_segment(3); // номер страницы по сегменту url
 	
 	// проверим, чтобы это было число
-	//$id1 = (int) $id;
-	//if ( (string) $id != (string) $id1 ) $id = false; // ошибочный id
-	
 	if (!is_numeric($id)) $id = false; // не число
 		else $id = (int) $id;
 	
-	//echo ' | <a href="' . mso_get_permalink_page($id) . '">Посмотреть запись</a> (<a target="_blank" href="' . mso_get_permalink_page($id) . '">в новом окне</a>)</p>';
-							
 	if ($id) // есть корректный сегмент
 	{
 		$CI = & get_instance();
-		
 		
 		# проверим текущего юзера и его разрешение на правку чужих страниц
 		# если admin_page_edit=1, то есть разрешено редактировать в принципе (уже проверили раньше!),
@@ -28,8 +22,6 @@
 		
 		if ( !mso_check_allow('admin_page_edit_other') )
 		{
-			# echo 'запрещено редактировать чужие страницы';
-			
 			$current_users_id = getinfo('session');
 			$current_users_id = $current_users_id['users_id'];
 			
@@ -44,26 +36,18 @@
 				return;
 			}
 		}
-		
-		
 	
 		require_once( getinfo('common_dir') . 'category.php' ); // функции рубрик
 		require_once( getinfo('common_dir') . 'meta.php' ); // функции meta - для меток
 	
-////////////////////////////////////////////////////////////////////////////////
 		// этот код почти полностью повторяет код из new.php
 		// разница только в том, что указан id
-		
-		
 		
 		if ( $post = mso_check_post(array('f_session_id', 'f_submit', 'f_content')) )
 		{
 			mso_checkreferer();
 			
 			//pr($_POST);
-			
-			// pr($post['f_content'], true);
-			// $f_content = mso_text_to_html($post['f_content']);
 			
 			$f_content = $post['f_content'];
 			
@@ -90,14 +74,7 @@
 			$f_content = str_replace('-moz-background-origin: -moz-initial;', '', $f_content);
 			$f_content = str_replace('-moz-background-inline-policy: -moz-initial;', '', $f_content);
 			
-			
-			
-			
-			// $f_content = str_replace('src="../../application/', 'src="' . $MSO->config['application_url'], $f_content);
-			// $f_content = str_replace('src="../application/', 'src="' . $MSO->config['application_url'], $f_content);
-			
 			$f_header = mso_text_to_html($post['f_header']);
-			// $f_tags = $post['f_tags'];
 			
 			if ( isset($post['f_tags']) and $post['f_tags'] ) $f_tags = $post['f_tags'] ;
 				else $f_tags = '';
@@ -105,14 +82,11 @@
 			if ( isset($post['f_menu_order'])) $page_menu_order = (int) $post['f_menu_order'] ;
 				else $page_menu_order = '';			
 			
-			// pr(mso_explode($f_tags, false, false));	
-			
 			if ( isset($post['f_slug']) and $post['f_slug'] ) $f_slug = $post['f_slug'] ;
 				else $f_slug = mso_slug($f_header);
 				
 			if ( isset($post['f_password']) and $post['f_password']) $f_password = $post['f_password'] ;
 				else $f_password = '';			
-				
 				
 			if ( isset($post['f_cat']) ) $f_cat = $post['f_cat'] ;
 				else $f_cat = array();
@@ -126,7 +100,6 @@
 					$f_options .= $key . '##VALUE##' . trim($val) . '##METAFIELD##';
 				}
 			}
-			
 			
 			if ( isset($post['f_status']) ) $f_status = $post['f_status'][0];
 				else $f_status = 'publish';	
@@ -168,8 +141,6 @@
 			else
 				$page_date_publish = false;
 					
-
-			// тут нужно будет изменить логику
 			// если автор указан, то нужно проверять есть разрешение на указание другого
 			// если есть разрешение, то все нормуль
 			// если нет, то автор остается текущим
@@ -184,7 +155,7 @@
 			// получаем номер опции id из fo_edit_submit[]
 			$f_id = mso_array_get_key($post['f_submit']);
 			
-			// подготавливаем данные для xmlrpc
+			// подготавливаем данные
 			$data = array(
 				'user_login' => $MSO->data['session']['users_login'],
 				'password' => $MSO->data['session']['users_password'],
@@ -208,16 +179,8 @@
 				'page_menu_order' => $page_menu_order,
 
 				);
+
 				
-			// pr($data);
-			// pr($post);
-			//pr($f_tags);
-			//pr(mso_explode($f_tags, false, false));
-			// pr(mso_xmlrpc_this($data));
-			
-			// выполняем запрос и получаем результат
-			// $result = mso_xmlrpc_send('EditPage', mso_xmlrpc_this($data));
-			
 			require_once( getinfo('common_dir') . 'functions-edit.php' ); // функции редактирования
 			$result = mso_edit_page($data);
 			
@@ -229,16 +192,13 @@
 				{
 					$url = '<a href="' 
 							. mso_get_permalink_page($result['result'][0])
-							. '">' . t('Посмотреть запись') . '</a> | (<a target="_blank" href="' 
+							. '">' . t('Посмотреть запись') . '</a> (<a target="_blank" href="' 
 							. mso_get_permalink_page($result['result'][0]) . '">' . t('в новом окне') . '</a>)';		
-						//	. ' | <a href="' . $MSO->config['site_admin_url'] . 'page_edit/' . $result['result'][0] . '">Изменить</a>';
 
 				}
 				else $url = '';
 
-				echo '<div class="update">' . t('Страница обновлена!') . ' ' . $url . '</div>'; // . $result['description'];
-				
-				# mso_flush_cache(); // сбросим кэш перенес в mso_edit_page
+				echo '<div class="update">' . t('Страница обновлена!') . ' ' . $url . '</div>'; 
 				
 				# пулучаем данные страниц
 				$CI->db->select('*');
@@ -267,9 +227,6 @@
 					$f_cat = mso_get_cat_page($id); // рубрики в виде массива
 					$f_tags = implode(', ', mso_get_tags_page($id)); // метки страницы в виде массива			
 				}
-				
-				// еще дата опубликования
-				// и дата удаления
 				
 			}
 			else
@@ -322,7 +279,7 @@
 		$f_header = htmlspecialchars($f_header);
 		$f_tags = htmlspecialchars($f_tags);
 		$f_all_tags = ''; // все метки
-		// $all_tags_page = mso_get_all_tags_page(); // это массив
+
 		if (function_exists('tagclouds_widget_custom')) 
 		{
 			$f_all_tags = '
@@ -447,10 +404,7 @@
 		
 		
 		// дата публикации
-		// $f_date_change = 'checked="checked"';
 		$f_date_change = ''; // сменить дату не нужно - будет время автоматом поставлено текущее
-		
-		// $date_time = date('Y-m-d H:i:s');
 		
 		$date_cur = strtotime($page_date_publish);
 		
@@ -459,19 +413,12 @@
 		$date_time .= '<br>' . t('На блоге как:') . ' ' . mso_date_convert('Y-m-d H:i:s', $page_date_publish);
 		$date_time .= '<br>' . t('Тек. время:') . ' ' . date('Y-m-d H:i:s');
 		
-		
-		// $date_time = t('Сохранено:') . ' ' . $page_date_publish;
-		// $date_time .= '<br>' . t('Сейчас:') . ' ' . mso_date_convert('Y-m-d H:i:s', date('Y-m-d H:i:s'));
-		
-		// $page_date_publish;
-		
 		$date_cur_y = date('Y', $date_cur);
 		$date_cur_m = date('m', $date_cur);
 		$date_cur_d = date('d', $date_cur);	
 		$tyme_cur_h = date('H', $date_cur);
 		$tyme_cur_m = date('i', $date_cur);
 		$tyme_cur_s = date('s', $date_cur);
-		
 		
 		$date_all_y = array();
 		for ($i=2005; $i<2021; $i++) $date_all_y[$i] = $i;
@@ -552,8 +499,6 @@
 		if (mso_hook_present('editor_custom')) mso_hook('editor_custom', $ad_config);
 			else editor_jw($ad_config);;
 			
-		//editor_jw($ad_config);
-
 	////////////////////////////////////////////////////////////////////////////////
 
 	

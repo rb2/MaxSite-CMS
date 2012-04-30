@@ -63,3 +63,5 @@
 /* ------------------------------------------- */
  
 table.samborsky_polls_list td {padding:3px 10px;}
+
+div.polls_addEdit_form textarea {width: 100%;}

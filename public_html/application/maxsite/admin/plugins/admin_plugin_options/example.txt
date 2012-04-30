@@ -11,13 +11,20 @@ mso_admin_plugin_options('my_plugin', 'plugins',
 						'default' => ''
 					),
 					
+		'f1_hidden' => array(
+						'type' => 'text',
+						'itype' => 'hidden', // скрытый input hidden; можно другие типы
+						'name' => 'название', 
+						'description' => 'описание', 
+						'default' => ''
+					),					
+					
 		'f2' => array(
 						'type' => 'textarea', 
 						'name' => 'название', 
 						'description' => 'описание', 
 						'default' => '',
-						'group_start' => 1, // начало группы опций
-						'group_end' => 0, // конец группы не выводим
+						'group_start' => '<hr>', // начало группы опций
 						
 					),		
 								
@@ -26,8 +33,7 @@ mso_admin_plugin_options('my_plugin', 'plugins',
 						'name' => 'название', 
 						'description' => 'описание', 
 						'default' => '1', // для чекбоксов только 1 и 0
-						'group_start' => 0, // начало группы не выводим
-						'group_end' => 1, // конец группы выводим
+						'group_end' => '<hr>', // конец группы выводим
 						
 					),		
 
@@ -45,6 +51,7 @@ mso_admin_plugin_options('my_plugin', 'plugins',
 						'values' => '0.00||Гринвич (0) # 1.00||что-то # 2.00||Киев (+2) # 3.00||Москва (+3)',  // правила для select как в ini-файлах
 						'default' => '2.00'
 					),
+					
 		'f5' => array(
 						'type' => 'radio', 
 						'name' => 'название', 

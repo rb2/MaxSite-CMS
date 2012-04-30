@@ -34,14 +34,13 @@ function spoiler_uninstall($args = array())
 # функции плагина
 function spoiler_custom($text)
 {
-
 	// константа
 	$options_key = 'plugin_spoiler';
 
 	/* Настройки*/
 	$options = mso_get_option($options_key, 'plugins', array());
-	if ( !isset($options['hide']) ) $options['hide'] = t('Скрыть',__FILE__);
-	if ( !isset($options['show']) ) $options['show'] = t('Показать...',__FILE__);
+	if ( !isset($options['hide']) ) $options['hide'] = t('Скрыть');
+	if ( !isset($options['show']) ) $options['show'] = t('Показать...');
 	if ( !isset($options['comments']) ) $options['comments'] = 0;
 
 	$showtext = $options['show'];

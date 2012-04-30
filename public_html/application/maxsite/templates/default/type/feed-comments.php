@@ -32,7 +32,7 @@ else $time_zone = '+00.00';
 $time_zone = str_replace('.', '', $time_zone);
 
 
-$feed_name = mso_head_meta('title') . ' ('. t('Последние комментарии'). ')';
+$feed_name = mso_head_meta('title') . ' ('. tf('Последние комментарии'). ')';
 $description = mso_head_meta('description');
 $feed_url = getinfo('siteurl');
 $language = 'en-ru';
@@ -58,7 +58,7 @@ if ($comments)
 		<copyright>Copyright <?= gmdate("Y", time()) ?>, <?= getinfo('siteurl') ?></copyright>
 		<?php foreach ($comments as $comment) : extract($comment); ?>
 		<item>
-			<title><?= xml_convert(strip_tags($users_nik . $comments_author_name . $comusers_nik)) ?> <?= t('к') ?> "<?= xml_convert(strip_tags($page_title)) ?>"</title>
+			<title><?= xml_convert(strip_tags($users_nik . $comments_author_name . $comusers_nik)) ?> <?= tf('к') ?> "<?= xml_convert(strip_tags($page_title)) ?>"</title>
 			<link><?= getinfo('siteurl') . 'page/' . mso_slug($page_slug) ?>#comment-<?= $comments_id ?></link>
 			<guid><?= getinfo('siteurl') . 'page/' . mso_slug($page_slug) ?>#comment-<?= $comments_id ?></guid>
 			<pubDate><?= date('D, d M Y H:i:s '. $time_zone, strtotime(mso_date_convert('Y-m-d H:i:s', $comments_date ))) ?></pubDate>

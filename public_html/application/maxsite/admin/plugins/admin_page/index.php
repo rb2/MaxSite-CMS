@@ -43,8 +43,9 @@ function admin_page_admin_init($args = array())
 	if ( mso_check_allow('admin_page_new') ) 
 	{
 		$this_plugin_url = 'page_edit'; // url и hook
-		//mso_admin_menu_add('page', $this_plugin_url, 'Редактировать запись', 2);
+		// mso_admin_menu_add('page', $this_plugin_url, 'Редактировать запись', 2);
 		mso_admin_url_hook ($this_plugin_url, 'admin_page_edit');
+		
 		
 		$this_plugin_url = 'page_new'; // url и hook
 		mso_admin_menu_add('page', $this_plugin_url, t('Создать'), 1);
@@ -136,6 +137,20 @@ function admin_page_hide_blocks($arg = array())
 	if ($css)
 	{
 		echo NR . '<style>' . NR . $css . '</style>' . NR;
+	}
+	
+	// если второй сегмент page_edit, то в меню выделим пункт список
+	if (mso_segment(2)== 'page_edit')
+	{
+		echo '
+		<script type="text/javascript">
+			$(function(){
+				$("li.admin-menu-page").addClass("admin-menu-selected");
+			});
+		</script>
+		';
+		
+		//		$("li.admin-menu-page a").text("' . t('Список/правка') . '");
 	}
 }
 

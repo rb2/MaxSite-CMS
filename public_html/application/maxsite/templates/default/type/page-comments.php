@@ -60,7 +60,7 @@ if ($page_text_ok and $comments) // есть страницы
 	else 
 	{
 		echo '<div class="comments">';
-		echo mso_get_val('page_comments_count_start', '<h3 class="comments">') . t('Комментариев') . ': ' . count($comments) . mso_get_val('page_comments_count_end', '</h3>');
+		echo mso_get_val('page_comments_count_start', '<h3 class="comments">') . tf('Комментариев') . ': ' . count($comments) . mso_get_val('page_comments_count_end', '</h3>');
 	}
 	
 	echo '<ol>';
@@ -103,12 +103,12 @@ if ($page_text_ok and $comments) // есть страницы
 				. '" rel="nofollow" class="outlink"><img src="' 
 				. getinfo('template_url') 
 				. 'images/outlink.png" width="16" height="16" alt="link" title="' 
-				. t('Сайт комментатора') . '"></a>';
+				. tf('Сайт комментатора') . '"></a>';
 		}
 		
 		if ($edit_link) $comment_info .= ' | <a href="' . $edit_link . $comments_id . '">edit</a>';
 		
-		if (!$comments_approved) $comment_info .= ' | '. t('Ожидает модерации');
+		if (!$comments_approved) $comment_info .= ' | '. tf('Ожидает модерации');
 		
 		
 		if ($f = mso_page_foreach('page-comments-out')) 
@@ -141,7 +141,7 @@ if ($page_comment_allow and $page_text_ok)
 		or mso_get_option('allow_comment_comusers', 'general', '1') )  
 	{
 		if ($f = mso_page_foreach('page-comment-form-do')) require($f); // подключаем кастомный вывод
-		else echo '<div class="break"></div>' . mso_get_val('leave_a_comment_start', '<h3 class="comments">') . mso_get_option('leave_a_comment', 'templates', t('Оставьте комментарий!')). mso_get_val('leave_a_comment_end', '</h3>');
+		else echo '<div class="break"></div>' . mso_get_val('leave_a_comment_start', '<h3 class="comments">') . mso_get_option('leave_a_comment', 'templates', tf('Оставьте комментарий!')). mso_get_val('leave_a_comment_end', '</h3>');
 		
 		if ($f = mso_page_foreach('page-comment-form')) 
 		{

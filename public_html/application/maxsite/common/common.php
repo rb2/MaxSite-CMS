@@ -1831,10 +1831,10 @@ function mso_login_form($conf = array(), $redirect = '', $echo = true)
 	$login = (isset($conf['login'])) ? $conf['login'] : '';
 	$password = (isset($conf['password'])) ? $conf['password'] : '';
 	$submit = (isset($conf['submit'])) ? $conf['submit'] : '';
-	$submit_value = (isset($conf['submit_value'])) ? $conf['submit_value'] : t('Войти');
+	$submit_value = (isset($conf['submit_value'])) ? $conf['submit_value'] : tf('Войти');
 	$form_end = (isset($conf['form_end'])) ? $conf['form_end'] : '';
 	
-	$login_form_auth_title = (isset($conf['login_form_auth_title'])) ? $conf['login_form_auth_title'] : t('Вход через:') . ' ';
+	$login_form_auth_title = (isset($conf['login_form_auth_title'])) ? $conf['login_form_auth_title'] : tf('Вход через:') . ' ';
 
 	$action = $MSO->config['site_url'] . 'login';
 	$session_id = $MSO->data['session']['session_id'];
@@ -1865,7 +1865,7 @@ function mso_login_form($conf = array(), $redirect = '', $echo = true)
 		</p>
 		
 		<p>
-			<span>{$submit}<input type="submit" name="flogin_submit" class="flogin_submit" value="{$submit_value}"></span>
+			<span>{$submit}<button type="submit" name="flogin_submit" class="flogin_submit">{$submit_value}</button></span>
 		</p>
 		
 		{$hook_login_form_auth}
@@ -3067,24 +3067,35 @@ function mso_cur_dir_lang($dir = false)
 }
 
 
-# функция трансляции (языковой перевод)
-# первый параметр - переводимое слово - учитывается регистр полностью
-# второй параметр - __FILE__ (по нему вычисляется каталог перевода), либо спец-каталог 
-# либо путь к каталогу относительно application/maxsite/
-# например:
-#	для плагина ушки это plugins/ushki
-# 	для админ - admin
-#	для общего - common (используется по-умолчанию)
-# файл перевода должен находится в каталоге $file/language/язык.php
-# всегда подключается перевод из 
-#	+ common/language/
-#	+ common/language/plugins
-#	+ common/language/templates
-#	+ templates/ТЕКУЩИЙ-ШАБЛОН/
-#   + подключение согласно __FILE__
-#	если это админка, то подключается common/admin/language/
-#   если это инсталяция $file = 'install', то подключается common/language/install
+# Языковой перевод MaxSite CMS
+# Описание см. ниже для _t()
+# перевод только для frontend - фраз сайта.
+function tf($w = '', $file = false)
+{
+	return _t($w, $file);
+}
+
+# перевод только для админки
 function t($w = '', $file = false)
+{
+	return _t($w, $file);
+}
+
+
+# функция трансляции (языковой перевод)
+# не использовать эту функцию!
+# первый параметр - переводимое слово - учитывается регистр полностью
+# второй паарметр:
+#  __FILE__ (по нему вычисляется каталог перевода)
+#  mytemplate - текущий каталог
+# 
+#  Всегда подключается  /common/language/ЯЗЫК-f.php
+#  если это админка, то подключается еще и /common/language/ЯЗЫК.php
+#  Если вторым паарметром указан __FILE__ то подключается перевод из каталога language
+#  откуда была вызвана функция t() или tf().
+#  Если второй параметр это mytemplate, то подключается language текущего шаблона
+#  Если второй параметр это install, то подключается /common/language/install/ЯЗЫК.php
+function _t($w = '', $file = false)
 {
 	global $MSO;
 	
@@ -3092,7 +3103,7 @@ function t($w = '', $file = false)
 	static $file_langs = array(); // список уже подключенных файлов
 	
 	
-	// только для получения переводимых фраз
+	// только для получения переводимых фраз и отладки!
 	// ОПИСАНИЕ см. в common/language/readme.txt
 	if (defined('MSO__PLEASE__RETURN__LANGS'))
 	{
@@ -3100,6 +3111,7 @@ function t($w = '', $file = false)
 		
 		if ($w === '__please__return__langs__') return $langs; 
 		if ($w === '__please__return__w__') return array_unique ($all_w);
+		if ($w === '__please__return__file_langs__') return array_unique ($file_langs);
 		
 		if ($w) $all_w[] = $w;
 	}
@@ -3110,23 +3122,25 @@ function t($w = '', $file = false)
 	// проверим перевод, возможно он уже есть
 	if (isset($langs[$w]) and $langs[$w]) return $langs[$w]; // проверка перевода
 	
-
+	/*
+		на примере en
+		
+		/common/language/en-f.php - перевод для frontend (функция tf )
+		/common/language/en.php - перевод для админки (функция t )
+		
+		всегда загружается ($file_langs['common'])
+			/common/language/en-f.php
+			
+		если это админка, ($file_langs['admin']) то 
+			/common/language/en.php - перевод для админки (функция t )
+			
+		если __FILE__, то загружаем и его.
+	*/
+	
 	if (!isset($file_langs['common'])) // common был не подключен
 	{
-		$langs = _t_add_file_to_lang($langs, 'common/language/', $current_language);
-		$file_langs['common'] = true;
-	}
-	
-	if (!isset($file_langs['plugins'])) // plugins был не подключен
-	{
-		$langs = _t_add_file_to_lang($langs, 'common/language/plugins/', $current_language);
-		$file_langs['plugins'] = true;
-	}
-	
-	if (!isset($file_langs['templates'])) // templates был не подключен
-	{
-		$langs = _t_add_file_to_lang($langs, 'common/language/templates/', $current_language);
-		$file_langs['templates'] = true;
+		$langs = _t_add_file_to_lang($langs, 'common/language/', $current_language . '-f'); // front
+		$file_langs['common'] = 'common/language/' . $current_language . '-f';
 	}
 	
 	// в админке подключаем свой перевод
@@ -3134,8 +3148,8 @@ function t($w = '', $file = false)
 	{
 		if (!isset($file_langs['admin'])) // admin был не подключен
 		{
-			$langs = _t_add_file_to_lang($langs, 'admin/language/', $current_language);
-			$file_langs['admin'] = true;
+			$langs = _t_add_file_to_lang($langs, 'common/language/', $current_language);
+			$file_langs['admin'] = 'common/language/' . $current_language;
 		}
 	}
 	
@@ -3145,18 +3159,19 @@ function t($w = '', $file = false)
 		if (!isset($file_langs['install'])) // install был не подключен
 		{
 			$langs = _t_add_file_to_lang($langs, 'common/language/install/', $current_language);
-			$file_langs['install'] = true;
+			$file_langs['install'] = 'common/language/install/' . $current_language;
 		}
 	}
-
-	if (!isset($file_langs['mytemplate'])) // mytemplate был не подключен
+	
+	if ($file == 'mytemplate' and !isset($file_langs['mytemplate'])) // mytemplate был не подключен
 	{
 		$langs = _t_add_file_to_lang($langs, 'templates/' . $MSO->config['template'] . '/language/', $current_language);
-		$file_langs['mytemplate'] = true;
+		// $file_langs['mytemplate'] = true;
+		$file_langs['mytemplate'] = 'templates/' . $MSO->config['template'] . '/language/' . $current_language;
 	}
 	
-	
 	// возможно указан свой каталог в __FILE__
+	// условия оставляю для совместимости со старым переводом
 	if ($file and $file != 'admin' and $file != 'plugins' and $file != 'templates' and $file != 'install' and $file != 'mytemplate')
 	{
 		// ключ = $file так меньше вычислений
@@ -3190,7 +3205,7 @@ function t($w = '', $file = false)
 
 }
 
-# служебная функция для t()
+# служебная функция для _t()
 # нигде не использовать!
 function _t_add_file_to_lang($langs, $path, $current_language, $full_name = false)
 {
@@ -3757,23 +3772,23 @@ function mso_sql_found_rows($limit = 20, $pagination_next_url = 'next')
 function mso_rss()
 {
 	$out = '<link rel="alternate" type="application/rss+xml" title="' 
-		. t('Все новые записи') . '" href="' 
+		. tf('Все новые записи') . '" href="' 
 		. getinfo('rss_url') . '">' . NR;
 
 	$out .= '	<link rel="alternate" type="application/rss+xml" title="' 
-		. t('Все новые комментарии') . '" href="' 
+		. tf('Все новые комментарии') . '" href="' 
 		. getinfo('rss_comments_url') . '">' . NR;
 
 	if (is_type('page'))
 	{
 		$out .= '	<link rel="alternate" type="application/rss+xml" title="' 
-				. t('Комментарии этой записи') . '" href="' 
+				. tf('Комментарии этой записи') . '" href="' 
 				. getinfo('site_url') . mso_segment(1) . '/' . mso_segment(2) . '/feed">' . NR;
 	}
 	elseif (is_type('category'))
 	{
 		$out .= '	<link rel="alternate" type="application/rss+xml" title="' 
-					. t('Записи этой рубрики') . '" href="' 
+					. tf('Записи этой рубрики') . '" href="' 
 					. getinfo('site_url') . mso_segment(1) . '/' . mso_segment(2) . '/feed">' . NR;
 	}
 

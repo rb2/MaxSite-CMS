@@ -10,13 +10,13 @@ echo '<div class="info info-top">';
 		if (is_type('page'))
 		{
 		
-			mso_page_date($page_date_publish, array('format' => t('j F Y г.')), '<span title="' . t('Дата публикации') . '"><img src="' . getinfo('template_url') . 'images/date.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
+			mso_page_date($page_date_publish, array('format' => tf('j F Y г.')), '<span title="' . tf('Дата публикации') . '"><img src="' . getinfo('template_url') . 'images/date.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
-			mso_page_author_link($users_nik, $page_id_autor, '<span style="margin-left: 15px;" title="' . t('Автор') . '"><img src="' . getinfo('template_url') . 'images/user.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
+			mso_page_author_link($users_nik, $page_id_autor, '<span style="margin-left: 15px;" title="' . tf('Автор') . '"><img src="' . getinfo('template_url') . 'images/user.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
-			mso_page_view_count($page_view_count, '<span style="margin-left: 15px;" title="' . t('Просмотры записи') . '"><img src="' . getinfo('template_url') . 'images/post-view.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ' . t('Просмотров') . ':</span> ', '');
+			mso_page_view_count($page_view_count, '<span style="margin-left: 15px;" title="' . tf('Просмотры записи') . '"><img src="' . getinfo('template_url') . 'images/post-view.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ' . tf('Просмотров') . ':</span> ', '');
 			
-			if ($page_comment_allow) mso_page_feed($page_slug, t('RSS'), '<span style="margin-left: 15px;" title="' . t('Подписка на RSS') . '"><img src="' . getinfo('template_url') . 'images/rss.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>', true);
+			if ($page_comment_allow) mso_page_feed($page_slug, tf('RSS'), '<span style="margin-left: 15px;" title="' . tf('Подписка на RSS') . '"><img src="' . getinfo('template_url') . 'images/rss.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>', true);
 			
 			mso_page_comments_link( array( 
 				'page_comment_allow' => $page_comment_allow,
@@ -25,28 +25,28 @@ echo '<div class="info info-top">';
 				'title' => '<img src="' . getinfo('template_url') . 'images/comments.png" width="16" height="16" alt=""> ',
 				'title_no_link' => '<img src="' . getinfo('template_url') . 'images/comments.png" width="16" height="16" alt=""> ',
 				'title_no_comments' => '<img src="' . getinfo('template_url') . 'images/comments.png" width="16" height="16" alt="">',
-				'do' => '<span style="margin-left: 15px;" title="' . t('Комментарии') . '">',
+				'do' => '<span style="margin-left: 15px;" title="' . tf('Комментарии') . '">',
 				
 				'posle' => ($page_count_comments ? 
 							mso_page_title($page_slug . '#comments', $page_count_comments, ' ', '', true, false)
 							: 
-							mso_page_title($page_slug . '#comments', t('Обсудить'), ' ', '', true, false)
+							mso_page_title($page_slug . '#comments', tf('Обсудить'), ' ', '', true, false)
 							) . '</span>',
 				));
 
 			
-			mso_page_cat_link($page_categories, ' » ', '<br><span title="' . t('Рубрики') . '"><img src="' . getinfo('template_url') . 'images/category.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>'); 		
+			mso_page_cat_link($page_categories, ' » ', '<br><span title="' . tf('Рубрики') . '"><img src="' . getinfo('template_url') . 'images/category.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>'); 		
 			
-			mso_page_tag_link($page_tags, ', ', '<span style="margin-left: 15px;" title="' . t('Метки') . '"><img src="' . getinfo('template_url') . 'images/tag.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
+			mso_page_tag_link($page_tags, ', ', '<span style="margin-left: 15px;" title="' . tf('Метки') . '"><img src="' . getinfo('template_url') . 'images/tag.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
 		}
 		else // все остальные страницы
 		{
-			mso_page_date($page_date_publish, array('format' => t('j F Y г.')), '<span title="' . t('Дата публикации') . '"><img src="' . getinfo('template_url') . 'images/date.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
+			mso_page_date($page_date_publish, array('format' => tf('j F Y г.')), '<span title="' . tf('Дата публикации') . '"><img src="' . getinfo('template_url') . 'images/date.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
-			mso_page_author_link($users_nik, $page_id_autor, '<span style="margin-left: 15px;" title="' . t('Автор') . '"><img src="' . getinfo('template_url') . 'images/user.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
+			mso_page_author_link($users_nik, $page_id_autor, '<span style="margin-left: 15px;" title="' . tf('Автор') . '"><img src="' . getinfo('template_url') . 'images/user.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>');
 			
-			mso_page_cat_link($page_categories, ' » ', ' <span style="margin-left: 15px;" title="' . t('Рубрики') . '"><img src="' . getinfo('template_url') . 'images/category.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>'); 		
+			mso_page_cat_link($page_categories, ' » ', ' <span style="margin-left: 15px;" title="' . tf('Рубрики') . '"><img src="' . getinfo('template_url') . 'images/category.png" width="16" height="16" alt="" style="vertical-align: text-top;"> ', '</span>'); 		
 			
 
 			mso_page_comments_link( array( 
@@ -56,12 +56,12 @@ echo '<div class="info info-top">';
 				'title' => '<img src="' . getinfo('template_url') . 'images/comments.png" width="16" height="16" alt=""> ',
 				'title_no_link' => '<img src="' . getinfo('template_url') . 'images/comments.png" width="16" height="16" alt=""> ',
 				'title_no_comments' => '<img src="' . getinfo('template_url') . 'images/comments.png" width="16" height="16" alt="">',
-				'do' => '<span style="margin-left: 15px;" title="' . t('Комментарии') . '">',
+				'do' => '<span style="margin-left: 15px;" title="' . tf('Комментарии') . '">',
 				
 				'posle' => ($page_count_comments ? 
 							mso_page_title($page_slug . '#comments', $page_count_comments, ' ', '', true, false)
 							: 
-							mso_page_title($page_slug . '#comments', t('Обсудить'), ' ', '', true, false)
+							mso_page_title($page_slug . '#comments', tf('Обсудить'), ' ', '', true, false)
 							) . '</span>',
 				));
 

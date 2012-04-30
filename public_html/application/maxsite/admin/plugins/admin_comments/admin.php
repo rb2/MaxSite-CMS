@@ -72,7 +72,9 @@
 
 ?>
 <h1><?= t('Комментарии') ?></h1>
+
 <p class="info"><?= t('Последние комментарии') ?></p>
+
 <p><strong><?= t('Фильтр:') ?></strong> <a href="<?= getinfo('site_admin_url') ?>comments/all"><?= t('Все') ?></a> | <a href="<?= getinfo('site_admin_url') ?>comments/moderation"><?= t('Только требующие модерации') ?></a></p>
 
 
@@ -81,14 +83,14 @@
 	$CI->load->library('table');
 	
 	$tmpl = array (
-				'table_open'		  => '<table class="page" border="0" width="99%">',
+				'table_open'		  => '<table class="page tablesorter">',
 				'row_alt_start'		  => '<tr class="alt">',
 				'cell_alt_start'	  => '<td class="alt">',
 		  );
 		  
 	$CI->table->set_template($tmpl); // шаблон таблицы
 
-	$CI->table->set_heading('ID', '&bull;', '+', t('Текст'),  t('Действие'));
+	$CI->table->set_heading('ID', '&bull;', '+', t('Текст'));
 	
 	# подготавливаем выборку из базы
 	
@@ -131,12 +133,23 @@
 			$comments_date = $row['comments_date'];
 			
 			$author = '';
-			if ( $row['comments_users_id'] ) $author = '<span class="admin">' . $row['users_nik'] . '</span>';
-			elseif ($row['comments_comusers_id']) $author = '<span class="comuser">' . $row['comusers_nik'] . '</span> (' . t('комюзер') . ' ' . $row['comments_comusers_id'] . ')';
-			else $author = '<span class="anonymous">' . $row['comments_author_name'] . '</span> (' . t('анонимно') . ')';
+			
+			if ( $row['comments_users_id'] ) 
+			{
+				$author = '<span class="admin">' . $row['users_nik'] . '</span>';
+			}
+			elseif ($row['comments_comusers_id']) 
+			{
+				$author = '<span class="comuser">' . $row['comusers_nik'] . '</span> (' . t('комюзер') . ' ' . $row['comments_comusers_id'] . ')';
+			}
+			else 
+			{
+				if (!$row['comments_author_name']) $row['comments_author_name'] = t('Аноним');
+				$author = '<span class="anonymous">' . $row['comments_author_name'] . '</span> (' . t('анонимно') . ')';
+			}
 			
 			$page_slug = $row['page_slug'];
-			$page_title = '<a target="_blank" href="' . $view_url . $page_slug . '#comment-' . $id . '">' . htmlspecialchars( $row['page_title'] ) . '</a>';
+			$page_title = '<a target="_blank" href="' . $view_url . $page_slug . '#comment-' . $id . '">«' . htmlspecialchars( $row['page_title'] ) . '»</a>';
 			
 			// определим XSS и визуально выделим такой комментарий
 			$comments_content_xss_start = mso_xss_clean($row['comments_content'], '<span style="color: red">XSS!!! ', '');
@@ -148,37 +161,57 @@
 			$comments_content = str_replace('&lt;/p&gt;', '', $comments_content);
 			$comments_content = str_replace('&lt;br /&gt;', '<br>', $comments_content);
 			
+			if (mb_strlen($comments_content, 'UTF-8') > 300)
+				$comments_content = mb_substr($comments_content, 0, 300, 'UTF-8') . ' ...';
+			
 			
 			if ( $row['comments_approved'] > 0 ) $comments_approved = '+';
 				else $comments_approved = '-';
-				
+			
+			$act = '<a href="' . $this_url . 'edit/'. $id . '">' . $author . '</a>';
+			
 			$out = $comments_content_xss_start 
-					. '<strong>' . $author . t(' написал в') 
-					. ' «' . $page_title . '»</strong> (' . $comments_date. ') ip: ' 
+					// . '<strong>' . $author . '</strong>' . $act . '<br>'
+					. $act . '<br>'
+					. $comments_date. ' | ' 
 					. $row['comments_author_ip'] 
+					. ' | '. $page_title 
 					. $comments_content_xss_end 
-					. '<p>' . $comments_content . '</p>' . NR;
+					. '<p>' . $comments_content . '</p>' 
+					. NR;
 						
 			
-			$CI->table->add_row($id, $id_out, $comments_approved, $out, $act);
+			$CI->table->add_row($id, $id_out, $comments_approved, $out);
 		}
+	
+
+		echo '<form  method="post" class="fform admin_comments">' . mso_form_session('f_session_id');
+		
+
+		echo $CI->table->generate();
+		
+		echo '
+			<p class="br">' . t('C отмеченными:') . '
+			<input type="submit" name="f_aproved_submit" value="' . t('Разрешить') . '">
+			<input type="submit" name="f_unaproved_submit" value="' . t('Запретить') . '">
+			<input type="submit" name="f_delete_submit" onClick="if(confirm(\'' . t('Уверены?') . '\')) {return true;} else {return false;}" value="' . t('Удалить') . '"></p><br>
+			';
+		echo '</form>';
+		
+		echo mso_load_jquery('jquery.tablesorter.js') . '
+			<script>
+			$(function() {
+				$("table.tablesorter").tablesorter( {headers: { 1: {sorter: false}, 2: {sorter: false}, 3: {sorter: false} }});
+			});
+			</script>';
+			
+		mso_hook('pagination', $pagination);
 	}
+	else
+	{
+		echo '<h3>' . t('Нет комментариев') . '</h3>';  
 	
-
-	echo '<form action="" method="post">' . mso_form_session('f_session_id');
-	
-
-	echo $CI->table->generate();
-	
-	echo '
-		<p class="br">' . t('C отмеченными:') . '
-		<input type="submit" name="f_aproved_submit" value="' . t('Разрешить') . '">
-		<input type="submit" name="f_unaproved_submit" value="' . t('Запретить') . '">
-		<input type="submit" name="f_delete_submit" onClick="if(confirm(\'' . t('Уверены?') . '\')) {return true;} else {return false;}" value="' . t('Удалить') . '"></p>
-		';
-	echo '</form>';
-	
-	mso_hook('pagination', $pagination);
+	}
 
 	
 ?>

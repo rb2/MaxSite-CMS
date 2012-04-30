@@ -253,7 +253,7 @@
 				
 			}
 			
-			echo '<form action="" method="post">' . mso_form_session('f_session_id');
+			echo '<form method="post">' . mso_form_session('f_session_id');
 			echo $CI->table->generate();
 			
 			if (mso_check_allow('edit_self_users')) // если разрешено менять анкету

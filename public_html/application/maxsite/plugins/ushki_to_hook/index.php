@@ -44,8 +44,8 @@ function ushki_to_hook_mso_options()
 		return;
 	}
 	
-	if (!function_exists('ushka')) $info = ' <span style="color: red">Включите плагин «Ушки»!</span>';
-		else $info = 'Укажите необходимые опции плагина.';
+	if (!function_exists('ushka')) $info = ' <span style="color: red">' . t('Включите плагин «Ушки»!') . '</span>';
+		else $info = t('Укажите необходимые опции плагина.');
 	
 	# ключ, тип, ключи массива
 	mso_admin_plugin_options('plugin_ushki_to_hook', 'plugins', 
@@ -89,7 +89,7 @@ function ushki_to_hook_mso_options()
 							'default' => ''
 						),
 			),
-		'Настройки плагина «Ушки к хукам»', // титул
+		t('Настройки плагина «Ушки к хукам»'), // титул
 		$info  // инфо
 	);
 }
