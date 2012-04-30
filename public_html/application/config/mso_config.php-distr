@@ -19,7 +19,7 @@
 # $config['mso_permalink_no_slug'] = "no";
 
 
-# $config['encryption_key'] = 'ключ шифрования сессии';
+# $config['encryption_key'] = 'свой ключ шифрования сессии';
 
 // язык сообщений CodeIgniter (application/language/)
 # $config['language']	= 'english';

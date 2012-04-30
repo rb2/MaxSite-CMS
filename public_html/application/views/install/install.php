@@ -50,7 +50,10 @@
 			
 			if ( $step === 3 ) 
 			{
-				require_once ('install-common.php');
+				require_once (APPPATH . 'views/install/install-common.php');
+				
+				//require_once ('install-common.php');
+				
 				$res = mso_install_newsite( array('username'=>$username, 
 										   'userpassword'=>mso_md5($userpassword), 
 										   'userpassword_orig'=>$userpassword, 

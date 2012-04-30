@@ -51,7 +51,7 @@ $db['default']['dbprefix'] = 'mso_';
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['pconnect'] = FALSE;
-$db['default']['db_debug'] = TRUE;
+$db['default']['db_debug'] = FALSE;
 $db['default']['cache_on'] = FALSE;
 $db['default']['cachedir'] = 'application/cache/db/';
 $db['default']['char_set'] = 'utf8';
