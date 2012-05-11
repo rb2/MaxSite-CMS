@@ -253,3 +253,5 @@ form.admin_users p .ftitle{width:100px;font-weight:bold;font-weight:bold;}
 div.pagination{margin:15px 0;}div.pagination strong{background:#6C8A99;color:white;padding:3px 5px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
 div.pagination a{padding:3px 5px;text-decoration:none;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
 div.pagination a:hover{background:#6C8A99;color:white;}
+
+.feedflare {float: right;}
