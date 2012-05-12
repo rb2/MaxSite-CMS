@@ -165,8 +165,16 @@
 				$comments_content = mb_substr($comments_content, 0, 300, 'UTF-8') . ' ...';
 			
 			
-			if ( $row['comments_approved'] > 0 ) $comments_approved = '+';
-				else $comments_approved = '-';
+			if ( $row['comments_approved'] > 0 )
+			{
+				$comments_approved = '+';
+				$comments_p_style = '';
+			}
+			else
+			{
+				$comments_approved = '-';
+				$comments_p_style = 'class="attn"';
+			}
 			
 			$act = '<a href="' . $this_url . 'edit/'. $id . '">' . $author . '</a>';
 			
@@ -177,7 +185,7 @@
 					. $row['comments_author_ip'] 
 					. ' | '. $page_title 
 					. $comments_content_xss_end 
-					. '<p>' . $comments_content . '</p>' 
+					. '<p '.$comments_p_style.'>' . $comments_content . '</p>' 
 					. NR;
 						
 			
