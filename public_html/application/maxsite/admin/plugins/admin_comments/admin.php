@@ -182,7 +182,7 @@
 					// . '<strong>' . $author . '</strong>' . $act . '<br>'
 					. $act . '<br>'
 					. $comments_date. ' | ' 
-					. $row['comments_author_ip'] 
+					. '<a href="http://geoiptool.com/en/?IP=' . $row['comments_author_ip'] . '" target ="_blank">' . $row['comments_author_ip'] . '</a>'
 					. ' | '. $page_title 
 					. $comments_content_xss_end 
 					. '<p '.$comments_p_style.'>' . $comments_content . '</p>' 
