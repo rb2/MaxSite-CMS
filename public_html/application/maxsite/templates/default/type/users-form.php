@@ -81,7 +81,7 @@ if ($comuser_info)
 			{
 				echo '<h3>'. tf('Для редактирования введите свой email и пароль'). '</h3>';
 			
-				echo '<input type="hidden" value="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit" name="flogin_redirect">';
+				echo '<input type="hidden" value="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit" rel="nofollow" name="flogin_redirect">';
 				echo mso_form_session('flogin_session_id');
 				
 				echo '<p><span class="ffirst ftitle">'. tf('Ваш email'). '</span><span><input type="text" name="flogin_user" class="flogin_user"></span></p>';
@@ -90,7 +90,7 @@ if ($comuser_info)
 				
 		
 				
-				//echo '<p><span class="ffirst"></span><span><a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/lost">' . tf('Я забыл пароль') . '</a></span></p>';
+				//echo '<p><span class="ffirst"></span><span><a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/lost" rel="nofollow">' . tf('Я забыл пароль') . '</a></span></p>';
 			}
 			else
 			{
@@ -164,7 +164,7 @@ if ($comuser_info)
 			if ($login_form)
 			{
 				echo '<p><span class="ffirst"></span><span><input type="submit" name="flogin_submit" value="' .  tf('Отправить') . '">
-				<a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/lost">' . tf('Я забыл пароль') . '</a>
+				<a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/lost" rel="nofollow">' . tf('Я забыл пароль') . '</a>
 				</span></p></form>';
 	
 			}
