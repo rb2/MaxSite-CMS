@@ -142,7 +142,7 @@ function internal_links_custom($text = '')
 		if ($key['class']) $class = ' class="' . $key['class']. '"';
 			else $class = '';
 		
-		$regexp = '/(?!(?:[^<\[]+[>\]]|[^>\]]+<\/a>))(' . preg_quote($word, '/') . ')/usUi';
+		$regexp = '/(?!(?:[^<\[]+[>\]]|[^>\]]+<\/a>))(' . preg_quote($word, '/') . ')/usU';
 		
 		$replace = "<a href=\"" . $link . "\"" . $class . ">\$0</a>";
 		
