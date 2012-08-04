@@ -11,13 +11,14 @@
 	mso_head_meta('title', $title_contact); //  meta title страницы
 
 	require(getinfo('template_dir') . 'main-start.php');
-	echo NR . '<div class="type type_contact"><div class="page_only">' . NR;
+	echo NR . '<div class="type type_contact"><div class="page_only"><div class="wrap">' . NR;
 ?>
 
 <h1><?= $title_contact ?></h1>
 
 <?php
-
+	echo '<div class="page_content">';
+	
 	echo mso_get_option('prew_contact', 'templates', '');
 	
 	if ($f = mso_page_foreach('contact-do')) require($f); // подключаем кастомный вывод
@@ -66,13 +67,17 @@ attr = style="height: 200px"
 		require_once(getinfo('plugins_dir') . 'forms/index.php');
 	}
 	
+	
+	
 	echo forms_content(str_replace("_NR_", "\n", $form));
 	
 	echo mso_get_option('post_contact', 'templates', '');
 	
 	if ($f = mso_page_foreach('contact-posle')) require($f); // подключаем кастомный вывод
+	
+	echo '</div>'; //  class="page_content"
 
-echo NR . '</div><!-- class="page_only" --></div><!-- class="type type_contact" -->' . NR;
+echo NR . '</div></div><!-- class="page_only" --></div><!-- class="type type_contact" -->' . NR;
 
 require(getinfo('template_dir') . 'main-end.php');
 

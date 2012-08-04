@@ -109,7 +109,7 @@ if ($pages) // есть страницы
 		}
 		else
 		{
-			echo NR . '<div class="page_only">' . NR;
+			echo NR . '<div class="page_only"><div class="wrap">' . NR;
 				if ($f = mso_page_foreach('info-top')) 
 				{
 					require($f); // подключаем кастомный вывод
@@ -159,7 +159,7 @@ if ($pages) // есть страницы
 					echo '</div>';
 				}
 			
-			echo NR . '</div><!--div class="page_only"-->' . NR;
+			echo NR . '</div></div><!--div class="page_only"-->' . NR;
 		}
 		
 		if ($f = mso_page_foreach('category-page-only-end')) require($f);

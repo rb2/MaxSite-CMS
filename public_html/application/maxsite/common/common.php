@@ -734,15 +734,15 @@ function mso_plugin_load($plugin = '')
 	if ( !file_exists( $fn_plugin ) ) return false;
 	else
 	{
-		// $mem0 = round(memory_get_usage()/1024/1024, 2);
 		
+		//_mso_profiler_start($plugin);
+
 		require_once ($fn_plugin);
 
 		$auto_load = $plugin . '_autoload';
 		if ( function_exists($auto_load) ) $auto_load();
 		
-		// $mem1 = round(memory_get_usage()/1024/1024, 2);
-		// pr(' ' . $plugin . ' = ' . $mem0 . ' - '. $mem1 . 'MB ' . ($mem1 - $mem0) );
+		//_mso_profiler_end($plugin);
 
 		# добавим плагин в список активных
 		$MSO->active_plugins[] = $plugin;
@@ -822,9 +822,21 @@ function mso_hook($hook = '', $result = '', $result_if_no_hook = '_mso_result_if
 		else return $result;
 	}
 
+	//_mso_profiler_start('' .$hook, true);
+	
+	//$i = 1;
 	foreach ( $MSO->hooks[$hook] as $func => $val)
+	{
+		//_mso_profiler_start('-- ' . $hook . ' - ' . $func . $i);
+		
 		if ( function_exists($func) ) $result = $func($result);
-
+		
+		//_mso_profiler_end('-- ' . $hook . ' - ' . $func . $i);
+		// $i++;
+	}
+	
+	//_mso_profiler_end('' . $hook);
+	
 	return $result;
 }
 
@@ -833,6 +845,7 @@ function mso_hook($hook = '', $result = '', $result_if_no_hook = '_mso_result_if
 function mso_hook_present($hook = '')
 {
 	global $MSO;
+	
 	if ($hook == '') return false;
 	$arr = array_keys($MSO->hooks);
 	if ( !in_array($hook, $arr) ) return false;
@@ -1640,8 +1653,7 @@ function mso_auto_tag($pee, $pre_special_chars = false)
 	$pee = str_replace("<blockquote>\n<p>", "<blockquote>", $pee); 
 	$pee = preg_replace('!<li>(.*)</p>\n!', "<li>$1</li>\n", $pee); # <li>...</p>
 	$pee = str_replace("<ul>\n\n<li>", "<ul><li>", $pee); 
-	$pee = str_replace("</li>\n\n<li>", "</li>\n<li>", $pee); 
-	
+	$pee = str_replace("</li>\n\n<li>", "</li>\n<li>", $pee);
 	
 	$pee = preg_replace('!<p><a id="(.*)"></a></p>\n!', "<a id=\"$1\"></a>\n", $pee); # <li>...</p>
 	
@@ -1660,8 +1672,6 @@ function mso_auto_tag($pee, $pre_special_chars = false)
 	# еще раз подчистка
 	$pee = str_replace('MSO_N', "\n", $pee); 
 	
-
-
 	$pee = preg_replace('!<p><br(.*)></p>!', "<br$1>", $pee);
 	$pee = preg_replace('!<p><br></p>!', "<br>", $pee);
 	
@@ -1684,6 +1694,7 @@ function mso_auto_tag($pee, $pre_special_chars = false)
 	$pee = str_replace('<p><br></p>', '<br>', $pee);
 	$pee = preg_replace('!<p><br(.*)></p>!', "<br$1>", $pee);
 	
+
 	# принудительный пробел
 	$pee = str_replace('[nbsp]', '&nbsp;', $pee);
 	
@@ -2690,11 +2701,11 @@ function mso_load_jquery($plugin = '', $path = '')
 		{
 			if ($path)
 			{
-				return '<script src="' . $path . $plugin . '"></script>' . NR;
+				return TAB . '<script src="' . $path . $plugin . '"></script>' . NR;
 			}
 			else
 			{
-				return '<script src="'. getinfo('common_url') . 'jquery/' . $plugin . '"></script>' . NR;
+				return TAB . '<script src="'. getinfo('common_url') . 'jquery/' . $plugin . '"></script>' . NR;
 			}
 		}
 		else
@@ -2984,15 +2995,22 @@ function mso_create_list($a = array(), $options = array(), $child = false)
 
 	$current_url = getinfo('siteurl') . mso_current_url(); // текущий урл
 	
+	
 	// из текущего адресу нужно убрать пагинацию
 	$current_url = str_replace('/next/' . mso_current_paged(), '', $current_url);
 	 
 	foreach ($a as $elem)
 	{
 		$title = $elem[$options['title']];
-		$url = getinfo('siteurl') . $options['prefix'] . mso_strip($elem[$options['link']]);
+		$elem_slug = mso_strip($elem[$options['link']]); // slug элемента
+		
+		$url = getinfo('siteurl') . $options['prefix'] . $elem_slug;
 
-		$link = '<a' . $options['nofollow'] . ' href="' . $url . '" title="' . mso_strip($title) . '">';
+		// если это page, то нужно проверить вхождение этой записи в элемент рубрики 
+		// если есть, то ставим css-класс curent-page-cat
+		$curent_page_cat_class = is_page_cat($elem_slug, false, false) ? ' class="curent-page-cat"' : '';
+
+		$link = '<a' . $options['nofollow'] . ' href="' . $url . '" title="' . mso_strip($title) . '"' .$curent_page_cat_class . '>';
 
 		if (isset($elem[$options['descr']])) $descr = $elem[$options['descr']];
 		else $descr = '';
@@ -3809,6 +3827,8 @@ function mso_sql_found_rows($limit = 20, $pagination_next_url = 'next')
 # для страниц и рубрик добавляются свои RSS
 function mso_rss()
 {
+	global $MSO;
+	
 	$out = '<link rel="alternate" type="application/rss+xml" title="' 
 		. tf('Все новые записи') . '" href="' 
 		. getinfo('rss_url') . '">' . NR;
@@ -3817,13 +3837,14 @@ function mso_rss()
 		. tf('Все новые комментарии') . '" href="' 
 		. getinfo('rss_comments_url') . '">' . NR;
 
-	if (is_type('page'))
+	if (is_type('page') and mso_segment(2) and (isset($MSO->data['pages_is']) and $MSO->data['pages_is']))
 	{
+		
 		$out .= '	<link rel="alternate" type="application/rss+xml" title="' 
 				. tf('Комментарии этой записи') . '" href="' 
 				. getinfo('site_url') . mso_segment(1) . '/' . mso_segment(2) . '/feed">' . NR;
 	}
-	elseif (is_type('category'))
+	elseif (is_type('category') and mso_segment(2) and (isset($MSO->data['pages_is']) and $MSO->data['pages_is']))
 	{
 		$out .= '	<link rel="alternate" type="application/rss+xml" title="' 
 					. tf('Записи этой рубрики') . '" href="' 
@@ -3880,7 +3901,6 @@ function mso_link_rel($rel = 'canonical', $add = '')
 		if ($add)
 		{
 			echo '<link rel="canonical" ' . $add . '>';
-		
 		}
 		else
 		{
@@ -4039,6 +4059,52 @@ function mso_load_script($url = '')
 {
 	return NT . '<script src="' . $url . '"></script>';
 }
+
+/*
+# профилирование - старт
+# первый параметр метка
+function _mso_profiler_start($point = 'first', $echo = false)
+{
+	global $_points;
+	
+	$CI = & get_instance();
+	
+	$CI->benchmark->mark($point . '_start'); // отмечаем время
+	
+	$mem0 = round(memory_get_usage()/1024/1024, 2); // текущая память
+	
+	$_points[$point]['mem0'] = $mem0;
+	
+	if ($echo)
+		pr('start ' . $point . ': ' . $_points[$point]['mem0'] . 'MB');
+}
+
+# профмилирование конец
+function _mso_profiler_end($point = 'first', $echo = true)
+{
+	global $_points;
+	
+	$CI = & get_instance();
+	
+	$CI->benchmark->mark($point . '_end');
+	
+	$_points[$point]['time'] = $CI->benchmark->elapsed_time($point . '_start', $point . '_end');
+	
+	$mem1 = round(memory_get_usage()/1024/1024, 2); // текущая память
+	
+	$_points[$point]['mem1'] = $mem1;
+	$_points[$point]['mem'] = round($mem1 - $_points[$point]['mem0'], 4); // разница
+	
+	if ($echo) 
+		pr(
+			$point . ': ' 
+			. $_points[$point]['mem'] . 'MB t: ' 
+			. $_points[$point]['time'] . 's Total: '
+			. $_points[$point]['mem1'] . 'MB'
+			);
+	else return $_points[$point];
+}
+*/
 
 
 

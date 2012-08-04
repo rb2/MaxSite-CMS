@@ -18,9 +18,15 @@
 	}
 	else // стандартный вывод
 	{
+		echo '<div class="page_only"><div class="wrap">';
+	
 		echo '<h1>' . tf('404 - несуществующая страница') . '</h1>';
+		
+		echo '<div class="page_content">';
 		echo '<p>' . tf('Извините по вашему запросу ничего не найдено!') . '</p>';
 		echo mso_hook('page_404');
+		
+		echo '</div></div></div>';
 	}
 	
 	echo NR . '</div><!-- class="type type_page_404" -->' . NR;

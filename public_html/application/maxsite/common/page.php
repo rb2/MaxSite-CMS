@@ -16,7 +16,7 @@ global $page;
 # функция получения выборки страниц
 function mso_get_pages($r = array(), &$pag)
 {
-	global $MSO;
+	global $MSO, $mso_page_current;
 	
 	$CI = & get_instance();
 	
@@ -226,10 +226,12 @@ function mso_get_pages($r = array(), &$pag)
 	// восстанавливать после запроса???
 	// $r = mso_hook('mso_get_pages_restore', $r_restore);
 
-	if ($query and $query->num_rows() > 0)
+	if ($query and $query->num_rows() > 0) // есть записи
 	{
 		$pages = $query->result_array();
-	
+		
+		$MSO->data['pages_is'] = true; // ставим признак, что записи получены
+		
 		if (is_type('page'))
 		{
 			// проверяем статус публикации - если page_status <> publish то смотрим автора и сравниваем с текущим юзером
@@ -257,6 +259,7 @@ function mso_get_pages($r = array(), &$pag)
 		foreach ($pages as $key=>$page)
 		{
 			$all_page_id[] = $page['page_id'];
+			
 
 			$content = $page['page_content'];
 			
@@ -350,7 +353,8 @@ function mso_get_pages($r = array(), &$pag)
 			
 			
 			# хуки на контент
-			# по возможности используйте хук content - остальные могут поменяться
+
+			$mso_page_current = $page; // глобальная переменная, где хранится текущая обрабатываемая page
 			
 			$output = mso_hook('content_in', $output);
 			
@@ -464,11 +468,13 @@ function mso_get_pages($r = array(), &$pag)
 			else $pages[$key]['page_count_comments'] = 0; // ставим, что нет комментариев
 			
 		}
-		
 	}
 	else
+	{
 		$pages = array();
-
+		$MSO->data['pages_is'] = false; // ставим пизнак, что записей нет
+	}
+	
 	return $pages;
 }
 

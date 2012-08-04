@@ -11,7 +11,7 @@
 	<li><a href="http://wiki.max-3000.com/"><?= t('Wiki MaxSite CMS') ?></a></li>
 	<li><a href="http://max-3000.com/help"><?= t('Центр помощи') ?></a></li>
 	<li><a href="http://alexanderschilling.net/plugins"><?= t('Каталог плагинов') ?></a></li>
-	<li><a href="http://templates.max-3000.com/"><?= t('Каталог шаблонов') ?></a></li>
+	<li><a href="http://alexanderschilling.net/themes"><?= t('Каталог шаблонов') ?></a></li>
 	
 </ul>
 

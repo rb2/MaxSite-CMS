@@ -20,6 +20,9 @@ div.type_comments a {
 div.page_other_pages a {
   text-decoration: none;
 }
+a.curent-page-cat {
+  font-weight: bold;
+}
 h1 {
   color: #101010;
 }

@@ -69,7 +69,7 @@ function sitemap($arg = '')
 	
 	if ($pages)
 	{
-		$out .= '<div class="sitemap">' . NR . mso_hook('sitemap_do');
+		$out .= '<div class="page_content"><div class="sitemap">' . NR . mso_hook('sitemap_do');
 		
 		$out .= '<div class="sitemap-link"><a href="' . getinfo('siteurl') . 'sitemap/cat">' . tf('Группировка по рубрикам') . '</a>' . NR . '</div>';
 		
@@ -112,7 +112,7 @@ function sitemap($arg = '')
 			$date1 = $date;
 		}
 
-		$out .= '</ul>' . NR . mso_hook('sitemap_posle') . '</div>' . NR;
+		$out .= '</ul>' . NR . mso_hook('sitemap_posle') . '</div></div>' . NR;
 	}
 	
 	

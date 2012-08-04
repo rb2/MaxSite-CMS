@@ -8,7 +8,9 @@
 # функция автоподключения плагина
 function tabs_autoload($args = array())
 {
-	mso_hook_add( 'head', 'tabs_head');
+	mso_hook_add('head', 'tabs_head');
+	mso_hook_add('content', 'tabs_content');
+	
 	mso_register_widget('tabs_widget', t('Табы (закладки)')); # регистрируем виджет
 }
 
@@ -87,31 +89,12 @@ function tabs_head($args = array())
 {
 	/*
 		Идея и основа кода (c) Dimox, http://dimox.name/universal-jquery-tabs-script/
-		Переделка, адаптация (с) MAX, http://maxsite.org/
+		Переделка, адаптация (с) MAX (http://maxsite.org/), Cuprum (http://cuprum.name/)
 	*/
-	
-	echo mso_load_jquery(). mso_load_jquery('jquery.cookie.js') . '
 
-	<script>
-	$(document).ready(function()
-	{
-		var cookieIndex = $.cookie("curTabs");
-		if (cookieIndex != null) // есть кука 
-		{
-			$("ul.tabs-nav li.elem").eq(cookieIndex).addClass("tabs-current").siblings().removeClass("tabs-current")
-				.parents("div.tabs").find("div.tabs-box").hide().eq(cookieIndex).show();
-		}
-		$("ul.tabs-nav").delegate("li.elem:not(li.tabs-current)", "click", function() 
-		{
-			$(this).addClass("tabs-current").siblings().removeClass("tabs-current")
-					.parents("div.tabs").find("div.tabs-box").hide().eq($(this).index()).fadeIn(300);
-			
-			$.cookie("curTabs", $(this).index(), {expires: 1, path: "/"});
-		})
-
-	})(jQuery);	
-	</script>
-	';
+	echo mso_load_jquery() 
+		. mso_load_jquery('jquery.cookie.js')
+		. mso_load_script(getinfo('plugins_url'). 'tabs/tabs.js');
 
 	return $args;
 }
@@ -200,5 +183,91 @@ function tabs_widget_custom($options = array(), $num = 1)
 	
 	return $out;
 }
+
+# создание табов в тексте записи
+/*
+[tabs]
+
+[tab=Один]
+текст первый
+[/tab]
+
+[tab=Два]
+текст второй
+[/tab]
+
+[/tabs]
+
+*/
+function tabs_content($text = '')
+{
+	if (strpos($text, '[tabs]') !== false)
+	{
+		$text = preg_replace_callback('!\[tabs\](.*?)\[/tabs\]!is', 'tabs_content_callback', $text );
+	}
+	
+	return $text;
+}
+
+# колбак функция обработки внутри [tabs] [/tabs]
+function tabs_content_callback($matches) 
+{
+	global $mso_page_current;
+	
+	$text = $matches[1];
+	$text = str_replace("\r", "", $text);
+	$text = str_replace("\n", "", $text);
+	
+	$text = str_replace("<br>", "", $text); // удалим br
+
+	$text = trim($text);
+
+	$out = '';
+	
+	$r = preg_match_all('!\[tab=(.*?)\](.*?)\[\/tab\]!is', $text, $all);
+	
+	if ($r) // есть вхождение tab
+	{
+		// сделаем под них массивы
+		$names = $all[1]; // названия табов
+		$text = $all[2]; // содеримое
+		
+		$out_names = ''; // html-блок названий
+		$out_text = ''; // html-блок содержимого
+		
+		// индексы $names и $text должны совпадать
+		foreach ($names as $key => $val)
+		{
+			if ($key === 0) 
+			{
+				$current = ' tabs-current';
+				$visible = ' tabs-visible';
+			}
+			else 
+			{
+				$current = '';
+				$visible = '';
+			}
+			
+			$out_names .= '<li class="elem' . $current . '"><span>' . $val . '</span></li>';
+			
+			$out_text .= '<div class="tabs-box' . $visible . '">' . $text[$key] . '</div>';
+		}
+		
+		if ($out_names and $out_text)
+		{
+			$page_id = (isset($mso_page_current['page_id'])) ? $mso_page_current['page_id'] : 0;
+			
+			$out = '[html]<div class="tabs_widget tabs_widget_' . $page_id . '"><div class="tabs"><ul class="tabs-nav">'
+				. trim($out_names)
+				. '</ul><div class="clearfix"></div>'
+				. trim($out_text)
+				. '</div></div>[/html]';
+		}
+	}
+	
+	return $out;
+}
+
 
 # end file

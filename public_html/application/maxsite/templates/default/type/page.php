@@ -29,8 +29,17 @@ else
 
 if (!$pages and mso_get_option('page_404_http_not_found', 'templates', 1) ) header('HTTP/1.0 404 Not Found'); 
 
+
 # начальная часть шаблона
-require(getinfo('template_dir') . 'main-start.php');
+if ($f = mso_page_foreach('page-main-start')) 
+{
+	require($f);
+	return;
+}
+else
+{
+	require(getinfo('template_dir') . 'main-start.php');
+}
 
 echo NR . '<div class="type type_page">' . NR;
 
@@ -57,7 +66,7 @@ if ($pages) // есть страницы
 		
 		extract($page);
 		# pr($page);
-		echo NR . '<div class="page_only">' . NR;
+		echo NR . '<div class="page_only"><div class="wrap">' . NR;
 			
 			if ($f = mso_page_foreach('info-top')) 
 			{
@@ -107,7 +116,7 @@ if ($pages) // есть страницы
 			}
 
 		
-		echo NR . '</div><!--div class="page_only"-->' . NR;
+		echo NR . '</div></div><!--div class="page_only"-->' . NR;
 		
 		if ($f = mso_page_foreach('page-only-end')) require($f);
 		
@@ -142,4 +151,4 @@ echo NR . '</div><!-- class="type type_page" -->' . NR;
 # конечная часть шаблона
 require(getinfo('template_dir') . 'main-end.php');
 	
-?>
+# end file

@@ -167,7 +167,7 @@
 			) );
 	
 	// добавляем форму, а также текущую сессию
-	echo '<form method="post">' . mso_form_session('f_session_id') .
+	echo '<form method="post" class="fform">' . mso_form_session('f_session_id') .
 			'<table class="page cats">
 			<colgroup style="width: 30px">
 			<colgroup style="width: 50px">
@@ -192,12 +192,18 @@
 	echo '
 	<div class="item new_cat">
 		<h2>' . t('Новая рубрика') . '</h2>
-		<p class="input"><strong>' . t('Название') . ' </strong><input type="text" name="f_new_name" value=""></p>
-		<p class="textarea"><strong>' . t('Описание') . ' </strong><textarea name="f_new_desc"></textarea></p>
-		<p class="input"><strong>' . t('Ссылка') . ' </strong><input type="text" name="f_new_slug" value=""></p>
-		<p class="input short"><strong>' . t('Родитель') . ' </strong><input type="text" name="f_new_parent" value=""></p>
-		<p class="input short"><strong>' . t('Порядок') . ' </strong><input type="text" name="f_new_order" value=""></p>
-		<p class="input_submit"> <input type="submit" name="f_new_submit" value="' . t('Добавить новую рубрику') . '"></p>
+		
+		<p><label class="ffirst ftitle fheader" for="f_new_name">' . t('Название') . '</label><span><input type="text" name="f_new_name" value="" id="f_new_name"></span></p>
+		
+		<p><label class="ffirst ftitle ftop fheader" for="f_new_desc">' . t('Описание') . ' </label><span><textarea name="f_new_desc" id="f_new_desc"></textarea></span></p>
+		
+		<p><label class="ffirst ftitle fheader" for="f_new_slug">' . t('Ссылка') . ' </label><span><input type="text" name="f_new_slug" value="" id="f_new_slug"></span></p>
+		
+		<p><label class="ffirst ftitle fheader" for="f_new_parent">' . t('Родитель') . ' </label><span><input type="text" name="f_new_parent" value="" id="f_new_parent"></span></p>
+		
+		<p><label class="ffirst ftitle fheader" for="f_new_order">' . t('Порядок') . ' </label><span><input type="text" name="f_new_order" value="" id="f_new_order"></span></p>
+		
+		<p><span class="ffirst"></span><span><input type="submit" name="f_new_submit" value="' . t('Добавить новую рубрику') . '"></span></p>
 	</div>
 	</form>';
 	

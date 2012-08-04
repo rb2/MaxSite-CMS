@@ -1037,6 +1037,9 @@ div.tabs-box {
   -moz-border-radius: 0 5px 0 0;
   border-radius: 0 5px 0 0;
 }
+div.page_content ul.tabs-nav {
+  margin-left: 0;
+}
 .message {
   border: 1px solid #DBDBDB;
   margin: 4px 0 7px 0;

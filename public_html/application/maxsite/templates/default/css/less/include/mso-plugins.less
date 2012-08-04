@@ -216,7 +216,10 @@ div.forms-post h2 {
 div.random_gal_widget {overflow: hidden;}
 
 // plugin samborsky_polls
-table.sp_polls th, table.sp_polls td {border: none;}
+table.sp_polls th, 
+table.sp_polls td {
+	border: none;
+}
 
 // галерея lightbox
 div.gallery {
@@ -275,4 +278,9 @@ div.tabs-box {
 	background: #DDD; 
 	padding: 10px; 
 	.border_radius(0, 5px, 0, 0);
+}
+
+// коррекция отступа если табы в теле записи
+div.page_content ul.tabs-nav {
+	margin-left: 0;
 }

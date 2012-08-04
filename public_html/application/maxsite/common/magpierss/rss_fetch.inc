@@ -153,7 +153,11 @@ function fetch_rss ($url) {
         // setup headers
         if ( $cache_status == 'STALE' ) {
             $rss = $cache->get( $cache_key );
-            if ( $rss and $rss->etag and @$rss->last_modified ) {
+            // http://forum.max-3000.com/viewtopic.php?f=11&t=4442&p=18685#p18685
+            // if ( $rss and $rss->etag and @$rss->last_modified ) {
+            if ( $rss and array_key_exists("etag", get_object_vars($rss)) and
+array_key_exists("last_modified", get_object_vars($rss)) ) {
+            
                 $request_headers['If-None-Match'] = $rss->etag;
                 $request_headers['If-Last-Modified'] = @$rss->last_modified;
             }

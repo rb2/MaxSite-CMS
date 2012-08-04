@@ -105,8 +105,9 @@
 			}
 		</script>' . NR;
 
-
-		$form .= '<br><br><h2>' . t('Доступные виджеты (добавляйте только функцию)') . '</h2><table class="widgets-allow">';
+		$form .= '<p class="br"><input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" ></p>';
+		
+		$form .= '<h2>' . t('Доступные виджеты (добавляйте только функцию)') . '</h2><table class="widgets-allow">';
 		foreach ($all_w as $function => $title)
 		{
 			// $form .= '<li><b>' . $function . '</b> (' . $title . ')</li>';
@@ -131,7 +132,7 @@
 		// добавляем форму, а также текущую сессию
 		echo '<form method="post">' . mso_form_session('f_session_id');
 		echo $form;
-		echo '<p class="br"><input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" ></p>';
+	//	echo '<p class="br"><input type="submit" name="f_submit" value="' . t('Сохранить изменения') . '" ></p>';
 		echo '</form>';
 	}
 	else

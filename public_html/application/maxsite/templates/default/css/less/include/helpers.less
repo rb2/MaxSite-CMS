@@ -99,15 +99,23 @@
 	border-left: @color @width @type;
 }
 
-
+// полужирный
 .bold()
 {
 	font-weight: bold;
 }
 
+// курсив
 .italic()
 {
 	font-style: italic;
+}
+
+// height = line-height
+.lheight(@height: 30px) 
+{
+	height: @height; 
+	line-height: @height; 
 }
 
 .background_gradient (@startColor: #555, @endColor: #333)

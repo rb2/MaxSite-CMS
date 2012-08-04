@@ -133,7 +133,7 @@ if ($pages) // есть страницы
 		if ( mso_get_option('home_full_text', 'templates', '1') )
 		{ 
 			
-			echo NR . '<div class="page_only">' . NR;
+			echo NR . '<div class="page_only"><div class="wrap">' . NR;
 				if ($f = mso_page_foreach('info-top')) 
 				{
 					require($f); // подключаем кастомный вывод
@@ -184,7 +184,7 @@ if ($pages) // есть страницы
 					echo '</div>';
 				}
 				
-			echo NR . '</div><!--div class="page_only"-->' . NR;
+			echo NR . '</div></div><!--div class="page_only"-->' . NR;
 		}
 		else // списком
 		{

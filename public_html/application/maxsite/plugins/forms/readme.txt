@@ -50,7 +50,14 @@ placeholder = О чем вы хотите написать?
 ПАРАМЕТРЫ ПОЛЕЙ field
 ---------------------
 
-type_text - тип для input
+type - тип поля
+	text
+	textarea
+	select
+	hidden
+
+
+type_text - тип для text (input)
 	type_text = url
 	type_text = email
 	type_text = password
@@ -64,7 +71,8 @@ tip = Подсказка к полю
 
 value = значение по-умолчанию
 
-attr = class="gorod" - (html-атрибуты элемента)
+attr = class="gorod"
+	html-атрибуты элемента
 
 
 ПАРАМЕТРЫ ФОРМЫ

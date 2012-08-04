@@ -82,7 +82,12 @@ else
 {	
 	if ($pages or $categories or $tags) // есть страницы рубрики или метки
 	{
+		echo '<div class="page_only"><div class="wrap">';
+		
 		echo '<h1>' . tf('Поиск') . '</h1>';
+		
+		echo '<div class="page_content">';
+		
 		echo '<p>' . tf('Результаты поиска по запросу') . ' <strong>«' . $search . '»</strong></p>';
 	}
 }
@@ -182,6 +187,8 @@ if ($pages) // есть страницы
 	
 	echo '</ul>';
 	
+	echo '</div></div></div>';
+	
 	mso_hook('pagination', $pagination);
 }
 
@@ -193,16 +200,22 @@ if (!$pages and !$categories and !$tags)
 	}
 	else // стандартный вывод
 	{
+		echo '<div class="page_only"><div class="wrap">';
+		
 		echo '<h1>'. tf('404. Ничего не найдено...'). '</h1>';
+		
+		echo '<div class="page_content">';
 		
 		if ($search_len) echo '<p>'. tf('Поисковая фраза должна быть не менее ' . $min_search_chars . ' символов.') . '</p>';
 		
 		echo '<p>'. tf('Попробуйте повторить поиск.') . '</p>';
 
 		echo '
-		<p><form name="f_search" action="" method="get" onsubmit="location.href=\'' . getinfo('siteurl') . 'search/\' + encodeURIComponent(this.s.value).replace(/%20/g, \'+\'); return false;">	<input type="text" class="text" name="s" size="20" onfocus="if (this.value == \''. tf('что искать?'). '\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \''. tf('что искать?'). '\';}" value="'. tf('что искать?'). '">&nbsp;<input type="submit" class="submit" name="Submit" value="  '. tf('Поиск'). '  "></form></p>';
+		<p><form name="f_search" method="get" onsubmit="location.href=\'' . getinfo('siteurl') . 'search/\' + encodeURIComponent(this.s.value).replace(/%20/g, \'+\'); return false;">	<input type="text" class="text" name="s" size="20" onfocus="if (this.value == \''. tf('что искать?'). '\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \''. tf('что искать?'). '\';}" value="'. tf('что искать?'). '">&nbsp;<input type="submit" class="submit" name="Submit" value="  '. tf('Поиск'). '  "></form></p>';
 		
 		echo mso_hook('page_404');
+		
+		echo '</div></div></div>';
 	}
 	
 } // endif $pages

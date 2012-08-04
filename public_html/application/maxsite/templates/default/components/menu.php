@@ -23,6 +23,12 @@
 						$menu .= NR . 'http://max-3000.com/page/faq | ЧАВО для новичков';
 						$menu .= NR . 'http://max-3000.com/help | Центр помощи';
 						$menu .= NR . 'http://forum.max-3000.com/ | Форум поддержки';
+						
+						if (function_exists('ushka')) 
+						{
+							$menu .= NR . ushka('main-menu-admin');
+						}
+						
 						$menu .= NR . 'logout | Выход';
 						$menu .= NR . ']';
 					}
@@ -72,6 +78,12 @@
 				$menu .= NR . 'http://max-3000.com/page/faq | ЧАВО для новичков';
 				$menu .= NR . 'http://max-3000.com/help | Центр помощи';
 				$menu .= NR . 'http://forum.max-3000.com/ | Форум поддержки';
+				
+				if (function_exists('ushka')) 
+				{
+					$menu .= NR . ushka('main-menu-admin');
+				}
+						
 				$menu .= NR . 'logout | Выход';
 				$menu .= NR . ']';
 				

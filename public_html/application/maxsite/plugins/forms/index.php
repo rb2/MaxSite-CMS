@@ -107,10 +107,14 @@ function forms_content_callback($matches)
 			
 			// формируем массив для формы
 			$subject_f['require'] = 1;
-			$subject_f['type'] = 'select';
+			//$subject_f['type'] = 'select';
+			
+			$subject_f['type'] = (strpos($subject, '#') === false ) ? 'text' : 'select';
+			
 			$subject_f['description'] = tf('Тема письма');
 			//$subject_f['tip'] = t('Выберите тему письма');
 			$subject_f['values'] = $subject;
+			$subject_f['value'] = $subject;
 			$subject_f['default'] = '';
 
 			// преобразования, чтобы сделать ключ для поля 
@@ -294,16 +298,29 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 		
 		// формируем массив для формы
 		$subject_f['require'] = 1;
-		$subject_f['type'] = 'select';
+		
+		// если в  subject есть #, то это несколько значений - select
+		// если нет, значит обычное текстовое поле
+		
+		$subject_f['type'] = (strpos($subject, '#') === false ) ? 'text' : 'select';
+		
 		$subject_f['description'] = tf('Тема письма');
 		//$subject_f['tip'] = t('Выберите тему письма');
 		$subject_f['values'] = $subject;
+		$subject_f['value'] = $subject;
 		$subject_f['default'] = '';
+		
+		// pr($subject_f);
 
 		// преобразования, чтобы сделать ключ для поля 
 		$f1['subject'] = $subject_f; // у поля тема будет ключ subject
+		
+		//pr($f1);
+		
 		foreach($f as $key=>$val) $f1[$key] = $val; 
 		$f = $f1;
+		
+		//pr($f1);
 	}
 
 	$out .= NR . '<div class="forms"><form method="post" class="plugin_forms fform">' . mso_form_session('forms_session');
@@ -312,17 +329,17 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 	$out .= '<input type="hidden" name="forms_antispam2" value="' . $antispam2 * 765 . '">';
 	
 	// обязательные поля
-	$out .= '<p><label class="ffirst ftitle" title="' . tf('Обязательное поле') . '" for="id-' . ++$id . '">' . t('Ваше имя*') . '</label><span><input name="forms_name" type="text" value="" placeholder="' . t('Ваше имя') . '" required id="id-' . $id . '"></span></p>';
+	$out .= '<p><label class="ffirst ftitle" title="' . tf('Обязательное поле') . '" for="id-' . ++$id . '">' . tf('Ваше имя*') . '</label><span><input name="forms_name" type="text" value="" placeholder="' . tf('Ваше имя') . '" required id="id-' . $id . '"></span></p>';
 	
-	$out .= '<p><label class="ffirst ftitle" title="' . tf('Обязательное поле') . '" for="id-' . ++$id . '">' . t('Ваш email*') . '</label><span><input name="forms_email" type="email" value="" placeholder="' . t('Ваш email') . '" required id="id-' . $id . '"></span></p>';
+	$out .= '<p><label class="ffirst ftitle" title="' . tf('Обязательное поле') . '" for="id-' . ++$id . '">' . t('Ваш email*') . '</label><span><input name="forms_email" type="email" value="" placeholder="' . tf('Ваш email') . '" required id="id-' . $id . '"></span></p>';
 	
 	
 	// тут указанные поля в $f
 	// pr($f);
 	foreach ($f as $key=>$val)
 	{
-		if (!isset($val['description'])) continue;
 		if (!isset($val['type'])) continue;
+		if (!isset($val['description'])) $val['description'] = '';
 		
 		$val['type'] = trim($val['type']);
 		$val['description'] = trim($val['description']);
@@ -375,6 +392,9 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 			foreach ($values as $value)
 			{
 				$value = trim($value);
+				
+				if (!$value) continue; // пустые опции не выводим
+				
 				if ($value == $default) $checked = ' selected="selected"';
 					else $checked = '';
 				
@@ -389,11 +409,17 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 			$out .= NR . '<p><label class="ffirst ftitle ftop" for="id-' . ++$id . '"' . $require_title . '>' . $description . $require . '</label><span><textarea name="forms_fields[' . $key . ']" id="id-' . $id . '"' . $placeholder . $required. $attr . '>' . $pole_value . '</textarea></span></p>' . $tip;
 		
 		}
+		elseif ($val['type'] == 'hidden') #####
+		{
+			$out .= NR . '<input name="forms_fields[' . $key . ']" type="hidden" value="' . $pole_value . '" id="id-' . $id . '"' . $attr . '>';
+		}
+		
+		
 	}
 	
 	// обязательные поля антиспама и отправка и ресет
 	$out .= NR . '<p><label class="ffirst ftitle" for="id-' . ++$id . '">' . $antispam1 . ' + ' . $antispam2 . ' =</label>';
-	$out .= '<span><input name="forms_antispam" type="text" required maxlength="3" value="" placeholder="' . t('Укажите свой ответ') . '" id="id-' . $id . '"></span><p>';
+	$out .= '<span><input name="forms_antispam" type="text" required maxlength="3" value="" placeholder="' . tf('Укажите свой ответ') . '" id="id-' . $id . '"></span><p>';
 	
 	if ($forms_subscribe)
 		$out .= NR . '<p><span class="ffirst"></span><label><input name="forms_subscribe" value="" type="checkbox"  class="forms_checkbox"> ' . tf('Отправить копию письма на ваш e-mail') . '</label></p>';

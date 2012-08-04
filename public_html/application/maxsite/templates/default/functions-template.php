@@ -12,6 +12,7 @@
 
 
 /*
+ * ver.  9/06/2012
  * ver. 10/04/2012
  * ver.  5/02/2012
  * ver.  1/02/2012
@@ -326,9 +327,9 @@ if (!function_exists('mso_default_head_section'))
 		mso_hook('head');
 		echo NT . '<!-- /plugins -->' . NR;
 
-		default_out_profiles();
-		
 		mso_add_file('css/add_style.css');
+		
+		default_out_profiles();
 
 		if (file_exists(getinfo('template_dir') . 'custom/head.php')) require(getinfo('template_dir') . 'custom/head.php');
 		if ($f = mso_page_foreach('head')) require($f);
@@ -340,6 +341,8 @@ if (!function_exists('mso_default_head_section'))
 		if ($my_style = mso_get_option('my_style', 'templates', '')) echo NR . '<!-- custom css-my_style -->' . NR . '<style>' . NR . $my_style . '</style>';
 		
 		mso_hook('head-end');
+
+		if (function_exists('ushka')) echo ushka('google_analytics_top');
 		
 		/*
 		# буферизация на будущее
