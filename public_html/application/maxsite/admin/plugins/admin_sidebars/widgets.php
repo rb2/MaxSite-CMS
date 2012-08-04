@@ -52,15 +52,30 @@
 <h1><?= t('Настройки виджетов') ?></h1>
 <p class="info"><?= t('Здесь вы можете настроить виджеты. Для открытия настроек виджета, кликните на его заголовок.') ?></p>
 
-<script>
-	function showhide(obj_id){
-		var div = document.getElementById(obj_id);
-		if (div.style.display == "none") { div.style.display = "block";} 
-			else { div.style.display = "none"; }
-	}
-</script>
-
 <?php
+
+	echo mso_load_jquery('jquery.cookie.js');
+	echo mso_load_jquery('showhide.jquery.js');
+	
+	echo '
+<script>
+
+$(function () {
+
+	$("div.admin_widgets").hide();
+	
+	$.showHide({
+		blockElem: ".admin-edit-widgets-form",
+		blockinElem: ".admin_widgets",
+		clickElem: ".link",
+		cookieName: "admin-sidebars-widgets",
+	});
+});
+
+</script>
+';
+	
+
 
 	$error = '';
 	
@@ -106,12 +121,12 @@
 					$form .= '<div class="admin-edit-widgets-form">';
 					
 					$d_id = 'd_' . $func . '_' . $num; 
-					$a_js = '<a href="#" onClick="showhide(\'' . $d_id . '\'); return false;">';
+					$a_js = '<a href="#" class="link">';
 					
 					if ($num) $form .= '<h3>' . $a_js . $MSO->widgets[$widget] . ' (' . $num_orig . ')</a></h3>';
 						else $form .= '<h3>' . $a_js . $MSO->widgets[$widget] . '</a></h3>';
 					
-					$form .= '<div class="admin_widgets" id="' . $d_id . '" style="display: none;" >';
+					$form .= '<div class="admin_widgets" id="' . $d_id . '">';
 					
 					$res = $func($num);
 					

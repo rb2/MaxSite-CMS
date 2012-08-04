@@ -123,6 +123,12 @@
 			
 			//pr($row);
 
+			$info_page = '<p><a href="' . getinfo('siteurl') . 'page/' . $row['page_slug'] . '#comment-' . $id . '">'
+				. t('Комментарий к ') . '«'. htmlspecialchars($row['page_title']) . '»</a>'
+				. ' | <a href="' . getinfo('site_admin_url') . 'page_edit/' . $row['page_id'] . '">'
+				. t('Редактировать запись') . '</a>'
+				. '</p>';
+			
 			if ( $row['users_nik'] )
 			{
 				echo '<p><strong>' . t('Автор') . '</strong>: '
@@ -130,24 +136,29 @@
 				. $row['users_nik']
 				. '</a>'
 				. ' | ' . $row['comments_author_ip']
-				. '</p>';
+				. '</p>'
+				. $info_page;
+				
 			}
 			elseif ( $row['comusers_nik'] )
 			{
 				echo '<p><strong>' . t('Автор') . '</strong>: '
 				. '<a href="' . getinfo('site_admin_url') . 'comusers/edit/' . $row['comments_comusers_id'] . '">'
-				. $row['comusers_nik']
-				. '</a> (' . $row['comments_comusers_id'] . ')'
+				. $row['comusers_nik'] . '</a>'
 				. ' | <a href="' . getinfo('site_url') . 'users/' . $row['comments_comusers_id'] . '">' . t('Персональная страница') . '</a>'
-				. ' | ' . $row['comments_author_ip']
-				. '</p>';
+				. ' | IP: ' . $row['comments_author_ip']
+				. ' | № ' . $row['comments_comusers_id']
+				. '</p>'
+				. $info_page;
+				
 			}
 			else 
 			{
 				echo '<p><strong>' . t('Автор') . '</strong>: '
 				. htmlspecialchars($row['comments_author_name'])
 				. ' | ' . $row['comments_author_ip']
-				. '</p>';
+				. '</p>'
+				. $info_page;
 			}
 		
 
@@ -229,7 +240,8 @@
 
 
 			echo '</form>';
-
+			
+			/*
 			echo '<p><a href="' . getinfo('siteurl') . 'page/' . $row['page_slug'] . '#comment-' . $id . '">'
 				. t('Комментарий на сайте') . '</a>'
 
@@ -237,7 +249,7 @@
 				. t('Редактировать запись') . '</a>'
 
 				. '</p>';
-
+			*/
 			// pr($row);
 		}
 		else echo '<div class="error">' . t('Ошибочный комментарий') . '</div>';

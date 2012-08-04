@@ -62,6 +62,7 @@ function category_widget_form($num = 1)
 	if ( !isset($options['order_asc']) ) $options['order_asc'] = 'ASC';
 	if ( !isset($options['include_child']) ) $options['include_child'] = '0';
 	if ( !isset($options['nofollow']) ) $options['nofollow'] = 0;
+	if ( !isset($options['group_header_no_link']) ) $options['group_header_no_link'] = 0;
 	
 	// вывод самой формы
 	$CI = & get_instance();
@@ -109,7 +110,13 @@ function category_widget_form($num = 1)
 				'1'=>t('Устанавливать как nofollow (неиндексируемые поисковиками)')
 				), $options['nofollow']), '');
 	
-	
+	$form .= mso_widget_create_form(t('Рубрика группы'), form_dropdown( $widget . 'group_header_no_link', 
+				array( 
+				'0'=>t('Ссылка'), 
+				'1'=>t('Текст')
+				), $options['group_header_no_link']), '');
+				
+				
 	return $form;
 }
 
@@ -135,6 +142,7 @@ function category_widget_update($num = 1)
 	$newoptions['order_asc'] = mso_widget_get_post($widget . 'order_asc');
 	$newoptions['include_child'] = mso_widget_get_post($widget . 'include_child');
 	$newoptions['nofollow'] = mso_widget_get_post($widget . 'nofollow');
+	$newoptions['group_header_no_link'] = mso_widget_get_post($widget . 'group_header_no_link');
 	
 	if ( $options != $newoptions ) 
 		mso_add_option($widget, $newoptions, 'plugins' );
@@ -153,6 +161,7 @@ function category_widget_custom($options = array(), $num = 1)
 	if ( !isset($options['order_asc']) ) $options['order_asc'] = 'ASC';
 	if ( !isset($options['include_child']) ) $options['include_child'] = 0;
 	if ( !isset($options['nofollow']) ) $options['nofollow'] = false;
+	if ( !isset($options['group_header_no_link']) ) $options['group_header_no_link'] = false;
 	
 	$cache_key = 'category_widget' . serialize($options) . $num;
 	
@@ -163,15 +172,63 @@ function category_widget_custom($options = array(), $num = 1)
 	}
 	else 
 	{
-		$all = mso_cat_array('page', 0, $options['order'], $options['order_asc'], $options['order'], $options['order_asc'], $options['include'], $options['exclude'], $options['include_child'], $options['hide_empty'], true);
+		/*
+			$type = 'page', 
+			$parent_id = 0, 
+			$order = 'category_menu_order', 
+			$asc = 'asc', 
+			$child_order = 'category_menu_order', 
+			$child_asc = 'asc', 
+			$in = false, 
+			$ex = false, 
+			$in_child = false, 
+			$hide_empty = false, 
+			$only_page_publish = false, 
+			$date_now = true, 
+			$get_pages = true
+		*/
+		
+		$all = mso_cat_array(
+			'page', 
+			0, 
+			$options['order'], 
+			$options['order_asc'], 
+			$options['order'], 
+			$options['order_asc'], 
+			$options['include'], 
+			$options['exclude'], 
+			$options['include_child'], 
+			$options['hide_empty'], 
+			true, 
+			true, 
+			false
+			);
+		
 		mso_add_cache($cache_key, $all); // сразу в кэш добавим
 	}
 	
-	//pr($all);
+	// pr($all);
 	
-	// $type = 'page', $parent_id = 0, $order = 'category_menu_order', $asc = 'asc', $child_order = 'category_menu_order', $child_asc = 'asc', $ex = false, $in = false, $in_child = false $hide_empty = false
 	
-	$out = mso_create_list($all, array('childs'=>'childs', 'format'=>$options['format'], 'format_current'=>$options['format_current'], 'class_ul'=>'is_link', 'title'=>'category_name', 'link'=>'category_slug', 'current_id'=>false, 'prefix'=>'category/', 'count'=>'pages_count', 'slug'=>'category_slug', 'id'=>'category_id', 'menu_order'=>'category_menu_order', 'id_parent'=>'category_id_parent', 'nofollow'=>$options['nofollow'] ) );
+	$out = mso_create_list($all, 
+		array(
+			'childs'=>'childs', 
+			'format'=>$options['format'], 
+			'format_current'=>$options['format_current'], 
+			'class_ul'=>'is_link', 
+			'title'=>'category_name', 
+			'link'=>'category_slug', 
+			'current_id'=>false, 
+			'prefix'=>'category/', 
+			'count'=>'pages_count', 
+			'slug'=>'category_slug', 
+			'id'=>'category_id', 
+			'menu_order'=>'category_menu_order', 
+			'id_parent'=>'category_id_parent', 
+			'nofollow'=>$options['nofollow'],
+			'group_header_no_link' => $options['group_header_no_link'],
+			) 
+	);
 	
 	if ($out and $options['header']) $out = $options['header'] . $out;
 	

@@ -30,13 +30,13 @@
 			{
 				echo '<h3>'. tf('Для редактирования введите свой email и пароль'). ':</h3>';
 			
-				echo '<input type="hidden" value="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit" rel="nofollow" name="flogin_redirect">';
+				echo '<input type="hidden" value="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit" name="flogin_redirect">';
 				echo '<p><strong>'. tf('Ваш email'). ':</strong> <input type="text" name="flogin_user">*</p>';
 				echo '<p><strong>'. tf('Ваш пароль'). ':</strong> <input type="password" name="flogin_password">*</p>';
 				echo mso_form_session('flogin_session_id');
 		
 				
-				echo '<p><a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/lost" rel="nofollow">' . tf('Я забыл пароль') . '</a></p>';
+				echo '<p><a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/lost">' . tf('Я забыл пароль') . '</a></p>';
 			}
 			else
 			{

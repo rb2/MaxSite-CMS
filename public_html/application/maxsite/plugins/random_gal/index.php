@@ -181,15 +181,8 @@ function random_gal_cmp_datefile_desc($a, $b)
 
 function random_gal_head($args = array())
 {
-	echo mso_load_jquery('jquery.nivo.slider.js') . '
-	<style>
-		div.random_gal_nivoSlider {position: relative;} 
-		div.random_gal_nivoSlider img {position: absolute; top: 0; left: 0; display: none;} 
-		div.random_gal_nivoSlider .nivo-slice {display: block; position: absolute; z-index: 5; height: 100%;}
-		div.random_gal_nivoSlider .nivo-box {display: block; position: absolute; z-index: 5;}
-		div.random_gal_nivoSlider a.nivo-imageLink {position:absolute; top:0px; left:0px; width:100%; height:100%; border:0; padding:0; margin:0; z-index:6;} 
-	</style>
-';
+	echo mso_load_jquery('jquery.nivo.slider.js') 
+		. mso_load_style(getinfo('plugins_url') . 'random_gal/random_gal.css');
 		
 	return $args;
 }

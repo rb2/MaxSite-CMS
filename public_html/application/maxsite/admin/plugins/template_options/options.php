@@ -48,17 +48,31 @@
 	// подключим все опции компонентов в components/options
 	// в них ini-файлы, а также php-файлы, обслуживающие ini (для PHP_START PHP_END)
 	// поэтому подключаем все php-файлы, после все ini-файлы
-	$all_php = get_path_files(getinfo('template_dir') . 'components/options/', getinfo('template_dir') . 'components/options/', true, array('php'));
-	$all_ini = get_path_files(getinfo('template_dir') . 'components/options/', getinfo('template_dir') . 'components/options/', true, array('ini'));
+	// подключаем только те опции и ini компонентов, которые реально существуют
 	
-	foreach($all_php as $file) require($file); // php-файлы
+	// все компоненты
+	$all_component = get_path_files(getinfo('template_dir') . 'components/', getinfo('template_dir') . 'components/', true, array('php'));
 	
-	foreach($all_ini as $file) // ini-файлы
+	// проверяем опции
+	foreach($all_component as $file) 
 	{
-		$all_add = mso_get_ini_file($file);
-		$all = array_merge($all, $all_add);
+		$file = str_replace('/components/', '/components/options/', $file);
+		
+		if (file_exists($file)) require($file); // php-файлы
 	}
 	
+	// проверяем ini в options
+	foreach($all_component as $file) 
+	{
+		$file = str_replace('/components/', '/components/options/', $file);
+		$file = str_replace('.php', '.ini', $file);
+		
+		if (file_exists($file))
+		{
+			$all_add = mso_get_ini_file($file); // css-файлы
+			$all = array_merge($all, $all_add);
+		}
+	}
 
 	// вывод всех ini-опций
 	echo mso_view_ini($all);

@@ -1,4 +1,4 @@
-body {color: #000000; background: #F0F0F0 url("[TEMPLATE_URL]images/patterns/bg-shimun.png");}
+body {color: #000000; background: #F0F0F0 url("../../images/patterns/bg-shimun.png");}
 a {color: #000000;text-shadow:0 1px 2px #fff;}
 a:hover {color: #999999;}
 div.all {margin-top: 20px;}

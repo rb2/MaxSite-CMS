@@ -50,7 +50,7 @@ function admin_menu_menu($args = array())
 	
 	foreach ($admin_menu1 as $key => $value)
 	{
-		$out .= $nr . '<ul class="admin-menu">';
+		$out .= $nr . '<ul class="admin-menu admin-menu-' . ($key ? $key : 'beginning') . '">';
 		$out .= $nr . '<li class="admin-menu-top"><a href="#" class="admin-menu-section">' . _mso_del_menu_pod($value['']) . '</a>';
 
 		if (count($value)>1 )

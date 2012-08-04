@@ -260,6 +260,7 @@ function mso_get_pages($r = array(), &$pag)
 
 			$content = $page['page_content'];
 			
+			$content = mso_hook('content_init', $content);
 
 			$content = str_replace('<!-- pagebreak -->', '[cut]', $content); // совместимость с TinyMCE
 			$content = str_replace('<!--more-->', '[cut]', $content); // совместимость с Wordpress
@@ -274,9 +275,7 @@ function mso_get_pages($r = array(), &$pag)
 			//$content = mso_hook('content_balance_tags', $content);
 			//$content = mso_hook('content_out', $content);
 			
-
 			$pages[$key]['page_slug'] = $page['page_slug'] = mso_slug($page['page_slug']);
-
 
 			if ($r['work_cut']) // обрабатывать cut
 			{
@@ -578,7 +577,7 @@ function _mso_sql_build_home($r, &$pag)
 		else
 		{
 			# такие селекты теперь нужно вызывать с false в конце...
-			$CI->db->select('page.page_id, page_type_name, page_slug, page_title, "" AS page_content, page_date_publish, page_status, users_nik, page_view_count, page_rating, page_rating_count, page_password, page_comment_allow, page_id_parent, users_avatar_url,  page.page_id_autor, users_description, users_login', false);
+			$CI->db->select('page.page_id, page_type_name, page_slug, page_title, "" AS page_content, page_date_publish, page_status, users_nik, page_view_count, page_rating, page_rating_count, page_password, page_comment_allow, page_id_parent, users_avatar_url, page.page_id_autor, users_description, users_login', false);
 		}
 	}
 	else
@@ -646,11 +645,13 @@ function _mso_sql_build_page($r, &$pag)
 		$slug = $r['slug'];
 	else
 		$slug = mso_segment(2);
-
+	
+	/*
 	// если slug есть число, то выполняем поиск по id
 	if (!is_numeric($slug)) $id = false; // slug не число
 		else $id = (int) $slug;
-
+	*/
+	
 	if (!$r['all_fields'])
 	{
 		$CI->db->select('page.page_id, page_type_name, page_slug, page_title, page_date_publish, page_status, users_nik, page_content, page_view_count, page_rating, page_rating_count, page_password, page_comment_allow, page_id_parent, users_avatar_url, page.page_id_autor, users_description, users_login');
@@ -676,7 +677,7 @@ function _mso_sql_build_page($r, &$pag)
 	}
 	
 	if ($r['page_id_autor']) $CI->db->where('page.page_id_autor', $r['page_id_autor']);
-
+/*
 	if ($id) // если slug число, то это может быть и номер и сам slug - неопределенность!
 	{
 		$slug = $CI->db->escape($slug);
@@ -685,7 +686,8 @@ function _mso_sql_build_page($r, &$pag)
 	else
 	{
 		$CI->db->where(array('page_slug'=>$slug));
-	}
+	}*/
+		$CI->db->where(array('page_slug'=>$slug));
 
 	$CI->db->join('users', 'users.users_id = page.page_id_autor');
 	$CI->db->join('page_type', 'page_type.page_type_id = page.page_type_id');
@@ -704,11 +706,11 @@ function _mso_sql_build_category($r, &$pag)
 		$slug = $r['slug'];
 	else
 		$slug = mso_segment(2);
-
+/*
 	// если slug есть число, то выполняем поиск по id
 	if (!is_numeric($slug)) $id = false; // slug не число
 		else $id = (int) $slug;
-
+*/
 	// еслу указан массив номеров рубрик, значит выводим только его
 	if ($r['categories']) $categories = true;
 	else $categories = false;
@@ -755,8 +757,12 @@ function _mso_sql_build_category($r, &$pag)
 		}
 		else
 		{
+			/*
 			if ($id) $CI->db->where('category.category_id', $id);
 				else $CI->db->where('category.category_slug', $slug);
+			*/
+			
+			$CI->db->where('category.category_slug', $slug);
 		}
 
 		if ($exclude_page_id)
@@ -829,12 +835,14 @@ function _mso_sql_build_category($r, &$pag)
 	}
 	else
 	{
+		/*
 		if ($id)
 		{
 			$CI->db->where('category.category_id', $id);
 			$CI->db->or_where('category.category_slug', $slug);
 		}
 		else
+		*/
 			$CI->db->where('category.category_slug', $slug);
 	}
 
@@ -1607,23 +1615,37 @@ function mso_page_content_end()
 # получение meta
 function mso_page_meta($meta = '', $page_meta = array(), $do = '', $posle = '', $razd = ', ', $echo = true)
 {
-	if (!$meta or !$page_meta) return '';
+	if ($out = mso_page_meta_value($meta, $page_meta, '', $razd))
+	{
+		if ($echo) echo $do . $out . $posle;
+			else return $do . $out . $posle;
+	}
+	else 
+		return '';
+}
+
+# получение значение meta
+# если нет, то отдается $default
+function mso_page_meta_value($meta = '', $page_meta = array(), $default = '', $razd = ', ')
+{
+	if (!$meta or !$page_meta) return $default;
 
 	if (isset($page_meta[$meta]) and $page_meta[$meta])
 	{
 		$out = '';
-		foreach ( $page_meta[$meta] as $val )
+		
+		foreach ($page_meta[$meta] as $val)
+		{
 			$out .= $val . '     ';
-
+		}
+		
 		$out = trim($out);
-		if (!$out) return '';
+		if (!$out) return $default;
 
-		$out = str_replace('     ', $razd, trim($out) );
+		return str_replace('     ', $razd, $out);
 	}
-	else return '';
-
-	if ($echo) echo $do . $out . $posle;
-		else return $do . $out . $posle;
+	else 
+		return $default;
 }
 
 # формирование ссылки «обсудить» если разрешен комментарий

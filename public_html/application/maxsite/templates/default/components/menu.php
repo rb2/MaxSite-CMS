@@ -49,6 +49,7 @@
 					if ($menu) echo mso_menu_build($menu, 'selected', false);
 				?>
 			</ul>
+			<div class="clearfix"></div>
 	</div><!-- div class=wrap --></div><!-- div id="MainMenu" -->
 	<?php 
 	} 

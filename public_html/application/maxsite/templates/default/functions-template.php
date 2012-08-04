@@ -161,10 +161,22 @@ if (!function_exists('default_out_profiles'))
 		if ($default_profiles = mso_get_option('default_profiles', 'templates', array())) // есть какие-то профили оформления
 		{
 			$css_out = '';
+			
+			// theme-профили подключаются как link rel="stylesheet
 			foreach($default_profiles as $css_file)
 			{
 				$fn = 'css/profiles/' . $css_file;
-				$css_out .= mso_out_css_file($fn, false, false); // получение и обработка CSS из файла
+				
+				$link = strpos($css_file, 'theme-'); // это theme- ?
+				
+				if ($link !== false and $link === 0)
+				{
+					mso_add_file($fn); // подключаем внешими стилями
+				}
+				else
+				{
+					$css_out .= mso_out_css_file($fn, false, false); // получение и обработка CSS из файла
+				}
 			}
 			
 			if ($css_out) 
@@ -219,12 +231,15 @@ if (!function_exists('out_component_css'))
 			{
 				// в имени файла следует заменить расширение php на css
 				$fn = 'components/css/' . str_replace('.php', '.css', $fn);
-				$css_out .= mso_out_css_file($fn, false, false); // получение и обработка CSS из файла
+				//$css_out .= mso_out_css_file($fn, false, false); // получение и обработка CSS из файла
+				mso_add_file($fn); // подключаем внешими стилями
 			}
 		}
 		
+		/*
 		if ($css_out) // если есть что выводить
 			echo NR . '<style>' . $css_out . '</style>' . NR;
+		*/	
 	}
 }
 

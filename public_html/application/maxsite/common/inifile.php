@@ -113,6 +113,7 @@ function mso_view_ini($all = false)
 {
 	if (!$all) return '';
 	//pr($all);
+	
 	$CI = & get_instance();
 	
 	$CI->load->library('table');
@@ -152,17 +153,28 @@ function mso_view_ini($all = false)
 		$all_options = array();
 	
 	//pr($all_options);	
+	//pr($all);	
 	
 	foreach ($all as $key=>$row)
 	{
-		if ( isset($row['options_key']) ) $options_key = stripslashes( trim( $row['options_key'] ) );
-			else continue;
 		
-		if ( !isset($row['options_type']) ) $options_type = 'general';
-			else $options_type = stripslashes(trim($row['options_type']));
-			
-		if ( !isset($row['type']) ) $type = 'textfield';
-			else $type = stripslashes(trim($row['type']));
+		if ( isset($row['options_key']) ) 
+			$options_key = stripslashes( trim( $row['options_key'] ) );
+		else
+			continue;
+		
+		
+		if (!isset($row['options_type'])) $options_type = 'general';
+		else $options_type = stripslashes(trim($row['options_type']));
+		
+		
+		if ( !isset($row['type']) )
+		{ 
+			if ($options_key !== 'none') $type = 'textfield';
+			else $type = 'none';
+		}
+		else $type = stripslashes(trim($row['type']));
+		
 		
 		if ( !isset($row['values']) ) $value = '';
 			else $values = _mso_ini_check_php(stripslashes(htmlspecialchars(trim($row['values']))));
@@ -192,8 +204,14 @@ function mso_view_ini($all = false)
 		}
 		
 		$f = NR; 
-
-		$name_f = 'f_options[' . $options_key . '_m_s_o_' . $options_type . ']'; // название поля 
+		
+		// тип none не создает поля - фиктивная опция
+		if ($options_key != 'none')
+			$name_f = 'f_options[' . $options_key . '_m_s_o_' . $options_type . ']'; // название поля 
+		else
+			$name_f = '';
+		
+		
 		
 		if ($type == 'textfield')
 		{
@@ -326,15 +344,22 @@ function mso_view_ini($all = false)
 		}
 		
 		if ($description) $f .= '<p><em>' .  t($description) . '</em></p>';
-		if (!$options_present) 
-			$key = '<span title="' . $options_key . '" class="red">* ' . t($key) . ' '. t('(нет в базе)') .'</span>';
-		else 
-			$key = '<strong title="' . $options_key . '">' . t($key) . '</strong>';
+
+		if ($options_key != 'none')
+		{
+			if (!$options_present) 
+				$key = '<span title="' . $options_key . ' (' . $row['options_type'] . ')" class="red">* ' . t($key) . ' '. t('(нет в базе)') .'</span>';
+			else
+				$key = '<strong title="' . $options_key . ' (' . $row['options_type'] . ')">' . t($key) . '</strong>';
+		}
+		else
+			$key = '';
+			
+		
 		
 		// если есть новая секция, то выводим пустую инфо-строчку
 		if (isset($row['section']))
 		{
-		
 			if ($CI->table->rows) $table .= $CI->table->generate();
 			
 			$CI->table->clear(); // очистим, если были старые данные
@@ -364,7 +389,7 @@ function mso_view_ini($all = false)
 			$nav .= '<a href="#a-' . mso_slug($row['section']) . '" id="' . mso_slug($row['section']) . '">' . t($row['section']) . '</a>    ';
 		}
 		
-		$CI->table->add_row($key, $f);
+		if ($key) $CI->table->add_row($key, $f);
 	}
 	
 	

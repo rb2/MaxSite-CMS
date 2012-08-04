@@ -109,7 +109,7 @@ function tabs_head($args = array())
 			$.cookie("curTabs", $(this).index(), {expires: 1, path: "/"});
 		})
 
-	})(jQuery);
+	})(jQuery);	
 	</script>
 	';
 

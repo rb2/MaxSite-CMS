@@ -165,16 +165,8 @@
 				$comments_content = mb_substr($comments_content, 0, 300, 'UTF-8') . ' ...';
 			
 			
-			if ( $row['comments_approved'] > 0 )
-			{
-				$comments_approved = '+';
-				$comments_p_style = '';
-			}
-			else
-			{
-				$comments_approved = '-';
-				$comments_p_style = 'class="attn"';
-			}
+			if ( $row['comments_approved'] > 0 ) $comments_approved = '+';
+				else $comments_approved = '-';
 			
 			$act = '<a href="' . $this_url . 'edit/'. $id . '">' . $author . '</a>';
 			
@@ -182,10 +174,10 @@
 					// . '<strong>' . $author . '</strong>' . $act . '<br>'
 					. $act . '<br>'
 					. $comments_date. ' | ' 
-					. '<a href="http://geoiptool.com/en/?IP=' . $row['comments_author_ip'] . '" target ="_blank">' . $row['comments_author_ip'] . '</a>'
+					. $row['comments_author_ip'] 
 					. ' | '. $page_title 
 					. $comments_content_xss_end 
-					. '<p '.$comments_p_style.'>' . $comments_content . '</p>' 
+					. '<p>' . $comments_content . '</p>' 
 					. NR;
 						
 			

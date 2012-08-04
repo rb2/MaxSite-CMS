@@ -121,7 +121,6 @@ table {
 body {
   font-family: Verdana, Arial, sans-serif;
   font-size: 10pt;
-  background: #E0E0E0;
 }
 body,
 div,
@@ -816,7 +815,10 @@ ul.menu li.group a span {
 }
 ul.menu li.group ul {
   width: auto;
-  min-width: 200px;
+  min-width: 150px;
+}
+ul.menu li.group ul li {
+  white-space: nowrap;
 }
 ul.menu li.group ul li a {
   margin: 0;

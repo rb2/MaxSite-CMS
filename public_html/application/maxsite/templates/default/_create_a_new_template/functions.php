@@ -39,6 +39,8 @@
 	mso_set_val('page_other_pages_start', '<div class="page_other_pages_header">');
 	mso_set_val('page_other_pages_end', '</div>');
 
+	// можно указать css-класс для BODY
+	// mso_set_val('body_class', '');
 	
 	
 	# подключим функции default-шаблона

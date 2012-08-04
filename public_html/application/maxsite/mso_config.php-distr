@@ -13,7 +13,8 @@ $MSO->config['secret_key'] = '';
 # можно указать язык сайта
 //$MSO->language = 'en'; // english
 //$MSO->language = 'ua'; // украинский
-//$MSO->language = 'de'; // deutsch 
+//$MSO->language = 'de'; // deutsch
+//$MSO->language = 'ro'; // română
 
 # можно изменить время жизни кэша (в секундах)
 # $MSO->config['cache_time'] = 9600;

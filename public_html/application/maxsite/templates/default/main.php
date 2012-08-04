@@ -13,7 +13,7 @@ if (file_exists(getinfo('template_dir') . 'custom/head-section.php'))
 elseif (function_exists('mso_default_head_section')) mso_default_head_section(); // подключение через функцию
 
 ?>
-<body>
+<body<?= (mso_get_val('body_class')) ? ' class="' . mso_get_val('body_class') . '"' : ''; ?>>
 <!-- end header -->
 <?php mso_hook('body_start') ?>
 <?php if (function_exists('ushka')) echo ushka('body_start'); ?>

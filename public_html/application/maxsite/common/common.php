@@ -734,10 +734,15 @@ function mso_plugin_load($plugin = '')
 	if ( !file_exists( $fn_plugin ) ) return false;
 	else
 	{
+		// $mem0 = round(memory_get_usage()/1024/1024, 2);
+		
 		require_once ($fn_plugin);
 
 		$auto_load = $plugin . '_autoload';
 		if ( function_exists($auto_load) ) $auto_load();
+		
+		// $mem1 = round(memory_get_usage()/1024/1024, 2);
+		// pr(' ' . $plugin . ' = ' . $mem0 . ' - '. $mem1 . 'MB ' . ($mem1 - $mem0) );
 
 		# добавим плагин в список активных
 		$MSO->active_plugins[] = $plugin;
@@ -905,8 +910,6 @@ function mso_refresh_options()
 
 	$cache_options = array();
 
-	// $query = $ci->db->query('SELECT * FROM ci_options ORDER BY options_type');
-
 	foreach ($query->result() as $row)
 		$cache_options[$row->options_type][$row->options_key] = $row->options_value;
 
@@ -919,6 +922,8 @@ function mso_refresh_options()
 # добавление в таблицу опций options
 function mso_add_option($key, $value, $type = 'general')
 {
+	$CI = & get_instance();
+	
 	# если value массив или объект, то серилизуем его в строку
 	if ( !is_scalar($value) ) $value = '_serialize_' . serialize($value);
 
@@ -926,7 +931,6 @@ function mso_add_option($key, $value, $type = 'general')
 			'options_key'=>$key,
 			'options_type'=>$type );
 
-	$CI = & get_instance();
 
 	# проверим есть ли уже такой ключ
 	$CI->db->select('options_id');
@@ -1101,6 +1105,8 @@ function mso_delete_float_option($key, $type = 'general', $dir = '')
 # Функция взята из _write_cache output.php - немного переделанная
 function mso_add_cache($key, $output, $time = false, $custom_fn = false)
 {
+	global $MSO;
+	
 	# если определен отдельный хук, то выполняем его
 	if (mso_hook_present('mso_add_cache')) 
 		return mso_hook('mso_add_cache', array(
@@ -1110,14 +1116,19 @@ function mso_add_cache($key, $output, $time = false, $custom_fn = false)
 		'custom_fn' => $custom_fn
 		));
 
-		
-	global $MSO;
-
+	// если разрешено динамическое кэширование
+	if (mso_get_option('cache_dinamic', 'general', 0))
+	{
+		// опции не сохраняем - у них свой кэш
+		if ($key !== 'options') $MSO->cache[$key] = $output;
+	}
+	
+	
 	$CI = & get_instance();
 	
 	$cache_path = getinfo('cache_dir');
 
-	if ( ! is_dir($cache_path) or ! is_writable($cache_path)) return;
+	if ( !is_dir($cache_path) or !is_writable($cache_path)) return;
 
 	if (!$custom_fn)
 		$cache_path .= mso_md5($key . $CI->config->item('base_url'));
@@ -1135,7 +1146,9 @@ function mso_add_cache($key, $output, $time = false, $custom_fn = false)
 	fwrite($fp, $expire.'TS--->' . $output);
 	flock($fp, LOCK_UN);
 	fclose($fp);
-	@chmod($cache_path, 0777);
+	
+	if (!is_writable($cache_path)) @chmod($cache_path, 0777);
+	
 }
 
 
@@ -1178,6 +1191,8 @@ function mso_flush_cache_mask($mask = '')
 # если указать $file, то удаляется только этот файл в кэше
 function mso_flush_cache($full = false, $dir = false, $file = false)
 {
+	global $MSO;
+	
 	# если определен отдельный хук, то выполняем его
 	if (mso_hook_present('mso_flush_cache')) 
 		return mso_hook('mso_flush_cache', array(
@@ -1185,13 +1200,14 @@ function mso_flush_cache($full = false, $dir = false, $file = false)
 		'dir' => $dir,
 		'file' => $file
 		));
-		
+	
+	$MSO->cache = array();
+	
 	$CI = & get_instance();
 	
 	$cache_path = getinfo('cache_dir');
 
-	if ( ! is_dir($cache_path) OR ! is_writable($cache_path))
-		return FALSE;
+	if ( !is_dir($cache_path) OR !is_writable($cache_path)) return false;
 
 	// находим в каталоге все файлы и их удалаяем
 	if ($full)
@@ -1236,6 +1252,7 @@ function mso_flush_cache($full = false, $dir = false, $file = false)
 		}
 
 	}
+	
 	// если используется родное CodeIgniter sql-кэширование, то нужно очистить и его
 	$CI->db->cache_delete_all();
 }
@@ -1245,6 +1262,8 @@ function mso_flush_cache($full = false, $dir = false, $file = false)
 # Функция взята из _display_cache output.php - переделанная
 function mso_get_cache($key, $custom_fn = false)
 {
+	global $MSO;
+	
 	# если определен отдельный хук, то выполняем его
 	if (mso_hook_present('mso_get_cache')) 
 		return mso_hook('mso_get_cache', array(
@@ -1252,8 +1271,17 @@ function mso_get_cache($key, $custom_fn = false)
 		'custom_fn' => $custom_fn
 		));
 
-	$CI = & get_instance();
+	if (mso_get_option('cache_dinamic', 'general', 0))
+	{
+		// кэш может быть и в динамическом $MSO->cache
+		if (isset($MSO->cache[$key]) and $MSO->cache[$key]) 
+		{
+			return $MSO->cache[$key];
+		}
+	}
 	
+	$CI = & get_instance();
+
 	$cache_path = getinfo('cache_dir');
 	
 	if ( !is_dir($cache_path) OR ! is_writable($cache_path))
@@ -1264,11 +1292,9 @@ function mso_get_cache($key, $custom_fn = false)
 	else
 		$filepath = $cache_path . $key;
 
-	if ( !@file_exists($filepath))
-		return FALSE;
+	if ( !@file_exists($filepath)) return false;
 
-	if ( !$fp = @fopen($filepath, 'rb'))
-		return FALSE;
+	if ( !$fp = @fopen($filepath, 'rb')) return false;
 
 	flock($fp, LOCK_SH);
 
@@ -1285,12 +1311,14 @@ function mso_get_cache($key, $custom_fn = false)
 	if (time() >= trim(str_replace('TS--->', '', $match['1'])))
 	{
 		@unlink($filepath);
-		return FALSE;
+		return false;
 	}
 
 	$out = str_replace($match['0'], '', $cache);
 	$out = @unserialize($out);
-
+	
+	if (mso_get_option('cache_dinamic', 'general', 0)) $MSO->cache[$key] = $out;
+	
 	return $out;
 }
 
@@ -2914,6 +2942,10 @@ function mso_create_list($a = array(), $options = array(), $child = false)
 	if (!isset($options['prefix'])) $options['prefix'] = 'page/'; // префикс для ссылки
 	if (!isset($options['current_id'])) $options['current_id'] = true; // текущая страница отмечается по page_id - иначе по текущему url
 	if (!isset($options['childs'])) $options['childs'] = 'childs'; // поле для массива детей
+	
+	
+	// если true, то главная рабрика выводится без ссылки в <span> 
+	if (!isset($options['group_header_no_link'])) $options['group_header_no_link'] = false; 
 
 	# функция, которая сработает на [FUNCTION]
 	# эта функция получает в качестве параметра текущий массив $elem
@@ -3028,7 +3060,13 @@ function mso_create_list($a = array(), $options = array(), $child = false)
 		{
 			
 			if ($cur) $out .= NR . '<li' . $class_current . $class_current_style . '>' . $e;
-				else $out .= NR . '<li' . $class_li . $class_li_style . '>' . $e;
+				else 
+				{
+					if ($options['group_header_no_link'])
+						$out .= NR . '<li' . $class_li . $class_li_style . '><span class="group_header">' . $title . '</span>'; 
+					else
+						$out .= NR . '<li' . $class_li . $class_li_style . '>' . $e; 
+				}
 				
 			++$level;
 			$out .= mso_create_list($elem[$options['childs']], $options, true);
@@ -3988,6 +4026,18 @@ function mso_lessc($less_file = '', $css_file = '', $css_url = '', $use_cache = 
 			return '<pre>' . $out . '</pre>';
 		}
 	}
+}
+
+# формирует <style> из указанного адреса 
+function mso_load_style($url = '')
+{
+	return NT . '<link rel="stylesheet" href="' . $url . '">';
+}
+
+# формирует <script> из указанного адреса 
+function mso_load_script($url = '')
+{
+	return NT . '<script src="' . $url . '"></script>';
 }
 
 

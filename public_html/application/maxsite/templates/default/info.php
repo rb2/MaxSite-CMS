@@ -8,7 +8,7 @@
 $info = array(
 	'name' => 'Default',
 	'description' => t('Шаблон для MaxSite CMS'),
-	'version' => '3.4',
+	'version' => '3.6',
 	'author' => 'Максим',
 	'template_url' => 'http://max-3000.com/',
 	'author_url' => 'http://maxsite.org/'

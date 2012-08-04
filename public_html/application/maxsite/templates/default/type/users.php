@@ -40,7 +40,7 @@ if ($comuser_info)
 			else echo '<h1>' . $avatar . tf('Комментатор'). ' ' . $comusers_id . '</h1>';
 		
 		if ($comusers_activate_string != $comusers_activate_key) // нет активации
-			echo '<p><span style="color: red;" class="comusers-no-activate">'. tf('Активация не завершена.'). '</span> <a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit" rel="nofollow">'. tf('Завершить'). '</a></p>';
+			echo '<p><span style="color: red;" class="comusers-no-activate">'. tf('Активация не завершена.'). '</span> <a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit">'. tf('Завершить'). '</a></p>';
 		
 		// выводим все данные
 		if ($comusers_date_registr) echo '<p><strong>'. tf('Дата регистрации'). ':</strong> ' . $comusers_date_registr . '</p>';
@@ -75,7 +75,7 @@ if ($comuser_info)
 		
 		
 		if (getinfo('comusers_id') == $comusers_id )
-			echo '<p><a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit" rel="nofollow">'. tf('Редактировать персональные данные'). '</a></p>';
+			echo '<p><a href="' . getinfo('siteurl') . 'users/' . $comusers_id . '/edit">'. tf('Редактировать персональные данные'). '</a></p>';
 		
 		if ($comments) // есть комментарии
 		{

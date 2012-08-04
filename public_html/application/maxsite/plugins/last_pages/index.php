@@ -60,9 +60,10 @@ function last_pages_widget_form($num = 1)
 	if ( !isset($options['comments_format']) )	$options['comments_format'] = t(' - комментариев: ') . '%COUNT%';
 	if ( !isset($options['page_type']) )		$options['page_type'] = 'blog';
 	if ( !isset($options['img_prev']) )			$options['img_prev'] = '';
-	if ( !isset($options['img_prev_def']) )			$options['img_prev_def'] = '';
+	if ( !isset($options['img_prev_def']) )		$options['img_prev_def'] = '';
 	if ( !isset($options['img_prev_attr']) )	$options['img_prev_attr'] = 'class="left"';
 	if ( !isset($options['max_words']) )		$options['max_words'] = 20;
+	if ( !isset($options['text_posle']) ) 		$options['text_posle'] = '';
 
 	// вывод самой формы
 	$CI = & get_instance();
@@ -96,6 +97,7 @@ function last_pages_widget_form($num = 1)
 
 	$form .= mso_widget_create_form(t('Количество слов'), form_input( array( 'name'=>$widget . 'max_words', 'value'=>$options['max_words'] ) ), t('Используется только с %TEXT_PREV%'));
 	
+	$form .= mso_widget_create_form(t('Текст внизу'), form_textarea( array( 'name'=>$widget . 'text_posle', 'value'=>$options['text_posle'], 'rows' => '3')));
 	
 	return $form;
 }
@@ -126,6 +128,7 @@ function last_pages_widget_update($num = 1)
 	$newoptions['img_prev_def'] = mso_widget_get_post($widget . 'img_prev_def');
 	$newoptions['img_prev_attr'] = mso_widget_get_post($widget . 'img_prev_attr');
 	$newoptions['max_words'] = mso_widget_get_post($widget . 'max_words');
+	$newoptions['text_posle'] = mso_widget_get_post($widget . 'text_posle');
 
 	if ( $options != $newoptions )
 		mso_add_option($widget, $newoptions, 'plugins' );
@@ -147,6 +150,7 @@ function last_pages_widget_custom($arg = array(), $num = 1)
 	if (!isset($arg['img_prev_def'])) 	$arg['img_prev_def'] = '';
 	if (!isset($arg['img_prev_attr'])) 	$arg['img_prev_attr'] = 'class="left"';
 	if (!isset($arg['max_words']) ) 	$arg['max_words'] = 20;
+	if (!isset($arg['text_posle']) ) 	$arg['text_posle'] = '';
 
 	if ( !isset($arg['header']) ) $arg['header'] = mso_get_val('widget_header_start', '<h2 class="box"><span>') . t('Последние записи') . mso_get_val('widget_header_end', '</span></h2>');
 
@@ -325,6 +329,8 @@ function last_pages_widget_custom($arg = array(), $num = 1)
 
 		$out = $arg['header'] . $arg['block_start'] . NR . $out . $arg['block_end'];
 		$out = str_replace( '</li>', '<div class="clearfix"></div></li>', $out);
+		
+		$out .= $arg['text_posle'];
 
 		mso_add_cache($cache_key, $out); // сразу в кэш добавим
 

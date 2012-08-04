@@ -221,7 +221,7 @@ function _get_child2($childs, $li_format = '', $checked_id = array(), $list = ''
 #                            ...
 #                          )
 
-function mso_cat_array($type = 'page', $parent_id = 0, $order = 'category_menu_order', $asc = 'asc', $child_order = 'category_menu_order', $child_asc = 'asc', $in = false, $ex = false, $in_child = false, $hide_empty = false, $only_page_publish = false, $date_now = true)
+function mso_cat_array($type = 'page', $parent_id = 0, $order = 'category_menu_order', $asc = 'asc', $child_order = 'category_menu_order', $child_asc = 'asc', $in = false, $ex = false, $in_child = false, $hide_empty = false, $only_page_publish = false, $date_now = true, $get_pages = true)
 {
 	// если неверный тип, то возвратим пустой массив
 	if ( ($type != 'page') and ($type != 'links') ) return array();
@@ -282,11 +282,15 @@ function mso_cat_array($type = 'page', $parent_id = 0, $order = 'category_menu_o
 	{
 		$k = $row['category_id'];
 		$r[$k] = $row;
-		$r[$k]['pages'] = mso_get_page_cat($k); // добавим все записи рубрики
 		
+		if ($get_pages)
+			$r[$k]['pages'] = mso_get_page_cat($k); // добавим все записи рубрики
+		else
+			$r[$k]['pages'] = array(); // пустой массив
+			
 		if ($in_child != -1) // не включать потомков вообще
 		{ 
-			$ch = _get_child($type, $row['category_id'], $child_order, $child_asc, $in, $ex, $in_child, $hide_empty, $only_page_publish, $date_now );
+			$ch = _get_child($type, $row['category_id'], $child_order, $child_asc, $in, $ex, $in_child, $hide_empty, $only_page_publish, $date_now, $get_pages);
 			if ($ch) $r[$k]['childs'] = $ch;
 		}
 	}
@@ -295,7 +299,7 @@ function mso_cat_array($type = 'page', $parent_id = 0, $order = 'category_menu_o
 }
 
 # вспомогательная рекурсивная рубрика для получения всех потомков рубрики mso_cat_array
-function _get_child($type = 'page', $parent_id = 0, $order = 'category_menu_order', $asc = 'asc', $in = false, $ex = false, $in_child = false, $hide_empty = false, $only_page_publish = false, $date_now = true)
+function _get_child($type = 'page', $parent_id = 0, $order = 'category_menu_order', $asc = 'asc', $in = false, $ex = false, $in_child = false, $hide_empty = false, $only_page_publish = false, $date_now = true, $get_pages = true)
 {
 	$CI = & get_instance();
 	$CI->db->select('category.*, COUNT(cat2obj_id) AS pages_count');
@@ -350,13 +354,18 @@ function _get_child($type = 'page', $parent_id = 0, $order = 'category_menu_orde
 		{
 			$k = $row['category_id'];
 			$r0[$k] = $row;
-			$r0[$k]['pages'] = mso_get_page_cat($k);
+			
+			if ($get_pages)
+				$r0[$k]['pages'] = mso_get_page_cat($k); // добавим все записи рубрики
+			else
+				$r0[$k]['pages'] = array(); // пустой массив
+				
 		}
 		
 		$result = $r0;
 		foreach ($result as $key=>$row)
 		{
-			$r = _get_child($type, $row['category_id'], $order, $asc, $in, $ex, $in_child, $hide_empty, $only_page_publish, $date_now);
+			$r = _get_child($type, $row['category_id'], $order, $asc, $in, $ex, $in_child, $hide_empty, $only_page_publish, $date_now, $get_pages);
 			if ($r) $result[$key]['childs'] = $r;
 		}
 	}
@@ -402,8 +411,13 @@ function mso_cat_array_single($type = 'page', $order = 'category_name', $asc = '
 	{
 		// возможно, что этот список уже сформирован, поэтому посмотрим в кэше
 		$cache_key = mso_md5( __FUNCTION__ . $type . $order . $asc . $type_page );
+		
 		$k = mso_get_cache($cache_key);
-		if ($k) return $k; // да есть в кэше
+		
+		if ($k) 
+		{
+			return $k; // да есть в кэше
+		}
 	}
 	
 	// если неверный тип, то возвратим пустой массив

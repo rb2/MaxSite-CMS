@@ -51,7 +51,7 @@ else
 	if ($f = mso_page_foreach('comments-do')) require($f); // подключаем кастомный вывод
 	else 
 	{
-		echo '<h1 class="comments">'. tf('Последние комментарии'). '</h1>';
+		echo '<h1 class="comments">' . tf('Последние комментарии'). '</h1>';
 		echo '<p class="info"><a href="' . getinfo('siteurl') . 'comments/feed">'. tf('Подписаться по RSS'). '</a>';
 		echo '<br><a href="' . getinfo('siteurl') . 'users">'. tf('Список комментаторов'). '</a></p>';
 	}

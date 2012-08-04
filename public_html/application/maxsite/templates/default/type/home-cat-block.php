@@ -61,7 +61,7 @@ if (mso_get_option('home_last_page', 'templates', '0'))
 {
 	$par = array( 
 			'limit' => 1, 
-			'cut' => mso_get_option('more', 'templates', 'Читать полностью »'),
+			'cut' => mso_get_option('more', 'templates', tf('Читать полностью »')),
 			'cat_order' => 'category_name', 
 			'cat_order_asc' => 'asc',
 			'pagination' => false,
@@ -96,7 +96,7 @@ if (mso_get_option('home_last_page', 'templates', '0'))
 						mso_page_title($page_slug, $page_title, '<h1>', '</h1>');
 						
 						mso_page_date($page_date_publish, 
-										array(	'format' => 'D, j F Y г.', // 'd/m/Y H:i:s'
+										array(	'format' => tf('D, j F Y г.'), // 'd/m/Y H:i:s'
 												'days' => tf('Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье'),
 												'month' => tf('января февраля марта апреля мая июня июля августа сентября октября ноября декабря')), 
 										'<span>', '</span>');
@@ -106,7 +106,7 @@ if (mso_get_option('home_last_page', 'templates', '0'))
 						mso_page_meta('nastr', $page_meta, '<br><span>' . tf('Настроение') . ':</span> ', '');
 						mso_page_meta('music', $page_meta, '<br><span>' . tf('В колонках звучит') . ':</span> ', '');
 						if ($page_comment_allow) mso_page_feed($page_slug, tf('комментарии по RSS'), '<br><span>' . tf('Подписаться на').'</span> ', '', true);
-						mso_page_edit_link($page_id, 'Edit page', '<br>[', ']');
+						mso_page_edit_link($page_id, tf('Edit page'), '<br>[', ']');
 					echo '</div>';
 				}
 
@@ -142,7 +142,7 @@ $par = array(
 			// полные ли записи (1) или только заголовки (0)
 			'content'=> mso_get_option('home_full_text', 'templates', '1'), 
 			// текст для Далее
-			'cut' => mso_get_option('more', 'templates', 'Читать полностью »'),
+			'cut' => mso_get_option('more', 'templates', tf('Читать полностью »')),
 			// сортировка рубрик
 			'cat_order' => 'category_id_parent', 
 			// порядок сортировки
@@ -234,7 +234,7 @@ else
 									mso_page_title($page_slug, $page_title, '<h1>', '</h1>');
 									
 									mso_page_date($page_date_publish, 
-													array(	'format' => 'D, j F Y г.', // 'd/m/Y H:i:s'
+													array(	'format' => tf('D, j F Y г.'), // 'd/m/Y H:i:s'
 															'days' => tf('Понедельник Вторник Среда Четверг Пятница Суббота Воскресенье'),
 															'month' => tf('января февраля марта апреля мая июня июля августа сентября октября ноября декабря')), 
 													'<span>', '</span>');
