@@ -100,8 +100,10 @@ if (!function_exists('default_components'))
 		static $all = false; // запоминаем результат, чтобы несколько раз не вызывать функцию get_path_files
 		
 		if ($all === false)
+		{
 			$all = get_path_files(getinfo('template_dir') . 'components/', getinfo('template_url') . 'components/', false, array('php'));
-			
+		}
+		
 		return '0||' . tf('Отсутствует') . '#' . implode($all, '#');
 	}
 }
@@ -186,7 +188,7 @@ if (!function_exists('default_out_profiles'))
 	}
 }
 
-# функция возвращает полный путь к файлу компоненты для указанной опции
+# функция возвращает полный путь к файлу компонента для указанной опции
 # $option - опция
 # $def_file - файл по умолчанию
 # пример использования
@@ -215,7 +217,7 @@ if (!function_exists('get_component_fn'))
 # функция подключает файлы css-style установленных компонентов и выводит их содержимое в едином блоке <style>
 # использовать в head 
 # $component_options - названия опций, которыми определяются компоненты в шаблоне
-# css-файл компонента находится в общем css-каталоге шаблона с именем компонетна, наример menu.php и menu.css
+# css-файл компонента находится в общем css-каталоге шаблона с именем компонента, например menu.php и menu.css
 if (!function_exists('out_component_css'))
 {
 	function out_component_css($component_options = array('default_header_component1', 'default_header_component2', 'default_header_component3', 'default_header_component4', 'default_header_component5', 'default_footer_component1', 'default_footer_component2', 'default_footer_component3', 'default_footer_component4', 'default_footer_component5'))

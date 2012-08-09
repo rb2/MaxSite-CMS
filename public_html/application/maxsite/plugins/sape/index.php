@@ -103,6 +103,8 @@ function sape_init($args = array())
 		
 		$sa['charset'] = 'UTF-8';
 		
+		//$sa['fetch_remote_type'] = 'file_get_contents'; // file_get_contents|curl|socket
+		
 		if (isset($options['test']) and $options['test']) $sa['force_show_code'] = true;
 		
 		if (isset($options['multi_site']) and $options['multi_site']) $sa['multi_site'] = true;

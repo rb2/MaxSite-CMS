@@ -261,6 +261,7 @@ function mso_upload_mini($up_data, $r = array())
 		$size = abs((int) $r['userfile_mini_size']);
 
 		($image_width >= $image_height) ? ($max = $image_width) : ($max = $image_height);
+		
 		if ( $size > 1 and $size < $max ) // корректный размер
 		{
 			$r_conf = array(

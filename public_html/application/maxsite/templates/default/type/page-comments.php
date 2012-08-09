@@ -88,13 +88,10 @@ if ($page_text_ok and $comments) // есть страницы
 		$comments_date = mso_date_convert('Y-m-d в H:i:s', $comments_date);
 		
 		$comment_info = '';
-		echo NR . '<li style="clear: both"' . $class . '>';
+		echo NR . '<li' . $class . '>';
 		
 		
-		$comment_info .= '<span class="date"><a href="#comment-' 
-			. $comments_id 
-			. '" id="comment-' . $comments_id . '">' . $comments_date . '</a></span>'
-			.' | <span class="url">' . $comments_url . '</span>';
+		$comment_info .= '<span class="url">' . $comments_url . '</span>';
 		
 		if ($comusers_url and mso_get_option('allow_comment_comuser_url', 'general', 0))
 		{
@@ -105,6 +102,10 @@ if ($page_text_ok and $comments) // есть страницы
 				. 'images/outlink.png" width="16" height="16" alt="link" title="' 
 				. tf('Сайт комментатора') . '"></a>';
 		}
+		
+		$comment_info .= ' | <span class="date"><a href="#comment-' 
+			. $comments_id 
+			. '" id="comment-' . $comments_id . '">' . $comments_date . '</a></span>';
 		
 		if ($edit_link) $comment_info .= ' | <a href="' . $edit_link . $comments_id . '">edit</a>';
 		
@@ -123,7 +124,10 @@ if ($page_text_ok and $comments) // есть страницы
 				. mso_avatar($comment) 
 				. mso_comments_content($comments_content) 
 				. '</div>';
+				
 		}
+		
+		echo '<div class="clearfix"></div>';
 		
 		echo '</li>'; 
 		

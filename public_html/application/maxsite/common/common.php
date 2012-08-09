@@ -3147,7 +3147,7 @@ function t($w = '', $file = false)
 # 
 #  Всегда подключается  /common/language/ЯЗЫК-f.php
 #  если это админка, то подключается еще и /common/language/ЯЗЫК.php
-#  Если вторым паарметром указан __FILE__ то подключается перевод из каталога language
+#  Если вторым параметром указан __FILE__ то подключается перевод из каталога language
 #  откуда была вызвана функция t() или tf().
 #  Если второй параметр это mytemplate, то подключается language текущего шаблона
 #  Если второй параметр это install, то подключается /common/language/install/ЯЗЫК.php
@@ -3468,6 +3468,8 @@ function _mso_login()
 				and isset($_POST['flogin_session_id'])
 		)
 	{
+		sleep(3); // задержка - примитивная защита от подбора пароля
+	
 		$flogin_session_id = $_POST['flogin_session_id'];
 		
 		# защита сесии
@@ -3665,9 +3667,8 @@ function mso_xss_clean($text, $out_error = '_mso_xss_clean_out_error', $out_no_e
 	$CI = & get_instance();
 
 	// выполняем XSS-фильтрацию
-	//$text_xss = $CI->input->xss_clean($text);
-    
     $text_xss = $CI->security->xss_clean($text, false);
+
 	// если тексты не равны, значит существует опасность XSS-атаки
 	if ($text != $text_xss)
 	{
@@ -3715,7 +3716,7 @@ function mso_xss_clean_data($data = array(), $keys = array(), $strip_tags = fals
 
 # функция возвращает массив $post обработанный по указанным правилам 
 # входящий массив состоит из пары 'поле'=>'правила'
-# гле поле - ключ массива $post, а правила - правила валидации
+# где поле - ключ массива $post, а правила - правила валидации
 # mso_clean_post(array('my_name'=>'trim|xss'))
 # если массив $post не указан, то используется $_POST
 # правила

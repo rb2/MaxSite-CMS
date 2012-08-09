@@ -115,6 +115,12 @@ function mso_get_comments($page_id = 0, $r = array())
 					$comments[$key]['comusers_url'] = mso_xss_clean($comment['comusers_url'], '');
 				}
 				
+				// зачистка XSS комюзер имя
+				if ($comment['comusers_nik'])
+				{
+					$comments[$key]['comusers_nik'] = mso_xss_clean($comment['comusers_nik']);
+				}
+				
 				$commentator = 1;
 
 				if (isset($all_comusers[$comment['comusers_id']]))

@@ -110,7 +110,8 @@ if ($pages) // есть страницы
 						echo '<div class="page_nav">' . $page_nav . '</div>';
 					
 					// блок "Еще записи этой рубрики"
-					mso_page_other_pages($page_id, $page_categories);
+					if ($f = mso_page_foreach('page-other-pages')) require($f);
+						else mso_page_other_pages($page_id, $page_categories);
 					
 				echo '</div>';
 			}

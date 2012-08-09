@@ -472,7 +472,7 @@ function mso_get_pages($r = array(), &$pag)
 	else
 	{
 		$pages = array();
-		$MSO->data['pages_is'] = false; // ставим пизнак, что записей нет
+		$MSO->data['pages_is'] = false; // ставим признак, что записей нет
 	}
 	
 	return $pages;

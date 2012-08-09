@@ -405,7 +405,7 @@ function _get_child($type = 'page', $parent_id = 0, $order = 'category_menu_orde
 # массив можно использовать для быстрого доступа к параметрам рубрик
 # автоматом вычисляются родители (parents) и дочерние элементы (childs)
 # дополнительный параметр level указывает на левый отступ от края списка
-function mso_cat_array_single($type = 'page', $order = 'category_name', $asc = 'ASC', $type_page = 'blog', $cache = true)
+function mso_cat_array_single($type = 'page', $order = 'category_name', $asc = 'ASC', $type_page = '', $cache = true)
 {
 	if ($cache) // можно кэшировать
 	{
@@ -772,5 +772,35 @@ function mso_get_cat_url_from_id($id = 0)
 	
 	return '';
 }
+
+# Получаем произвольный ключ рубрики ID
+# если id массив, то берется только первый элемент
+# например mso_get_cat_from_id(10, 'category_name') вернет название рубрики
+# если второй параметр = false, то возвращается полный массив указанной рубрики
+function mso_get_cat_from_id($id = 0, $find_key = false)
+{
+	$all_cats = mso_cat_array_single();
+	
+	if (is_array($id) and count($id)>0) $id = $id[0];
+	
+	if ($find_key === false) // не указана ключ - вернуть все данные рубрики
+	{
+		if (isset($all_cats[$id])) return $all_cats[$id];
+		else return '';
+	}
+	
+	// ищем id и ключ 
+	foreach ($all_cats as $val)
+	{
+		if ($val['category_id'] == $id)
+		{
+			if (isset($val[$find_key])) return $val[$find_key];
+				return '';
+		}
+	}
+	
+	return '';
+}
+
 
 # end file

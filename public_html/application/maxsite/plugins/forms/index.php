@@ -92,7 +92,7 @@ function forms_content_callback($matches)
 	{
 		$fields = $all[1];
 		
-		/*
+		/* 
 		pr($fields);
 		pr($email);
 		pr($redirect);
@@ -109,7 +109,15 @@ function forms_content_callback($matches)
 			$subject_f['require'] = 1;
 			//$subject_f['type'] = 'select';
 			
-			$subject_f['type'] = (strpos($subject, '#') === false ) ? 'text' : 'select';
+			$subject_f['type'] = (mb_strpos($subject, '#') === false ) ? 'text' : 'select';
+			
+			// если это одиночное поле, но при этом текст сабжа начинается
+			// с _ то ставим тип hidden
+			if ($subject_f['type'] == 'text' and mb_strpos($subject, '_') === 0 ) 
+			{
+				$subject = mb_substr($subject . ' ', 1, -1, 'UTF-8');
+				$subject_f['type'] = 'hidden'; 
+			}
 			
 			$subject_f['description'] = tf('Тема письма');
 			//$subject_f['tip'] = t('Выберите тему письма');
@@ -302,7 +310,15 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 		// если в  subject есть #, то это несколько значений - select
 		// если нет, значит обычное текстовое поле
 		
-		$subject_f['type'] = (strpos($subject, '#') === false ) ? 'text' : 'select';
+		$subject_f['type'] = (mb_strpos($subject, '#') === false ) ? 'text' : 'select';
+		
+		// если это одиночное поле, но при этом текст сабжа начинается
+		// с _ то ставим тип hidden
+		if ($subject_f['type'] == 'text' and mb_strpos($subject, '_') === 0 ) 
+		{
+			$subject = mb_substr($subject . ' ', 1, -1, 'UTF-8');
+			$subject_f['type'] = 'hidden'; 
+		}
 		
 		$subject_f['description'] = tf('Тема письма');
 		//$subject_f['tip'] = t('Выберите тему письма');
@@ -331,7 +347,7 @@ function forms_show_form($f = array(), $ushka = '', $forms_subscribe = true, $re
 	// обязательные поля
 	$out .= '<p><label class="ffirst ftitle" title="' . tf('Обязательное поле') . '" for="id-' . ++$id . '">' . tf('Ваше имя*') . '</label><span><input name="forms_name" type="text" value="" placeholder="' . tf('Ваше имя') . '" required id="id-' . $id . '"></span></p>';
 	
-	$out .= '<p><label class="ffirst ftitle" title="' . tf('Обязательное поле') . '" for="id-' . ++$id . '">' . t('Ваш email*') . '</label><span><input name="forms_email" type="email" value="" placeholder="' . tf('Ваш email') . '" required id="id-' . $id . '"></span></p>';
+	$out .= '<p><label class="ffirst ftitle" title="' . tf('Обязательное поле') . '" for="id-' . ++$id . '">' . tf('Ваш email*') . '</label><span><input name="forms_email" type="email" value="" placeholder="' . tf('Ваш email') . '" required id="id-' . $id . '"></span></p>';
 	
 	
 	// тут указанные поля в $f

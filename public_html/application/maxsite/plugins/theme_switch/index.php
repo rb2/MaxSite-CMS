@@ -216,7 +216,7 @@ function theme_switch_widget_custom($options = array(), $num = 1)
 	if ($out) 
 		$out = '<div class="theme_switch">' 
 			. $options['header'] 
-			. '<form action="" method="post">' 
+			. '<form method="post">' 
 			. mso_form_session('f_session_id') . $out 
 			. '<p><button type="submit" name="f_theme_switch_submit" class="submit">' . $options['submit'] . '</button></p></form></div>';
 	

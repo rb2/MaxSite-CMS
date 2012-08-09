@@ -34,9 +34,13 @@
 			if ( substr($post['f_comments_author'], 0, 1) == '0' )
 			{
 				if ( !isset($post['f_comments_author_name']) or trim($post['f_comments_author_name']) == '' )
+				{
 					$data['comments_author_name'] = t('Аноним');
+				}
 				else
-					$data['comments_author_name'] = trim($post['f_comments_author_name']);
+				{
+					$data['comments_author_name'] = mso_xss_clean(trim($post['f_comments_author_name']));
+				}
 				$data['comments_users_id'] = 'NULL';
 				$data['comments_comusers_id'] = 'NULL';
 			}
@@ -212,12 +216,19 @@
 				$out .= '<optgroup label="' . t('Комментаторы') . '">' . NR;
 				foreach ($users->result_array() as $user) // обходим в цикле
 				{
-					if (!$user['comusers_nik']) $user['comusers_nik'] = '! ' . t('Комментатор') . ' ' . $user['comusers_id'];
+					if (!$user['comusers_nik']) 
+						$user['comusers_nik'] = '! ' . t('Комментатор') . ' ' . $user['comusers_id'];
+					
+					$user['comusers_nik'] = mso_xss_clean($user['comusers_nik']);
+					
 					$out .= '<option value="2-'. $user['comusers_id']. '"'. ( ($row['comments_comusers_id'] == $user['comusers_id'])?(' selected="selected"'):('') ).'>' . $user['comusers_nik'] . '</option>'. NR;
+					
 				}
 				$out .= '</optgroup>' . NR;
 			}
+			
 			$out .= '</select></p>' . NR;
+			
 			echo t('<p>Выберите пользователя или комментатора, которого вы хотите назначить автором комментария, либо выберите «Аноним» и введите имя анонимного комментатора.</p>') . $out;
 
 			$checked1 = $checked2 = '';

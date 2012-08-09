@@ -7,7 +7,7 @@ if ($fn = get_component_fn('default_header_component2', 'menu.php')) require($fn
 if ($fn = get_component_fn('default_header_component3', 'image-slider.php')) require($fn);
 
 /*
-// либо явное подключение, без возможности выбора в адми-панели
+// либо явное подключение, без возможности выбора в админ-панели
 // нужно в my_options.ini скрыть опции БЛОКИ
 // [Первый блок шапки]
 // [Второй блок шапки]

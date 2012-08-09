@@ -13,7 +13,16 @@ function autoclose_tags_autoload($args = array())
 
 function autoclose_tags_custom($content = '')
 {
-	# if (is_type('page')) return $content;
+	if (function_exists('tidy_repair_string'))
+		return tidy_repair_string(
+									$content,
+									array(
+											'clean' => true,
+											'drop-font-tags' => true,
+											'drop-proprietary-attributes' => true,
+											'enclose-text' => true
+										),
+									'utf8');
 
 	preg_match_all("#<([a-z]+)( .*)?(?!/)>#iU", $content, $result);
 	$openedtags = $result[1];
